@@ -61,7 +61,7 @@ public class GameManager {
 
     public void BackToGame(){
 		_instance = null;
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name); //UPDATE FOR MORE LEVELS
+		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
 	}
 

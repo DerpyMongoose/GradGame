@@ -273,6 +273,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76070c470594e9a43b48faa7f0c4fb4d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &525611520 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012894417998, guid: 75143ac6572fa884b8ae2362e3064a3b,
+    type: 2}
+  m_PrefabInternal: {fileID: 803790969}
+  m_Script: {fileID: 11500000, guid: ad5444bee9b05744e92d1aa93795caa5, type: 3}
 --- !u!4 &726038191 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014158861908, guid: 76070c470594e9a43b48faa7f0c4fb4d,
@@ -421,6 +427,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 525611520}
+    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToStore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
