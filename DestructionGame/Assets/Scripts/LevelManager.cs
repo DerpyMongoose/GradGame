@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour {
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    GameObject ReplayBtn;
+    GameObject NewLevelBtn;
 
     void Awake(){
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
@@ -34,6 +36,8 @@ public class LevelManager : MonoBehaviour {
 
         ReplayPanel = GameObject.Find("replayPanel");
         InGamePanel = GameObject.Find("InGameGUI");
+        ReplayBtn = GameObject.Find("ReplayButton");
+        NewLevelBtn = GameObject.Find("NewLevelButton");
         replayScoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
         ReplayPanel.SetActive(false);
     }
@@ -71,7 +75,18 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + score;
+        
         ReplayPanel.SetActive(true);
+        switch (levelResult) {
+            case "Level completed!":
+            ReplayBtn.SetActive(false);
+            NewLevelBtn.SetActive(true);
+            break;
+            case "Game over":
+            ReplayBtn.SetActive(true);
+            NewLevelBtn.SetActive(false);
+            break;
+        }
     }
 
 	public void GoToStore(){
