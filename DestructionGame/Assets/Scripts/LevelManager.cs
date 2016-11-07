@@ -81,6 +81,15 @@ public class LevelManager : MonoBehaviour {
             case "Level completed!":
             ReplayBtn.SetActive(false);
             NewLevelBtn.SetActive(true);
+            Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
+            if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                GameManager.instance.levelsUnlocked++;
+            }
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                levelNum.text = (GameManager.instance.currentLevel+1).ToString();
+            }else {
+                levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
+            }
             break;
             case "Game over":
             ReplayBtn.SetActive(true);
@@ -88,8 +97,4 @@ public class LevelManager : MonoBehaviour {
             break;
         }
     }
-
-	public void GoToStore(){
-		GameManager.instance.GoToStore ();
-	}
 }

@@ -7,11 +7,13 @@ public class GameManager {
 	private static GameManager _instance;
 	private GameObject _player;
 	private LevelManager _levelManager;
-	private static string[] GAME_SCENES = {"GameScene1","GameScene2"};
+	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene1"};
 
-	private int currentLevel = 1;
+	public int currentLevel = 1;
+    public int levelsUnlocked = 1;
+    public int NUM_OF_LEVELS_IN_GAME = 3;
 
-	public int score = 0;
+    public int score = 0;
 
 	//getters:
 	public static GameManager instance{
@@ -39,9 +41,9 @@ public class GameManager {
 	}
 
 	//scene management
-	public void StartNewLevel(){
+	public void StartLevel(int level){
 		_instance = null;
-		SceneManager.LoadScene (GAME_SCENES[0]); //UPDATE FOR MORE LEVELS
+		SceneManager.LoadScene (GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
 	}
 
@@ -51,7 +53,13 @@ public class GameManager {
 		Time.timeScale = 1;
 	}
 
-	public void BackToGame(){
+    public void GoTolevelOverview() {
+        _instance = null;
+        SceneManager.LoadScene("GameLevelsGUI");
+        Time.timeScale = 1;
+    }
+
+    public void BackToGame(){
 		_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[currentLevel-1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
