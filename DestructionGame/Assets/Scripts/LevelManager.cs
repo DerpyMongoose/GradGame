@@ -37,7 +37,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private void IncreaseScore(GameObject destructedObj){
-		score += 20;
+        int points = destructedObj.GetComponent<Destructable>().pointsForDestruction;
+		score += points;
 		scoreText.text = "Score: " + score;
 		GameManager.instance.score = score;
 	}
