@@ -17,7 +17,7 @@ public class CameraController2 : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+		player = GameManager.instance.player;
         offset = transform.position - player.transform.position;
     }
 
@@ -36,12 +36,14 @@ public class CameraController2 : MonoBehaviour
             {
                 tempTrans = hit.transform.gameObject;
                 print(tempTrans);
-                hit.transform.GetComponent<MeshRenderer>().enabled = false;
+				if( hit.transform.GetComponent<MeshRenderer>() != null)
+                	hit.transform.GetComponent<MeshRenderer>().enabled = false;
             }
             else if (hit.transform.gameObject == player && tempTrans != null)
             {
                 print(tempTrans);
-                tempTrans.GetComponent<MeshRenderer>().enabled = true;
+				if( hit.transform.GetComponent<MeshRenderer>() != null)
+                	tempTrans.GetComponent<MeshRenderer>().enabled = true;
             }
         }
     }

@@ -24,31 +24,23 @@ public class PlayerStates : MonoBehaviour {
 	}
 
 	void Update () {
-		//update level timer
-		switch (state) {
-		case PlayerState.IDLE:
-		case PlayerState.WALKING:
-		case PlayerState.ATTACKING:
-			timeLeftInLevel -= Time.deltaTime;
-			timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
 
-			//when timer runs out:
-			if (timeLeftInLevel <= 0f) {
-				timerText.text = "Timer: 0";
-				timerText.color = Color.red;
-				state = PlayerState.ENDING;
-				GameManager.instance.timerOut ();
-			}
-			break;
-		}
+        //update level timer
+        UpdateLevelTimer();
 
 		switch (state) {
+
 		//until player touches the screen to start playing the level
 		case PlayerState.READY:
-			if (Input.GetKey (KeyCode.R)) {
-				timeLeftInLevel = 10f;
-				state = PlayerState.IDLE;
-				GameManager.instance.timerStart ();
+            if (Application.platform == RuntimePlatform.Android) {
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+                    Startlevel();
+                }
+            }
+            else {
+                if (Input.GetKey(KeyCode.R)) {
+                    Startlevel();
+                }
 			}
 			break;
 
@@ -66,4 +58,33 @@ public class PlayerStates : MonoBehaviour {
 			break;
 		}
 	}
+
+    private void UpdateLevelTimer() {
+        switch (state) {
+            case PlayerState.IDLE:
+            case PlayerState.WALKING:
+            case PlayerState.ATTACKING:
+            timeLeftInLevel -= Time.deltaTime;
+            timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
+
+            //when timer runs out:
+            if (timeLeftInLevel <= 0f) {
+                timerText.text = "Timer: 0";
+                timerText.color = Color.red;
+                state = PlayerState.ENDING;
+                GameManager.instance.timerOut();
+            }
+            break;
+        }
+    }
+
+    private void Startlevel() {
+        timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
+        state = PlayerState.IDLE;
+        GameManager.instance.timerStart();
+    }
+
+    private void Move() {
+
+    }
 }
