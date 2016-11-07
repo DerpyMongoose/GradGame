@@ -15,6 +15,14 @@ public class Destruction : MonoBehaviour
 
     private int state;
 
+	//object name to be used for Quest system??
+	public enum DestructableObject {
+		BAREL, CHAIR, TABLE, WARDROBE, BED, BOX
+	}
+
+	public DestructableObject objType;
+	public int pointsForDestruction;
+
     // Use this for initialization
     void Start()
     {
@@ -41,19 +49,22 @@ public class Destruction : MonoBehaviour
             col.collider.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             if(state == (maxStates - maxStates) + state)
             {
-                print("state");
+                print(state);
                 if (state >= maxStates)
                 {           
                     for (int i = 0; i < tPPrefab; i++)
                     {
                         Instantiate(prefab,transform.position, Quaternion.identity);
                     }
-                    Destroy(gameObject);
-                }
 
-                particleSys.startSize *= state; 
-                particleSys.Play();
-                state += state;
+					Destroy (gameObject);
+                }
+				if (particleSys != null) 
+				{
+					particleSys.startSize *= state; 
+					particleSys.Play ();
+				}
+				state += state;
             }
         }
     }

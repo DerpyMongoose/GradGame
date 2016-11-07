@@ -6,10 +6,10 @@ using System.Collections;
  */
 public class Destruct : MonoBehaviour {
 
-	void OnTriggerEnter(Collider hitObject){
-		if (hitObject.gameObject.tag == "Destructable") {
-			GameManager.instance.objectDestructed (hitObject.gameObject);
-			DestructObject (hitObject.gameObject);
+	void OnCollisionEnter(Collision hit){
+		if (hit.gameObject.tag == "Destructable") {
+			GameManager.instance.objectDestructed (hit.gameObject);
+			//DestructObject (hitObject.gameObject);
 
 		}
 	}
