@@ -221,8 +221,13 @@ MonoBehaviour:
   Ewall: {fileID: 0}
   Wwall: {fileID: 0}
   Swall: {fileID: 0}
-  force: 1000
+  moveForce: 800
   hitForce: 1000
+  swirlForce: 5000
+  cdLift: 3
+  doubleTapTime: 0.5
+  collisionRadius: 3
+  numOfCircleToShow: 1
 --- !u!114 &114000011762184306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,3 +250,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  liftForce: 300

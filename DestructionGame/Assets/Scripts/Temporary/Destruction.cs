@@ -12,6 +12,7 @@ public class Destruction : MonoBehaviour
 
     private GameObject player;
     private ParticleSystem particleSys;
+    private Rigidbody objRig;
 
     private int state;
 
@@ -34,6 +35,7 @@ public class Destruction : MonoBehaviour
             print("Please assign maxStates a value above 0");
             return;
         }
+        objRig = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -67,5 +69,20 @@ public class Destruction : MonoBehaviour
 				state += state;
             }
         }
+    }
+    void OnEnable()
+    {
+        GameManager.stampPower += Lift;
+    }
+
+    void OnDisable()
+    {
+        GameManager.stampPower -= Lift;
+    }
+
+
+    void Lift()
+    {
+        objRig.AddForce( Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
     }
 }

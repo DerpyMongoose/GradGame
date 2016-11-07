@@ -7,7 +7,9 @@ using UnityEngine.UI;
  */
 public class PlayerStates : MonoBehaviour {
 
-	private enum PlayerState {
+    public float liftForce;
+
+    private enum PlayerState {
 		READY, IDLE, WALKING, ATTACKING, ENDING }
 
 	PlayerState state = PlayerState.READY;
