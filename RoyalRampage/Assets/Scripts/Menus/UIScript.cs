@@ -18,11 +18,24 @@ public class UIScript : MonoBehaviour {
 		GameManager.instance.StartLevel(next_level);
     }
 
+    public void ToLevel(int level) {
+        GameManager.instance.currentLevel = level;
+        GameManager.instance.StartLevel(level);
+    }
+
     public void GoToStore() {
         GameManager.instance.GoToStore();
     }
 
     public void GoToLevelOverview() {
         GameManager.instance.GoTolevelOverview();
+    }
+
+    public void GoToHelp() {
+        GameManager.instance.GoToHelp();
+    }
+
+    public void GoToSettings() {
+        GameManager.instance.GoToSettings();
     }
 }
