@@ -73,6 +73,7 @@ namespace AK
             namespace SWITCH
             {
                 static const AkUniqueID DESTRUCTION = 2446376615U;
+                static const AkUniqueID HIT = 1116398592U;
                 static const AkUniqueID LANDING = 2548270042U;
             } // namespace SWITCH
         } // namespace OBJECT_ACTIONS

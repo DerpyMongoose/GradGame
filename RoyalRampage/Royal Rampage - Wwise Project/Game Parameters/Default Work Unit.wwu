@@ -6,6 +6,8 @@
 				<GameParameter Name="Impact_Velocity" ID="{C59BD953-DB2E-408F-9A96-0D7BADFCFB7B}">
 					<PropertyList>
 						<Property Name="RTPCRamping" Type="int16" Value="1"/>
+						<Property Name="SlewRateDown" Type="Real64" Value="100"/>
+						<Property Name="SlewRateUp" Type="Real64" Value="100"/>
 					</PropertyList>
 				</GameParameter>
 				<GameParameter Name="Level_Time" ID="{67774297-3FF2-4549-9FDC-76BC0B59AA8E}">
