@@ -86,7 +86,7 @@ public class Destruction : MonoBehaviour
         if (col.collider.gameObject == player)
         {
             hit = true;
-            objRB.AddRelativeForce((transform.position - player.transform.position) * 1000);
+            objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
             //Damage system, it takes more hits to destroy
             /*if(state == (life - life) + state)
             {
@@ -115,8 +115,8 @@ public class Destruction : MonoBehaviour
             {
                 Instantiate(rubblePrefab, transform.position, Quaternion.identity);
             }
-            Destroy(gameObject);
-            Destroy(col.collider.gameObject);
+            Destroy(gameObject,0.1f);
+            Destroy(col.collider.gameObject,0.1f);
 
         }
     }
