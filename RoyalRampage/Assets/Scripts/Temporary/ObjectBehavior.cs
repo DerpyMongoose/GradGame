@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Destruction : MonoBehaviour
+public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
     private int life;
@@ -24,8 +24,6 @@ public class Destruction : MonoBehaviour
     {
         BARREL, CHAIR, TABLE, WARDROBE, BED, BOX
     }
-
-
 
     public DestructableObject objType;
 
@@ -86,7 +84,9 @@ public class Destruction : MonoBehaviour
         if (col.collider.gameObject == player)
         {
             hit = true;
+            /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
             objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
+            /////////////////////////////////////////////////////////////////////////////////////
             //Damage system, it takes more hits to destroy
             /*if(state == (life - life) + state)
             {
@@ -115,9 +115,12 @@ public class Destruction : MonoBehaviour
             {
                 Instantiate(rubblePrefab, transform.position, Quaternion.identity);
             }
+            for (int i = 0; i < rubbleAmount; i++)
+            {
+                Instantiate(col.gameObject.GetComponent<ObjectBehavior>().rubblePrefab, col.transform.position, Quaternion.identity);
+            }
             Destroy(gameObject,0.1f);
             Destroy(col.collider.gameObject,0.1f);
-
         }
     }
 }
