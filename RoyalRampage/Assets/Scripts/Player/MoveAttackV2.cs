@@ -131,8 +131,8 @@ public class MoveAttackV2 : MonoBehaviour
                         acc = speed / (swipeTimer * scaleTime);
                         force = playerRG.mass * acc;
 
-                        tempVariable = Mathf.Clamp(force, 200000f, 600000f);
-                        tempVariable = (tempVariable - 200000f) / (400000f);
+                        tempVariable = Mathf.Clamp(force, 50000f, 1000000f);
+                        tempVariable = (tempVariable - 50000f) / (50000f);
                         tempVariable = curve.Evaluate(tempVariable);
 
                         applyMove = true;
