@@ -28,6 +28,16 @@ public class ObjectBehavior : MonoBehaviour
     public DestructableObject objType;
 
     // Use this for initialization
+    void OnEnable()
+    {
+        GameManager.stampPower += Lift;
+    }
+
+    void OnDisable()
+    {
+        GameManager.stampPower -= Lift;
+    }
+
     void Start()
     {
         switch (objType)
@@ -78,6 +88,11 @@ public class ObjectBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    void Lift()
+    {
+        objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+    }
+
     void OnCollisionEnter(Collision col)
     {
 
@@ -119,8 +134,10 @@ public class ObjectBehavior : MonoBehaviour
             {
                 Instantiate(col.gameObject.GetComponent<ObjectBehavior>().rubblePrefab, col.transform.position, Quaternion.identity);
             }
+            GameManager.instance.objectDestructed(gameObject);
+            GameManager.instance.objectDestructed(col.gameObject);
             Destroy(gameObject,0.1f);
-            Destroy(col.collider.gameObject,0.1f);
+            Destroy(col.gameObject,0.1f);
         }
     }
 }
