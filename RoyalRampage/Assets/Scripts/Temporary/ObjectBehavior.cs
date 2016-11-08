@@ -136,8 +136,8 @@ public class ObjectBehavior : MonoBehaviour
             }
             GameManager.instance.objectDestructed(gameObject);
             GameManager.instance.objectDestructed(col.gameObject);
-            Destroy(gameObject,0.1f);
-            Destroy(col.gameObject,0.1f);
+            Destroy(gameObject);
+            Destroy(col.gameObject);
         }
     }
 }
