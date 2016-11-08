@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{87237D58-0641-4A53-9378-1D91D013D061}" SchemaVersion="72">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{87237D58-0641-4A53-9378-1D91D013D061}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList>
+						<Reference Name="Effect0" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+							<ObjectRef Name="Brick_Wall_Minus_1dB_Peak_Fast_Release" ID="{2144284E-7ADD-4341-86A4-4E468BEC9A2D}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}"/>
+						<Bus Name="Environmental" ID="{A836503F-F433-488A-8DFB-9EB2736916C8}">
+							<ChildrenList>
+								<Bus Name="SFX" ID="{648FA7A9-5E04-4482-99A2-128786929475}">
+									<ChildrenList>
+										<Bus Name="Objects" ID="{D93184C9-5D75-4F74-8DA3-904F18E0DD3B}"/>
+										<Bus Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}"/>
+									</ChildrenList>
+								</Bus>
+								<Bus Name="Reverb" ID="{7BAB8465-41B7-4F3A-A67C-0F07FD286825}">
+									<ChildrenList>
+										<AuxBus Name="Hall" ID="{D4DD16F4-2B42-4096-A486-D15ED0A72EB1}"/>
+										<AuxBus Name="Room_Soft" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}"/>
+										<AuxBus Name="Corridor" ID="{15C40741-5726-4DF4-80F5-A5EF61EA3555}"/>
+										<AuxBus Name="Room_Hard" ID="{5175A9AC-8A00-4CD3-B409-2F708630B89B}"/>
+									</ChildrenList>
+								</Bus>
+								<Bus Name="Ambience" ID="{422DE071-45F7-4087-A867-A516363E7355}"/>
+							</ChildrenList>
+						</Bus>
+						<Bus Name="Music" ID="{488FAA0D-1A06-4210-8857-DE5D77D67F6A}"/>
+					</ChildrenList>
+				</Bus>
+				<Bus Name="Master Secondary Bus" ID="{D2E0BC7E-7B3F-4FFE-A670-FAE02761B631}"/>
+				<MotionBus Name="Master Motion Bus" ID="{20A630BA-3398-4676-B927-1004DFE41FD8}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

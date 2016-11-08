@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37356418, g: 0.3811201, b: 0.3588767, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356424, g: 0.3811201, b: 0.35887662, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -362,22 +362,22 @@ Prefab:
     - target: {fileID: 224000012851715922, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1024
+      value: 532.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012851715922, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 768
+      value: 209.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000012851715922, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 2048
+      value: 1065
       objectReference: {fileID: 0}
     - target: {fileID: 224000012851715922, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1536
+      value: 419
       objectReference: {fileID: 0}
     - target: {fileID: 224000012851715922, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
@@ -487,7 +487,7 @@ GameObject:
   - 20: {fileID: 1606607307}
   - 92: {fileID: 1606607306}
   - 124: {fileID: 1606607305}
-  - 81: {fileID: 1606607304}
+  - 114: {fileID: 1606607304}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -495,13 +495,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1606607304
-AudioListener:
+--- !u!114 &1606607304
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1606607303}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c313202866f924abcc1b5f172be395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenerId: 0
 --- !u!124 &1606607305
 Behaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +568,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 632357161}
   m_RootOrder: 0
+--- !u!1 &1654699951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1654699955}
+  - 114: {fileID: 1654699954}
+  - 114: {fileID: 1654699953}
+  - 114: {fileID: 1654699952}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1654699952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654699951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5002c030f956b499a9ffcf8d41642c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  valueGuid: 747757a4248f8a4c96e3c01797dc02ad
+  bankName: Main
+  loadAsynchronous: 0
+  decodeBank: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+--- !u!114 &1654699953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654699951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2c4b48aa5b13145b5eaf236d5579c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  engineLogging: 1
+--- !u!114 &1654699954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654699951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44efd0180108e844bb180fcbb22cd0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1654699955
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654699951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!114 &1831919192 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000012894417998, guid: 75143ac6572fa884b8ae2362e3064a3b,
