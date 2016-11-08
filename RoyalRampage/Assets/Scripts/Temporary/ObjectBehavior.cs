@@ -100,7 +100,7 @@ public class ObjectBehavior : MonoBehaviour
         {
             hit = true;
             /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
-            objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
+            //objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
             /////////////////////////////////////////////////////////////////////////////////////
             //Damage system, it takes more hits to destroy
             /*if(state == (life - life) + state)
