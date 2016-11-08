@@ -59,6 +59,18 @@ public class GameManager {
         Time.timeScale = 1;
     }
 
+    public void GoToHelp() {
+        //_instance = null;
+        //SceneManager.LoadScene("Help");
+        Time.timeScale = 1;
+    }
+
+    public void GoToSettings() {
+        //_instance = null;
+        //SceneManager.LoadScene("Settings");
+        Time.timeScale = 1;
+    }
+
     public void BackToGame(){
 		//_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
