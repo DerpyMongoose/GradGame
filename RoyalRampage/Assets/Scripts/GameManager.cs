@@ -59,7 +59,7 @@ public class GameManager {
         Time.timeScale = 1;
     }
 
-    public void GoToHelp() {
+    public void GoToInfo() {
         //_instance = null;
         //SceneManager.LoadScene("Help");
         Time.timeScale = 1;

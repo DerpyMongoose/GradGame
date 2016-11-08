@@ -19,8 +19,10 @@ public class UIScript : MonoBehaviour {
     }
 
     public void ToLevel(int level) {
-        GameManager.instance.currentLevel = level;
-        GameManager.instance.StartLevel(level);
+        if (level <= GameManager.instance.levelsUnlocked) {
+            GameManager.instance.currentLevel = level;
+            GameManager.instance.StartLevel(level);
+        }
     }
 
     public void GoToStore() {
@@ -31,11 +33,12 @@ public class UIScript : MonoBehaviour {
         GameManager.instance.GoTolevelOverview();
     }
 
-    public void GoToHelp() {
-        GameManager.instance.GoToHelp();
+    public void GoToInfo() {
+        GameManager.instance.GoToInfo();
     }
 
     public void GoToSettings() {
         GameManager.instance.GoToSettings();
     }
+
 }
