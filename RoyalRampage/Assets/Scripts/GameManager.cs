@@ -40,8 +40,12 @@ public class GameManager {
 		}
 	}
 
-	//scene management
-	public void StartLevel(int level){
+    //scene management
+    public string CurrentScene() {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public void StartLevel(int level){
 		//_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;

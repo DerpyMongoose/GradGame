@@ -3,6 +3,10 @@ using System.Collections;
 
 public class UIScript : MonoBehaviour {
 
+    void Awake() {
+       // if()
+    }
+
 	public void BackToGame(){
 		GameManager.instance.BackToGame ();
 	}
