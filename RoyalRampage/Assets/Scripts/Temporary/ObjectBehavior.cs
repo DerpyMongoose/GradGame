@@ -1,31 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Destruction : MonoBehaviour
+public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
     private int life;
     private int rubbleAmount;
     private int state;
 
+    private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
+
+    private bool isGrounded = true;
+    private bool hit = false;
 
     [HideInInspector]
     public int score;
 
 
     //object name to be used for Quest system??
-    public enum DestructableObject {
-		BARREL, CHAIR, TABLE, WARDROBE, BED, BOX
-	}
+    public enum DestructableObject
+    {
+        BARREL, CHAIR, TABLE, WARDROBE, BED, BOX
+    }
 
-	public DestructableObject objType;
+    public DestructableObject objType;
 
     // Use this for initialization
+    void OnEnable()
+    {
+        GameManager.stampPower += Lift;
+    }
+
+    void OnDisable()
+    {
+        GameManager.stampPower -= Lift;
+    }
+
     void Start()
     {
-        switch(objType)
+        switch (objType)
         {
             case DestructableObject.BARREL:
             score = ObjectManager.instance.barrelScore;
@@ -63,22 +78,32 @@ public class Destruction : MonoBehaviour
             rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
             rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
             break;
-                default:
+            default:
             break;
 
         }
         state = 1;
         particleSys = GetComponent<ParticleSystem>();
+        objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Lift()
+    {
+        objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
     }
 
     void OnCollisionEnter(Collision col)
     {
 
-        if(col.collider.gameObject == player)
+        if (col.collider.gameObject == player)
         {
-            col.collider.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            if(state == (life - life) + state)
+            hit = true;
+            /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
+            //objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
+            /////////////////////////////////////////////////////////////////////////////////////
+            //Damage system, it takes more hits to destroy
+            /*if(state == (life - life) + state)
             {
                 if (state >= life)
                 {           
@@ -86,16 +111,33 @@ public class Destruction : MonoBehaviour
                     {
                         Instantiate(rubblePrefab,transform.position, Quaternion.identity);
                     }
+					if()
+                    {
 
-					Destroy (gameObject);
-                }
-				if (particleSys != null) 
-				{
-					particleSys.startSize *= state; 
-					particleSys.Play ();
-				}
-				state += 1;
+                    }
+                }*/
+            if (particleSys != null)
+            {
+                particleSys.startSize *= state;
+                particleSys.Play();
             }
+            /*state += 1;
+        }*/
+        }
+        if (col.collider.tag == "Destructable" && hit == true)
+        {
+            for (int i = 0; i < rubbleAmount; i++)
+            {
+                Instantiate(rubblePrefab, transform.position, Quaternion.identity);
+            }
+            for (int i = 0; i < rubbleAmount; i++)
+            {
+                Instantiate(col.gameObject.GetComponent<ObjectBehavior>().rubblePrefab, col.transform.position, Quaternion.identity);
+            }
+            GameManager.instance.objectDestructed(gameObject);
+            GameManager.instance.objectDestructed(col.gameObject);
+            Destroy(gameObject);
+            Destroy(col.gameObject);
         }
     }
 }
