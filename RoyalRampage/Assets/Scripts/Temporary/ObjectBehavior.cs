@@ -43,43 +43,43 @@ public class ObjectBehavior : MonoBehaviour
         switch (objType)
         {
             case DestructableObject.BARREL:
-            score = ObjectManager.instance.barrelScore;
-            life = ObjectManager.instance.barrelLife;
-            rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
-            rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
-            break;
+                score = ObjectManager.instance.barrelScore;
+                life = ObjectManager.instance.barrelLife;
+                rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
+                rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
+                break;
             case DestructableObject.BED:
-            score = ObjectManager.instance.bedScore;
-            life = ObjectManager.instance.bedLife;
-            rubbleAmount = ObjectManager.instance.bedRubbleAmount;
-            rubblePrefab = ObjectManager.instance.bedRubblePrefab;
-            break;
+                score = ObjectManager.instance.bedScore;
+                life = ObjectManager.instance.bedLife;
+                rubbleAmount = ObjectManager.instance.bedRubbleAmount;
+                rubblePrefab = ObjectManager.instance.bedRubblePrefab;
+                break;
             case DestructableObject.BOX:
-            score = ObjectManager.instance.boxScore;
-            life = ObjectManager.instance.boxLife;
-            rubbleAmount = ObjectManager.instance.boxRubbleAmount;
-            rubblePrefab = ObjectManager.instance.boxRubblePrefab;
-            break;
+                score = ObjectManager.instance.boxScore;
+                life = ObjectManager.instance.boxLife;
+                rubbleAmount = ObjectManager.instance.boxRubbleAmount;
+                rubblePrefab = ObjectManager.instance.boxRubblePrefab;
+                break;
             case DestructableObject.CHAIR:
-            score = ObjectManager.instance.chairScore;
-            life = ObjectManager.instance.chairLife;
-            rubbleAmount = ObjectManager.instance.chairRubbleAmount;
-            rubblePrefab = ObjectManager.instance.chairRubblePrefab;
-            break;
+                score = ObjectManager.instance.chairScore;
+                life = ObjectManager.instance.chairLife;
+                rubbleAmount = ObjectManager.instance.chairRubbleAmount;
+                rubblePrefab = ObjectManager.instance.chairRubblePrefab;
+                break;
             case DestructableObject.TABLE:
-            score = ObjectManager.instance.tableScore;
-            life = ObjectManager.instance.tableLife;
-            rubbleAmount = ObjectManager.instance.tableRubbleAmount;
-            rubblePrefab = ObjectManager.instance.tableRubblePrefab;
-            break;
+                score = ObjectManager.instance.tableScore;
+                life = ObjectManager.instance.tableLife;
+                rubbleAmount = ObjectManager.instance.tableRubbleAmount;
+                rubblePrefab = ObjectManager.instance.tableRubblePrefab;
+                break;
             case DestructableObject.WARDROBE:
-            score = ObjectManager.instance.wardrobeScore;
-            life = ObjectManager.instance.wardrobeLife;
-            rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
-            rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
-            break;
+                score = ObjectManager.instance.wardrobeScore;
+                life = ObjectManager.instance.wardrobeLife;
+                rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
+                rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
+                break;
             default:
-            break;
+                break;
 
         }
         state = 1;
@@ -138,6 +138,14 @@ public class ObjectBehavior : MonoBehaviour
             GameManager.instance.objectDestructed(col.gameObject);
             Destroy(gameObject);
             Destroy(col.gameObject);
+        }
+
+        if (col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Nwall 
+            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Swall 
+            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Ewall 
+            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Wwall) {
+
+            col.collider.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }
