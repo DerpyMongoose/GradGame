@@ -12,7 +12,7 @@ public class ObjectBehavior : MonoBehaviour
     private GameObject player;
     private ParticleSystem particleSys;
 
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     private bool hit = false;
 
     [HideInInspector]
@@ -88,17 +88,37 @@ public class ObjectBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+
     void Lift()
     {
         objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
     }
 
+    void Update()
+    {
+        print(player.GetComponent<PhysicalMovement>().floor.transform.position.y);
+        print(GetComponent<MeshRenderer>().bounds.extents.y);
+    }
+
+    void DestroyObj(GameObject obj)
+    {
+        for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
+        {
+            Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
+        }
+        GameManager.instance.objectDestructed(obj);
+        Destroy(obj);
+    }
+
     void OnCollisionEnter(Collision col)
     {
-
         if (col.collider.gameObject == player)
         {
             hit = true;
+            if(player.GetComponent<PhysicalMovement>().floor.transform.position.y < GetComponent<MeshRenderer>().bounds.extents.y);
+            {
+                isGrounded = false;
+            }
             /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
             //objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
             /////////////////////////////////////////////////////////////////////////////////////
@@ -124,20 +144,21 @@ public class ObjectBehavior : MonoBehaviour
             /*state += 1;
         }*/
         }
-        if (col.collider.tag == "Destructable" && hit == true)
+        if(isGrounded == true)
         {
-            for (int i = 0; i < rubbleAmount; i++)
+            if (col.collider.tag == "Destructable" && hit == true)
             {
-                Instantiate(rubblePrefab, transform.position, Quaternion.identity);
+                DestroyObj(gameObject);
             }
-            for (int i = 0; i < rubbleAmount; i++)
+        }
+
+        if (isGrounded == false)
+        {
+            if (col.collider.tag == "Destructable" && hit == true)
             {
-                Instantiate(col.gameObject.GetComponent<ObjectBehavior>().rubblePrefab, col.transform.position, Quaternion.identity);
+                DestroyObj(gameObject);
+                DestroyObj(col.gameObject);
             }
-            GameManager.instance.objectDestructed(gameObject);
-            GameManager.instance.objectDestructed(col.gameObject);
-            Destroy(gameObject);
-            Destroy(col.gameObject);
         }
     }
 }
