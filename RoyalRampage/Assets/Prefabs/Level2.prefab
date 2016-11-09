@@ -3477,8 +3477,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.3, z: 0.4}
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Size: {x: 0.1, y: 0.3, z: 0.25}
+  m_Center: {x: -0.04, y: 0.15, z: 0.03}
 --- !u!65 &65000012021413412
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3682,11 +3682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 0
+  score: 0
   objType: 0
-  pointsForDestruction: 7
 --- !u!114 &114000010609763616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3698,11 +3695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000011165760324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3714,11 +3708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 10
 --- !u!114 &114000011698062726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3730,11 +3721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 0
+  score: 0
   objType: 0
-  pointsForDestruction: 7
 --- !u!114 &114000011754792080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3746,11 +3734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 5
 --- !u!114 &114000011792754066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3762,11 +3747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 4
-  pointsForDestruction: 8
 --- !u!114 &114000011873262556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3778,11 +3760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000012150736692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3794,11 +3773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000012401892338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3810,11 +3786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 5
 --- !u!114 &114000012853409858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3826,11 +3799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000013243803006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3842,11 +3812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 8
 --- !u!114 &114000013397525026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3858,11 +3825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 5
 --- !u!114 &114000013474810882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3874,11 +3838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 5
 --- !u!114 &114000013554544446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3890,11 +3851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 5
-  pointsForDestruction: 8
 --- !u!114 &114000013778929998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3906,11 +3864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000013952638804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3922,11 +3877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 1
-  pointsForDestruction: 5
 --- !u!114 &114000013969409376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3938,11 +3890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 0
+  score: 0
   objType: 0
-  pointsForDestruction: 7
 --- !u!114 &114000013991047674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3954,11 +3903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 9
 --- !u!114 &114000014096946048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3970,11 +3916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 2
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 5
 --- !u!114 &114000014137701350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3986,11 +3929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStates: 1
-  prefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5, type: 2}
-  tPPrefab: 10
+  score: 0
   objType: 0
-  pointsForDestruction: 12
 --- !u!135 &135000011407631838
 SphereCollider:
   m_ObjectHideFlags: 1
