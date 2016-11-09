@@ -96,9 +96,9 @@ public class PhysicalMovement : MonoBehaviour {
 
         if (Input.touchCount == 2)
         {
-            if (ableToLift)
+            if (powerTime < doubleTapTime && ableToLift)
             {
-                print("I am here");
+                print("i am here");
                 //LIFT ONLY THE OBJECTS INSIDE YOUR RADIUS
                 //GameManager.instance.TimeToLift();
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
