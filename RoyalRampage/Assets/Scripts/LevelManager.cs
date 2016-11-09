@@ -79,21 +79,24 @@ public class LevelManager : MonoBehaviour {
         ReplayPanel.SetActive(true);
         switch (levelResult) {
             case "Level completed!":
-            ReplayBtn.SetActive(false);
-            NewLevelBtn.SetActive(true);
-            Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
-            if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
-                GameManager.instance.levelsUnlocked++;
-            }
-            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
-                levelNum.text = (GameManager.instance.currentLevel+1).ToString();
-            }else {
-                levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
-            }
+                GameManager.instance.levelWon = true;
+                ReplayBtn.SetActive(false);
+                NewLevelBtn.SetActive(true);
+                Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
+                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                    GameManager.instance.levelsUnlocked++;
+                }
+                if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                    levelNum.text = (GameManager.instance.currentLevel+1).ToString();
+                }else {
+                    levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
+                }
             break;
+
             case "Game over":
-            ReplayBtn.SetActive(true);
-            NewLevelBtn.SetActive(false);
+                GameManager.instance.levelWon = false;
+                ReplayBtn.SetActive(true);
+                NewLevelBtn.SetActive(false);
             break;
         }
     }
