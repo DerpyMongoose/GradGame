@@ -3,6 +3,10 @@ using System.Collections;
 
 public class UIScript : MonoBehaviour {
 
+    void Awake() {
+       // if()
+    }
+
 	public void BackToGame(){
 		GameManager.instance.BackToGame ();
 	}
@@ -18,6 +22,13 @@ public class UIScript : MonoBehaviour {
 		GameManager.instance.StartLevel(next_level);
     }
 
+    public void ToLevel(int level) {
+        if (level <= GameManager.instance.levelsUnlocked) {
+            GameManager.instance.currentLevel = level;
+            GameManager.instance.StartLevel(level);
+        }
+    }
+
     public void GoToStore() {
         GameManager.instance.GoToStore();
     }
@@ -25,4 +36,13 @@ public class UIScript : MonoBehaviour {
     public void GoToLevelOverview() {
         GameManager.instance.GoTolevelOverview();
     }
+
+    public void GoToInfo() {
+        GameManager.instance.GoToInfo();
+    }
+
+    public void GoToSettings() {
+        GameManager.instance.GoToSettings();
+    }
+
 }

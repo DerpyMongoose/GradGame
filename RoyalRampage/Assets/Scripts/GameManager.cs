@@ -11,7 +11,7 @@ public class GameManager {
 
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
-    public int NUM_OF_LEVELS_IN_GAME = 3;
+    public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
 
     public int score = 0;
 
@@ -40,27 +40,43 @@ public class GameManager {
 		}
 	}
 
-	//scene management
-	public void StartLevel(int level){
-		_instance = null;
+    //scene management
+    public string CurrentScene() {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public void StartLevel(int level){
+		//_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
 	}
 
 	public void GoToStore(){
-		_instance = null;
+		//_instance = null;
 		SceneManager.LoadScene ("Shop");
 		Time.timeScale = 1;
 	}
 
     public void GoTolevelOverview() {
-        _instance = null;
+        //_instance = null;
         SceneManager.LoadScene("GameLevelsGUI");
         Time.timeScale = 1;
     }
 
+    public void GoToInfo() {
+        //_instance = null;
+        //SceneManager.LoadScene("Help");
+        Time.timeScale = 1;
+    }
+
+    public void GoToSettings() {
+        //_instance = null;
+        //SceneManager.LoadScene("Settings");
+        Time.timeScale = 1;
+    }
+
     public void BackToGame(){
-		_instance = null;
+		//_instance = null;
 		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
 	}
