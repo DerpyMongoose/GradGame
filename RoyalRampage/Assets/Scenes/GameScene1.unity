@@ -489,11 +489,6 @@ Prefab:
       propertyPath: Swall
       value: 
       objectReference: {fileID: 275623887}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: liftRadius
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
   m_IsPrefabParent: 0
@@ -679,27 +674,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 81000011245596932, guid: 814648a664d369d4a8063742d341bc70, type: 2}
+    - target: {fileID: 20000010226151932, guid: 814648a664d369d4a8063742d341bc70,
+        type: 2}
+      propertyPath: far clip plane
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814648a664d369d4a8063742d341bc70, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1841352796 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012917094002, guid: 814648a664d369d4a8063742d341bc70,
-    type: 2}
-  m_PrefabInternal: {fileID: 1841352795}
---- !u!114 &1841352797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1841352796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2457bb5f68a0142bad2c28287b31c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listenerId: 0
 --- !u!65 &2064439533 stripped
 BoxCollider:
   m_PrefabParentObject: {fileID: 65000014024232754, guid: 6d79e73218c1fd24cb72b217e6a6af1b,
