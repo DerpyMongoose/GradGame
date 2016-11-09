@@ -28,15 +28,15 @@ public class ObjectBehavior : MonoBehaviour
     public DestructableObject objType;
 
     // Use this for initialization
-    void OnEnable()
-    {
-        GameManager.stampPower += Lift;
-    }
+    //void OnEnable()
+    //{
+    //    GameManager.stampPower += Lift;
+    //}
 
-    void OnDisable()
-    {
-        GameManager.stampPower -= Lift;
-    }
+    //void OnDisable()
+    //{
+    //    GameManager.stampPower -= Lift;
+    //}
 
     void Start()
     {
@@ -88,10 +88,10 @@ public class ObjectBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Lift()
-    {
-        objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
-    }
+    //void Lift()
+    //{
+    //    objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+    //}
 
     void OnCollisionEnter(Collision col)
     {

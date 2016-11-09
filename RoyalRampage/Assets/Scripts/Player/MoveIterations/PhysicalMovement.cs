@@ -11,7 +11,7 @@ public class PhysicalMovement : MonoBehaviour {
     private Rigidbody playerRig;
 
     public float timeForSwipe = 1f;
-    public float hitForce, swirlForce, cdLift, doubleTapTime, collisionRadius;
+    public float hitForce, swirlForce, cdLift, doubleTapTime, collisionRadius, liftRadius;
     public int numOfCircleToShow;
     public Collider floor, Nwall, Ewall, Wwall, Swall;
 
@@ -96,9 +96,13 @@ public class PhysicalMovement : MonoBehaviour {
 
         if (Input.touchCount == 2)
         {
-            if (powerTime < doubleTapTime && ableToLift)
+            if (ableToLift)
             {
-                GameManager.instance.TimeToLift();
+                print("I am here");
+                //LIFT ONLY THE OBJECTS INSIDE YOUR RADIUS
+                //GameManager.instance.TimeToLift();
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
+                Lift(hitColliders);
                 ableToLift = false;
                 StartCoroutine("Cooldown");
             }
@@ -109,6 +113,20 @@ public class PhysicalMovement : MonoBehaviour {
             powerTime = 0;
         }
 
+    }
+
+
+    void Lift(Collider[] col)
+    {
+        for (int i = 0; i < col.Length; i++)
+        {
+            if (col[i] != floor && col[i] != Nwall && col[i] != Ewall && col[i] != Wwall && col[i] != Swall && col[i] != GetComponent<Collider>())
+            {
+                //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
+                Rigidbody rig = col[i].GetComponent<Rigidbody>();
+                rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+            }
+        }
     }
 
 
