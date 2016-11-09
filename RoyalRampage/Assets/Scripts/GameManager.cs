@@ -12,14 +12,20 @@ public class GameManager {
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
+    public enum Scene {
+        INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
+    }
+    private Scene currentScene = Scene.INTRO;
+    private Scene previousScene = Scene.INTRO;
 
     public int score = 0;
 
 	//getters:
 	public static GameManager instance{
 		get {
-			if (_instance == null)
-				_instance = new GameManager ();
+            if (_instance == null) {
+                _instance = new GameManager();
+            }
 			return _instance;
 		}
 	}
@@ -41,13 +47,13 @@ public class GameManager {
 	}
 
     //scene management
-    public string CurrentScene() {
-        return SceneManager.GetActiveScene().name;
+    public Scene CurrentScene() {
+        return currentScene;        
     }
 
     public void StartLevel(int level){
 		//_instance = null;
-		SceneManager.LoadScene (GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
+		SceneManager.LoadScene (GAME_SCENES[level - 1]);
 		Time.timeScale = 1;
 	}
 

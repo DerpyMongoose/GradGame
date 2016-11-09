@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour {
 
     void Awake() {
-       // if()
+        if (GameManager.instance.CurrentScene() == "GameLevelsGUI") {
+            //set the correct sprite on level icon
+            Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
+            Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
+            for(int i = 1; i <= 6; i++) {
+                Image levelIcon = GameObject.Find("LevelInGame/Level" + i).GetComponent<Image>();
+                if (i <= GameManager.instance.levelsUnlocked)
+                    levelIcon.sprite = unlockedSprite;
+                else
+                    levelIcon.sprite = lockedSprite;
+            }
+        }
     }
 
 	public void BackToGame(){
