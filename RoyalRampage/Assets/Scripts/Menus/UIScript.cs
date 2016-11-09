@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour {
 
     void Awake() {
-        if (GameManager.instance.CurrentScene() == "GameLevelsGUI") {
+        if (GameManager.instance.CurrentScene() == GameManager.Scene.LEVELS_OVERVIEW) {
             //set the correct sprite on level icon
             Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
             Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
