@@ -22,7 +22,8 @@ GameObject:
   - 20: {fileID: 20000010226151932}
   - 92: {fileID: 92000011334752208}
   - 124: {fileID: 124000010392089726}
-  - 81: {fileID: 81000011245596932}
+  - 114: {fileID: 114000011475826036}
+  - 114: {fileID: 114000011631731814}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -90,7 +91,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.03
-  far clip plane: 120
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -107,13 +108,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81000011245596932
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012917094002}
-  m_Enabled: 1
 --- !u!92 &92000011334752208
 Behaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +115,30 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012917094002}
   m_Enabled: 1
+--- !u!114 &114000011475826036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012917094002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2457bb5f68a0142bad2c28287b31c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenerId: 0
+--- !u!114 &114000011631731814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012917094002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2457bb5f68a0142bad2c28287b31c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listenerId: 0
 --- !u!114 &114000013141997244
 MonoBehaviour:
   m_ObjectHideFlags: 1

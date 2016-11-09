@@ -1,0 +1,169 @@
+Event	ID	Name			Wwise Object Path	Notes
+	278413312	Start_Game_Button_Play			\Default Work Unit\Start_Game_Button_Play	
+	350081739	Music_System_Play			\Default Work Unit\Music_System_Play	
+	453371149	Objective_Announced_Play			\Default Work Unit\Objective_Announced_Play	
+	491891602	Object_Action_Play			\Default Work Unit\Object_Action_Play	
+	635791921	Objective_Completed_Play			\Default Work Unit\Objective_Completed_Play	
+	1311831249	Points_Counting_Play			\Default Work Unit\Points_Counting_Play	
+	1496310610	Ambience_Play			\Default Work Unit\Ambience_Play	
+	2174485018	Dash_Play			\Default Work Unit\Dash_Play	
+	2485028023	Star_Rewarded_Play			\Default Work Unit\Star_Rewarded_Play	
+	2563246215	Points_Counting_Stop			\Default Work Unit\Points_Counting_Stop	
+	2664777132	Score_Screen_Open_Play			\Default Work Unit\Score_Screen_Open_Play	
+	2848266490	Spin_Play			\Default Work Unit\Spin_Play	
+	3166394572	Ambience_Stop			\Default Work Unit\Ambience_Stop	
+	3286289918	Points_Rewarded_Play			\Default Work Unit\Points_Rewarded_Play	
+	3295885793	Timer_Tick_Play			\Default Work Unit\Timer_Tick_Play	
+	3509289057	Music_System_Stop			\Default Work Unit\Music_System_Stop	
+	3839850873	Stomp_Play			\Default Work Unit\Stomp_Play	
+	4027780260	Menu_Button_Play			\Default Work Unit\Menu_Button_Play	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	1281810928	Stars			\Default Work Unit\Stars	
+	1695690031	Objects			\Default Work Unit\Objects	
+	1870950152	Object_Actions			\Default Work Unit\Object_Actions	
+	3714303081	Surfaces			\Default Work Unit\Surfaces	
+
+Switch	ID	Name	Switch Group			Notes
+	1160234136	Normal	Stars			
+	2356001030	Bonus	Stars			
+	48383104	Chair	Objects			
+	114672780	Plant	Objects			
+	333711018	Serving_Tray	Objects			
+	442447909	Barrel	Objects			
+	657744959	Lamp	Objects			
+	716963392	Wheeled_Tray	Objects			
+	762946915	Trophy	Objects			
+	939730917	Statue	Objects			
+	1169658065	Cutlery	Objects			
+	1761501022	Book	Objects			
+	1892659287	Grand_Piano	Objects			
+	1931853987	Basket	Objects			
+	2048817515	Table	Objects			
+	2200909088	Pot_And_Pan	Objects			
+	2449969375	Glass	Objects			
+	2867835716	Globe	Objects			
+	2995585464	Grandfather_Clock	Objects			
+	3020931316	Porcelain	Objects			
+	3031504781	Food	Objects			
+	3086965867	Shelf	Objects			
+	3098439042	Crate	Objects			
+	3848582449	Bottle	Objects			
+	4241762846	Suit_Of_Armor	Objects			
+	4260845482	China	Objects			
+	1116398592	Hit	Object_Actions			
+	2446376615	Destruction	Object_Actions			
+	2548270042	Landing	Object_Actions			
+	1127618254	Marble	Surfaces			
+	2058049674	Wood	Surfaces			
+	2412606308	Carpet	Surfaces			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	5057028	Point_Counter			\Default Work Unit\Point_Counter	
+	238739503	Impact_Velocity			\Default Work Unit\Impact_Velocity	
+	2699314947	Level_Time			\Default Work Unit\Level_Time	
+	4112747480	Star_Counter			\Default Work Unit\Star_Counter	
+
+Trigger	ID	Name			Wwise Object Path	Notes
+	7987325	No_Star_Progress_Fanfare			\Default Work Unit\No_Star_Progress_Fanfare	
+	724164523	Star_Progress_Fanfare			\Default Work Unit\Star_Progress_Fanfare	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	4196881	Shelf_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Shelf_Landing_49D5942C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Shelf\Landing\Carpet\Shelf_Landing		23984
+	27253348	Suit_Of_Armor_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Suit_Of_Armor_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Suit Of Armor\Suit_Of_Armor_Hit		32544
+	44463617	Chair_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Chair_Destruction_7E29632F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Chair\Destruction\Carpet\Chair_Destruction		21014
+	56558865	Wheeled_Tray_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Wheeled_Tray_Landing_CD0071EB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Wheeled Tray\Landing\Carpet\Wheeled_Tray_Landing		27910
+	65282526	Stomp	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Stomp_3873CDD4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Character\Stomp		15480
+	76778889	Music_In_Finish_Screen	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Finish_Screen_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Finish_Screen\Music_In_Finish_Screen\Music_In_Finish_Screen		40544
+	80379572	Porcelain_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Porcelain_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Porcelain\Porcelain_Hit		25664
+	90412982	Bottle_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Bottle_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Bottle\Bottle_Hit		21024
+	103046350	Serving_Tray_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Serving_Tray_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Serving Tray\Serving_Tray_Hit		27264
+	106689559	Normal_Star	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Normal_Star_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Star_Rewarded\Normal_Star		25504
+	109220869	Lamp_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Lamp_Landing_A90B703A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Landing\Carpet\Lamp_Landing		20448
+	111464937	Bottle_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Bottle_Destruction_6050ADA1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Bottle\Destruction\Carpet\Bottle_Destruction		24758
+	159407325	Globe_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Globe_Destruction_0FB227C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Globe\Destruction\Carpet\Globe_Destruction		23206
+	162344528	Book_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Book_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Book\Book_Hit		17824
+	162600838	Chair_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Chair_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Chair\Chair_Hit		20224
+	163258038	Trophy_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Trophy_Landing_6F798BF5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Trophy\Landing\Carpet\Trophy_Landing		22936
+	164729892	Marble_Floor	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Marble_Floor_5B28E39B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Destruction\Marble\Marble_Floor		11876
+	174210290	Uplifting_Fanfare	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Uplifting_Fanfare_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Uplifting_Fanfare\Uplifting_Fanfare		34624
+	187374359	Barrel_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Barrel_Destruction_18E54ADA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Destruction\Carpet\Barrel_Destruction		23806
+	188711402	Table_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Table_Landing_716903DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Table\Landing\Carpet\Table_Landing		21644
+	206032660	Cutlery_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Cutlery_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Destruction\Carpet\Cutlery_Destruction		32704
+	208691767	Points_Rewarded	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Points_Rewarded_6D214BEC.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Points_Rewarded		26904
+	229245785	Grandfather_Clock_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grandfather_Clock_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grandfather Clock\Grandfather_Clock_Hit		34304
+	248593322	Plant_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Plant_Landing_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Plant\Landing\Carpet\Plant_Landing		26784
+	268598395	Lamp_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Lamp_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Destruction\Carpet\Lamp_Destruction		27584
+	290826758	Food_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Food_Landing_D3EE697C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Landing\Carpet\Food_Landing		19680
+	312234350	Pot_And_Pan_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Pot_And_Pan_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Pot And Pan\Destruction\Carpet\Pot_And_Pan_Destruction		36544
+	326610899	Grand_Piano_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grand_Piano_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grand Piano\Grand_Piano_Hit		33824
+	337786942	Statue_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Statue_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Statue\Statue_Hit		24704
+	339792523	Objective_Completed	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Objective_Completed_2A90E0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Objective_Completed		28838
+	351264491	Crate_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Crate_Destruction_3BCBC0F1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Crate\Destruction\Carpet\Crate_Destruction		22054
+	358720324	Book_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Book_Landing_72790ED9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Book\Landing\Carpet\Book_Landing		18010
+	359085533	Porcelain_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Porcelain_Landing_B845A8D8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Porcelain\Landing\Carpet\Porcelain_Landing		25486
+	367272018	Shelf_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Shelf_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Shelf\Shelf_Hit		23264
+	381808406	Shelf_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Shelf_Destruction_F97EB850.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Shelf\Destruction\Carpet\Shelf_Destruction		25470
+	381904762	Serving_Tray_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Serving_Tray_Landing_038EBA5D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Serving Tray\Landing\Carpet\Serving_Tray_Landing		27514
+	451984601	Disappointing_Fanfare	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Disappointing_Fanfare_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Disappointing_Fanfare\Disappointing_Fanfare		52704
+	464043292	Globe_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Globe_Landing_51E11B19.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Globe\Landing\Carpet\Globe_Landing		19712
+	475086234	Plant_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Plant_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Plant\Plant_Hit		20544
+	476294822	Score_Screen_Open	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Score_Screen_Open_C1D6B40E.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Score_Screen_Open		29942
+	485878556	Objective_Announced	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Objective_Announced_1A6F43B3.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Objective_Announced		28802
+	490709652	Cutlery_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Cutlery_Landing_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Landing\Carpet\Cutlery_Landing		28864
+	533680703	Grand_Piano_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grand_Piano_Destruction_C3223625.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grand Piano\Destruction\Carpet\Grand_Piano_Destruction		35492
+	561603671	Music_In_Intro_Cutscene	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Intro_Cutscene_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Intro_Cutscene\Music_In_Intro_Cutscene		42944
+	569287681	Food_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Food_Destruction_4FFC38EF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Destruction\Carpet\Food_Destruction		21022
+	600577587	Grandfather_Clock_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grandfather_Clock_Landing_46418C60.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grandfather Clock\Landing\Carpet\Grandfather_Clock_Landing		34762
+	606347157	Chair_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Chair_Landing_988016F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Chair\Landing\Carpet\Chair_Landing		19718
+	617655091	Crate_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Crate_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Crate\Crate_Hit		19264
+	621454349	Music_In_Level_Time_Running_Out	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Level_Time_Running_Out_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Level_Time_Running_Out\Music_In_Level_Time_Running_Out		49824
+	634597676	Barrel_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Barrel_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Barrel_Hit		21984
+	647827330	Pot_And_Pan_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Pot_And_Pan_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Pot And Pan\Pot_And_Pan_Hit		28864
+	657417373	Wooden_Floor	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Wooden_Floor_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Destruction\Wood\Wooden_Floor		15584
+	668422612	Start_Game_Button	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Start_Game_Button_CEA55A42.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Start_Game_Button		21378
+	669559834	Statue_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Statue_Destruction_E8105B0E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Statue\Destruction\Carpet\Statue_Destruction		28436
+	678912872	Food_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Food_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Food_Hit		20864
+	686213818	Table_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Table_Destruction_BF545344.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Table\Destruction\Carpet\Table_Destruction		23204
+	691575792	Bottle_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Bottle_Landing_693BDF50.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Bottle\Landing\Carpet\Bottle_Landing		20388
+	724213253	Book_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Book_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Book\Destruction\Carpet\Book_Destruction		25984
+	724788305	China_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\China_Landing_064091E5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\Landing\Carpet\China_Landing		19492
+	732012570	Dash	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Dash_22EDD86B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Character\Dash		12896
+	740926568	Plant_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Plant_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Plant\Destruction\Carpet\Plant_Destruction		29024
+	741014022	Suit_Of_Armor_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Suit_Of_Armor_Landing_4A818F38.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Suit Of Armor\Landing\Carpet\Suit_Of_Armor_Landing		30544
+	753920789	Trophy_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Trophy_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Trophy\Destruction\Carpet\Trophy_Destruction		30944
+	765247658	Lamp_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Lamp_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Lamp_Hit		19904
+	765249874	Cutlery_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Cutlery_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Cutlery_Hit		23584
+	769187710	Porcelain_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Porcelain_Destruction_D2115AE6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Porcelain\Destruction\Carpet\Porcelain_Destruction		28492
+	791864635	Basket_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Basket_Landing_444A09D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Basket\Landing\Carpet\Basket_Landing		23812
+	796927213	Grand_Piano_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grand_Piano_Landing_CFF168AE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grand Piano\Landing\Carpet\Grand_Piano_Landing		32814
+	797458611	Suit_Of_Armor_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Suit_Of_Armor_Destruction_011A1D14.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Suit Of Armor\Destruction\Carpet\Suit_Of_Armor_Destruction		34936
+	808417006	Wheeled_Tray_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Wheeled_Tray_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Wheeled Tray\Wheeled_Tray_Hit		28544
+	815116842	Glass_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Glass_Landing_EFBAB876.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Glass\Landing\Carpet\Glass_Landing		23238
+	818434283	Ambience	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Ambience_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Ambience\Ambience		19584
+	832268687	Globe_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Globe_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Globe\Globe_Hit		19264
+	834291170	Music_In_Level_Times_Up	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Level_Times_Up_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Level_Times_Up\Music_In_Level_Times_Up		43424
+	861037504	Statue_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Statue_Landing_8AEE5763.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Statue\Landing\Carpet\Statue_Landing		24836
+	862365744	Glass_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Glass_Destruction_D646ED9A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Glass\Destruction\Carpet\Glass_Destruction		26278
+	869974162	China_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\China_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\China_Hit		20864
+	875451898	Basket_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Basket_Destruction_E43B8440.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Basket\Destruction\Carpet\Basket_Destruction		26526
+	888803920	Wheeled_Tray_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Wheeled_Tray_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Wheeled Tray\Destruction\Carpet\Wheeled_Tray_Destruction		36224
+	898929314	Glass_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Glass_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Glass\Glass_Hit		23424
+	908577113	Bonus_Star	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Bonus_Star_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Star_Rewarded\Bonus_Star		26464
+	919817392	Music_In_Main_Menu	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Main_Menu_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Main_Menu\Music_In_Main_Menu\Music_In_Main_Menu		35744
+	921434259	Pot_And_Pan_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Pot_And_Pan_Landing_F4FB6322.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Pot And Pan\Landing\Carpet\Pot_And_Pan_Landing		29042
+	929974987	Points_Counting	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Points_243121E7.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Points_Counting\Points_Counting		16358
+	942219335	Grandfather_Clock_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Grandfather_Clock_Destruction_97137FF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grandfather Clock\Destruction\Carpet\Grandfather_Clock_Destruction		37622
+	969227620	China_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\China_Destruction_CA98DEA9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\Destruction\Carpet\China_Destruction		24078
+	991960761	Crate_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Crate_Landing_670B9492.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Crate\Landing\Carpet\Crate_Landing		20322
+	993166894	Table_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Table_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Table\Table_Hit		20704
+	1008096263	Music_In_Level	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Music_In_Level_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Level\Music_In_Level\Music_In_Level		29184
+	1015517607	Timer_Tick	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Timer_Tick_33C1F592.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer_Tick		8676
+	1025464582	Basket_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Basket_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Basket\Basket_Hit		24064
+	1031021062	Menu_Button	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Menu_Button_9999485B.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Menu_Button		10128
+	1040087929	Barrel_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Barrel_Landing_A223287F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Landing\Carpet\Barrel_Landing		22314
+	1042173638	Carpet_Floor	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Carpet_Floor_0511C724.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Destruction\Carpet\Carpet_Floor		13028
+	1046416003	Trophy_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Trophy_Hit_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Trophy\Trophy_Hit		21984
+	1064049824	Spin	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Spin_F4B2FBD3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Character\Spin		11132
+	1064490342	Serving_Tray_Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Windows\SFX\Serving_Tray_Destruction_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Serving Tray\Destruction\Carpet\Serving_Tray_Destruction		36064
+

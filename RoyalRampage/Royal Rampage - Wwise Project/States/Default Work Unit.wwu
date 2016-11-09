@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{390FF74E-BF7E-4735-B894-6A46CB607F14}" SchemaVersion="72">
+	<States>
+		<WorkUnit Name="Default Work Unit" ID="{390FF74E-BF7E-4735-B894-6A46CB607F14}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Environments" ID="{10CE405D-6B64-488F-AD2C-2B95EDD5B4EF}">
+					<ChildrenList>
+						<State Name="None" ID="{705A9614-427F-47D8-9AB5-A872514646D3}"/>
+						<State Name="Kitchen" ID="{F5E7317D-9EA5-45A6-95D6-0690846AAF2C}"/>
+						<State Name="Living_Room" ID="{3832FB3B-61B2-4751-AC23-5528DEC10701}"/>
+						<State Name="Hall" ID="{9855FDDE-8406-44E0-804C-22AC0ED07B0C}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Game_States" ID="{B0744578-90B5-4E9C-B1E0-F3F6C0CC25D6}">
+					<ChildrenList>
+						<State Name="None" ID="{B89C0F36-D833-4D2A-A175-78FC76075DA9}"/>
+						<State Name="In_Main_Menu" ID="{0D2E4AB5-3973-4CBF-B953-F0C059179198}"/>
+						<State Name="In_Intro_Cutscene" ID="{38391072-D2E2-49B3-AE38-AFDEFEE46948}"/>
+						<State Name="In_Level" ID="{D1F78839-58A9-4765-BEEE-D6BF1B260967}"/>
+						<State Name="In_Score_Screen" ID="{15598C54-1094-43FD-8C52-16C77AE04D23}"/>
+						<State Name="In_Level_Time_Running_Out" ID="{3ABCF693-0160-4132-9B57-B5E22A1212AB}"/>
+						<State Name="In_Level_Times_Up" ID="{2C6DCFCA-76A1-4DF3-ABA6-9BBC0F19404F}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</States>
+</WwiseDocument>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}" SchemaVersion="72">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="Impact_Velocity" ID="{C59BD953-DB2E-408F-9A96-0D7BADFCFB7B}">
+					<PropertyList>
+						<Property Name="RTPCRamping" Type="int16" Value="1"/>
+						<Property Name="SlewRateDown" Type="Real64" Value="100"/>
+						<Property Name="SlewRateUp" Type="Real64" Value="100"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Level_Time" ID="{67774297-3FF2-4549-9FDC-76BC0B59AA8E}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="120"/>
+						<Property Name="Max" Type="Real64" Value="120"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Point_Counter" ID="{36C24D11-571F-4105-9070-3ADFFE8B1092}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="0"/>
+						<Property Name="Max" Type="Real64" Value="15000"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Star_Counter" ID="{378342F9-7034-431D-A851-3101BB02A0EE}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="1"/>
+						<Property Name="Max" Type="Real64" Value="8"/>
+						<Property Name="Min" Type="Real64" Value="1"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>
