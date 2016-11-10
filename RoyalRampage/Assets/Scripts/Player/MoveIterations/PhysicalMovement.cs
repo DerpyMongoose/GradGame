@@ -101,7 +101,7 @@ public class PhysicalMovement : MonoBehaviour {
         {
             if (powerTime < doubleTapTime && ableToLift)
             {
-                //print("Came here");
+                GameManager.instance.player.GetComponent<PlayerStates>().lifted = true;
                 ableToLift = false;
                 StartCoroutine("Cooldown");
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);

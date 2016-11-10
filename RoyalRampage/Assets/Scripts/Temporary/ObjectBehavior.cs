@@ -18,8 +18,6 @@ public class ObjectBehavior : MonoBehaviour
     private bool readyToCheck;
     private bool lifted;
 
-    private float initial;
-
     private float checkHeight;
 
     [HideInInspector]
@@ -47,8 +45,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        coroutine = Wait();
-        StartCoroutine(coroutine);
+        //coroutine = Wait();
+        //StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -100,26 +98,49 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        //print(checkHeight);
-        if (Mathf.Round(transform.position.y * 10) / 10 > checkHeight && !lifted)
+        //print(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10);
+        if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
         {
-
-            checkHeight = Mathf.Round(transform.position.y * 10)/10;
-        }
-        else if (Mathf.Round(transform.position.y * 10)/ 10 < checkHeight && readyToCheck)
-        {
-            GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
-            checkHeight = initial;
-            GetComponent<Rigidbody>().useGravity = false;
-            lifted = true;
-            coroutine = ReturnGravity();
-            StartCoroutine(coroutine);
+            if (Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 < 0)
+            {
+                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+                //checkHeight = 0;
+                GetComponent<Rigidbody>().useGravity = false;
+                //lifted = true;
+                coroutine = ReturnGravity();
+                StartCoroutine(coroutine);
+            }
         }
 
-        if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        if(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 >= 0)
         {
-            lifted = false;
+            //GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
         }
+
+        //if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        //{
+        //    lifted = false;
+        //}
+        //else
+        //{
+        //    //print("came into");
+        //    Rigidbody rig = GetComponent<Rigidbody>();
+        //    if (Mathf.Round(transform.position.y * 10) / 10 >= checkHeight && !lifted)
+        //    {
+
+        //        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+        //    }
+        //    else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
+        //    {
+        //        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+        //        checkHeight = 0;
+        //        GetComponent<Rigidbody>().useGravity = false;
+        //        lifted = true;
+        //        coroutine = ReturnGravity();
+        //        StartCoroutine(coroutine);
+        //    }
+        //}
+
 
         if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
         {
@@ -127,20 +148,18 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(Time.deltaTime * 2);
-        initial = Mathf.Round(transform.position.y * 10) / 10;
-        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-        readyToCheck = true;
-    }
+    //IEnumerator Wait()
+    //{
+    //    yield return new WaitForSeconds(Time.deltaTime * 2);
+    //    checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+    //    readyToCheck = true;
+    //}
 
     IEnumerator ReturnGravity()
     {
-
 		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+		GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
         GetComponent<Rigidbody>().useGravity = true;
-		 GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
     }
 
     void OnCollisionEnter(Collision col)
