@@ -21,9 +21,10 @@ GameObject:
   - 4: {fileID: 4000013708330690}
   - 114: {fileID: 114000013341688048}
   - 54: {fileID: 54000012772610384}
-  m_Layer: 0
+  - 65: {fileID: 65000010467556928}
+  m_Layer: 2
   m_Name: Vase_2
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,8 +39,7 @@ GameObject:
   - 4: {fileID: 4000012662540790}
   - 33: {fileID: 33000012149332560}
   - 23: {fileID: 23000013144371060}
-  - 65: {fileID: 65000010616334284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vase_o 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010028134800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -124,12 +124,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000010616334284
+--- !u!65 &65000010467556928
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013265064114}
+  m_GameObject: {fileID: 1000010028134800}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
