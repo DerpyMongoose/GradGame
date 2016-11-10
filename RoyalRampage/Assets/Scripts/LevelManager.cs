@@ -22,11 +22,19 @@ public class LevelManager : MonoBehaviour {
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
 
-    void Awake(){
+	void OnEnable(){
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
 		GameManager.instance.OnTimerStart += StartLevel;
 		GameManager.instance.OnTimerOut += ShowEnding;
+	}
 
+	void OnDisable(){
+		GameManager.instance.OnObjectDestructed -= IncreaseScore;
+		GameManager.instance.OnTimerStart -= StartLevel;
+		GameManager.instance.OnTimerOut -= ShowEnding;
+	}
+
+    void Awake(){
 		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		scoreText.text = "Score: " + score;
 		minScoreText = GameObject.Find ("MinScoreText").GetComponent<Text> ();
@@ -37,16 +45,10 @@ public class LevelManager : MonoBehaviour {
         ReplayPanel = GameObject.Find("replayPanel");
         InGamePanel = GameObject.Find("InGameGUI");
         ReplayBtn = GameObject.Find("ReplayButton");
-        NewLevelBtn = GameObject.Find("NewLevelButton");
-        replayScoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
+		NewLevelBtn = GameObject.Find("NewLevelButton");
+		replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
     }
-
-	void OnDisable(){
-		GameManager.instance.OnObjectDestructed -= IncreaseScore;
-		GameManager.instance.OnTimerStart -= StartLevel;
-		GameManager.instance.OnTimerOut -= ShowEnding;
-	}
 
 	private void IncreaseScore(GameObject destructedObj){
 		int points = destructedObj.GetComponent<ObjectBehavior>().score;
@@ -56,11 +58,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private void StartLevel(){
+		print ("started");
 		guideText.gameObject.SetActive (false);
 	}
 
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
+		print ("ended");
 		if (score >= scoreToCompleteLevel)
 			guideText.text = "Level completed!";
 		else

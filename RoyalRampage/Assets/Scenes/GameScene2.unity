@@ -418,40 +418,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012772038594, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 775224831}
     - target: {fileID: 114000011970756394, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 848426169}
-    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 775224831}
-    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToStore
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012772038594, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToLevelOverview
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &775224831 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012894417998, guid: 75143ac6572fa884b8ae2362e3064a3b,
-    type: 2}
-  m_PrefabInternal: {fileID: 775224830}
-  m_Script: {fileID: 11500000, guid: ad5444bee9b05744e92d1aa93795caa5, type: 3}
 --- !u!1 &848426166
 GameObject:
   m_ObjectHideFlags: 0

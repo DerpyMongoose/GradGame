@@ -665,6 +665,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 618241706}
+--- !u!1001 &1233675623
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011980180706, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ff9ba17c5e20e2642b6ea51afef2f6dd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1242288393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,8 +1103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePath: Audio\GeneratedSoundBanks
-  language: English(US)
+  basePath: 417564696f5c47656e657261746564536f756e6442616e6b73
+  language: 456e676c69736828555329
   defaultPoolSize: 4096
   lowerPoolSize: 2048
   streamingPoolSize: 1024
