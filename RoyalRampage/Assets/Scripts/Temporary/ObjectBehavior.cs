@@ -96,6 +96,18 @@ public class ObjectBehavior : MonoBehaviour
         objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
     }
 
+    void DestroyObj(GameObject obj)
+    {
+        for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
+            if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+            {
+                Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
+            }
+
+        GameManager.instance.objectDestructed(obj);
+        Destroy(obj);
+    }
+
     void Update()
     {
         print(isGrounded);
@@ -118,31 +130,28 @@ public class ObjectBehavior : MonoBehaviour
         if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
         {
             lifted = false;
-            initial = Mathf.Round(transform.position.y * 10) / 10;
-            checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-            readyToCheck = true;
+        }
+
+        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
         }
     }
 
-    void DestroyObj(GameObject obj)
+    IEnumerator Wait()
     {
-        for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
-            if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
-            {
-                Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
-            }
-
-        GameManager.instance.objectDestructed(obj);
-        Destroy(obj);
+        yield return new WaitForSeconds(Time.deltaTime * 2);
+        initial = Mathf.Round(transform.position.y * 10) / 10;
+        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+        readyToCheck = true;
     }
-    
 
     IEnumerator ReturnGravity()
     {
 
-		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
         GetComponent<Rigidbody>().useGravity = true;
-		 GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
     }
 
     void OnCollisionEnter(Collision col)
@@ -163,7 +172,7 @@ public class ObjectBehavior : MonoBehaviour
                     {
                         Instantiate(rubblePrefab,transform.position, Quaternion.identity);
                     }
-					if()
+                    if()
                     {
 
                     }
