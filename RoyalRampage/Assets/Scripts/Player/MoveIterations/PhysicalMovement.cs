@@ -101,7 +101,7 @@ public class PhysicalMovement : MonoBehaviour {
         {
             if (powerTime < doubleTapTime && ableToLift)
             {
-                print("Came here");
+                //print("Came here");
                 ableToLift = false;
                 StartCoroutine("Cooldown");
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);

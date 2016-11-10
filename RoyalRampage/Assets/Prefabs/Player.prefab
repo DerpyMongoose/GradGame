@@ -617,7 +617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftForce: 600
+  imInSlowMotion: 0
+  liftForce: 400
+  gravityTimer: 2
 --- !u!114 &114000014113346480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,10 +631,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a44127681603849954235cf6fb81b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ableToLift: 0
   timeForSwipe: 1
   hitForce: 1000
   swirlForce: 4000
-  cdLift: 3
+  cdLift: 5
   doubleTapTime: 0.1
   collisionRadius: 3
   liftRadius: 4

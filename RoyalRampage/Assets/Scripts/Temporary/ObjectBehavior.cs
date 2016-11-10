@@ -13,10 +13,17 @@ public class ObjectBehavior : MonoBehaviour
     private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
+    private IEnumerator coroutine;
 
     [HideInInspector]
     public bool isGrounded = true;
     private bool hit = false;
+    private bool readyToCheck;
+    private bool lifted;
+
+    private float initial;
+
+    private float checkHeight;
 
     [HideInInspector]
     public int score;
@@ -43,6 +50,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
+        coroutine = Wait();
+        StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -104,21 +113,49 @@ public class ObjectBehavior : MonoBehaviour
         if (!Mathf.Approximately(initialPos.y, transform.position.y))
         {
             isGrounded = false;    
+            checkHeight = Mathf.Round(transform.position.y * 10)/10;
         }
+        else if (Mathf.Round(transform.position.y * 10)/ 10 < checkHeight && readyToCheck)
+        {
+            GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+            checkHeight = initial;
+            GetComponent<Rigidbody>().useGravity = false;
+            lifted = true;
+            coroutine = ReturnGravity();
+            StartCoroutine(coroutine);
     }
+
+        if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        {
+            lifted = false;
+        }
 
     void DestroyObj(GameObject obj)
     {
         for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
+        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
         {
             Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
         }
+        }
         GameManager.instance.objectDestructed(obj);
         Destroy(obj);
+        initial = Mathf.Round(transform.position.y * 10) / 10;
+        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+        readyToCheck = true;
+    }
+
+    IEnumerator ReturnGravity()
+    {
+
+		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+        GetComponent<Rigidbody>().useGravity = true;
+		 GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
     }
 
     void OnCollisionEnter(Collision col)
     {
+
         if (col.collider.gameObject == player)
         {
             hit = true;

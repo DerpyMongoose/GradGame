@@ -7,7 +7,9 @@ using UnityEngine.UI;
  */
 public class PlayerStates : MonoBehaviour {
 
-    public float liftForce;
+    [HideInInspector]
+    public bool imInSlowMotion;
+    public float liftForce, gravityTimer;
 
     private enum PlayerState {
 		READY, IDLE, WALKING, ATTACKING, ENDING }
