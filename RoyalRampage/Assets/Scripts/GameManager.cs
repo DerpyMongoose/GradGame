@@ -126,7 +126,7 @@ public class GameManager {
 	public delegate void GameAction();
 	public event GameAction OnTimerStart;
 	public event GameAction OnTimerOut;
-    public static event GameAction stampPower;
+    //public static event GameAction stampPower;
     public void timerStart() {
 		if (OnTimerStart != null)
 			OnTimerStart ();
@@ -136,15 +136,15 @@ public class GameManager {
 			OnTimerOut ();
 	}
 
-    public void TimeToLift()
-    {
-        ////////we could use this: stampPower?.Invoke(); which is the same thing and simplier and 
-        //The new way is thread-safe because the compiler generates code to evaluate PropertyChanged one time only, 
-        //keeping the result in temporary variable. But it needs C# 6 or greater.
-        if (stampPower != null)
-        {
-            stampPower();
-        }
-    }
+    //public void TimeToLift()
+    //{
+    //    ////////we could use this: stampPower?.Invoke(); which is the same thing and simplier and 
+    //    //The new way is thread-safe because the compiler generates code to evaluate PropertyChanged one time only, 
+    //    //keeping the result in temporary variable. But it needs C# 6 or greater.
+    //    if (stampPower != null)
+    //    {
+    //        stampPower();
+    //    }
+    //}
 
 }

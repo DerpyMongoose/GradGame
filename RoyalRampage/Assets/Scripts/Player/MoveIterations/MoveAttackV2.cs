@@ -106,7 +106,7 @@ public class MoveAttackV2 : MonoBehaviour
                     if (amountOfTaps == 2 && powerTime < doubleTapTime && !dragged && ableToLift)
                     {
                         //print("Lift");
-                        GameManager.instance.TimeToLift();
+                       //GameManager.instance.TimeToLift();
                     }
                 }
 

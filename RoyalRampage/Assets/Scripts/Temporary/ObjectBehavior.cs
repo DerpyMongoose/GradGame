@@ -100,13 +100,13 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        //print(checkHeight);
-        if (transform.position.y > checkHeight && !lifted)
+        print(checkHeight);
+        if (Mathf.Round(transform.position.y * 10) / 10 > checkHeight && !lifted)
         {
 
-            checkHeight = Mathf.Round(transform.position.y);
+            checkHeight = Mathf.Round(transform.position.y * 10)/10;
         }
-        else if (transform.position.y < checkHeight && readyToCheck)
+        else if (Mathf.Round(transform.position.y * 10)/ 10 < checkHeight && readyToCheck)
         {
             GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
             checkHeight = 0;
@@ -131,7 +131,7 @@ public class ObjectBehavior : MonoBehaviour
     {
         yield return new WaitForSeconds(Time.deltaTime * 2);
         initial = transform.position;
-        checkHeight = transform.position.y;
+        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
         readyToCheck = true;
     }
 
