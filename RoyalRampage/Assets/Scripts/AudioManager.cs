@@ -4,43 +4,43 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
 	[Header ("-- Player --")]
-	//[SerializeField]
-	public string dashPlayer;
-	//[SerializeField]
-	public string spinPlay, 
+	[SerializeField]
+	private string dashPlayer;
+	[SerializeField]
+	private string spinPlay, 
 		stompPlay;
 
 	[Header ("-- Objects --")]
-	//[SerializeField]
-	public string actionPlay;
-	public string landing;
+	[SerializeField]
+	private string actionPlay;
+	private string landing;
 	private string hit;
 	private string destruction;
 
 
-	//[Header ("-- Background --")]
-	//[SerializeField]
+	[Header ("-- Background --")]
+	[SerializeField]
 	private string ambiencePlay,
 		MusicSystem;
 
 
-	//[Header ("-- Menu --")]
-	//[SerializeField]
+	[Header ("-- Menu --")]
+	[SerializeField]
 	private string menuButton;
-	//[SerializeField]
+	[SerializeField]
 	private string startButton;
 
-	//[Header ("-- Score Screen --")]
-	//[SerializeField]
+	[Header ("-- Score Screen --")]
+	[SerializeField]
 	private string scoreScreenOpen;
-	//[SerializeField]
+	[SerializeField]
 	private string starCounting;
 	private string pointsCounting;
 
-	//[Header ("-- In Game --")]
-	//[SerializeField]
+	[Header ("-- In Game --")]
+	[SerializeField]
 	private string timerTick;
-	//[SerializeField]
+	[SerializeField]
 	private string pointsRewarded, 
 		objectiveAnnounced,
 		objectiveCompleted;
