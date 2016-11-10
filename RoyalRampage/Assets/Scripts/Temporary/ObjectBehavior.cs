@@ -37,17 +37,6 @@ public class ObjectBehavior : MonoBehaviour
 
     public DestructableObject objType;
 
-    // Use this for initialization
-    void OnEnable()
-    {
-        GameManager.stampPower += Lift;
-    }
-
-    void OnDisable()
-    {
-        GameManager.stampPower -= Lift;
-    }
-
     void Start()
     {
         coroutine = Wait();
@@ -112,10 +101,10 @@ public class ObjectBehavior : MonoBehaviour
         print(isGrounded);
         if (!Mathf.Approximately(initialPos.y, transform.position.y))
         {
-            isGrounded = false;    
-            checkHeight = Mathf.Round(transform.position.y * 10)/10;
+            isGrounded = false;
+            checkHeight = Mathf.Round(transform.position.y * 10) / 10;
         }
-        else if (Mathf.Round(transform.position.y * 10)/ 10 < checkHeight && readyToCheck)
+        else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
         {
             GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
             checkHeight = initial;
@@ -123,27 +112,30 @@ public class ObjectBehavior : MonoBehaviour
             lifted = true;
             coroutine = ReturnGravity();
             StartCoroutine(coroutine);
-    }
+        }
+
 
         if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
         {
             lifted = false;
+            initial = Mathf.Round(transform.position.y * 10) / 10;
+            checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+            readyToCheck = true;
         }
+    }
 
     void DestroyObj(GameObject obj)
     {
         for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
-        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
-        {
-            Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
-        }
-        }
+            if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+            {
+                Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
+            }
+
         GameManager.instance.objectDestructed(obj);
         Destroy(obj);
-        initial = Mathf.Round(transform.position.y * 10) / 10;
-        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-        readyToCheck = true;
     }
+    
 
     IEnumerator ReturnGravity()
     {
