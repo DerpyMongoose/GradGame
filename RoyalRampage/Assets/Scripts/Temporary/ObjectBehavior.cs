@@ -11,9 +11,16 @@ public class ObjectBehavior : MonoBehaviour
     private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
+    private IEnumerator coroutine;
 
     private bool isGrounded = true;
     private bool hit = false;
+    private bool readyToCheck;
+    private bool lifted;
+
+    private Vector3 initial;
+
+    private float checkHeight;
 
     [HideInInspector]
     public int score;
@@ -40,6 +47,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
+        coroutine = Wait();
+        StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -88,10 +97,50 @@ public class ObjectBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    //void Lift()
-    //{
-    //    objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
-    //}
+
+    void Update()
+    {
+        //print(checkHeight);
+        if (transform.position.y > checkHeight && !lifted)
+        {
+
+            checkHeight = Mathf.Round(transform.position.y);
+        }
+        else if (transform.position.y < checkHeight && readyToCheck)
+        {
+            GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+            checkHeight = 0;
+            GetComponent<Rigidbody>().useGravity = false;
+            lifted = true;
+            coroutine = ReturnGravity();
+            StartCoroutine(coroutine);
+        }
+
+        if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        {
+            lifted = false;
+        }
+
+        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(Time.deltaTime * 2);
+        initial = transform.position;
+        checkHeight = transform.position.y;
+        readyToCheck = true;
+    }
+
+    IEnumerator ReturnGravity()
+    {
+        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+        GetComponent<Rigidbody>().useGravity = true;
+        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -140,10 +189,7 @@ public class ObjectBehavior : MonoBehaviour
             Destroy(col.gameObject);
         }
 
-        if (col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Nwall 
-            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Swall 
-            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Ewall 
-            || col.collider == GameManager.instance.player.GetComponent<PhysicalMovement>().Wwall) {
+        if (col.collider.tag == "Wall") {
 
             col.collider.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
