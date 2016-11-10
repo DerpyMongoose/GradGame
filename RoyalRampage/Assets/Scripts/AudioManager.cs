@@ -4,39 +4,43 @@ using System.Collections;
 public class AudioManager : MonoBehaviour {
 
 	[Header ("-- Player --")]
-	[SerializeField]
-	private string dashPlayer;
-	[SerializeField]
-	private string spinPlay, 
-		StompPlay;
+	//[SerializeField]
+	public string dashPlayer;
+	//[SerializeField]
+	public string spinPlay, 
+		stompPlay;
 
 	[Header ("-- Objects --")]
-	[SerializeField]
-	private string actionPlay;
+	//[SerializeField]
+	public string actionPlay;
+	public string landing;
+	private string hit;
+	private string destruction;
 
-	[Header ("-- Background --")]
-	[SerializeField]
+
+	//[Header ("-- Background --")]
+	//[SerializeField]
 	private string ambiencePlay,
 		MusicSystem;
 
 
-	[Header ("-- Menu --")]
-	[SerializeField]
+	//[Header ("-- Menu --")]
+	//[SerializeField]
 	private string menuButton;
-	[SerializeField]
+	//[SerializeField]
 	private string startButton;
 
-	[Header ("-- Score Screen --")]
-	[SerializeField]
+	//[Header ("-- Score Screen --")]
+	//[SerializeField]
 	private string scoreScreenOpen;
-	[SerializeField]
+	//[SerializeField]
 	private string starCounting;
 	private string pointsCounting;
 
-	[Header ("-- In Game --")]
-	[SerializeField]
+	//[Header ("-- In Game --")]
+	//[SerializeField]
 	private string timerTick;
-	[SerializeField]
+	//[SerializeField]
 	private string pointsRewarded, 
 		objectiveAnnounced,
 		objectiveCompleted;
@@ -47,9 +51,23 @@ public class AudioManager : MonoBehaviour {
 		PlaySound (dashPlayer, GameManager.instance.player);
 	}
 
-	void PlaySpin(){
+	void PlayerSwirl(){
 		PlaySound (spinPlay, GameManager.instance.player);
 	}
+	void PlayerStomp(){
+		PlaySound (stompPlay, GameManager.instance.player);
+	}
+
+	/*private static bool showHexTypes = true;
+	public override void OnInspectorGUI () {
+		showHexTypes = EditorGUILayout.Foldout(showHexTypes, "HexTypes");
+
+		if (showHexTypes) {
+			EditorGUILayout.PropertyField (landing);
+			EditorGUILayout.PropertyField (hit);
+			EditorGUILayout.PropertyField (destruction);
+		}
+	}*/
 
 	//************** Objects **************
 
@@ -107,27 +125,25 @@ public class AudioManager : MonoBehaviour {
 
 	//****** play sound ****************
 
-	private void PlaySound(string eventName, GameObject obj){
+	private void PlaySound(string eventName, GameObject audioSource){
 		if(eventName == null || eventName == "")
 			return;
 
-		AkSoundEngine.PostEvent (eventName, obj);
+		AkSoundEngine.PostEvent (eventName, audioSource);
 		AkSoundEngine.RenderAudio ();
 	}
 
-	public void UnloadSoundBank(){
-		Destroy (gameObject);
-	}
-
-	/// <summary>
-	/// Subscribing
-	/// </summary>
+	//Subscribing
 
 	void OnEnable(){
-
+		GameManager.instance.OnPlayerDash += PlayerDash;
+		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
+		GameManager.instance.OnPlayerStomp += PlayerStomp;
 	}
 
 	void OnDisable(){
-
+		GameManager.instance.OnPlayerDash -= PlayerDash;
+		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
+		GameManager.instance.OnPlayerStomp -= PlayerStomp;
 	}
 }

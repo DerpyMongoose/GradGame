@@ -15,6 +15,7 @@ public class PhysicalMovement : MonoBehaviour {
     public int numOfCircleToShow;
     public Collider floor, Nwall, Ewall, Wwall, Swall;
 
+	private bool newDash = false;   // for dashsound
 
     void Start()
     {
@@ -34,6 +35,13 @@ public class PhysicalMovement : MonoBehaviour {
         {
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
+
+			//dash sound
+			if(newDash == true){
+			GameManager.instance.playerDash();
+				newDash = false;
+			}
+			
             applyMove = false;
         }
     }
@@ -67,6 +75,7 @@ public class PhysicalMovement : MonoBehaviour {
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
                     newSwipe = true;
+					newDash = true;
                     moveTimer = 0;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     startPoint = new Vector3(temp.x, 0, temp.z);
@@ -98,7 +107,7 @@ public class PhysicalMovement : MonoBehaviour {
         {
             if (powerTime < doubleTapTime && ableToLift)
             {
-                print("i am here");
+                //print("i am here");
                 //LIFT ONLY THE OBJECTS INSIDE YOUR RADIUS
                 //GameManager.instance.TimeToLift();
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
@@ -127,6 +136,9 @@ public class PhysicalMovement : MonoBehaviour {
                 rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
             }
         }
+		print("i am here");
+		// sound for stomp
+		GameManager.instance.playerStomp();
     }
 
 
@@ -142,6 +154,7 @@ public class PhysicalMovement : MonoBehaviour {
                 rig.AddForce(dir.normalized * swirlForce);
             }
         }
+		GameManager.instance.playerSwirl();
     }
 
 
