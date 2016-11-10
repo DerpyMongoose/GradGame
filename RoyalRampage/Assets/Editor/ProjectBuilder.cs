@@ -9,7 +9,7 @@ public class ProjectBuilder {
 	static string[] SCENES = FindEnabledEditorScenes();
 	//static string path = "C:/Builds";
 
-	static string APP_NAME = "T1DestructionGame";
+	static string APP_NAME = "RoyalRampage";
 	static string baseFolder = "C:/Users/dadiu/Google Drive/QA - TEAM1/GGBuilds";
 	static string buildFolder = System.DateTime.Now.ToString ("dd-MM-yy HH.mm");
 
