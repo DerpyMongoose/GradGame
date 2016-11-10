@@ -124,7 +124,7 @@ public class MoveAttack : MonoBehaviour
                         case "left":
                             if (Input.GetTouch(1).position.x > Screen.width / 2)
                             {
-                                GameManager.instance.TimeToLift();
+							GameManager.instance.playerStomp();
                                 /////////////////////////////////////////////////////////////////PLAY STAMP ANIMATION
                                 ableToLift = false;
                                 StartCoroutine("Cooldown");
@@ -134,7 +134,7 @@ public class MoveAttack : MonoBehaviour
                         case "right":
                             if (Input.GetTouch(1).position.x <= Screen.width / 2)
                             {
-                                GameManager.instance.TimeToLift();
+							GameManager.instance.playerStomp();
                                 //////////////////////////////////////////////////////////////////PLAY STAMP ANIMATION
                                 ableToLift = false;
                                 StartCoroutine("Cooldown");

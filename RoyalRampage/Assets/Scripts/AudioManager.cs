@@ -8,11 +8,15 @@ public class AudioManager : MonoBehaviour {
 	private string dashPlayer;
 	[SerializeField]
 	private string spinPlay, 
-		StompPlay;
+		stompPlay;
 
 	[Header ("-- Objects --")]
 	[SerializeField]
 	private string actionPlay;
+	private string landing;
+	private string hit;
+	private string destruction;
+
 
 	[Header ("-- Background --")]
 	[SerializeField]
@@ -47,9 +51,23 @@ public class AudioManager : MonoBehaviour {
 		PlaySound (dashPlayer, GameManager.instance.player);
 	}
 
-	void PlaySpin(){
+	void PlayerSwirl(){
 		PlaySound (spinPlay, GameManager.instance.player);
 	}
+	void PlayerStomp(){
+		PlaySound (stompPlay, GameManager.instance.player);
+	}
+
+	/*private static bool showHexTypes = true;
+	public override void OnInspectorGUI () {
+		showHexTypes = EditorGUILayout.Foldout(showHexTypes, "HexTypes");
+
+		if (showHexTypes) {
+			EditorGUILayout.PropertyField (landing);
+			EditorGUILayout.PropertyField (hit);
+			EditorGUILayout.PropertyField (destruction);
+		}
+	}*/
 
 	//************** Objects **************
 
@@ -107,27 +125,25 @@ public class AudioManager : MonoBehaviour {
 
 	//****** play sound ****************
 
-	private void PlaySound(string eventName, GameObject obj){
+	private void PlaySound(string eventName, GameObject audioSource){
 		if(eventName == null || eventName == "")
 			return;
 
-		AkSoundEngine.PostEvent (eventName, obj);
+		AkSoundEngine.PostEvent (eventName, audioSource);
 		AkSoundEngine.RenderAudio ();
 	}
 
-	public void UnloadSoundBank(){
-		Destroy (gameObject);
-	}
-
-	/// <summary>
-	/// Subscribing
-	/// </summary>
+	//Subscribing
 
 	void OnEnable(){
-
+		GameManager.instance.OnPlayerDash += PlayerDash;
+		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
+		GameManager.instance.OnPlayerStomp += PlayerStomp;
 	}
 
 	void OnDisable(){
-
+		GameManager.instance.OnPlayerDash -= PlayerDash;
+		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
+		GameManager.instance.OnPlayerStomp -= PlayerStomp;
 	}
 }

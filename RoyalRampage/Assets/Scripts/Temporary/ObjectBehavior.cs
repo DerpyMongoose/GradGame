@@ -11,9 +11,14 @@ public class ObjectBehavior : MonoBehaviour
     private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
+    private IEnumerator coroutine;
 
     private bool isGrounded = true;
     private bool hit = false;
+    private bool readyToCheck;
+    private bool lifted;
+
+    private float checkHeight;
 
     [HideInInspector]
     public int score;
@@ -40,46 +45,48 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
+        //coroutine = Wait();
+        //StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
-            score = ObjectManager.instance.barrelScore;
-            life = ObjectManager.instance.barrelLife;
-            rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
-            rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
-            break;
+                score = ObjectManager.instance.barrelScore;
+                life = ObjectManager.instance.barrelLife;
+                rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
+                rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
+                break;
             case DestructableObject.BED:
-            score = ObjectManager.instance.bedScore;
-            life = ObjectManager.instance.bedLife;
-            rubbleAmount = ObjectManager.instance.bedRubbleAmount;
-            rubblePrefab = ObjectManager.instance.bedRubblePrefab;
-            break;
+                score = ObjectManager.instance.bedScore;
+                life = ObjectManager.instance.bedLife;
+                rubbleAmount = ObjectManager.instance.bedRubbleAmount;
+                rubblePrefab = ObjectManager.instance.bedRubblePrefab;
+                break;
             case DestructableObject.BOX:
-            score = ObjectManager.instance.boxScore;
-            life = ObjectManager.instance.boxLife;
-            rubbleAmount = ObjectManager.instance.boxRubbleAmount;
-            rubblePrefab = ObjectManager.instance.boxRubblePrefab;
-            break;
+                score = ObjectManager.instance.boxScore;
+                life = ObjectManager.instance.boxLife;
+                rubbleAmount = ObjectManager.instance.boxRubbleAmount;
+                rubblePrefab = ObjectManager.instance.boxRubblePrefab;
+                break;
             case DestructableObject.CHAIR:
-            score = ObjectManager.instance.chairScore;
-            life = ObjectManager.instance.chairLife;
-            rubbleAmount = ObjectManager.instance.chairRubbleAmount;
-            rubblePrefab = ObjectManager.instance.chairRubblePrefab;
-            break;
+                score = ObjectManager.instance.chairScore;
+                life = ObjectManager.instance.chairLife;
+                rubbleAmount = ObjectManager.instance.chairRubbleAmount;
+                rubblePrefab = ObjectManager.instance.chairRubblePrefab;
+                break;
             case DestructableObject.TABLE:
-            score = ObjectManager.instance.tableScore;
-            life = ObjectManager.instance.tableLife;
-            rubbleAmount = ObjectManager.instance.tableRubbleAmount;
-            rubblePrefab = ObjectManager.instance.tableRubblePrefab;
-            break;
+                score = ObjectManager.instance.tableScore;
+                life = ObjectManager.instance.tableLife;
+                rubbleAmount = ObjectManager.instance.tableRubbleAmount;
+                rubblePrefab = ObjectManager.instance.tableRubblePrefab;
+                break;
             case DestructableObject.WARDROBE:
-            score = ObjectManager.instance.wardrobeScore;
-            life = ObjectManager.instance.wardrobeLife;
-            rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
-            rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
-            break;
+                score = ObjectManager.instance.wardrobeScore;
+                life = ObjectManager.instance.wardrobeLife;
+                rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
+                rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
+                break;
             default:
-            break;
+                break;
 
         }
         state = 1;
@@ -88,10 +95,72 @@ public class ObjectBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    //void Lift()
+
+    void Update()
+    {
+        //print(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10);
+        if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
+        {
+            if (Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 < 0)
+            {
+                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+                //checkHeight = 0;
+                GetComponent<Rigidbody>().useGravity = false;
+                //lifted = true;
+                coroutine = ReturnGravity();
+                StartCoroutine(coroutine);
+            }
+        }
+
+        if(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 >= 0)
+        {
+            //GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
+        }
+
+        //if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        //{
+        //    lifted = false;
+        //}
+        //else
+        //{
+        //    //print("came into");
+        //    Rigidbody rig = GetComponent<Rigidbody>();
+        //    if (Mathf.Round(transform.position.y * 10) / 10 >= checkHeight && !lifted)
+        //    {
+
+        //        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+        //    }
+        //    else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
+        //    {
+        //        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+        //        checkHeight = 0;
+        //        GetComponent<Rigidbody>().useGravity = false;
+        //        lifted = true;
+        //        coroutine = ReturnGravity();
+        //        StartCoroutine(coroutine);
+        //    }
+        //}
+
+
+        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+
+    //IEnumerator Wait()
     //{
-    //    objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+    //    yield return new WaitForSeconds(Time.deltaTime * 2);
+    //    checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+    //    readyToCheck = true;
     //}
+
+    IEnumerator ReturnGravity()
+    {
+		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+		GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        GetComponent<Rigidbody>().useGravity = true;
+    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -138,6 +207,11 @@ public class ObjectBehavior : MonoBehaviour
             GameManager.instance.objectDestructed(col.gameObject);
             Destroy(gameObject);
             Destroy(col.gameObject);
+        }
+
+        if (col.collider.tag == "Wall") {
+
+            col.collider.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

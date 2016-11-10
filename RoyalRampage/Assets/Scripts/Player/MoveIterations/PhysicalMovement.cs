@@ -6,15 +6,17 @@ public class PhysicalMovement : MonoBehaviour {
 
     private int touches;
     private float distance, moveTimer, speed, acc, force, powerTime;
-    private bool newSwipe, applyMove, ableToLift;
+    private bool newSwipe, applyMove;
     private Vector3 temp, startPoint, dragPoint, direction;
     private Rigidbody playerRig;
 
+    [HideInInspector]
+    public bool ableToLift;
     public float timeForSwipe = 1f;
     public float hitForce, swirlForce, cdLift, doubleTapTime, collisionRadius, liftRadius;
     public int numOfCircleToShow;
-    public Collider floor, Nwall, Ewall, Wwall, Swall;
 
+	private bool newDash = false;   // for dashsound
 
     void Start()
     {
@@ -34,6 +36,13 @@ public class PhysicalMovement : MonoBehaviour {
         {
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
+
+			//dash sound
+			if(newDash == true){
+			GameManager.instance.playerDash();
+				newDash = false;
+			}
+			
             applyMove = false;
         }
     }
@@ -67,6 +76,7 @@ public class PhysicalMovement : MonoBehaviour {
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
                     newSwipe = true;
+					newDash = true;
                     moveTimer = 0;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     startPoint = new Vector3(temp.x, 0, temp.z);
@@ -74,6 +84,7 @@ public class PhysicalMovement : MonoBehaviour {
 
                 if (Input.GetTouch(i).phase == TouchPhase.Moved)
                 {
+                    //GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
 
@@ -82,6 +93,7 @@ public class PhysicalMovement : MonoBehaviour {
                     speed = distance / moveTimer;
                     acc = speed / moveTimer;
                     force = playerRig.mass * acc;
+                    ///////////////////////////////////////////I WANT TO MAKE THE ROTATION BETTER WITHOUT RANDOM NUMBER//////////////////////////////
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), moveTimer * 10);
                     applyMove = true;
 
@@ -98,13 +110,11 @@ public class PhysicalMovement : MonoBehaviour {
         {
             if (powerTime < doubleTapTime && ableToLift)
             {
-                print("i am here");
-                //LIFT ONLY THE OBJECTS INSIDE YOUR RADIUS
-                //GameManager.instance.TimeToLift();
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
-                Lift(hitColliders);
+                GameManager.instance.player.GetComponent<PlayerStates>().lifted = true;
                 ableToLift = false;
                 StartCoroutine("Cooldown");
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
+                Lift(hitColliders);
             }
         }
 
@@ -120,13 +130,16 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i] != floor && col[i] != Nwall && col[i] != Ewall && col[i] != Wwall && col[i] != Swall && col[i] != GetComponent<Collider>())
+            if (col[i].tag != "Floor" && col[i].tag != "Wall" && col[i] != GetComponent<Collider>())
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
             }
         }
+		print("i am here");
+		// sound for stomp
+		GameManager.instance.playerStomp();
     }
 
 
@@ -134,14 +147,16 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i] != floor && col[i] != Nwall && col[i] != Ewall && col[i] != Wwall && col[i] != Swall && col[i] != GetComponent<Collider>())
+            if (col[i].tag != "Floor" && col[i].tag != "Wall"  && col[i] != GetComponent<Collider>())
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
+                rig.useGravity = true;
                 rig.AddForce(dir.normalized * swirlForce);
             }
         }
+		GameManager.instance.playerSwirl();
     }
 
 
@@ -154,9 +169,10 @@ public class PhysicalMovement : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider != floor && col.collider != Nwall && col.collider != Ewall && col.collider != Wwall && col.collider != Swall)
+        if (col.collider.tag != "Floor" && col.collider.tag != "Wall")
         {
             Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+            rig.useGravity = true;
             rig.AddForce(direction.normalized * hitForce);
         }
     }
