@@ -75,7 +75,7 @@ public class PhysicalMovement : MonoBehaviour {
 
                 if (Input.GetTouch(i).phase == TouchPhase.Moved)
                 {
-                    GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+                    //GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
 
