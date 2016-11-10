@@ -8,10 +8,13 @@ public class ObjectBehavior : MonoBehaviour
     private int rubbleAmount;
     private int state;
 
+    private Vector3 initialPos;
+
     private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
 
+    [HideInInspector]
     public bool isGrounded = true;
     private bool hit = false;
 
@@ -86,6 +89,7 @@ public class ObjectBehavior : MonoBehaviour
         particleSys = GetComponent<ParticleSystem>();
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
+        initialPos = transform.position;
     }
 
 
@@ -96,8 +100,11 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        print(player.GetComponent<PhysicalMovement>().floor.transform.position.y);
-        print(GetComponent<MeshRenderer>().bounds.extents.y);
+        print(isGrounded);
+        if (!Mathf.Approximately(initialPos.y, transform.position.y))
+        {
+            isGrounded = false;    
+        }
     }
 
     void DestroyObj(GameObject obj)
@@ -115,10 +122,6 @@ public class ObjectBehavior : MonoBehaviour
         if (col.collider.gameObject == player)
         {
             hit = true;
-            if(player.GetComponent<PhysicalMovement>().floor.transform.position.y < GetComponent<MeshRenderer>().bounds.extents.y);
-            {
-                isGrounded = false;
-            }
             /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
             //objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
             /////////////////////////////////////////////////////////////////////////////////////
@@ -144,21 +147,30 @@ public class ObjectBehavior : MonoBehaviour
             /*state += 1;
         }*/
         }
-        if(isGrounded == true)
+        if (col.collider.tag == "Destructable" && hit == true)
         {
-            if (col.collider.tag == "Destructable" && hit == true)
+            if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
             {
                 DestroyObj(gameObject);
             }
-        }
-
-        if (isGrounded == false)
-        {
-            if (col.collider.tag == "Destructable" && hit == true)
+            if (isGrounded == false)
             {
+                DestroyObj(gameObject);
+            }
+            if (isGrounded == true)
+            {
+                print("Hit");
                 DestroyObj(gameObject);
                 DestroyObj(col.gameObject);
             }
+        }
+    }
+    void OnCollisionStay(Collision col)
+    {
+        if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+        {
+            isGrounded = true;
+            initialPos = transform.position;
         }
     }
 }

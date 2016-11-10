@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
-		if (score >= scoreToCompleteLevel)
+		if (score >= scoreToCompleteLevel || ObjectManager.instance.objectArray.Length <= 1)
 			guideText.text = "Level completed!";
 		else
 			guideText.text = "Game over";
