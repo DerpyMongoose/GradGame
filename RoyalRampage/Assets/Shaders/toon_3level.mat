@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: toon
-  m_Shader: {fileID: 4800000, guid: 88d3cd67964439b4d86354fcc7761d4f, type: 3}
+  m_Name: toon_3level
+  m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -75,34 +75,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: 17b579413a8248b48b1b3cb909065d3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _RampTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 17b579413a8248b48b1b3cb909065d3f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _SpecularTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
       second: 1
     - first:
         name: _Cutoff
-      second: 0.483
+      second: 0.5
     - first:
         name: _DetailNormalMapScale
       second: 1
-    - first:
-        name: _DiffuseThreshold
-      second: 0.409
-    - first:
-        name: _DiffuseThresholdMid
-      second: 0.1
     - first:
         name: _DstBlend
       second: 0
@@ -111,13 +93,13 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.492
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _LitOutlineThickness
-      second: 0.1
+        name: _Invert
+      second: 0
     - first:
         name: _Metallic
       second: 0
@@ -128,41 +110,29 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
+        name: _Overlay
+      second: 0
+    - first:
         name: _Parallax
       second: 0.02
     - first:
-        name: _RampSmooth
-      second: 0.01
-    - first:
-        name: _RampThreshold
-      second: 0.426
-    - first:
-        name: _RimMax
+        name: _RampInfluence
       second: 1
     - first:
-        name: _RimMin
-      second: 0.58
-    - first:
-        name: _RimPower
-      second: 0
-    - first:
         name: _Shininess
-      second: 0.27
+      second: 0.13
     - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
-        name: _SpecSmooth
-      second: 0.489
-    - first:
-        name: _SpecSmooth2
-      second: 1
-    - first:
         name: _SpecularHighlights
       second: 1
     - first:
+        name: _SpecularSmooth
+      second: 0.511
+    - first:
         name: _Specularity
-      second: 0.365
+      second: 0.345
     - first:
         name: _SrcBlend
       second: 1
@@ -170,36 +140,24 @@ Material:
         name: _UVSec
       second: 0
     - first:
-        name: _UnlitOutlineThickness
-      second: 0.4
+        name: _UseRamp
+      second: 0
     - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.7205882, g: 0.43935034, b: 0.31790656, a: 1}
+      second: {r: 0.8308824, g: 0.44598833, b: 0.44598833, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _HColor
-      second: {r: 0.99264705, g: 0.7955774, b: 0.7955774, a: 1}
+        name: _HighlightColor
+      second: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
     - first:
-        name: _OutlineColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _RimColor
-      second: {r: 0.8, g: 0.8, b: 0.8, a: 0.316}
-    - first:
-        name: _SColor
-      second: {r: 0.38235295, g: 0.26989618, b: 0.26989618, a: 1}
+        name: _ShadowColor
+      second: {r: 0.18382353, g: 0.18112023, b: 0.18112023, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 1}
-    - first:
-        name: _UnlitColor
-      second: {r: 0.625, g: 0.44117647, b: 0.3584559, a: 1}
-    - first:
-        name: _UnlitColorMid
-      second: {r: 0.30147058, g: 0.15295199, b: 0.15295199, a: 1}
+      second: {r: 0.41176468, g: 0.40268165, b: 0.40268165, a: 1}
