@@ -21,7 +21,7 @@ public class ObjectBehavior : MonoBehaviour
     private bool readyToCheck;
     private bool lifted;
 
-    private float checkHeight;
+    private float checkHeight, initialMass;
 
     [HideInInspector]
     public int score;
@@ -95,6 +95,7 @@ public class ObjectBehavior : MonoBehaviour
         state = 1;
         particleSys = GetComponent<ParticleSystem>();
         objRB = GetComponent<Rigidbody>();
+        initialMass = objRB.mass;
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
     }
@@ -102,55 +103,28 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        //print(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10);
         if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
         {
-            if (Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 < 0)
+            if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
             {
-                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
                 //checkHeight = 0;
-                GetComponent<Rigidbody>().useGravity = false;
+                objRB.useGravity = false;
                 //lifted = true;
                 coroutine = ReturnGravity();
                 StartCoroutine(coroutine);
             }
+            else
+            {
+                objRB.useGravity = true;
+            }
         }
 
-        if(Mathf.Round(GetComponent<Rigidbody>().velocity.y * 10) / 10 >= 0)
+        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject)
         {
-            //GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
+            objRB.mass = initialMass;
         }
 
-        //if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
-        //{
-        //    lifted = false;
-        //}
-        //else
-        //{
-        //    //print("came into");
-        //    Rigidbody rig = GetComponent<Rigidbody>();
-        //    if (Mathf.Round(transform.position.y * 10) / 10 >= checkHeight && !lifted)
-        //    {
-
-        //        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-        //    }
-        //    else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
-        //    {
-        //        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
-        //        checkHeight = 0;
-        //        GetComponent<Rigidbody>().useGravity = false;
-        //        lifted = true;
-        //        coroutine = ReturnGravity();
-        //        StartCoroutine(coroutine);
-        //    }
-        //}
-
-
-        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
-        {
-            GetComponent<Rigidbody>().useGravity = true;
-        }
-        if(!Mathf.Approximately(initialPos.y, transform.position.y))
+        if (!Mathf.Approximately(initialPos.y, transform.position.y))
         {
             isGrounded = false;
         }
@@ -166,18 +140,14 @@ public class ObjectBehavior : MonoBehaviour
         Destroy(obj);
     }
 
-    //IEnumerator Wait()
-    //{
-    //    yield return new WaitForSeconds(Time.deltaTime * 2);
-    //    checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-    //    readyToCheck = true;
-    //}
-
     IEnumerator ReturnGravity()
     {
-		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
-		GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
-        GetComponent<Rigidbody>().useGravity = true;
+        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+        GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
+        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        GameManager.instance.player.GetComponent<PlayerStates>().hitObject = false;
+        objRB.mass = initialMass;
+        objRB.useGravity = true;
     }
 
     void OnCollisionEnter(Collision col)

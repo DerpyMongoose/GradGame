@@ -84,7 +84,7 @@ public class PhysicalMovement : MonoBehaviour {
 
                 if (Input.GetTouch(i).phase == TouchPhase.Moved)
                 {
-                    //GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+                    GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
 
@@ -111,6 +111,7 @@ public class PhysicalMovement : MonoBehaviour {
             if (powerTime < doubleTapTime && ableToLift)
             {
                 GameManager.instance.player.GetComponent<PlayerStates>().lifted = true;
+                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
                 ableToLift = false;
                 StartCoroutine("Cooldown");
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
@@ -134,6 +135,7 @@ public class PhysicalMovement : MonoBehaviour {
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
+                rig.mass = 0.5f;
                 rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
             }
         }
@@ -152,6 +154,7 @@ public class PhysicalMovement : MonoBehaviour {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
+                GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
                 rig.useGravity = true;
                 rig.AddForce(dir.normalized * swirlForce);
             }
@@ -172,6 +175,7 @@ public class PhysicalMovement : MonoBehaviour {
         if (col.collider.tag != "Floor" && col.collider.tag != "Wall")
         {
             Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+            GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
             rig.useGravity = true;
             rig.AddForce(direction.normalized * hitForce);
         }
