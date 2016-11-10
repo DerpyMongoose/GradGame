@@ -21,8 +21,6 @@ public class ObjectBehavior : MonoBehaviour
     private bool readyToCheck;
     private bool lifted;
 
-    private float initial;
-
     private float checkHeight;
 
     [HideInInspector]
@@ -37,10 +35,21 @@ public class ObjectBehavior : MonoBehaviour
 
     public DestructableObject objType;
 
+    // Use this for initialization
+    //void OnEnable()
+    //{
+    //    GameManager.stampPower += Lift;
+    //}
+
+    //void OnDisable()
+    //{
+    //    GameManager.stampPower -= Lift;
+    //}
+
     void Start()
     {
-        coroutine = Wait();
-        StartCoroutine(coroutine);
+        //coroutine = Wait();
+        //StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -91,11 +100,6 @@ public class ObjectBehavior : MonoBehaviour
     }
 
 
-    void Lift()
-    {
-        objRB.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
-    }
-
     void DestroyObj(GameObject obj)
     {
         for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
@@ -107,7 +111,6 @@ public class ObjectBehavior : MonoBehaviour
         GameManager.instance.objectDestructed(obj);
         Destroy(obj);
     }
-
     void Update()
     {
         print(isGrounded);
@@ -117,20 +120,46 @@ public class ObjectBehavior : MonoBehaviour
             checkHeight = Mathf.Round(transform.position.y * 10) / 10;
         }
         else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
-        {
-            GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
-            checkHeight = initial;
-            GetComponent<Rigidbody>().useGravity = false;
-            lifted = true;
-            coroutine = ReturnGravity();
-            StartCoroutine(coroutine);
+            {
+                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+                //checkHeight = 0;
+                GetComponent<Rigidbody>().useGravity = false;
+                //lifted = true;
+                coroutine = ReturnGravity();
+                StartCoroutine(coroutine);
+            }
         }
 
 
         if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
         {
-            lifted = false;
+            //GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
         }
+
+        //if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
+        //{
+        //    lifted = false;
+        //}
+        //else
+        //{
+        //    //print("came into");
+        //    Rigidbody rig = GetComponent<Rigidbody>();
+        //    if (Mathf.Round(transform.position.y * 10) / 10 >= checkHeight && !lifted)
+        //    {
+
+        //        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
+        //    }
+        //    else if (Mathf.Round(transform.position.y * 10) / 10 < checkHeight && readyToCheck)
+        //    {
+        //        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
+        //        checkHeight = 0;
+        //        GetComponent<Rigidbody>().useGravity = false;
+        //        lifted = true;
+        //        coroutine = ReturnGravity();
+        //        StartCoroutine(coroutine);
+        //    }
+        //}
+
 
         if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
         {
@@ -150,8 +179,8 @@ public class ObjectBehavior : MonoBehaviour
     {
 
         yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
-        GetComponent<Rigidbody>().useGravity = true;
         GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     void OnCollisionEnter(Collision col)

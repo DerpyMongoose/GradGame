@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerStates : MonoBehaviour {
 
     [HideInInspector]
-    public bool imInSlowMotion;
+    public bool imInSlowMotion, lifted;
     public float liftForce, gravityTimer;
 
     private enum PlayerState {
