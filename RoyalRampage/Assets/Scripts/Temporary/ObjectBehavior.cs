@@ -227,7 +227,7 @@ public class ObjectBehavior : MonoBehaviour
 
         if (col.collider.tag == "Wall") {
 
-            col.collider.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
