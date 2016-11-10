@@ -116,8 +116,8 @@ public class GameManager {
     }
 
 	//delegates
-	public delegate void PlayerAction(GameObject obj);
-	public event PlayerAction OnObjectDestructed;
+	public delegate void DestructionAction(GameObject obj);
+	public event DestructionAction OnObjectDestructed;
 	public void objectDestructed(GameObject obj) {
 		if (OnObjectDestructed != null)
 			OnObjectDestructed (obj);
@@ -126,7 +126,10 @@ public class GameManager {
 	public delegate void GameAction();
 	public event GameAction OnTimerStart;
 	public event GameAction OnTimerOut;
-    //public static event GameAction stampPower;
+	public event GameAction OnPlayerDash;
+	public event GameAction OnPlayerSwirl;
+    public event GameAction OnPlayerStomp;
+
     public void timerStart() {
 		if (OnTimerStart != null)
 			OnTimerStart ();
@@ -135,16 +138,18 @@ public class GameManager {
 		if (OnTimerOut != null)
 			OnTimerOut ();
 	}
-
-    //public void TimeToLift()
-    //{
-    //    ////////we could use this: stampPower?.Invoke(); which is the same thing and simplier and 
-    //    //The new way is thread-safe because the compiler generates code to evaluate PropertyChanged one time only, 
-    //    //keeping the result in temporary variable. But it needs C# 6 or greater.
-    //    if (stampPower != null)
-    //    {
-    //        stampPower();
-    //    }
-    //}
+	public void playerDash(){
+		if (OnPlayerDash != null)
+			OnPlayerDash ();
+	}
+	public void playerSwirl(){
+		if (OnPlayerSwirl != null)
+			OnPlayerSwirl ();
+	}
+	public void playerStomp(){
+		if (OnPlayerStomp != null)
+			OnPlayerStomp ();
+       
+    }
 
 }
