@@ -87,8 +87,8 @@ GameObject:
   - 4: {fileID: 4000013187075634}
   - 95: {fileID: 95000010966409974}
   - 54: {fileID: 54000010755083864}
-  - 114: {fileID: 114000010546633042}
   - 65: {fileID: 65000010714131932}
+  - 114: {fileID: 114000010546633042}
   m_Layer: 2
   m_Name: Large_Grandfather_Clock
   m_TagString: Destructable
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011484792244}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.6693039, z: 0.08268162}
+  m_LocalPosition: {x: -0, y: 166.93039, z: 8.268162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 1000011166317922}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012612735844}
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011118255206}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.6693039, z: 0.08268162}
+  m_LocalPosition: {x: -0, y: 166.93039, z: 8.268162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -209,7 +209,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 23a4b02363a52d842986ae32cfe95f1a, type: 2}
+  - {fileID: 2100000, guid: 36ea7437eee56af42840a1d9eaf32300, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -238,7 +238,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 222b10bd018f756469f55769d4bfee03, type: 2}
+  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -267,7 +267,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 222b10bd018f756469f55769d4bfee03, type: 2}
+  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -296,7 +296,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 222b10bd018f756469f55769d4bfee03, type: 2}
+  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -318,28 +318,28 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012175145862}
-  m_Mesh: {fileID: 4300002, guid: e14b6fbcb26d7804f8f031997e86ddd9, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5ced07d6ddec64149912ec8d1d164f6d, type: 3}
 --- !u!33 &33000012298429434
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011118255206}
-  m_Mesh: {fileID: 4300000, guid: e14b6fbcb26d7804f8f031997e86ddd9, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 5ced07d6ddec64149912ec8d1d164f6d, type: 3}
 --- !u!33 &33000012371382462
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011484792244}
-  m_Mesh: {fileID: 4300006, guid: e14b6fbcb26d7804f8f031997e86ddd9, type: 3}
+  m_Mesh: {fileID: 4300006, guid: 5ced07d6ddec64149912ec8d1d164f6d, type: 3}
 --- !u!33 &33000013286306136
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013804297074}
-  m_Mesh: {fileID: 4300004, guid: e14b6fbcb26d7804f8f031997e86ddd9, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 5ced07d6ddec64149912ec8d1d164f6d, type: 3}
 --- !u!54 &54000010755083864
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -375,7 +375,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013376388500}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e14b6fbcb26d7804f8f031997e86ddd9, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 5ced07d6ddec64149912ec8d1d164f6d, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
