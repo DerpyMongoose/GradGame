@@ -7,6 +7,8 @@ public class ObjectBehavior : MonoBehaviour
     private int life;
     private int rubbleAmount;
     private int state;
+	[HideInInspector]
+	public string soundSwitch; // FOR AUDIO
 
     private Vector3 initialPos;
 
@@ -59,36 +61,42 @@ public class ObjectBehavior : MonoBehaviour
                 life = ObjectManager.instance.barrelLife;
                 rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
                 rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
+				soundSwitch = ObjectManager.instance.barrelSwitch;
                 break;
             case DestructableObject.BED:
                 score = ObjectManager.instance.bedScore;
                 life = ObjectManager.instance.bedLife;
                 rubbleAmount = ObjectManager.instance.bedRubbleAmount;
                 rubblePrefab = ObjectManager.instance.bedRubblePrefab;
+				soundSwitch = ObjectManager.instance.bedSwitch;
                 break;
             case DestructableObject.BOX:
                 score = ObjectManager.instance.boxScore;
                 life = ObjectManager.instance.boxLife;
                 rubbleAmount = ObjectManager.instance.boxRubbleAmount;
                 rubblePrefab = ObjectManager.instance.boxRubblePrefab;
+				soundSwitch = ObjectManager.instance.boxSwitch;
                 break;
             case DestructableObject.CHAIR:
                 score = ObjectManager.instance.chairScore;
                 life = ObjectManager.instance.chairLife;
                 rubbleAmount = ObjectManager.instance.chairRubbleAmount;
                 rubblePrefab = ObjectManager.instance.chairRubblePrefab;
+				soundSwitch = ObjectManager.instance.chairSwitch;
                 break;
             case DestructableObject.TABLE:
                 score = ObjectManager.instance.tableScore;
                 life = ObjectManager.instance.tableLife;
                 rubbleAmount = ObjectManager.instance.tableRubbleAmount;
                 rubblePrefab = ObjectManager.instance.tableRubblePrefab;
+				soundSwitch = ObjectManager.instance.tableSwitch;
                 break;
             case DestructableObject.WARDROBE:
                 score = ObjectManager.instance.wardrobeScore;
                 life = ObjectManager.instance.wardrobeLife;
                 rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
                 rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
+				soundSwitch = ObjectManager.instance.wardrobeSwitch;
                 break;
             default:
                 break;
