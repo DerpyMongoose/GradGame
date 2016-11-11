@@ -133,14 +133,15 @@ public class PhysicalMovement : MonoBehaviour {
         {
             if (col[i].tag != "Floor" && col[i].tag != "Wall" && col[i] != GetComponent<Collider>())
             {
-                //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
+                //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 rig.mass = 0.5f;
                 rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+				col [i].gameObject.GetComponent<ObjectBehavior> ().hasLanded = false;
             }
         }
-		print("i am here");
-		// sound for stomp
+
+		// SOUND AND ANIMATION FOR STOMP
 		GameManager.instance.playerStomp();
     }
 
@@ -155,6 +156,10 @@ public class PhysicalMovement : MonoBehaviour {
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
                 GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
+
+				// SOUND OBJECT HIT
+				GameManager.instance.objectHit(col[i].gameObject);
+
                 rig.useGravity = true;
                 rig.AddForce(dir.normalized * swirlForce);
             }
@@ -176,6 +181,10 @@ public class PhysicalMovement : MonoBehaviour {
         {
             Rigidbody rig = col.collider.GetComponent<Rigidbody>();
             GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
+
+			// SOUND OBJECT HIT
+			GameManager.instance.objectHit(col.collider.gameObject);
+
             rig.useGravity = true;
             rig.AddForce(direction.normalized * hitForce);
         }
