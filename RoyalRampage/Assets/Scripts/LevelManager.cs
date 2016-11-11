@@ -58,7 +58,9 @@ public class LevelManager : MonoBehaviour {
 		score += points;
 		scoreText.text = "Score: " + score;
 		GameManager.instance.score = score;
-	}
+        GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
+
+    }
 
 	private void StartLevel(){
 		print ("started");

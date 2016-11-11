@@ -25,7 +25,7 @@ public class PhysicalMovement : MonoBehaviour {
         moveTimer = 0;
         newSwipe = false;
         applyMove = false;
-        ableToLift = true;
+        //ableToLift = true;
 
     }
 
@@ -113,7 +113,8 @@ public class PhysicalMovement : MonoBehaviour {
                 GameManager.instance.player.GetComponent<PlayerStates>().lifted = true;
                 GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
                 ableToLift = false;
-                StartCoroutine("Cooldown");
+                //GameManager.instance.player.GetComponent<StampBar>().fillBar = 0;
+                //StartCoroutine("Cooldown");
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
                 Lift(hitColliders);
             }
@@ -131,13 +132,13 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i].tag != "Floor" && col[i].tag != "Wall" && col[i] != GetComponent<Collider>())
+            if (col[i].tag == "Destructable")
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 rig.mass = 0.5f;
                 rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
-				col [i].gameObject.GetComponent<ObjectBehavior> ().hasLanded = false;
+				col [i].gameObject.GetComponent<ObjectBehavior> ().hasLanded = false; //THIS HAS AN ERROR
             }
         }
 
@@ -150,7 +151,7 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i].tag != "Floor" && col[i].tag != "Wall"  && col[i] != GetComponent<Collider>())
+            if (col[i].tag == "Destructable")
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
@@ -168,16 +169,16 @@ public class PhysicalMovement : MonoBehaviour {
     }
 
 
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cdLift);
-        ableToLift = true;
-    }
+    //IEnumerator Cooldown()
+    //{
+    //    yield return new WaitForSeconds(cdLift);
+    //    ableToLift = true;
+    //}
 
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag != "Floor" && col.collider.tag != "Wall")
+        if (col.collider.tag == "Destructable")
         {
             Rigidbody rig = col.collider.GetComponent<Rigidbody>();
             GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
