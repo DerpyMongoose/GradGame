@@ -55,7 +55,7 @@ public class GameManager {
 	public AudioManager audioManager{
 		get {
 			if (_audioManager == null)
-				_audioManager = Object.FindObjectOfType(typeof(AudioManager)) as AudioManager;
+				_audioManager = GameObject.FindObjectOfType(typeof(AudioManager)) as AudioManager;
 				return _audioManager;
 		}
 
