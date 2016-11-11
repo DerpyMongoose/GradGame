@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ObjectManager : MonoBehaviour
     }
 
     [HideInInspector]
-    public GameObject[] objectArray;
+    public List<GameObject> objectList = new List<GameObject>();
 
     [Header("Barrel")]
     [Tooltip("The amount of points this object should award")]
@@ -77,6 +78,6 @@ public class ObjectManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        objectArray = GameObject.FindGameObjectsWithTag("Destructable");
+        objectList.AddRange(GameObject.FindGameObjectsWithTag("Destructable"));
     }
 }

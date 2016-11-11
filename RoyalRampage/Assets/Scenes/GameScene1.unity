@@ -2167,6 +2167,16 @@ Prefab:
       propertyPath: m_Text
       value: 'Score: 120'
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 848426169}
+    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Continue
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
@@ -4971,8 +4981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePath: 417564696f5c47656e657261746564536f756e6442616e6b73
-  language: 456e676c69736828555329
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
   defaultPoolSize: 4096
   lowerPoolSize: 2048
   streamingPoolSize: 1024

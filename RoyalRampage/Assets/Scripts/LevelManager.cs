@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour {
     Text replayScoreText;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
+    private GameObject continueButton;
 
 	void OnEnable(){
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
@@ -46,8 +47,10 @@ public class LevelManager : MonoBehaviour {
         InGamePanel = GameObject.Find("InGameGUI");
         ReplayBtn = GameObject.Find("ReplayButton");
 		NewLevelBtn = GameObject.Find("NewLevelButton");
+        continueButton = GameObject.Find("ContinueButton");
 		replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
+        continueButton.SetActive(false);
     }
 
 	private void IncreaseScore(GameObject destructedObj){
@@ -65,7 +68,7 @@ public class LevelManager : MonoBehaviour {
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
 		print ("ended");
-		if (score >= scoreToCompleteLevel)
+		if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
 			guideText.text = "Level completed!";
 		else
 			guideText.text = "Game over";
@@ -73,6 +76,22 @@ public class LevelManager : MonoBehaviour {
 		guideText.gameObject.SetActive (true);
         StartCoroutine(ShowContinueScreen(guideText.text));
 	}
+
+    void Update()
+    {
+        if (score >= scoreToCompleteLevel)
+        {
+            continueButton.SetActive(true);
+        }
+        else continueButton.SetActive(false);
+    }
+
+    public void Continue()
+    {
+        print("boom");
+        guideText.text = "Level completed!";
+        StartCoroutine(ShowContinueScreen(guideText.text));
+    }
 
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult) {
