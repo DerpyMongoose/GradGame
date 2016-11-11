@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameManager {
 
@@ -152,4 +155,40 @@ public class GameManager {
        
     }
 
+    //SAVE-LOAD
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerProgress.dat"); /////////Not dynamic saves. it is only one save file. doesn't matter. we would need more if we would like to have different save files
+
+        PlayerData data = new PlayerData();
+        data.currentLevel = currentLevel;
+        data.levelsUnlocked = levelsUnlocked;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public void Load()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(Application.persistentDataPath + "/playerProgress.dat"))
+        {
+            FileStream file = File.Open(Application.persistentDataPath + "/playerProgress.dat", FileMode.Open);
+            PlayerData data = (PlayerData) bf.Deserialize(file);
+            file.Close();
+
+            currentLevel = data.currentLevel;
+            levelsUnlocked = data.levelsUnlocked;
+        }
+
+    }
+}
+
+[Serializable]
+class PlayerData
+{
+    public int currentLevel;
+    public int levelsUnlocked;
 }

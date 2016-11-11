@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour {
     GameObject NewLevelBtn;
 
     void Awake(){
+        
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
 		GameManager.instance.OnTimerStart += StartLevel;
 		GameManager.instance.OnTimerOut += ShowEnding;
@@ -61,10 +62,13 @@ public class LevelManager : MonoBehaviour {
 
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
-		if (score >= scoreToCompleteLevel || ObjectManager.instance.objectArray.Length <= 1)
-			guideText.text = "Level completed!";
-		else
-			guideText.text = "Game over";
+        if (score >= scoreToCompleteLevel || ObjectManager.instance.objectArray.Length <= 1)
+        {
+            guideText.text = "Level completed!";
+            //GameManager.instance.Save();
+        }
+        else
+            guideText.text = "Game over";
 
 		guideText.gameObject.SetActive (true);
         StartCoroutine(ShowContinueScreen(guideText.text));
@@ -83,8 +87,9 @@ public class LevelManager : MonoBehaviour {
                 ReplayBtn.SetActive(false);
                 NewLevelBtn.SetActive(true);
                 Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
-                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
                     GameManager.instance.levelsUnlocked++;
+                    GameManager.instance.Save();
                 }
                 if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
                     levelNum.text = (GameManager.instance.currentLevel+1).ToString();
