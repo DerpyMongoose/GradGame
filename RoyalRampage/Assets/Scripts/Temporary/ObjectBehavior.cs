@@ -21,6 +21,8 @@ public class ObjectBehavior : MonoBehaviour
     private bool readyToCheck;
     private bool lifted;
 
+	public bool hasLanded = true; 
+
     private float checkHeight, initialMass;
 
     [HideInInspector]
@@ -110,6 +112,7 @@ public class ObjectBehavior : MonoBehaviour
                 //checkHeight = 0;
                 objRB.useGravity = false;
                 //lifted = true;
+
                 coroutine = ReturnGravity();
                 StartCoroutine(coroutine);
             }
@@ -156,6 +159,10 @@ public class ObjectBehavior : MonoBehaviour
         if (col.collider.gameObject == player)
         {
             hit = true;
+
+			// SOUND OBJECT HIT
+			GameManager.instance.objectHit(gameObject);
+
             //Damage system, it takes more hits to destroy
             /*if(state == (life - life) + state)
             {
@@ -199,6 +206,17 @@ public class ObjectBehavior : MonoBehaviour
 
             GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
+
+		//********** 4 AUDIO and ANIMATION
+
+		if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+		{
+			if (hasLanded == false && isGrounded == false) {
+				GameManager.instance.objectLanding (gameObject); 
+				print ("landing" + gameObject);
+			}
+			hasLanded = true;
+		}
     }
 
     void OnCollisionStay(Collision col)
@@ -206,6 +224,7 @@ public class ObjectBehavior : MonoBehaviour
         if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
         {
             isGrounded = true;
+
             initialPos = transform.position;
         }
     }

@@ -10,6 +10,8 @@ public class GameManager {
 	private static GameManager _instance;
 	private GameObject _player;
 	private LevelManager _levelManager;
+	private AudioManager _audioManager;
+
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene1"};
 
 	public int currentLevel = 1;
@@ -48,6 +50,15 @@ public class GameManager {
 				_levelManager = GameObject.FindObjectOfType<LevelManager> ();
 			return _levelManager;
 		}
+	}
+
+	public AudioManager audioManager{
+		get {
+			if (_audioManager == null)
+				_audioManager = Object.FindObjectOfType(typeof(AudioManager)) as AudioManager;
+				return _audioManager;
+		}
+
 	}
 
     //scene management
@@ -121,9 +132,20 @@ public class GameManager {
 	//delegates
 	public delegate void DestructionAction(GameObject obj);
 	public event DestructionAction OnObjectDestructed;
+	public event DestructionAction OnObjectHit;
+	public event DestructionAction OnObjectLanding;
+
 	public void objectDestructed(GameObject obj) {
 		if (OnObjectDestructed != null)
 			OnObjectDestructed (obj);
+	}
+	public void objectHit(GameObject obj){
+		if (OnObjectHit != null)
+			OnObjectHit (obj);
+	}
+	public void objectLanding(GameObject obj){
+		if (OnObjectLanding != null)
+			OnObjectLanding (obj);
 	}
 
 	public delegate void GameAction();

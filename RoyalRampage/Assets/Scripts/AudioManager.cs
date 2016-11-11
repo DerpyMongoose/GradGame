@@ -20,8 +20,9 @@ public class AudioManager : MonoBehaviour {
 
 	[Header ("-- Background --")]
 	[SerializeField]
-	private string ambiencePlay,
-		MusicSystem;
+	private string ambiencePlay;
+	[SerializeField]
+	private string ambienceStop, musicSystem;
 
 
 	[Header ("-- Menu --")]
@@ -71,9 +72,22 @@ public class AudioManager : MonoBehaviour {
 
 	//************** Objects **************
 
-	void ObjectAction(){
-
+	void ObjectActionHit(GameObject obj){
+		
+		AkSoundEngine.SetSwitch ("Object_Actions", "Hit",obj);
+		PlaySound (actionPlay, obj);
 	}
+
+	void ObjectActionDestruction(GameObject obj){
+		AkSoundEngine.SetSwitch ("Object_Actions", "Destruction",obj);
+		PlaySound (actionPlay, obj);
+	}
+
+	void ObjectActionLanding(GameObject obj){
+		AkSoundEngine.SetSwitch ("Object_Actions", "Landing",obj);
+		PlaySound (actionPlay, obj);
+	}
+
 
 	//**************Background **************
 	void BackgroundAmbience(){
@@ -136,14 +150,27 @@ public class AudioManager : MonoBehaviour {
 	//Subscribing
 
 	void OnEnable(){
+		//player sound
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
 		GameManager.instance.OnPlayerStomp += PlayerStomp;
+
+		//object sounds
+		GameManager.instance.OnObjectHit += ObjectActionHit;
+		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
+		GameManager.instance.OnObjectLanding += ObjectActionLanding;
+
 	}
 
 	void OnDisable(){
+		//player sound
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+
+		//object sounds
+		GameManager.instance.OnObjectHit -= ObjectActionHit;
+		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
+		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
 	}
 }
