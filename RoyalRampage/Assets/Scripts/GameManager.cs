@@ -133,7 +133,7 @@ public class GameManager {
 	public event GameAction OnPlayerSwirl;
     public event GameAction OnPlayerStomp;
 
-    public void timerStart() {
+	public void timerStart() {
 		if (OnTimerStart != null)
 			OnTimerStart ();
 	}

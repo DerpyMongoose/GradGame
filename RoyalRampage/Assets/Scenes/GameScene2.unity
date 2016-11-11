@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePath: 417564696f5c47656e657261746564536f756e6442616e6b73
-  language: 456e676c69736828555329
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
   defaultPoolSize: 4096
   lowerPoolSize: 2048
   streamingPoolSize: 1024
@@ -418,40 +418,24 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012772038594, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 775224831}
     - target: {fileID: 114000011970756394, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 848426169}
-    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
+    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 775224831}
-    - target: {fileID: 114000011169487290, guid: 75143ac6572fa884b8ae2362e3064a3b,
+      objectReference: {fileID: 848426169}
+    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToStore
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012772038594, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToLevelOverview
+      value: Continue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &775224831 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012894417998, guid: 75143ac6572fa884b8ae2362e3064a3b,
-    type: 2}
-  m_PrefabInternal: {fileID: 775224830}
-  m_Script: {fileID: 11500000, guid: ad5444bee9b05744e92d1aa93795caa5, type: 3}
 --- !u!1 &848426166
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +775,10 @@ Prefab:
     - target: {fileID: 4000011144583916, guid: 3d9d01a45e0c41b479ba4c79e1349c1f, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.0043
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012076623888, guid: 3d9d01a45e0c41b479ba4c79e1349c1f, type: 2}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d9d01a45e0c41b479ba4c79e1349c1f, type: 2}
