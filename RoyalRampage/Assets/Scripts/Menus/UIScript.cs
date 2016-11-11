@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour {
 
     void Awake() {
-
+        GameManager.instance.Load();
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene()) {
             case GameManager.Scene.INTRO:
@@ -71,6 +71,7 @@ public class UIScript : MonoBehaviour {
         }else {
             next_level = GameManager.instance.currentLevel;
         }
+        print(GameManager.instance.currentLevel);
 		GameManager.instance.currentLevel = next_level;    
 		GameManager.instance.StartLevel(next_level);
     }

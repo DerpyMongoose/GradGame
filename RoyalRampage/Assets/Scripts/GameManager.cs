@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameManager {
 
 	private static GameManager _instance;
 	private GameObject _player;
 	private LevelManager _levelManager;
+	private AudioManager _audioManager;
+
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene1"};
 
 	public int currentLevel = 1;
@@ -45,6 +50,15 @@ public class GameManager {
 				_levelManager = GameObject.FindObjectOfType<LevelManager> ();
 			return _levelManager;
 		}
+	}
+
+	public AudioManager audioManager{
+		get {
+			if (_audioManager == null)
+				_audioManager = GameObject.FindObjectOfType(typeof(AudioManager)) as AudioManager;
+				return _audioManager;
+		}
+
 	}
 
     //scene management
@@ -118,9 +132,20 @@ public class GameManager {
 	//delegates
 	public delegate void DestructionAction(GameObject obj);
 	public event DestructionAction OnObjectDestructed;
+	public event DestructionAction OnObjectHit;
+	public event DestructionAction OnObjectLanding;
+
 	public void objectDestructed(GameObject obj) {
 		if (OnObjectDestructed != null)
 			OnObjectDestructed (obj);
+	}
+	public void objectHit(GameObject obj){
+		if (OnObjectHit != null)
+			OnObjectHit (obj);
+	}
+	public void objectLanding(GameObject obj){
+		if (OnObjectLanding != null)
+			OnObjectLanding (obj);
 	}
 
 	public delegate void GameAction();
@@ -152,4 +177,40 @@ public class GameManager {
        
     }
 
+    //SAVE-LOAD
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerProgress.dat"); /////////Not dynamic saves. it is only one save file. doesn't matter. we would need more if we would like to have different save files
+
+        PlayerData data = new PlayerData();
+        //data.currentLevel = currentLevel;
+        data.levelsUnlocked = levelsUnlocked;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public void Load()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(Application.persistentDataPath + "/playerProgress.dat"))
+        {
+            FileStream file = File.Open(Application.persistentDataPath + "/playerProgress.dat", FileMode.Open);
+            PlayerData data = (PlayerData) bf.Deserialize(file);
+            file.Close();
+
+            //currentLevel = data.currentLevel;
+            levelsUnlocked = data.levelsUnlocked;
+        }
+
+    }
+}
+
+[Serializable]
+class PlayerData
+{
+    //public int currentLevel;
+    public int levelsUnlocked;
 }
