@@ -1,20 +1,21 @@
-﻿Shader "ToonStyle/3LevelToonShader" {
+﻿Shader "ToonStyle/RoyalToonShader" {
 	Properties {
-		[Header(Diffuse)]
-		_Color ("Diffuse Color", Color) = (1,1,1,1)
+		[Header(Diffuse Color)]
 		_MainTex ("Diffuse Texture", 2D) = "white" {}
+		_Color ("Diffuse Color", Color) = (1,1,1,1)
+
+		[Header(Toon Ramp)]
+		_Ramp ("Toon Ramp", 2D) = "gray" {}
 		_HighlightColor ("Highlight Color", Color) = (0.6,0.6,0.6,1.0)
 		_ShadowColor ("Shadow Color", Color) = (0.2,0.2,0.2,1.0)
 
-		[Header(Toon)]
-		[Toggle] _UseRamp("Use ramp texture?", Float) = 0
-		_Ramp ("Toon Ramp", 2D) = "gray" {}
-
 		[Header(Specular)]
 		_SpecColor ("Specular Color", Color) = (0.5, 0.5, 0.5, 1)
-		_Shininess ("Shininess (Size of Specular Dots))", Range(0.01,2)) = 0.1
-		_SpecularSmooth ("SpecularSmooth", Range(0,1)) = 0.05
 		_Specularity ("Specularity", Range(0,1)) = 0.05
+		_SpecularSmooth ("Blur of Specular edge", Range(0,1)) = 0.05
+		_Shininess ("Size of Specular Dot", Range(0.01,2)) = 0.1
+
+	
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -41,7 +42,7 @@
 
 		inline half4 LightingToonColor (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten){
 			//light strength between 0 and 1
-			fixed NdotL = max(0, dot(s.Normal, lightDir)*0.5 + 0.5);
+			fixed NdotL = max(0.1, dot(s.Normal, lightDir)*0.5 + 0.5);
 			//Color based on ramp texture
 			fixed3 ramp = tex2D(_Ramp, fixed2(NdotL,NdotL));
 
