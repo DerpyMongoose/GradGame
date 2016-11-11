@@ -184,7 +184,7 @@ public class GameManager {
         FileStream file = File.Create(Application.persistentDataPath + "/playerProgress.dat"); /////////Not dynamic saves. it is only one save file. doesn't matter. we would need more if we would like to have different save files
 
         PlayerData data = new PlayerData();
-        data.currentLevel = currentLevel;
+        //data.currentLevel = currentLevel;
         data.levelsUnlocked = levelsUnlocked;
 
         bf.Serialize(file, data);
@@ -201,7 +201,7 @@ public class GameManager {
             PlayerData data = (PlayerData) bf.Deserialize(file);
             file.Close();
 
-            currentLevel = data.currentLevel;
+            //currentLevel = data.currentLevel;
             levelsUnlocked = data.levelsUnlocked;
         }
 
@@ -211,6 +211,6 @@ public class GameManager {
 [Serializable]
 class PlayerData
 {
-    public int currentLevel;
+    //public int currentLevel;
     public int levelsUnlocked;
 }
