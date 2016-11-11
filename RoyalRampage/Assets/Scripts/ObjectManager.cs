@@ -23,6 +23,8 @@ public class ObjectManager : MonoBehaviour
     public int barrelRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject barrelRubblePrefab;
+	[Tooltip("Write the Objects switch for sound")]
+	public string barrelSwitch;
 
     [Header("Bed")]
     [Tooltip("The amount of points this object should award")]
@@ -33,6 +35,8 @@ public class ObjectManager : MonoBehaviour
     public int bedRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject bedRubblePrefab;
+	[Tooltip("Write the Objects switch for sound")]
+	public string bedSwitch;
 
     [Header("Box")]
     [Tooltip("The amount of points this object should award")]
@@ -43,6 +47,8 @@ public class ObjectManager : MonoBehaviour
     public int boxRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject boxRubblePrefab;
+	[Tooltip("Write the Objects switch for sound")]
+	public string boxSwitch;
 
     [Header("Chair")]
     [Tooltip("The amount of points this object should award")]
@@ -53,6 +59,8 @@ public class ObjectManager : MonoBehaviour
     public int chairRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject chairRubblePrefab;
+	[Tooltip("Write the Objects switch for sound")]
+	public string chairSwitch;
 
     [Header("Table")]
     [Tooltip("The amount of points this object should award")]
@@ -63,6 +71,8 @@ public class ObjectManager : MonoBehaviour
     public int tableRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject tableRubblePrefab;
+	[Tooltip("Write the Objects switch for sound")]
+	public string tableSwitch;
 
     [Header("Wardrobe")]
     [Tooltip("The amount of points this object should award")]
@@ -73,7 +83,8 @@ public class ObjectManager : MonoBehaviour
     public int wardrobeRubbleAmount;
     [Tooltip("The prefab that should spawn when this object is destroyed")]
     public GameObject wardrobeRubblePrefab;
-
+	[Tooltip("Write the Objects switch for sound")]
+	public string wardrobeSwitch;
 
     // Use this for initialization
     void Start()

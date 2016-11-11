@@ -51,6 +51,7 @@ public class LevelManager : MonoBehaviour {
 		replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
+		GameManager.instance.levelLoad (); // FOR AUDIO
     }
 
 	private void IncreaseScore(GameObject destructedObj){
@@ -69,7 +70,10 @@ public class LevelManager : MonoBehaviour {
 
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
+		
 		print ("ended");
+		GameManager.instance.levelUnLoad (); // FOR AUDIO
+
 		if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
 			guideText.text = "Level completed!";
 		else

@@ -152,67 +152,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!1 &53434148 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013095834210, guid: ff9ba17c5e20e2642b6ea51afef2f6dd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2121772968}
---- !u!54 &53434152
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53434148}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &53434153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53434148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5a7c2157501144bab0e23f28008d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  valueGuid: 78e1c204712fc445b7dbde4006e7cc4e
-  eventID: 1496310610
-  soundEmitterObject: {fileID: 0}
-  enableActionOnEvent: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  transitionDuration: 0
-  m_callbackData: {fileID: 0}
-  playingId: 0
-  multiPositionTypeLabel: 0
-  multiPositionArray: []
---- !u!114 &53434154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 53434148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b5f7d8c458baea47ae36dfb7c41a7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_positionOffsetData:
-    positionOffset: {x: 0, y: 0, z: 0}
-    KeepMe: 0
-  isEnvironmentAware: 1
-  listenerMask: 1
-  isStaticObject: 0
 --- !u!1 &849509810
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePath: 417564696f5c47656e657261746564536f756e6442616e6b73
-  language: 456e676c69736828555329
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
   defaultPoolSize: 4096
   lowerPoolSize: 2048
   streamingPoolSize: 1024

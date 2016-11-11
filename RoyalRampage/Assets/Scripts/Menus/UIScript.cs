@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour {
 
-    void Awake() {
+    void Start() {
         GameManager.instance.Load();
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene()) {
-            case GameManager.Scene.INTRO:
+		case GameManager.Scene.INTRO:
+				GameManager.instance.applicationOpen ();
                 GameObject replayPanel = GameObject.Find("replayPanel");
                 replayPanel.SetActive(false);
             break;
@@ -53,6 +54,7 @@ public class UIScript : MonoBehaviour {
                         levelIcon.sprite = lockedSprite;
                 }
             break;
+
         }
     }
 
