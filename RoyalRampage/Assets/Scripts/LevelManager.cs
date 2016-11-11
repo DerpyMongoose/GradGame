@@ -88,8 +88,8 @@ public class LevelManager : MonoBehaviour {
 
     public void Continue()
     {
-        print("boom");
         guideText.text = "Level completed!";
+        guideText.gameObject.SetActive(true);
         StartCoroutine(ShowContinueScreen(guideText.text));
     }
 
