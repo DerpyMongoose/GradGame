@@ -70,6 +70,7 @@ public class GameManager {
         if (currentScene == Scene.INTRO)
             previousScene = Scene.INTRO;
         if(currentScene == Scene.GAME) {
+			//levelUnLoad(); // FOR AUDIO
             if (levelWon == true)
                 previousScene = Scene.GAME_OVER_NEXT_LEVEL;
             else
@@ -79,9 +80,11 @@ public class GameManager {
 
     public void StartLevel(int level){
 		//_instance = null;
+		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[level - 1]);
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
+		//levelLoad (); // FOR AUDIO
 	}
 
 	public void GoToStore(){
@@ -118,9 +121,11 @@ public class GameManager {
 
     public void BackToGame(){
 		//_instance = null;
+		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
+		//levelLoad ();	// FOR AUDIO
 	}
 
     public void BackToPreviousScene() {
@@ -154,6 +159,9 @@ public class GameManager {
 	public event GameAction OnPlayerDash;
 	public event GameAction OnPlayerSwirl;
     public event GameAction OnPlayerStomp;
+	public event GameAction OnLevelLoad;
+	public event GameAction OnLevelUnLoad;
+	public event GameAction OnApplicationOpen; //*** when application is open 
 
 	public void timerStart() {
 		if (OnTimerStart != null)
@@ -174,8 +182,21 @@ public class GameManager {
 	public void playerStomp(){
 		if (OnPlayerStomp != null)
 			OnPlayerStomp ();
-       
     }
+	public void levelLoad(){
+		if (OnLevelLoad != null)
+			OnLevelLoad ();
+	}
+	public void levelUnLoad(){
+		if (OnLevelUnLoad != null)
+			OnLevelUnLoad ();
+	}
+	public void applicationOpen(){
+		if (OnApplicationOpen != null) {
+			Debug.Log ("started");
+			OnApplicationOpen ();
+		}
+	}
 
     //SAVE-LOAD
     public void Save()

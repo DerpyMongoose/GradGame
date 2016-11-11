@@ -51,33 +51,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2672a1a6e060d8a4e9efa73e02e0bc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectList: []
   barrelScore: 3
   barrelLife: 1
   barrelRubbleAmount: 4
   barrelRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  barrelSwitch: Barrel
   bedScore: 10
   bedLife: 3
   bedRubbleAmount: 10
   bedRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  bedSwitch: Table
   boxScore: 3
   boxLife: 1
   boxRubbleAmount: 4
   boxRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  boxSwitch: Book
   chairScore: 2
   chairLife: 1
   chairRubbleAmount: 3
   chairRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  chairSwitch: Chair
   tableScore: 8
   tableLife: 2
   tableRubbleAmount: 8
   tableRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  tableSwitch: Table
   wardrobeScore: 12
   wardrobeLife: 3
   wardrobeRubbleAmount: 12
   wardrobeRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
     type: 2}
+  wardrobeSwitch: Shelf
