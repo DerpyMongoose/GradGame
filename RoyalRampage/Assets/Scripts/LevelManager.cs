@@ -21,12 +21,21 @@ public class LevelManager : MonoBehaviour {
     Text replayScoreText;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
+    private GameObject continueButton;
 
-    void Awake(){
+	void OnEnable(){
 		GameManager.instance.OnObjectDestructed += IncreaseScore;
 		GameManager.instance.OnTimerStart += StartLevel;
 		GameManager.instance.OnTimerOut += ShowEnding;
+	}
 
+	void OnDisable(){
+		GameManager.instance.OnObjectDestructed -= IncreaseScore;
+		GameManager.instance.OnTimerStart -= StartLevel;
+		GameManager.instance.OnTimerOut -= ShowEnding;
+	}
+
+    void Awake(){
 		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		scoreText.text = "Score: " + score;
 		minScoreText = GameObject.Find ("MinScoreText").GetComponent<Text> ();
@@ -37,16 +46,13 @@ public class LevelManager : MonoBehaviour {
         ReplayPanel = GameObject.Find("replayPanel");
         InGamePanel = GameObject.Find("InGameGUI");
         ReplayBtn = GameObject.Find("ReplayButton");
-        NewLevelBtn = GameObject.Find("NewLevelButton");
-        replayScoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
+		NewLevelBtn = GameObject.Find("NewLevelButton");
+        continueButton = GameObject.Find("ContinueButton");
+		replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
+        continueButton.SetActive(false);
+		GameManager.instance.levelLoad (); // FOR AUDIO
     }
-
-	void OnDisable(){
-		GameManager.instance.OnObjectDestructed -= IncreaseScore;
-		GameManager.instance.OnTimerStart -= StartLevel;
-		GameManager.instance.OnTimerOut -= ShowEnding;
-	}
 
 	private void IncreaseScore(GameObject destructedObj){
 		int points = destructedObj.GetComponent<ObjectBehavior>().score;
@@ -56,12 +62,17 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private void StartLevel(){
+		print ("started");
 		guideText.gameObject.SetActive (false);
 	}
 
     //after the timer is out (wait for animation?)
 	private void ShowEnding(){
-		if (score >= scoreToCompleteLevel)
+		
+		print ("ended");
+		GameManager.instance.levelUnLoad (); // FOR AUDIO
+
+		if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
 			guideText.text = "Level completed!";
 		else
 			guideText.text = "Game over";
@@ -69,6 +80,22 @@ public class LevelManager : MonoBehaviour {
 		guideText.gameObject.SetActive (true);
         StartCoroutine(ShowContinueScreen(guideText.text));
 	}
+
+    void Update()
+    {
+        if (score >= scoreToCompleteLevel)
+        {
+            continueButton.SetActive(true);
+        }
+        else continueButton.SetActive(false);
+    }
+
+    public void Continue()
+    {
+        guideText.text = "Level completed!";
+        guideText.gameObject.SetActive(true);
+        StartCoroutine(ShowContinueScreen(guideText.text));
+    }
 
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult) {
@@ -83,8 +110,9 @@ public class LevelManager : MonoBehaviour {
                 ReplayBtn.SetActive(false);
                 NewLevelBtn.SetActive(true);
                 Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
-                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
                     GameManager.instance.levelsUnlocked++;
+                    GameManager.instance.Save();
                 }
                 if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
                     levelNum.text = (GameManager.instance.currentLevel+1).ToString();

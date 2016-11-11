@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000011980180706}
   - 114: {fileID: 114000011553494422}
   - 114: {fileID: 114000011425294970}
+  - 54: {fileID: 54000012357252048}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -41,6 +42,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!54 &54000012357252048
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013095834210}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114000011425294970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -59,7 +75,7 @@ MonoBehaviour:
   loadAsynchronous: 0
   decodeBank: 0
   saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
+  unloadTriggerList: 
 --- !u!114 &114000011553494422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,10 +89,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashPlayer: Dash_Play
   spinPlay: Spin_Play
-  StompPlay: 
-  actionPlay: 
-  ambiencePlay: 
-  MusicSystem: 
+  stompPlay: Stomp_Play
+  actionPlay: Object_Action_Play
+  ambiencePlay: Ambience_Play
+  ambienceStop: Ambience_Stop
+  musicSystem: Music_System_Play
   menuButton: 
   startButton: 
   scoreScreenOpen: 

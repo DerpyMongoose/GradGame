@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerStates : MonoBehaviour {
 
     [HideInInspector]
-    public bool imInSlowMotion, lifted;
+    public bool imInSlowMotion, lifted, hitObject;
     public float liftForce, gravityTimer;
 
     private enum PlayerState {
@@ -36,16 +36,13 @@ public class PlayerStates : MonoBehaviour {
 
 		//until player touches the screen to start playing the level
 		case PlayerState.READY:
-            if (Application.platform == RuntimePlatform.Android) {
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
                     Startlevel();
                 }
-            }
-            else {
+            
                 if (Input.GetKey(KeyCode.R)) {
                     Startlevel();
                 }
-			}
 			break;
 
 		case PlayerState.IDLE:

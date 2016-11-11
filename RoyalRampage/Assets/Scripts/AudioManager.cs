@@ -20,8 +20,10 @@ public class AudioManager : MonoBehaviour {
 
 	[Header ("-- Background --")]
 	[SerializeField]
-	private string ambiencePlay,
-		MusicSystem;
+	private string ambiencePlay;
+	[SerializeField]
+	private string ambienceStop, 
+			musicSystem;
 
 
 	[Header ("-- Menu --")]
@@ -44,6 +46,9 @@ public class AudioManager : MonoBehaviour {
 	private string pointsRewarded, 
 		objectiveAnnounced,
 		objectiveCompleted;
+
+	// extra
+	private bool ambPlaying = false;
 
 	//************* Player *************
 
@@ -71,17 +76,48 @@ public class AudioManager : MonoBehaviour {
 
 	//************** Objects **************
 
-	void ObjectAction(){
-
+	void ObjectActionHit(GameObject obj){
+		string objSwitch = obj.GetComponent<ObjectBehavior> ().soundSwitch;
+		AkSoundEngine.SetSwitch ("Objects", objSwitch,obj);
+		AkSoundEngine.SetSwitch ("Object_Actions", "Hit",obj);
+		PlaySound (actionPlay, obj);
 	}
 
-	//**************Background **************
-	void BackgroundAmbience(){
+	void ObjectActionDestruction(GameObject obj){
+		string objSwitch = obj.GetComponent<ObjectBehavior> ().soundSwitch;
+		AkSoundEngine.SetSwitch ("Objects", objSwitch,obj);
+		AkSoundEngine.SetSwitch ("Object_Actions", "Destruction",obj);
+		PlaySound (actionPlay, obj);
+	}
 
+	void ObjectActionLanding(GameObject obj){
+		string objSwitch = obj.GetComponent<ObjectBehavior> ().soundSwitch;
+		AkSoundEngine.SetSwitch ("Objects", objSwitch, obj);
+		AkSoundEngine.SetSwitch ("Object_Actions", "Landing",obj);
+		PlaySound (actionPlay, obj);
+	}
+
+
+	//**************Background **************
+	void BackgroundAmbStart(){
+		if (ambPlaying == false) {
+			PlaySound (ambiencePlay, gameObject);
+			ambPlaying = true;
+		}
+	}
+	void BackgroundAmbStop(){
+		
+		//if (ambPlaying == true) {
+			PlaySound (ambienceStop, gameObject);
+			ambPlaying = false;
+		//}
 	}
 
 	void BackgroundMusic(){
-
+		print ("music start");
+		AkSoundEngine.SetState ("Game_States", "In_Main_Menu");
+		PlaySound (musicSystem, gameObject);
+		GameManager.instance.OnApplicationOpen -= BackgroundMusic;
 	}
 
 	//************** Menus **************
@@ -136,14 +172,38 @@ public class AudioManager : MonoBehaviour {
 	//Subscribing
 
 	void OnEnable(){
+		//player sound
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
 		GameManager.instance.OnPlayerStomp += PlayerStomp;
+
+		//object sounds
+		GameManager.instance.OnObjectHit += ObjectActionHit;
+		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
+		GameManager.instance.OnObjectLanding += ObjectActionLanding;
+
+		//Background sounds
+		GameManager.instance.OnLevelLoad += BackgroundAmbStart;
+		GameManager.instance.OnLevelUnLoad += BackgroundAmbStop;
+		GameManager.instance.OnApplicationOpen += BackgroundMusic;
+
 	}
 
 	void OnDisable(){
+		//BackgroundAmbStop ();
+		//player sound
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+
+		//object sounds
+		GameManager.instance.OnObjectHit -= ObjectActionHit;
+		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
+		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
+
+		//Background sounds
+		GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
+		GameManager.instance.OnLevelUnLoad -= BackgroundAmbStop;
+		GameManager.instance.OnApplicationOpen -= BackgroundMusic;
 	}
 }
