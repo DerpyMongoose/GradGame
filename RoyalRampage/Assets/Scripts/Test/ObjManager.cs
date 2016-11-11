@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class ObjManager : MonoBehaviour
 {
-    public enum type
-    {
-        BARREL, BED, BOX
-    }
-
-    public type type_;
+    private string listName;
 
     public List<DestructableObject> Objects = new List<DestructableObject>(0);
 
