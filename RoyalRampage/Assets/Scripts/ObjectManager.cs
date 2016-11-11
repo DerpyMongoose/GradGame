@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectManager : MonoBehaviour
 {
     public static ObjectManager instance;
+
     void Awake()
     {
         instance = this;
     }
+
+    [HideInInspector]
+    public List<GameObject> objectList = new List<GameObject>();
 
     [Header("Barrel")]
     [Tooltip("The amount of points this object should award")]
@@ -73,12 +78,6 @@ public class ObjectManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        objectList.AddRange(GameObject.FindGameObjectsWithTag("Destructable"));
     }
 }

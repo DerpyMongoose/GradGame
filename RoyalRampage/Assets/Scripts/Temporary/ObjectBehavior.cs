@@ -8,19 +8,20 @@ public class ObjectBehavior : MonoBehaviour
     private int rubbleAmount;
     private int state;
 
+    private Vector3 initialPos;
+
     private Rigidbody objRB;
     private GameObject player;
     private ParticleSystem particleSys;
     private IEnumerator coroutine;
 
-    private bool isGrounded = true;
+    [HideInInspector]
+    public bool isGrounded = true;
     private bool hit = false;
     private bool readyToCheck;
     private bool lifted;
 
-    private float initial;
-
-    private float checkHeight;
+    private float checkHeight, initialMass;
 
     [HideInInspector]
     public int score;
@@ -47,8 +48,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        coroutine = Wait();
-        StartCoroutine(coroutine);
+        //coroutine = Wait();
+        //StartCoroutine(coroutine);
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -94,53 +95,59 @@ public class ObjectBehavior : MonoBehaviour
         state = 1;
         particleSys = GetComponent<ParticleSystem>();
         objRB = GetComponent<Rigidbody>();
+        initialMass = objRB.mass;
         player = GameObject.FindGameObjectWithTag("Player");
+        initialPos = transform.position;
     }
 
 
     void Update()
     {
-        //print(checkHeight);
-        if (Mathf.Round(transform.position.y * 10) / 10 > checkHeight && !lifted)
+        if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
         {
-
-            checkHeight = Mathf.Round(transform.position.y * 10)/10;
-        }
-        else if (Mathf.Round(transform.position.y * 10)/ 10 < checkHeight && readyToCheck)
-        {
-            GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
-            checkHeight = initial;
-            GetComponent<Rigidbody>().useGravity = false;
-            lifted = true;
-            coroutine = ReturnGravity();
-            StartCoroutine(coroutine);
-        }
-
-        if (GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift)
-        {
-            lifted = false;
+            if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+            {
+                //checkHeight = 0;
+                objRB.useGravity = false;
+                //lifted = true;
+                coroutine = ReturnGravity();
+                StartCoroutine(coroutine);
+            }
+            else
+            {
+                objRB.useGravity = true;
+            }
         }
 
-        if (!GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject)
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            objRB.mass = initialMass;
+        }
+
+        if (!Mathf.Approximately(initialPos.y, transform.position.y))
+        {
+            isGrounded = false;
         }
     }
 
-    IEnumerator Wait()
+    void DestroyObj(GameObject obj)
     {
-        yield return new WaitForSeconds(Time.deltaTime * 2);
-        initial = Mathf.Round(transform.position.y * 10) / 10;
-        checkHeight = Mathf.Round(transform.position.y * 10) / 10;
-        readyToCheck = true;
+        for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
+        {
+            Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
+        }
+        GameManager.instance.objectDestructed(obj);
+        Destroy(obj);
     }
 
     IEnumerator ReturnGravity()
     {
-
-		yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
-        GetComponent<Rigidbody>().useGravity = true;
-		 GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
+        GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
+        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
+        GameManager.instance.player.GetComponent<PlayerStates>().hitObject = false;
+        objRB.mass = initialMass;
+        objRB.useGravity = true;
     }
 
     void OnCollisionEnter(Collision col)
@@ -149,9 +156,6 @@ public class ObjectBehavior : MonoBehaviour
         if (col.collider.gameObject == player)
         {
             hit = true;
-            /////////////////////SHOULD BE REMOVED FOR WHEN MOVEMENT IS ADDED////////////////////
-            //objRB.AddRelativeForce((transform.position - player.transform.position) * 500);
-            /////////////////////////////////////////////////////////////////////////////////////
             //Damage system, it takes more hits to destroy
             /*if(state == (life - life) + state)
             {
@@ -176,23 +180,33 @@ public class ObjectBehavior : MonoBehaviour
         }
         if (col.collider.tag == "Destructable" && hit == true)
         {
-            for (int i = 0; i < rubbleAmount; i++)
+            if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
             {
-                Instantiate(rubblePrefab, transform.position, Quaternion.identity);
+                DestroyObj(gameObject);
             }
-            for (int i = 0; i < rubbleAmount; i++)
+            if (isGrounded == false)
             {
-                Instantiate(col.gameObject.GetComponent<ObjectBehavior>().rubblePrefab, col.transform.position, Quaternion.identity);
+                DestroyObj(gameObject);
             }
-            GameManager.instance.objectDestructed(gameObject);
-            GameManager.instance.objectDestructed(col.gameObject);
-            Destroy(gameObject);
-            Destroy(col.gameObject);
+            if (isGrounded == true)
+            {
+                DestroyObj(gameObject);
+                DestroyObj(col.gameObject);
+            }
         }
 
         if (col.collider.tag == "Wall") {
 
-            col.collider.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+        {
+            isGrounded = true;
+            initialPos = transform.position;
         }
     }
 }
