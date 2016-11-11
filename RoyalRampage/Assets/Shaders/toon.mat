@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: toon
-  m_Shader: {fileID: 4800000, guid: 88d3cd67964439b4d86354fcc7761d4f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -161,6 +161,9 @@ Material:
         name: _SpecularHighlights
       second: 1
     - first:
+        name: _SpecularSmooth
+      second: 0.05
+    - first:
         name: _Specularity
       second: 0.365
     - first:
@@ -186,6 +189,9 @@ Material:
         name: _HColor
       second: {r: 0.99264705, g: 0.7955774, b: 0.7955774, a: 1}
     - first:
+        name: _HighlightColor
+      second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+    - first:
         name: _OutlineColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
@@ -194,6 +200,9 @@ Material:
     - first:
         name: _SColor
       second: {r: 0.38235295, g: 0.26989618, b: 0.26989618, a: 1}
+    - first:
+        name: _ShadowColor
+      second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 1}
