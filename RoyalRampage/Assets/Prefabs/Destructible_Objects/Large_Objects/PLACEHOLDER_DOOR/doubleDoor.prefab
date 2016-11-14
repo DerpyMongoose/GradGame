@@ -54,12 +54,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013206759356}
   - 95: {fileID: 95000011029133434}
-  - 54: {fileID: 54000012329102844}
   - 114: {fileID: 114000011983277868}
   - 65: {fileID: 65000011223824586}
   m_Layer: 0
   m_Name: doubleDoor
-  m_TagString: Untagged
+  m_TagString: UniqueObjs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,8 +262,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011286871286}
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 8.839945, y: -5.016989e-19, z: -24.954811}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
+  m_LocalPosition: {x: 9.5, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
   m_Children:
@@ -507,21 +506,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010849213416}
   m_Mesh: {fileID: 4300004, guid: 8a8ca51c6e7783a41b8142f4912da9ac, type: 3}
---- !u!54 &54000012329102844
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011286871286}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 1
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!65 &65000011223824586
 BoxCollider:
   m_ObjectHideFlags: 1
