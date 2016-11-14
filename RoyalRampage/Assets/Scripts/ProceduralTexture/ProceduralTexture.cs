@@ -39,8 +39,8 @@ public class ProceduralTexture : MonoBehaviour {
         //CreatePlanks();
         //CalcNoise();
         //FillTexture();
-        //RandomFunctions(3);
-        FloorPlanks();
+        RandomFunctions(3);
+        //DrawTriangle();
 
         DebugLogFunction();
     }
@@ -142,7 +142,6 @@ public class ProceduralTexture : MonoBehaviour {
             }
             for (int i = 0; i < 4; i++) {
                 int counter = 0;
-                int initialPos = (res / 4);
                 if (i % 2 == 0) {
                     yCoord = ((res / 4)) + (amountOfSqr / 2);
                 } else {
@@ -173,73 +172,12 @@ public class ProceduralTexture : MonoBehaviour {
         newTex.Apply();
     }
 
-    public void FloorPlanks() {
-        int[] xSection = new int[] { res / 4, (res / 4) * 2, ((res / 4) * 2) + (res / 4), res };
-        int offset = 3;
-
-        for (int i = 0; i < xSection.Length; i++) {
-            int startX;
-            if (i == 0) {
-                startX = 0;
-            } else {
-                startX = xSection[i-1];
-            }
-            int startY = Random.Range(50, 170);
-            //int remainY = 256 - startY;
-            Color sectionOneCol = floorColor[Random.Range(0, 5)];
-            Color sectionTwoCol = floorColor[Random.Range(0, 5)];
-            if (i == 0) {
-                for (int x = startX; x < xSection[i]; x++) {
-                    for (int y = 0; y < res; y++) {
-                        if (y <= startY) {
-                            newTex.SetPixel(x, y, sectionOneCol);
-                            if (x > (xSection[i] - offset) || x < (startX + offset)) {
-                                newTex.SetPixel(x, y, Color.black);
-                            }
-                            if(y > startY - offset) {
-                                newTex.SetPixel(x, y, Color.black);
-                            }
-                        } else {
-                            newTex.SetPixel(x, y, sectionTwoCol);
-                            if (x > (xSection[i] - offset) || x < (startX + offset)) {
-                                newTex.SetPixel(x, y, Color.black);
-                            }
-                        }
-                    }
-                }
-            }
-            if (i < 3 && i > 0) {
-                for (int x = startX; x < xSection[i+1]; x++) {
-                    for (int y = 0; y < res; y++) {
-                        if (y <= startY) {
-                            newTex.SetPixel(x, y, sectionOneCol);
-                            if()
-                        } else {
-                            newTex.SetPixel(x, y, sectionTwoCol);                         
-                        }
-                    }
-                }
-            }
-            if (i == 3) {
-                for (int x = startX; x < xSection[i]; x++) {
-                    for (int y = 0; y < res; y++) {
-                        if (y <= startY) {
-                            newTex.SetPixel(x, y, sectionOneCol);
-                        } else {
-                            newTex.SetPixel(x, y, sectionTwoCol);
-                        }
-                    }
-                }
-            }
-        }
-        newTex.Apply();
-    }
+   
 
     void DebugLogFunction() {
         int[] xSection = new int[] { res / 4, (res / 4) * 2, ((res / 4) * 2) + (res / 4), res };
         for (int i = 0; i < xSection.Length; i++) {
             int startY = Random.Range(50, 170);
-            Debug.Log(startY);
         }
     }
 }
