@@ -90,7 +90,9 @@ public class LevelManager : MonoBehaviour
     private void StartLevel()
     {
         //print ("started");
-        guideText.gameObject.SetActive(false);
+        //guideText.gameObject.SetActive(false);
+        guideText.text = "";
+        GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
 
     //after the timer is out (wait for animation?)

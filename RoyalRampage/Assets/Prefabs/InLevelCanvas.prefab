@@ -161,7 +161,7 @@ GameObject:
   - 114: {fileID: 114000013388925010}
   m_Layer: 5
   m_Name: GuideText
-  m_TagString: Untagged
+  m_TagString: GuideText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,8 +701,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: GoToStore
+      - m_Target: {fileID: 114000012894417998}
+        m_MethodName: GoToSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
