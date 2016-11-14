@@ -205,6 +205,10 @@ public class ObjectBehavior : MonoBehaviour
             }
             if (isGrounded == true)
             {
+                if(GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
+                {
+                    GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
+                }
                 DestroyObj(gameObject);
                 DestroyObj(col.gameObject);
             }
