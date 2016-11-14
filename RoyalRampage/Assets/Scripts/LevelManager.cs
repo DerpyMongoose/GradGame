@@ -45,7 +45,6 @@ public class LevelManager : MonoBehaviour
     }
 
     void Start(){
-    {
         multiplier = 1;
         countMultiTime = 0;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
@@ -98,7 +97,7 @@ public class LevelManager : MonoBehaviour
     private void ShowEnding()
     {
 
-        print("ended");
+       // print("ended");
         GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
@@ -116,7 +115,7 @@ public class LevelManager : MonoBehaviour
         //print(countMultiTime);
         if(countMultiTime > MultiplierTime)
         {
-            print("I am in");
+           // print("I am in");
             multiplier = 1;
             countObjects = 0;
         }
