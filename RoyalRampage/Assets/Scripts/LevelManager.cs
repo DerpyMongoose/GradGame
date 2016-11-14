@@ -47,6 +47,8 @@ public class LevelManager : MonoBehaviour
     void Start(){
         multiplier = 1;
         countMultiTime = 0;
+        amountOfObjects = 5;
+        MultiplierTime = 5;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
 		scoreText.text = "Score: " + "$" + score;
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
