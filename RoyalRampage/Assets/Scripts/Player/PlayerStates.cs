@@ -32,10 +32,14 @@ public class PlayerStates : MonoBehaviour
     public float rotationSpeed;
     public float degreesInAir;
     public int numOfCircleToShow;
-    [Header("CubicBezier")]
+    [Header("Cubic Bezier")]
+    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
     public float p0;
+    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
     public float p1;
+    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
     public float p2;
+    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
     public float p3;
 
 
@@ -57,6 +61,8 @@ public class PlayerStates : MonoBehaviour
         timerText = GameObject.Find("TimeLeftText").GetComponent<Text>();
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
         timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
+        GameManager.instance.canPlayerMove = true;
+        GameManager.instance.canPlayerDestroy = true;
     }
 
     void Update()
@@ -120,6 +126,7 @@ public class PlayerStates : MonoBehaviour
                     timerText.color = Color.red;
                     state = PlayerState.ENDING;
                     GameManager.instance.timerOut();
+                    GameManager.instance.canPlayerDestroy = false;
                 }
                 break;
         }

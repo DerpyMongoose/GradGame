@@ -52,8 +52,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        //coroutine = Wait();
-        //StartCoroutine(coroutine);
+
         switch (objType)
         {
             case DestructableObject.BARREL:
@@ -213,7 +212,7 @@ public class ObjectBehavior : MonoBehaviour
 
         if (col.collider.tag == "Wall")
         {
-
+            DestroyObj(gameObject);
             GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 

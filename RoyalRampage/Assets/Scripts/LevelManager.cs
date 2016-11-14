@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
+    public float MultiplierTime;
+    public int amountOfObjects;
+    public Text MultiplierText;
 
     int score = 0;
     Text scoreText;
@@ -23,6 +26,9 @@ public class LevelManager : MonoBehaviour
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     private GameObject continueButton;
+    private int multiplier;
+    private float countMultiTime;
+    private int countObjects;
 
     void OnEnable()
     {
@@ -40,6 +46,8 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
+        multiplier = 1;
+        countMultiTime = 0;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         scoreText.text = "Score: " + score;
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -60,13 +68,23 @@ public class LevelManager : MonoBehaviour
 
     private void IncreaseScore(GameObject destructedObj)
     {
-        int points = destructedObj.GetComponent<ObjectBehavior>().score;
-        score += points;
-        scoreText.text = "Score: " + score;
-        GameManager.instance.score = score;
-        GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
-        GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
-        GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
+        if (GameManager.instance.canPlayerDestroy)
+        {
+            int points = destructedObj.GetComponent<ObjectBehavior>().score;
+            countObjects++;
+            countMultiTime = 0;
+            if(countObjects == amountOfObjects)
+            {
+                multiplier++;
+                countObjects = 0;
+            }
+            score += points * multiplier;
+            scoreText.text = "Score: " + score;
+            GameManager.instance.score = score;
+            GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
+            GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
+            GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
+        }
     }
 
     private void StartLevel()
@@ -93,11 +111,22 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        countMultiTime += Time.deltaTime;
+        //print(countMultiTime);
+        if(countMultiTime > MultiplierTime)
+        {
+            print("I am in");
+            multiplier = 1;
+            countObjects = 0;
+        }
+
         if (score >= scoreToCompleteLevel)
         {
             continueButton.SetActive(true);
         }
         else continueButton.SetActive(false);
+
+        MultiplierText.text = multiplier.ToString() + "x";
     }
 
     public void Continue()

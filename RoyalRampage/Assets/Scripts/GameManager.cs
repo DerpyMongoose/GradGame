@@ -25,6 +25,8 @@ public class GameManager {
     public bool levelWon;
 
     public int score = 0;
+    public bool canPlayerMove = false;
+    public bool canPlayerDestroy = false;
 
 	//getters:
 	public static GameManager instance{
