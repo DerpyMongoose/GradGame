@@ -42,6 +42,9 @@ public class PlayerStates : MonoBehaviour
     [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
     public float p3;
 
+    private float timeTicker = 5;  // TIME TO START THE TICKING SOUND
+    private float timeRunningOut = 10;  // TIME TO START THE RUNNING OUT SOUND
+
 
 
     private enum PlayerState
@@ -54,7 +57,7 @@ public class PlayerStates : MonoBehaviour
     Text timerText;
 
 
-    void Awake()
+    void Start()
     {
         //DontDestroyOnLoad (gameObject);
         //update timer
@@ -63,6 +66,7 @@ public class PlayerStates : MonoBehaviour
         timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
+        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
 
     void Update()
@@ -102,6 +106,7 @@ public class PlayerStates : MonoBehaviour
         }
     }
 
+
     private void UpdateLevelTimer()
     {
         switch (state)
@@ -118,16 +123,28 @@ public class PlayerStates : MonoBehaviour
                     timeLeftInLevel -= 0.005f;
                 }
                 timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
+                if(timeLeftInLevel <= timeTicker)
+                {
+                   timeTicker -= 1;
+                    GameManager.instance.timerUpdate(timeTicker);
+                }
 
-                //when timer runs out:
-                if (timeLeftInLevel <= 0f)
+            if (timeLeftInLevel <= timeRunningOut)
+            {
+                timeRunningOut = -1;
+                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
+            }
+
+            //when timer runs out:
+            if (timeLeftInLevel <= 0f)
                 {
                     timerText.text = "Timer: 0";
                     timerText.color = Color.red;
                     state = PlayerState.ENDING;
                     GameManager.instance.timerOut();
                     GameManager.instance.canPlayerDestroy = false;
-                }
+                    GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
+            }
                 break;
         }
     }
