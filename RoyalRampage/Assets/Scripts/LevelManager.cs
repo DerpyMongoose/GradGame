@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour {
 
     void Start(){
 		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
-		scoreText.text = "Score: " + score;
+		scoreText.text = "Score: " + "$" + score;
 		minScoreText = GameObject.Find ("MinScoreText").GetComponent<Text> ();
 		minScoreText.text = "Reach " + scoreToCompleteLevel + " to Win";
 		guideText = GameObject.Find ("GuideText").GetComponent<Text> ();
@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour {
 	private void IncreaseScore(GameObject destructedObj){
 		int points = destructedObj.GetComponent<ObjectBehavior>().score;
 		score += points;
-		scoreText.text = "Score: " + score;
+		scoreText.text = "Score: " + "$" + score;
 		GameManager.instance.score = score;
         GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
 
@@ -102,8 +102,12 @@ public class LevelManager : MonoBehaviour {
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult) {
         yield return new WaitForSeconds(0.5f);
+
+        // FOR AUDIO
+        GameManager.instance.scoreScreenOpen();
+
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + score;
+        replayScoreText.text = "Score: " + "$" + score;
         
         ReplayPanel.SetActive(true);
         switch (levelResult) {

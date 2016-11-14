@@ -24,7 +24,7 @@ public class UIScript : MonoBehaviour {
                 GameObject ReplayBTN = GameObject.Find("replayPanel/ReplayButton");
                 ReplayBTN.SetActive(false);
                 Text scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + GameManager.instance.score;
+                scoreText.text = "Score: " + "$" + GameManager.instance.score;
 
                 Text levelNum = GameObject.Find("replayPanel/NewLevelButton/levelnumber").GetComponentInChildren<Text>();
                 if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
@@ -43,7 +43,7 @@ public class UIScript : MonoBehaviour {
                 GameObject NextLevelBTN = GameObject.Find("replayPanel/NewLevelButton");
                 NextLevelBTN.SetActive(false);
                 scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + GameManager.instance.score;
+                scoreText.text = "Score: " + "$" + GameManager.instance.score;
             break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
@@ -189,12 +189,10 @@ public class UIScript : MonoBehaviour {
    
 
     public void PlayMenuButtonSound(){
-        print("Menu button clicked");
         GameManager.instance.menuButtonClicked();
     }
 
     public void PlayStartButtonSound(){
-        print("Start button clicked");
         GameManager.instance.startButtonClicked();
     }
 

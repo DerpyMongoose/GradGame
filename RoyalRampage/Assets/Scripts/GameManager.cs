@@ -164,6 +164,7 @@ public class GameManager {
 	public event GameAction OnApplicationOpen; //*** when application is open
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
+    public event GameAction OnScoreScreenOpen;
 
     public void timerStart() {
 		if (OnTimerStart != null)
@@ -208,6 +209,11 @@ public class GameManager {
     {
         if (OnStartButtonClicked != null)
             OnStartButtonClicked();
+    }
+    public void scoreScreenOpen()
+    {
+        if (OnScoreScreenOpen != null)
+            OnScoreScreenOpen();
     }
 
     //SAVE-LOAD
