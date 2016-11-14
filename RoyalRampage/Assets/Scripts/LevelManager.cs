@@ -44,12 +44,11 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.OnTimerOut -= ShowEnding;
     }
 
-    void Awake()
-    {
+    void Start(){
         multiplier = 1;
         countMultiTime = 0;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-        scoreText.text = "Score: " + score;
+		scoreText.text = "Score: " + "$" + score;
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
         minScoreText.text = "Reach " + scoreToCompleteLevel + " to Win";
         guideText = GameObject.Find("GuideText").GetComponent<Text>();
@@ -72,6 +71,7 @@ public class LevelManager : MonoBehaviour
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             countObjects++;
+		scoreText.text = "Score: " + "$" + score;
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
                 countObjects = 0;
             }
             score += points * multiplier;
-            scoreText.text = "Score: " + score;
+            scoreText.text = "Score: " + "$" + score;
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
@@ -97,7 +97,7 @@ public class LevelManager : MonoBehaviour
     private void ShowEnding()
     {
 
-        print("ended");
+       // print("ended");
         GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
@@ -115,7 +115,7 @@ public class LevelManager : MonoBehaviour
         //print(countMultiTime);
         if(countMultiTime > MultiplierTime)
         {
-            print("I am in");
+           // print("I am in");
             multiplier = 1;
             countObjects = 0;
         }
@@ -140,8 +140,12 @@ public class LevelManager : MonoBehaviour
     private IEnumerator ShowContinueScreen(string levelResult)
     {
         yield return new WaitForSeconds(0.5f);
+
+        // FOR AUDIO
+        GameManager.instance.scoreScreenOpen();
+
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + score;
+        replayScoreText.text = "Score: " + "$" + score;
 
         ReplayPanel.SetActive(true);
         switch (levelResult)

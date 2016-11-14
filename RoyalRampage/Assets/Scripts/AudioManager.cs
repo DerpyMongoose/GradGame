@@ -36,8 +36,9 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string scoreScreenOpen;
 	[SerializeField]
-	private string starCounting;
-	private string pointsCounting;
+	private string starReward, 
+        pointsCountingPlay, 
+        pointsCountingStop;
 
 	[Header ("-- In Game --")]
 	[SerializeField]
@@ -62,17 +63,6 @@ public class AudioManager : MonoBehaviour {
 	void PlayerStomp(){
 		PlaySound (stompPlay, GameManager.instance.player);
 	}
-
-	/*private static bool showHexTypes = true;
-	public override void OnInspectorGUI () {
-		showHexTypes = EditorGUILayout.Foldout(showHexTypes, "HexTypes");
-
-		if (showHexTypes) {
-			EditorGUILayout.PropertyField (landing);
-			EditorGUILayout.PropertyField (hit);
-			EditorGUILayout.PropertyField (destruction);
-		}
-	}*/
 
 	//************** Objects **************
 
@@ -122,17 +112,18 @@ public class AudioManager : MonoBehaviour {
 
 	//************** Menus **************
 	void MenuButtons(){
-
-	}
+        PlaySound(menuButton, gameObject);
+       // AkSoundEngine.PostEvent(menuButton, gameObject);
+    }
 
 	void StartButton(){
-
-	}
+        PlaySound(startButton, gameObject);
+    }
 
 	//************** Score screen **************
 	void ScoreScreenOpen(){
-
-	}
+        PlaySound(scoreScreenOpen, gameObject);
+    }
 
 	void CountingStars(){
 
@@ -147,9 +138,11 @@ public class AudioManager : MonoBehaviour {
 
 	}
 
-	void RewardingPoints(){
+	void RewardingPoints(GameObject obj){
+        PlaySound(pointsRewarded, gameObject);
+        
 
-	}
+    }
 
 	void AnnouncingObjective(){
 
@@ -176,9 +169,10 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
 		GameManager.instance.OnPlayerStomp += PlayerStomp;
+       
 
-		//object sounds
-		GameManager.instance.OnObjectHit += ObjectActionHit;
+        //object sounds
+        GameManager.instance.OnObjectHit += ObjectActionHit;
 		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
 
@@ -187,7 +181,14 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnLevelUnLoad += BackgroundAmbStop;
 		GameManager.instance.OnApplicationOpen += BackgroundMusic;
 
-	}
+        //UI
+        GameManager.instance.OnMenuButtonClicked += MenuButtons;
+        GameManager.instance.OnStartButtonClicked += StartButton;
+        GameManager.instance.OnScoreScreenOpen += ScoreScreenOpen;
+        GameManager.instance.OnObjectDestructed += RewardingPoints;
+
+
+    }
 
 	void OnDisable(){
 		//BackgroundAmbStop ();
@@ -195,6 +196,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+
 
 		//object sounds
 		GameManager.instance.OnObjectHit -= ObjectActionHit;
@@ -205,5 +207,11 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
 		GameManager.instance.OnLevelUnLoad -= BackgroundAmbStop;
 		GameManager.instance.OnApplicationOpen -= BackgroundMusic;
-	}
+
+        //UI
+        GameManager.instance.OnMenuButtonClicked -= MenuButtons;
+        GameManager.instance.OnStartButtonClicked -= StartButton;
+        GameManager.instance.OnScoreScreenOpen -= ScoreScreenOpen;
+        GameManager.instance.OnObjectDestructed -= RewardingPoints;
+    }
 }
