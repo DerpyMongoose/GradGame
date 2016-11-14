@@ -2,21 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PhysicalMovement : MonoBehaviour {
+public class PhysicalMovement : MonoBehaviour
+{
 
-    private int touches;
-    private float distance, moveTimer, speed, acc, force, powerTime;
-    private bool newSwipe, applyMove;
-    private Vector3 temp, startPoint, dragPoint, direction;
+    private int touches, countTaps;
+    private float distance, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
+    private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime;
+    private bool newDash = false;   // for dashsound
+    private Vector3 temp, startPoint, dragPoint, direction, firstTouch, secondTouch;
     private Rigidbody playerRig;
 
     [HideInInspector]
     public bool ableToLift;
-    public float timeForSwipe = 1f;
-    public float hitForce, swirlForce, cdLift, doubleTapTime, collisionRadius, liftRadius;
-    public int numOfCircleToShow;
 
-	private bool newDash = false;   // for dashsound
+
+
+
+    float CubicBezier(float t)
+    {
+        return ((1 - t * t * t) * GetComponent<PlayerStates>().p0) + (3 * (1 - t * t) * t * GetComponent<PlayerStates>().p1) + (3 * (1 - t) * t * t * GetComponent<PlayerStates>().p2) + (t * t * t * GetComponent<PlayerStates>().p3);
+    }
 
     void Start()
     {
@@ -25,24 +30,35 @@ public class PhysicalMovement : MonoBehaviour {
         moveTimer = 0;
         newSwipe = false;
         applyMove = false;
-        ableToLift = true;
+        direction = -Vector3.forward;
 
     }
-
 
     void FixedUpdate()
     {
         if (applyMove)
         {
+            if (GetComponent<PlayerStates>().clamped)
+            {
+                if (force > GetComponent<PlayerStates>().maxMoveForce)
+                {
+                    force = GetComponent<PlayerStates>().maxMoveForce;
+                }
+            }
+            else
+            {
+                force = force * CubicBezier(moveTimer);
+            }
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
 
-			//dash sound
-			if(newDash == true){
-			GameManager.instance.playerDash();
-				newDash = false;
-			}
-			
+            //dash sound
+            if (newDash == true)
+            {
+                GameManager.instance.playerDash();
+                newDash = false;
+            }
+
             applyMove = false;
         }
     }
@@ -50,80 +66,120 @@ public class PhysicalMovement : MonoBehaviour {
 
     void Update()
     {
-
-        moveTimer += Time.deltaTime;
-
-        touches = Input.touchCount;
-
-        if (touches > 1)
+        if (GameManager.instance.canPlayerMove)
         {
-            touches = 1;
-        }
+            moveTimer += Time.deltaTime;
+            circleTimer += Time.deltaTime;
 
-        for (int i = 0; i < touches; i++)
-        {
-            powerTime += Time.deltaTime;
-
-            if (isGestureDone())
+            if (startTimer)
             {
-                //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, collisionRadius);
-                Swirling(hitColliders);
+                tapsTimer += 0.01f;
             }
-            else
+            if (countTaps >= 2 || tapsTimer >= GetComponent<PlayerStates>().doubleTapTime)
             {
+                countTaps = 0;
+                startTimer = false;
+                tapsTimer = 0;
+                firstTouch = Vector3.zero;
+                secondTouch = Vector3.zero;
+            }
 
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
+            touches = Input.touchCount;
+
+            if (touches > 1)
+            {
+                touches = 1;
+            }
+
+            for (int i = 0; i < touches; i++)
+            {
+                powerTime += Time.deltaTime;
+
+                if (isGestureDone())
                 {
-                    newSwipe = true;
-					newDash = true;
-                    moveTimer = 0;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPoint = new Vector3(temp.x, 0, temp.z);
+                    //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+                    Swirling(hitColliders);
                 }
-
-                if (Input.GetTouch(i).phase == TouchPhase.Moved)
+                else
                 {
-                    GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPoint = new Vector3(temp.x, 0, temp.z);
 
-                    distance = Vector3.Distance(dragPoint, startPoint);
-                    direction = dragPoint - startPoint;
-                    speed = distance / moveTimer;
-                    acc = speed / moveTimer;
-                    force = playerRig.mass * acc;
-                    ///////////////////////////////////////////I WANT TO MAKE THE ROTATION BETTER WITHOUT RANDOM NUMBER//////////////////////////////
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), moveTimer * 10);
-                    applyMove = true;
-
-                    if (moveTimer >= timeForSwipe && newSwipe)
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
                     {
-                        applyMove = false;
-                        newSwipe = false;
+                        newSwipe = true;
+                        newDash = true;
+                        startTimer = true;
+                        moveTimer = 0;
+                        countTaps++;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        startPoint = new Vector3(temp.x, 0, temp.z);
+                        if (countTaps == 1)
+                        {
+                            firstTouch = new Vector3(temp.x, 0, temp.z);
+                        }
+                        else if (countTaps == 2)
+                        {
+                            secondTouch = new Vector3(temp.x, 0, temp.z);
+                        }
+                        if (countTaps == 2 && tapsTimer < GetComponent<PlayerStates>().doubleTapTime && ableToLift && Vector3.Distance(firstTouch, secondTouch) < 1)
+                        {
+                            ableToLift = false;
+                            GetComponent<PlayerStates>().lifted = true;
+                            GetComponent<PlayerStates>().imInSlowMotion = true;
+                            Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
+                            Lift(hitColliders);
+                        }
+                    }
+
+                    if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
+                    {
+                        countTaps = 0;
+                        startTimer = false;
+                        tapsTimer = 0;
+                        firstTouch = Vector3.zero;
+                        secondTouch = Vector3.zero;
+                        GetComponent<PlayerStates>().imInSlowMotion = false;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        dragPoint = new Vector3(temp.x, 0, temp.z);
+                        distance = Vector3.Distance(dragPoint, startPoint);
+                        direction = dragPoint - startPoint;
+                        speed = distance / moveTimer;
+                        acc = speed / moveTimer;
+                        force = playerRig.mass * acc;
+                        if (distance > GetComponent<PlayerStates>().distSwipe)
+                        {
+                            applyMove = true;
+                            rotationTime = true;
+                        }
+
+                        if (moveTimer >= GetComponent<PlayerStates>().timeForSwipe && newSwipe)
+                        {
+                            applyMove = false;
+                            newSwipe = false;
+                        }
                     }
                 }
             }
-        }
 
-        if (Input.touchCount == 2)
-        {
-            if (powerTime < doubleTapTime && ableToLift)
+            if (Input.touchCount == 2)
             {
-                GameManager.instance.player.GetComponent<PlayerStates>().lifted = true;
-                GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = true;
-                ableToLift = false;
-                StartCoroutine("Cooldown");
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, liftRadius);
-                Lift(hitColliders);
+                if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift)
+                {
+                    ableToLift = false;
+                    GetComponent<PlayerStates>().lifted = true;
+                    GetComponent<PlayerStates>().imInSlowMotion = true;
+                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
+                    Lift(hitColliders);
+                }
             }
-        }
 
-        if (Input.touchCount == 0 || Input.touchCount > 2)
-        {
-            powerTime = 0;
-        }
+            if (Input.touchCount == 0 || Input.touchCount > 2)
+            {
+                powerTime = 0;
+            }
 
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
+        }
     }
 
 
@@ -131,17 +187,19 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i].tag != "Floor" && col[i].tag != "Wall" && col[i] != GetComponent<Collider>())
+            if (col[i].tag == "Destructable")
             {
-                //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
+                //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 rig.mass = 0.5f;
-                rig.AddForce(Vector3.up * GameManager.instance.player.GetComponent<PlayerStates>().liftForce);
+                rig.AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
+                rig.AddTorque(Vector3.up * GetComponent<PlayerStates>().torgueForce);
+                col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
-		print("i am here");
-		// sound for stomp
-		GameManager.instance.playerStomp();
+
+        // SOUND AND ANIMATION FOR STOMP
+        GameManager.instance.playerStomp();
     }
 
 
@@ -149,35 +207,53 @@ public class PhysicalMovement : MonoBehaviour {
     {
         for (int i = 0; i < col.Length; i++)
         {
-            if (col[i].tag != "Floor" && col[i].tag != "Wall"  && col[i] != GetComponent<Collider>())
+            if (col[i].tag == "Destructable")
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
-                GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
+                GetComponent<PlayerStates>().hitObject = true;
+
+                // SOUND OBJECT HIT
+                GameManager.instance.objectHit(col[i].gameObject);
+
                 rig.useGravity = true;
-                rig.AddForce(dir.normalized * swirlForce);
+                if (GetComponent<PlayerStates>().lifted)
+                {
+                    rig.AddForce((dir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().swirlForce);
+                }
+                else
+                {
+                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
+                }
             }
         }
-		GameManager.instance.playerSwirl();
-    }
-
-
-    IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(cdLift);
-        ableToLift = true;
+        GameManager.instance.playerSwirl();
     }
 
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag != "Floor" && col.collider.tag != "Wall")
+        if (GameManager.instance.canPlayerMove)
         {
-            Rigidbody rig = col.collider.GetComponent<Rigidbody>();
-            GameManager.instance.player.GetComponent<PlayerStates>().hitObject = true;
-            rig.useGravity = true;
-            rig.AddForce(direction.normalized * hitForce);
+            if (col.collider.tag == "Destructable")
+            {
+                Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+                GetComponent<PlayerStates>().hitObject = true;
+
+                // SOUND OBJECT HIT
+                GameManager.instance.objectHit(col.collider.gameObject);
+
+                rig.useGravity = true;
+                if (GetComponent<PlayerStates>().lifted)
+                {
+                    rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                }
+                else
+                {
+                    rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                }
+            }
         }
     }
 
@@ -193,6 +269,7 @@ public class PhysicalMovement : MonoBehaviour {
         {
             gestureDetector.Clear();
             gestureCount = 0;
+            circleTimer = 0;
         }
         else
         {
@@ -201,13 +278,17 @@ public class PhysicalMovement : MonoBehaviour {
             else if (Input.touches[Input.touchCount - 1].phase == TouchPhase.Moved)
             {
                 Vector2 p = Input.touches[Input.touchCount - 1].position;
-                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 10)
+                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 5)
+                {
                     gestureDetector.Add(p);
+                }
             }
         }
 
-        if (gestureDetector.Count < 10)
+        if (gestureDetector.Count < 5)
+        {
             return false;
+        }
 
         gestureSum = Vector2.zero;
         gestureLength = 0;
@@ -233,12 +314,24 @@ public class PhysicalMovement : MonoBehaviour {
 
         int gestureBase = (Screen.width + Screen.height) / 4;
 
-        if (gestureLength > gestureBase && gestureSum.magnitude < gestureBase / 2)
+        if (gestureLength > gestureBase / 2 && gestureSum.magnitude < gestureBase / 2) //gestureBase divided by 2 for a half arc
         {
             gestureDetector.Clear();
             gestureCount++;
-            if (gestureCount >= numOfCircleToShow)
-                return true;
+            if (gestureCount >= GetComponent<PlayerStates>().numOfCircleToShow)
+            {
+                if (circleTimer < GetComponent<PlayerStates>().timeForCircle)
+                {
+                    print("I made a circle");
+                    circleTimer = 0;
+                    return true;
+                }
+                else
+                {
+                    print("Too slow");
+                    circleTimer = 0;
+                }
+            }
         }
 
         return false;

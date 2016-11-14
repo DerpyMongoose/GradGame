@@ -4,11 +4,16 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour {
 
-    void Awake() {
+    private float waitTimeMB = .13f;
+    private float waitTimeSB = .3f;
 
+
+    void Start() {
+        GameManager.instance.Load();
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene()) {
-            case GameManager.Scene.INTRO:
+		case GameManager.Scene.INTRO:
+				GameManager.instance.applicationOpen ();
                 GameObject replayPanel = GameObject.Find("replayPanel");
                 replayPanel.SetActive(false);
             break;
@@ -19,7 +24,7 @@ public class UIScript : MonoBehaviour {
                 GameObject ReplayBTN = GameObject.Find("replayPanel/ReplayButton");
                 ReplayBTN.SetActive(false);
                 Text scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + GameManager.instance.score;
+                scoreText.text = "Score: " + "$" + GameManager.instance.score;
 
                 Text levelNum = GameObject.Find("replayPanel/NewLevelButton/levelnumber").GetComponentInChildren<Text>();
                 if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
@@ -38,7 +43,7 @@ public class UIScript : MonoBehaviour {
                 GameObject NextLevelBTN = GameObject.Find("replayPanel/NewLevelButton");
                 NextLevelBTN.SetActive(false);
                 scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + GameManager.instance.score;
+                scoreText.text = "Score: " + "$" + GameManager.instance.score;
             break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
@@ -53,49 +58,142 @@ public class UIScript : MonoBehaviour {
                         levelIcon.sprite = lockedSprite;
                 }
             break;
+
         }
     }
 
-	public void BackToGame(){
-		GameManager.instance.BackToGame ();
-	}
+	public void BackToGame(string btnType){
+        PlayStartButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
+    }
 
     public void BackToPreviousScreen() {
-        GameManager.instance.BackToPreviousScene();
+
+        // *** FOR AUDIO
+        PlayMenuButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeMB,"BackToPreviousScreen"));
+
     }
 
     public void ToNextLevel() {
-        int next_level;
-        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
-            next_level = GameManager.instance.currentLevel + 1;
-        }else {
-            next_level = GameManager.instance.currentLevel;
-        }
-		GameManager.instance.currentLevel = next_level;    
-		GameManager.instance.StartLevel(next_level);
+       
+        //***** FOR AUDIO
+        PlayStartButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeSB,"ToNextLevel"));
+       
     }
 
     public void ToLevel(int level) {
-        if (level <= GameManager.instance.levelsUnlocked) {
-            GameManager.instance.currentLevel = level;
-            GameManager.instance.StartLevel(level);
+
+        //***** FOR AUDIO
+        if (level <= GameManager.instance.levelsUnlocked)
+        {
+            PlayStartButtonSound();
+            StartCoroutine(WaitButtonFinish(waitTimeSB, "ToLevel", level));
         }
+        else
+        {
+
+            PlayMenuButtonSound();
+            StartCoroutine(WaitButtonFinish(waitTimeMB, "ToLevel", level));
+        }
+
     }
 
     public void GoToStore() {
-        GameManager.instance.GoToStore();
+        //***** FOR AUDIO
+        PlayMenuButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeMB,"GoToStore"));
     }
 
     public void GoToLevelOverview() {
-        GameManager.instance.GoTolevelOverview();
+
+        //***** FOR AUDIO
+        PlayMenuButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeMB,"GoToLevelOverview"));
     }
 
-    public void GoToInfo() {
-        GameManager.instance.GoToInfo();
+    public void GoToInfo()
+    {
+
+        //***** FOR AUDIO
+        PlayMenuButtonSound();
+        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToInfo"));
+
     }
 
-    public void GoToSettings() {
-        GameManager.instance.GoToSettings();
+    public void GoToSettings()
+    {
+
+        //***** FOR AUDIO
+        PlayMenuButtonSound();
+       StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+
+    }
+
+    private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
+    {
+        yield return new WaitForSeconds(waitTime);
+        switch (btnAction)
+        {
+            case "BackToGame":
+            GameManager.instance.BackToGame();
+            break;
+
+            case "BackToPreviousScreen":
+            GameManager.instance.BackToPreviousScene();
+            break;
+
+            case "ToNextLevel" :
+            int next_level;
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                next_level = GameManager.instance.currentLevel + 1;
+            }
+            else
+            {
+                next_level = GameManager.instance.currentLevel;
+            }
+            print(GameManager.instance.currentLevel);
+            GameManager.instance.currentLevel = next_level;
+            GameManager.instance.StartLevel(next_level);
+            break;
+
+            case "ToLevel":
+            if (level <= GameManager.instance.levelsUnlocked)
+            {
+                GameManager.instance.currentLevel = level;
+                GameManager.instance.StartLevel(level);
+            }
+            break;
+
+            case "GoToStore":
+            GameManager.instance.GoToStore();
+            break;
+
+            case "GoToLevelOverview":
+            GameManager.instance.GoTolevelOverview();
+            break;
+
+            case "GoToInfo":
+            GameManager.instance.GoToInfo();
+            break;
+
+            case "GoToSettings":
+            GameManager.instance.GoToSettings();
+            break;
+
+        }
+    }
+
+   
+
+    public void PlayMenuButtonSound(){
+        GameManager.instance.menuButtonClicked();
+    }
+
+    public void PlayStartButtonSound(){
+        GameManager.instance.startButtonClicked();
     }
 
 }

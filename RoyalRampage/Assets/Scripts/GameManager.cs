@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameManager {
 
 	private static GameManager _instance;
 	private GameObject _player;
 	private LevelManager _levelManager;
+	private AudioManager _audioManager;
+
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene1"};
 
 	public int currentLevel = 1;
@@ -20,6 +25,8 @@ public class GameManager {
     public bool levelWon;
 
     public int score = 0;
+    public bool canPlayerMove = false;
+    public bool canPlayerDestroy = false;
 
 	//getters:
 	public static GameManager instance{
@@ -47,6 +54,15 @@ public class GameManager {
 		}
 	}
 
+	public AudioManager audioManager{
+		get {
+			if (_audioManager == null)
+				_audioManager = GameObject.FindObjectOfType(typeof(AudioManager)) as AudioManager;
+				return _audioManager;
+		}
+
+	}
+
     //scene management
     public Scene CurrentScene() {
         return currentScene;        
@@ -56,6 +72,7 @@ public class GameManager {
         if (currentScene == Scene.INTRO)
             previousScene = Scene.INTRO;
         if(currentScene == Scene.GAME) {
+			//levelUnLoad(); // FOR AUDIO
             if (levelWon == true)
                 previousScene = Scene.GAME_OVER_NEXT_LEVEL;
             else
@@ -65,9 +82,11 @@ public class GameManager {
 
     public void StartLevel(int level){
 		//_instance = null;
+		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[level - 1]);
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
+		//levelLoad (); // FOR AUDIO
 	}
 
 	public void GoToStore(){
@@ -104,9 +123,11 @@ public class GameManager {
 
     public void BackToGame(){
 		//_instance = null;
+		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
+		//levelLoad ();	// FOR AUDIO
 	}
 
     public void BackToPreviousScene() {
@@ -118,9 +139,20 @@ public class GameManager {
 	//delegates
 	public delegate void DestructionAction(GameObject obj);
 	public event DestructionAction OnObjectDestructed;
+	public event DestructionAction OnObjectHit;
+	public event DestructionAction OnObjectLanding;
+
 	public void objectDestructed(GameObject obj) {
 		if (OnObjectDestructed != null)
 			OnObjectDestructed (obj);
+	}
+	public void objectHit(GameObject obj){
+		if (OnObjectHit != null)
+			OnObjectHit (obj);
+	}
+	public void objectLanding(GameObject obj){
+		if (OnObjectLanding != null)
+			OnObjectLanding (obj);
 	}
 
 	public delegate void GameAction();
@@ -129,8 +161,14 @@ public class GameManager {
 	public event GameAction OnPlayerDash;
 	public event GameAction OnPlayerSwirl;
     public event GameAction OnPlayerStomp;
+	public event GameAction OnLevelLoad;
+	public event GameAction OnLevelUnLoad;
+	public event GameAction OnApplicationOpen; //*** when application is open
+    public event GameAction OnMenuButtonClicked;
+    public event GameAction OnStartButtonClicked;
+    public event GameAction OnScoreScreenOpen;
 
-	public void timerStart() {
+    public void timerStart() {
 		if (OnTimerStart != null)
 			OnTimerStart ();
 	}
@@ -149,7 +187,71 @@ public class GameManager {
 	public void playerStomp(){
 		if (OnPlayerStomp != null)
 			OnPlayerStomp ();
-       
+    }
+	public void levelLoad(){
+		if (OnLevelLoad != null)
+			OnLevelLoad ();
+	}
+	public void levelUnLoad(){
+		if (OnLevelUnLoad != null)
+			OnLevelUnLoad ();
+	}
+	public void applicationOpen(){
+		if (OnApplicationOpen != null) {
+			Debug.Log ("started");
+			OnApplicationOpen ();
+		}
+	}
+    public void menuButtonClicked()
+    {
+        if (OnMenuButtonClicked != null)
+            OnMenuButtonClicked();
+    }
+    public void startButtonClicked()
+    {
+        if (OnStartButtonClicked != null)
+            OnStartButtonClicked();
+    }
+    public void scoreScreenOpen()
+    {
+        if (OnScoreScreenOpen != null)
+            OnScoreScreenOpen();
     }
 
+    //SAVE-LOAD
+    public void Save()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/playerProgress.dat"); /////////Not dynamic saves. it is only one save file. doesn't matter. we would need more if we would like to have different save files
+
+        PlayerData data = new PlayerData();
+        //data.currentLevel = currentLevel;
+        data.levelsUnlocked = levelsUnlocked;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public void Load()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(Application.persistentDataPath + "/playerProgress.dat"))
+        {
+            FileStream file = File.Open(Application.persistentDataPath + "/playerProgress.dat", FileMode.Open);
+            PlayerData data = (PlayerData) bf.Deserialize(file);
+            file.Close();
+
+            //currentLevel = data.currentLevel;
+            levelsUnlocked = data.levelsUnlocked;
+        }
+
+    }
+}
+
+[Serializable]
+class PlayerData
+{
+    //public int currentLevel;
+    public int levelsUnlocked;
 }
