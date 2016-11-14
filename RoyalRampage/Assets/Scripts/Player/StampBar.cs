@@ -2,56 +2,90 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class StampBar : MonoBehaviour {
+public class StampBar : MonoBehaviour
+{
 
     private float fillBar;
+    private bool ready;
     private Color initialColor;
-    //private float fillAmount;
+    private float countSecond;
 
     public GameObject slider;
-    
+    public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
+
 
     [HideInInspector]
     public bool increaseFill;
     [HideInInspector]
     public float tempScore;
+    [HideInInspector]
+    public float timeToLowRage;
 
 
 
-    void Start () {
-        slider.GetComponent<Image>().fillAmount = 0;
+    void Start()
+    {
+        slider.GetComponent<Image>().fillAmount = 0f;
         initialColor = slider.GetComponent<Image>().color;
+        increaseFill = true;
+        countSecond = 0f;
     }
-	
 
-	void Update () {
-	
-        if(increaseFill)
+
+    void Update()
+    {
+
+        //print(tempScore);
+
+        if (increaseFill)
         {
-            //print(GameManager.instance.score);
-            fillBar = ((tempScore / 30f) * 10)/10;
-            //print(fillBar);
+            fillBar = ((tempScore / reachScore) * 10) / 10;
             slider.GetComponent<Image>().fillAmount = fillBar;
         }
 
-        if(tempScore >= 30f)
+        if (tempScore >= reachScore)
         {
-            GameManager.instance.player.GetComponent<PhysicalMovement>().ableToLift = true;
+            increaseFill = false;
+            timeToLowRage += Time.deltaTime;
+            tempScore = reachScore;
+            if (!ready)
+            {
+                GetComponent<PhysicalMovement>().ableToLift = true;
+                ready = true;
+            }
             slider.GetComponent<Image>().color = Color.red;
-            if(GameManager.instance.player.GetComponent<PlayerStates>().lifted)
+            if (GetComponent<PlayerStates>().lifted)
             {
                 tempScore = 0f;
                 fillBar = 0f;
                 slider.GetComponent<Image>().fillAmount = fillBar;
                 slider.GetComponent<Image>().color = initialColor;
                 increaseFill = false;
+                ready = false;
             }
         }
 
-        if (slider.GetComponent<Image>().fillAmount == 0f)
+        if (timeToLowRage > looseRageAfter)
         {
-            //print("came");
-            increaseFill = true;
+            countSecond += 0.01f;
+            if (countSecond >= loosePerSecond)
+            {
+                //print(countSecond);
+                slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
+                slider.GetComponent<Image>().color = initialColor;
+                tempScore -= reachScore * (percentLoose / 100);
+                countSecond = 0f;
+            }
+            if (slider.GetComponent<Image>().fillAmount == 0f)
+            {
+                timeToLowRage = 0f;
+                countSecond = 0f;
+            }
         }
+        //if (slider.GetComponent<Image>().fillAmount == 0f)
+        //{
+        //    //print("came");
+        //    increaseFill = true;
+        //}
     }
 }
