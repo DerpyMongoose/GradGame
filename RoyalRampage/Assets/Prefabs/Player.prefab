@@ -983,8 +983,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+  reachScore: 15
+  looseRageAfter: 5
+  percentLoose: 10
+  loosePerSecond: 1
   increaseFill: 0
   tempScore: 0
+  timeToLowRage: 0
 --- !u!114 &114000013503495560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -999,8 +1004,27 @@ MonoBehaviour:
   imInSlowMotion: 0
   lifted: 0
   hitObject: 0
-  liftForce: 200
+  clamped: 0
+  maxMoveForce: 7000
+  torgueForce: 10
+  hitForce: 300
+  swirlForce: 1000
+  liftForce: 150
+  timeForSwipe: 1
+  timeForCircle: 0.5
+  SameTapTime: 0.05
+  doubleTapTime: 0.15
   gravityTimer: 1.5
+  swirlRadius: 2
+  liftRadius: 4
+  distSwipe: 5
+  rotationSpeed: 7
+  degreesInAir: 45
+  numOfCircleToShow: 1
+  p0: 0.35
+  p1: 0.4
+  p2: 0.3
+  p3: 0.2
 --- !u!114 &114000014113346480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1013,11 +1037,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ableToLift: 0
-  timeForSwipe: 1
-  hitForce: 1000
-  swirlForce: 4000
-  cdLift: 5
-  doubleTapTime: 0.1
-  collisionRadius: 3
-  liftRadius: 4
-  numOfCircleToShow: 1
