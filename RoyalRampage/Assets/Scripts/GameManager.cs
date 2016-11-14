@@ -163,7 +163,6 @@ public class GameManager {
     public event GameAction OnPlayerStomp;
 	public event GameAction OnLevelLoad;
 	public event GameAction OnLevelUnLoad;
-	public event GameAction OnApplicationOpen; //*** when application is open
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
@@ -196,12 +195,7 @@ public class GameManager {
 		if (OnLevelUnLoad != null)
 			OnLevelUnLoad ();
 	}
-	public void applicationOpen(){
-		if (OnApplicationOpen != null) {
-			Debug.Log ("started");
-			OnApplicationOpen ();
-		}
-	}
+
     public void menuButtonClicked()
     {
         if (OnMenuButtonClicked != null)
@@ -216,6 +210,21 @@ public class GameManager {
     {
         if (OnScoreScreenOpen != null)
             OnScoreScreenOpen();
+    }
+
+    public delegate void LevelAction(float val);
+    public event LevelAction OnTimerUpdate;
+    public event LevelAction OnMusicStateChange;
+
+    public void timerUpdate(float val)
+    {
+        if (OnTimerUpdate != null)
+            OnTimerUpdate(val);
+    }
+    public void changeMusicState(float val)
+    {
+        if (OnMusicStateChange != null)
+            OnMusicStateChange(val);
     }
 
     //SAVE-LOAD

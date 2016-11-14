@@ -145,6 +145,7 @@ public class LevelManager : MonoBehaviour
 
         // FOR AUDIO
         GameManager.instance.scoreScreenOpen();
+        GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + score;
