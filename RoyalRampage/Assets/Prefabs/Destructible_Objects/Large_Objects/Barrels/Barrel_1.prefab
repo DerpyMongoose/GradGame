@@ -39,7 +39,9 @@ GameObject:
   - 95: {fileID: 95000013167520368}
   - 54: {fileID: 54000010591878940}
   - 114: {fileID: 114000013765108648}
-  - 65: {fileID: 65000014225310094}
+  - 136: {fileID: 136000011277507476}
+  - 65: {fileID: 65000011076296158}
+  - 65: {fileID: 65000013597657198}
   m_Layer: 0
   m_Name: Barrel_1
   m_TagString: Destructable
@@ -83,8 +85,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014091946392}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4572215, y: -5.094947e-17, z: -20.410881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.426, y: 0, z: -22.066}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -192,7 +194,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000014225310094
+--- !u!65 &65000011076296158
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -202,8 +204,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 43.08542, y: 58.481003, z: 43.085426}
-  m_Center: {x: 0.0000038146973, y: 29.240501, z: -0.0000009536743}
+  m_Size: {x: 28.640287, y: 2.7283072, z: 26.465416}
+  m_Center: {x: -1.1339426, y: 1.3641536, z: 1.1125565}
+--- !u!65 &65000013597657198
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014091946392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 29.21478, y: 2.2236228, z: 29.045105}
+  m_Center: {x: -1.4211893, y: 57.678596, z: 0.6696701}
 --- !u!95 &95000013167520368
 Animator:
   serializedVersion: 3
@@ -232,5 +246,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 1
   score: 0
   objType: 0
+--- !u!136 &136000011277507476
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014091946392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 21.542713
+  m_Height: 52.19992
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 29.240501, z: -0.0000009536743}
