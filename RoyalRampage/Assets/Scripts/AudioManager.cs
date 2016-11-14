@@ -122,12 +122,13 @@ public class AudioManager : MonoBehaviour {
 
 	//************** Menus **************
 	void MenuButtons(){
-
-	}
+        PlaySound(menuButton, gameObject);
+       // AkSoundEngine.PostEvent(menuButton, gameObject);
+    }
 
 	void StartButton(){
-
-	}
+        PlaySound(startButton, gameObject);
+    }
 
 	//************** Score screen **************
 	void ScoreScreenOpen(){
@@ -187,6 +188,11 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnLevelUnLoad += BackgroundAmbStop;
 		GameManager.instance.OnApplicationOpen += BackgroundMusic;
 
+        //UI
+        GameManager.instance.OnMenuButtonClicked += MenuButtons;
+        GameManager.instance.OnStartButtonClicked += StartButton;
+
+
 	}
 
 	void OnDisable(){
@@ -195,6 +201,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+
 
 		//object sounds
 		GameManager.instance.OnObjectHit -= ObjectActionHit;
@@ -205,5 +212,9 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
 		GameManager.instance.OnLevelUnLoad -= BackgroundAmbStop;
 		GameManager.instance.OnApplicationOpen -= BackgroundMusic;
+
+        //UI
+        GameManager.instance.OnMenuButtonClicked -= MenuButtons;
+        GameManager.instance.OnStartButtonClicked -= StartButton;
 	}
 }

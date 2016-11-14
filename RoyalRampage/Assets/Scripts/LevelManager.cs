@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour {
 		GameManager.instance.OnTimerOut -= ShowEnding;
 	}
 
-    void Awake(){
+    void Start(){
 		scoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		scoreText.text = "Score: " + score;
 		minScoreText = GameObject.Find ("MinScoreText").GetComponent<Text> ();

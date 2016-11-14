@@ -161,9 +161,11 @@ public class GameManager {
     public event GameAction OnPlayerStomp;
 	public event GameAction OnLevelLoad;
 	public event GameAction OnLevelUnLoad;
-	public event GameAction OnApplicationOpen; //*** when application is open 
+	public event GameAction OnApplicationOpen; //*** when application is open
+    public event GameAction OnMenuButtonClicked;
+    public event GameAction OnStartButtonClicked;
 
-	public void timerStart() {
+    public void timerStart() {
 		if (OnTimerStart != null)
 			OnTimerStart ();
 	}
@@ -197,6 +199,16 @@ public class GameManager {
 			OnApplicationOpen ();
 		}
 	}
+    public void menuButtonClicked()
+    {
+        if (OnMenuButtonClicked != null)
+            OnMenuButtonClicked();
+    }
+    public void startButtonClicked()
+    {
+        if (OnStartButtonClicked != null)
+            OnStartButtonClicked();
+    }
 
     //SAVE-LOAD
     public void Save()
