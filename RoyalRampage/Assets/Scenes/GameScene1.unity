@@ -2166,6 +2166,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013713726736, guid: 75143ac6572fa884b8ae2362e3064a3b,
     type: 2}
   m_PrefabInternal: {fileID: 803790969}
+--- !u!114 &803790971 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011109410652, guid: 75143ac6572fa884b8ae2362e3064a3b,
+    type: 2}
+  m_PrefabInternal: {fileID: 803790969}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &806097178
 Prefab:
   m_ObjectHideFlags: 0
@@ -2279,6 +2285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreToCompleteLevel: 66
   timeToCompleteLevel: 30
+  MultiplierTime: 0
+  amountOfObjects: 0
+  MultiplierText: {fileID: 803790971}
 --- !u!1 &857130129
 GameObject:
   m_ObjectHideFlags: 0
