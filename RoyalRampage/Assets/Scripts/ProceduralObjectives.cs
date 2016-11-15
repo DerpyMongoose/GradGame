@@ -54,15 +54,18 @@ public class ProceduralObjectives : MonoBehaviour {
         {
             ChooseType();
             text.fontSize = text.fontSize / 2;
-            text.text = "Destroy " + victimObj.name + " with " + killerObj.name;
+			text.text = "Destroy " + victimObj.name.ToString().Replace("_", " ") + " with " + killerObj.name.ToString().Replace("_", " ");
             finishedGuide = false;
+			GameManager.instance.announcedObjective ();
         }
         
         if(completeObjective)
         {
-            ChooseType();
-            text.text = "Destroy " + victimObj.name + " with " + killerObj.name;
+			GameManager.instance.completedObjective ();
+			ChooseType();
+			text.text = "Destroy " + victimObj.name.ToString().Replace("_", " ")  + " with " + killerObj.name.ToString().Replace("_", " ");
             completeObjective = false;
+			GameManager.instance.announcedObjective ();
         }
 
     }

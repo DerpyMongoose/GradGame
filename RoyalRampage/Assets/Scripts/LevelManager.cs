@@ -143,43 +143,60 @@ public class LevelManager : MonoBehaviour
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         // FOR AUDIO
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + "$" + score;
+        replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
 
         ReplayPanel.SetActive(true);
         switch (levelResult)
         {
-            case "Level completed!":
-                GameManager.instance.levelWon = true;
-                ReplayBtn.SetActive(false);
-                NewLevelBtn.SetActive(true);
-                Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
-                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
-                {
-                    GameManager.instance.levelsUnlocked++;
-                    GameManager.instance.Save();
-                }
-                if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
-                {
-                    levelNum.text = (GameManager.instance.currentLevel + 1).ToString();
-                }
-                else
-                {
-                    levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
-                }
-                break;
+		case "Level completed!":
+			GameManager.instance.levelWon = true;
+			ReplayBtn.SetActive (false);
+			NewLevelBtn.SetActive (true);
+			Text levelNum = NewLevelBtn.GetComponentInChildren<Text> ();
+			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
+				GameManager.instance.levelsUnlocked++;
+				GameManager.instance.Save ();
+			}
+			if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+				levelNum.text = (GameManager.instance.currentLevel + 1).ToString ();
+			} else {
+				levelNum.text = GameManager.instance.currentLevel.ToString () + "*";
+			}
 
-            case "Game over":
-                GameManager.instance.levelWon = false;
-                ReplayBtn.SetActive(true);
-                NewLevelBtn.SetActive(false);
+                break;
+		
+        case "Game over":
+            GameManager.instance.levelWon = false;
+            ReplayBtn.SetActive(true);
+            NewLevelBtn.SetActive(false);
                 break;
         }
+
+		StartCoroutine (CountPointsTo(score)); // show counting score
     }
+
+	//counting score "animation"
+	IEnumerator CountPointsTo (int new_score) {
+		yield return new WaitForSeconds(1f);
+		GameManager.instance.startCountingPoints ();
+		int start = 0;
+		float duration = (float)new_score * (1f / 100f); //show with speed of 100 points per second
+		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
+			float progress = timer / duration;
+			int temp_score = (int)Mathf.Lerp (start, new_score, progress);
+			replayScoreText.text = "Score: " + "$" + temp_score;
+			GameManager.instance.audioManager.UpdatePointCounter (temp_score);
+			yield return null;
+		}
+		replayScoreText.text = "Score: " + "$" + new_score;
+		GameManager.instance.audioManager.UpdatePointCounter (new_score);
+		GameManager.instance.finishedCountingPoints ();
+	}
 }
