@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class ProceduralBlackMarbleTwo : MonoBehaviour {
+public class WhiteAndGreenMarble : MonoBehaviour {
 
     public int res = 256;
 
+    public Color edges;
+
     private Texture2D newTex;
+
     public float frequency = 1f;
 
     [Range(1, 8)]
@@ -18,15 +20,18 @@ public class ProceduralBlackMarbleTwo : MonoBehaviour {
     [Range(0f, 1f)]
     public float persistence = 0.5f;
 
+
     public Gradient coloring;
 
     public int xTile = 10;
     public int yTile = 10;
-    public int offset = 3;
+    public int offset = 20;
 
 
     void OnEnable() {
         if (newTex == null) {
+
+            //Create the texture
             newTex = new Texture2D(res, res, TextureFormat.ARGB32, true);
 
             newTex.name = "Procedural Texture";
@@ -65,13 +70,13 @@ public class ProceduralBlackMarbleTwo : MonoBehaviour {
                 //Set the color with a gradient
                 newTex.SetPixel(x, y, coloring.Evaluate(sample));
                 if (y >= res - offset || (y >= 0 && y <= offset) ||
-                    x >= res - offset || (x >= 0 && x <= offset)) {
-                    //Set a color at the edges to make it look like a tile
-                    newTex.SetPixel(x, y, new Color (0.3f, 0.3f, 0.3f));
+                   x >= res - offset || (x >= 0 && x <= offset)) {
+
+                    //Set a whiteish color at the edges
+                    newTex.SetPixel(x, y, edges);
                 }
             }
         }
         newTex.Apply();
     }
-
 }
