@@ -15,7 +15,7 @@ public class StampBar : MonoBehaviour
 
 
     [HideInInspector]
-    public bool increaseFill;
+    public static bool increaseFill;
     [HideInInspector]
     public float tempScore;
     [HideInInspector]
@@ -35,8 +35,6 @@ public class StampBar : MonoBehaviour
     void Update()
     {
 
-        //print(tempScore);
-
         if (increaseFill)
         {
             fillBar = ((tempScore / reachScore) * 10) / 10;
@@ -50,11 +48,11 @@ public class StampBar : MonoBehaviour
             tempScore = reachScore;
             if (!ready)
             {
-                GetComponent<PhysicalMovement>().ableToLift = true;
+                PhysicalMovement.ableToLift = true;
                 ready = true;
             }
             slider.GetComponent<Image>().color = Color.red;
-            if (GetComponent<PlayerStates>().lifted)
+            if (PhysicalMovement.intoAir)
             {
                 tempScore = 0f;
                 fillBar = 0f;
@@ -62,6 +60,7 @@ public class StampBar : MonoBehaviour
                 slider.GetComponent<Image>().color = initialColor;
                 increaseFill = false;
                 ready = false;
+                PhysicalMovement.intoAir = false;
             }
         }
 
@@ -70,8 +69,8 @@ public class StampBar : MonoBehaviour
             countSecond += 0.01f;
             if (countSecond >= loosePerSecond)
             {
-                //print(countSecond);
                 slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
+                PhysicalMovement.ableToLift = false;
                 slider.GetComponent<Image>().color = initialColor;
                 tempScore -= reachScore * (percentLoose / 100);
                 countSecond = 0f;
@@ -82,10 +81,5 @@ public class StampBar : MonoBehaviour
                 countSecond = 0f;
             }
         }
-        //if (slider.GetComponent<Image>().fillAmount == 0f)
-        //{
-        //    //print("came");
-        //    increaseFill = true;
-        //}
     }
 }

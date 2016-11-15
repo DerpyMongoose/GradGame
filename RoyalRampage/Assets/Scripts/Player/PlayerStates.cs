@@ -9,7 +9,7 @@ public class PlayerStates : MonoBehaviour
 {
 
     [HideInInspector]
-    public bool imInSlowMotion, lifted, hitObject;
+    public static bool imInSlowMotion, lifted, hitObject;
     [Header("ApplyClamp")]
     public bool clamped = true;
     [Header("Forces")]
@@ -160,4 +160,5 @@ public class PlayerStates : MonoBehaviour
     {
 
     }
+
 }

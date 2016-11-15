@@ -104,10 +104,6 @@ public class ObjectBehavior : MonoBehaviour
         state = 1;
         particleSys = GetComponent<ParticleSystem>();
         objRB = GetComponent<Rigidbody>();
-        if (gameObject.tag != "UniqueObjs")
-        {
-            initialMass = objRB.mass;
-        }
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
     }
@@ -115,31 +111,30 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
+        //print(PlayerStates.lifted);
+        if (gameObject.tag != "UniqueObjs")
         {
-            if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+            if (PlayerStates.lifted)
             {
-                //checkHeight = 0;
-                objRB.useGravity = false;
-                //lifted = true;
+                //APPLY TRANSFORM ROTATION
+                GameManager.instance.player.GetComponent<PhysicalMovement>().RotateObjs(GameManager.instance.player.GetComponent<PhysicalMovement>().objRB);
 
-                coroutine = ReturnGravity();
-                StartCoroutine(coroutine);
+                if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && PlayerStates.imInSlowMotion)
+                {
+                    //objRB.useGravity = false;
+                    objRB.isKinematic = true;
+                }
+                else
+                {
+                    //objRB.useGravity = true;
+                    objRB.isKinematic = false;
+                }
             }
-            else
+
+            if (!Mathf.Approximately(initialPos.y, transform.position.y))
             {
-                objRB.useGravity = true;
+                isGrounded = false;
             }
-        }
-
-        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject && gameObject.tag != "UniqueObjs")
-        {
-            objRB.mass = initialMass;
-        }
-
-        if (!Mathf.Approximately(initialPos.y, transform.position.y))
-        {
-            isGrounded = false;
         }
     }
 
@@ -153,16 +148,6 @@ public class ObjectBehavior : MonoBehaviour
         Destroy(obj);
     }
 
-    IEnumerator ReturnGravity()
-    {
-        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
-        GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
-        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
-        GameManager.instance.player.GetComponent<PlayerStates>().hitObject = false;
-        GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
-        objRB.mass = initialMass;
-        objRB.useGravity = true;
-    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -221,7 +206,7 @@ public class ObjectBehavior : MonoBehaviour
         {
             if (col.collider.tag == "Wall")
             {
-                DestroyObj(gameObject);
+                //DestroyObj(gameObject);
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
 

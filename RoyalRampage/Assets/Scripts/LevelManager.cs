@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour
             scoreText.text = "Score: " + "$" + score;
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
-            GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
+            StampBar.increaseFill = true;
             GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
