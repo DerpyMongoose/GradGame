@@ -3891,18 +3891,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013206759356, guid: 668e2ac4e25594b4c96b70f252f8a6f6, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013206759356, guid: 668e2ac4e25594b4c96b70f252f8a6f6, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013206759356, guid: 668e2ac4e25594b4c96b70f252f8a6f6, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 668e2ac4e25594b4c96b70f252f8a6f6, type: 2}
   m_IsPrefabParent: 0
@@ -8242,8 +8230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreToCompleteLevel: 66
   timeToCompleteLevel: 30
-  MultiplierTime: 0
-  amountOfObjects: 0
+  MultiplierTime: 5
+  amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
 --- !u!114 &848426170
 MonoBehaviour:

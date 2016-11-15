@@ -104,7 +104,10 @@ public class ObjectBehavior : MonoBehaviour
         state = 1;
         particleSys = GetComponent<ParticleSystem>();
         objRB = GetComponent<Rigidbody>();
-        initialMass = objRB.mass;
+        if (gameObject.tag != "UniqueObjs")
+        {
+            initialMass = objRB.mass;
+        }
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
     }
@@ -129,7 +132,7 @@ public class ObjectBehavior : MonoBehaviour
             }
         }
 
-        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject)
+        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject && gameObject.tag != "UniqueObjs")
         {
             objRB.mass = initialMass;
         }
@@ -193,7 +196,7 @@ public class ObjectBehavior : MonoBehaviour
             /*state += 1;
         }*/
         }
-        if (col.collider.tag == "Destructable" && hit == true)
+        if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
         {
             if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
             {
@@ -214,32 +217,38 @@ public class ObjectBehavior : MonoBehaviour
             }
         }
 
-        if (col.collider.tag == "Wall")
+        if (gameObject.tag != "UniqueObjs")
         {
-            DestroyObj(gameObject);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-
-        //********** 4 AUDIO and ANIMATION
-
-        if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
-        {
-            if (hasLanded == false && isGrounded == false)
+            if (col.collider.tag == "Wall")
             {
-                GameManager.instance.objectLanding(gameObject);
-                //print ("landing" + gameObject);
+                DestroyObj(gameObject);
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
-            hasLanded = true;
+
+            //********** 4 AUDIO and ANIMATION
+
+            if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+            {
+                if (hasLanded == false && isGrounded == false)
+                {
+                    GameManager.instance.objectLanding(gameObject);
+                    //print ("landing" + gameObject);
+                }
+                hasLanded = true;
+            }
         }
     }
 
     void OnCollisionStay(Collision col)
     {
-        if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+        if (gameObject.tag != "UniqueObjs")
         {
-            isGrounded = true;
+            if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+            {
+                isGrounded = true;
 
-            initialPos = transform.position;
+                initialPos = transform.position;
+            }
         }
     }
 }

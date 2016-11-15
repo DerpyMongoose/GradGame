@@ -13,13 +13,17 @@ public class UIScript : MonoBehaviour {
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene()) {
 		case GameManager.Scene.INTRO:
-				GameManager.instance.applicationOpen ();
+
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+
                 GameObject replayPanel = GameObject.Find("replayPanel");
                 replayPanel.SetActive(false);
             break;
 
             case GameManager.Scene.GAME_OVER_NEXT_LEVEL:
-                GameObject playBtn = GameObject.Find("PlayButton");
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+
+            GameObject playBtn = GameObject.Find("PlayButton");
                 playBtn.SetActive(false);
                 GameObject ReplayBTN = GameObject.Find("replayPanel/ReplayButton");
                 ReplayBTN.SetActive(false);
@@ -38,7 +42,10 @@ public class UIScript : MonoBehaviour {
             break;
 
             case GameManager.Scene.GAME_OVER_REPLAY:
-                playBtn = GameObject.Find("PlayButton");
+
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+
+            playBtn = GameObject.Find("PlayButton");
                 playBtn.SetActive(false);
                 GameObject NextLevelBTN = GameObject.Find("replayPanel/NewLevelButton");
                 NextLevelBTN.SetActive(false);
@@ -47,6 +54,9 @@ public class UIScript : MonoBehaviour {
             break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
+
+                 GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+
                 //set the correct sprite on level icon
                 Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
                 Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
@@ -59,6 +69,9 @@ public class UIScript : MonoBehaviour {
                 }
             break;
 
+            case GameManager.Scene.STORE:
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            break;
         }
     }
 
