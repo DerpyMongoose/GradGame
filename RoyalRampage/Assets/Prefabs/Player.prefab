@@ -1139,7 +1139,6 @@ GameObject:
   - 114: {fileID: 114000013503495560}
   - 114: {fileID: 114000014113346480}
   - 114: {fileID: 114000011127634340}
-  - 95: {fileID: 95000012618873714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13192,8 +13191,8 @@ GameObject:
   - 4: {fileID: 4000011612338806}
   - 95: {fileID: 95000011310915636}
   m_Layer: 0
-  m_Name: Scepter@anim
-  m_TagString: Untagged
+  m_Name: Scepter_anim
+  m_TagString: Scepter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15868,7 +15867,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012483532536}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18113,7 +18112,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013696791024}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21677,7 +21676,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013851129414}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: 0.028845014, y: 0.0061108456, z: 0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23817,7 +23816,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011835969898}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: 0.028845014, y: 0.0061108456, z: 0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25771,7 +25770,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013121732932}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27660,7 +27659,7 @@ Animator:
   m_GameObject: {fileID: 1000014005124016}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 70473bde8ed36fd4ca132b76cac2cb42, type: 3}
-  m_Controller: {fileID: 9100000, guid: 20fb517f2e60dd046a38656336282a8e, type: 2}
+  m_Controller: {fileID: 9100000, guid: f6865738a7c908140b7e580427b34b30, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -27679,23 +27678,6 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 56725d901a8a999409e88f9df862ca83, type: 3}
   m_Controller: {fileID: 9100000, guid: 6ff4979dd7dd63441a8f371a2903289c, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95000012618873714
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010315909554}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ff4979dd7dd63441a8f371a2903289c, type: 2}
-  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
