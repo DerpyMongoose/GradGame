@@ -14,10 +14,11 @@ public class UIScript : MonoBehaviour {
         switch (GameManager.instance.CurrentScene()) {
 		case GameManager.Scene.INTRO:
 
-            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
-                GameObject replayPanel = GameObject.Find("replayPanel");
-                replayPanel.SetActive(false);
+			GameObject replayPanel = GameObject.Find ("replayPanel");
+			replayPanel.SetActive (false);
+			UpdateMenuBG ();
             break;
 
             case GameManager.Scene.GAME_OVER_NEXT_LEVEL:
@@ -39,6 +40,8 @@ public class UIScript : MonoBehaviour {
                 } else {
                     levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
                 }
+
+			UpdateMenuBG ();
             break;
 
             case GameManager.Scene.GAME_OVER_REPLAY:
@@ -67,6 +70,7 @@ public class UIScript : MonoBehaviour {
                     else
                         levelIcon.sprite = lockedSprite;
                 }
+				
             break;
 
             case GameManager.Scene.STORE:
@@ -208,5 +212,12 @@ public class UIScript : MonoBehaviour {
     public void PlayStartButtonSound(){
         GameManager.instance.startButtonClicked();
     }
+
+	private void UpdateMenuBG(){
+		if (GameManager.instance.menu_bg_sprite != null) {
+			Image bg = GameObject.FindGameObjectWithTag ("levelsPanel").GetComponent<Image> ();
+			bg.sprite = GameManager.instance.menu_bg_sprite;
+		}
+	}
 
 }

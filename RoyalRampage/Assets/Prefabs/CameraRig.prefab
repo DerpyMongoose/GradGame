@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011790076990}
   - 114: {fileID: 114000013141997244}
+  - 114: {fileID: 114000014255499534}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -151,6 +152,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothness: 10
+--- !u!114 &114000014255499534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013268982810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae783d8de71fac4f9e2eacff018a130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124000010392089726
 Behaviour:
   m_ObjectHideFlags: 1

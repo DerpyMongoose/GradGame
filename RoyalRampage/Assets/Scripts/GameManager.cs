@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class GameManager {
 
@@ -12,7 +13,7 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene1"};
+	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
 
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
@@ -23,6 +24,8 @@ public class GameManager {
     private Scene currentScene = Scene.INTRO;
     private Scene previousScene = Scene.INTRO;
     public bool levelWon;
+
+	public Sprite menu_bg_sprite;
 
     public int score = 0;
     public bool canPlayerMove = false;
