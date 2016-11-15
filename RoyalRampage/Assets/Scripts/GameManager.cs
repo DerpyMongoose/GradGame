@@ -166,6 +166,10 @@ public class GameManager {
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
+	public event GameAction OnObjectiveAnnounced;
+	public event GameAction OnObjectiveCompleted;
+	public event GameAction OnPointsCountingStart;
+	public event GameAction OnPointsCountingFinished;
 
     public void timerStart() {
 		if (OnTimerStart != null)
@@ -196,21 +200,34 @@ public class GameManager {
 			OnLevelUnLoad ();
 	}
 
-    public void menuButtonClicked()
-    {
+    public void menuButtonClicked(){
         if (OnMenuButtonClicked != null)
             OnMenuButtonClicked();
     }
-    public void startButtonClicked()
-    {
+    public void startButtonClicked(){
         if (OnStartButtonClicked != null)
             OnStartButtonClicked();
     }
-    public void scoreScreenOpen()
-    {
+    public void scoreScreenOpen(){
         if (OnScoreScreenOpen != null)
             OnScoreScreenOpen();
     }
+	public void announcedObjective(){
+		if (OnObjectiveAnnounced != null)
+			OnObjectiveAnnounced();
+	}
+	public void completedObjective(){
+		if (OnObjectiveCompleted != null)
+			OnObjectiveCompleted();
+	}
+	public void startCountingPoints(){
+		if (OnPointsCountingStart != null)
+			OnPointsCountingStart();
+	}
+	public void finishedCountingPoints(){
+		if (OnPointsCountingFinished != null)
+			OnPointsCountingFinished();
+	}
 
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;

@@ -75,7 +75,7 @@ public class UIScript : MonoBehaviour {
         }
     }
 
-	public void BackToGame(string btnType){
+	public void BackToGame(){
         PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
     }

@@ -167,8 +167,17 @@ public class AudioManager : MonoBehaviour {
 
 	}
 
-	void CountingPoints(){
-
+	void CountingPointsPlay(){
+		AkSoundEngine.SetRTPCValue ("Point_Counter", 0);
+		PlaySound(pointsCountingPlay, gameObject);
+	}
+	void CountingPointsStop(){
+		PlaySound(pointsCountingStop, gameObject);
+		print ("stop points");
+	}
+	public void UpdatePointCounter(int show_points){
+		AkSoundEngine.SetRTPCValue ("Point_Counter", (float)show_points);
+		PlaySound(pointsCountingPlay, gameObject);
 	}
 
 	//************** In Game **************
@@ -185,11 +194,11 @@ public class AudioManager : MonoBehaviour {
     }
 
 	void AnnouncingObjective(){
-
+		PlaySound(objectiveAnnounced, gameObject);
 	}
 
 	void CompletedObjective(){
-
+		PlaySound(objectiveCompleted, gameObject);
 	}
 
 	//****** play sound ****************
@@ -227,8 +236,10 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen += ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed += RewardingPoints;
         GameManager.instance.OnTimerUpdate += UpdateTickingTimer;
-
-
+		GameManager.instance.OnObjectiveAnnounced += AnnouncingObjective;
+		GameManager.instance.OnObjectiveCompleted += CompletedObjective;
+		GameManager.instance.OnPointsCountingStart += CountingPointsPlay;
+		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
     }
 
 	void OnDisable(){
@@ -255,5 +266,9 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen -= ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed -= RewardingPoints;
         GameManager.instance.OnTimerUpdate -= UpdateTickingTimer;
+		GameManager.instance.OnObjectiveAnnounced -= AnnouncingObjective;
+		GameManager.instance.OnObjectiveCompleted -= CompletedObjective;
+		GameManager.instance.OnPointsCountingStart -= CountingPointsPlay;
+		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
     }
 }
