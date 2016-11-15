@@ -15868,7 +15868,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012483532536}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18113,7 +18113,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013696791024}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21677,7 +21677,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013851129414}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: 0.028845014, y: 0.0061108456, z: 0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23817,7 +23817,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011835969898}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: 0.028845014, y: 0.0061108456, z: 0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24786,8 +24786,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010315909554}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -25771,7 +25771,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013121732932}
-  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.20672542}
+  m_LocalRotation: {x: 0.7333164, y: 0.33510268, z: 0.5542725, w: -0.2067254}
   m_LocalPosition: {x: -0.028845014, y: -0.0061108456, z: -0.02283969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27718,7 +27718,6 @@ MonoBehaviour:
   looseRageAfter: 5
   percentLoose: 10
   loosePerSecond: 1
-  increaseFill: 0
   tempScore: 0
   timeToLowRage: 0
 --- !u!114 &114000013503495560
@@ -27732,30 +27731,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imInSlowMotion: 0
-  lifted: 0
-  hitObject: 0
   clamped: 0
   maxMoveForce: 7000
-  torgueForce: 10
+  torgueForce: 0.02
   hitForce: 300
   swirlForce: 1000
-  liftForce: 150
+  liftForce: 30
   timeForSwipe: 1
   timeForCircle: 0.5
   SameTapTime: 0.05
   doubleTapTime: 0.15
   gravityTimer: 1.5
   swirlRadius: 2
-  liftRadius: 4
+  liftRadius: 3
   distSwipe: 5
   rotationSpeed: 7
   degreesInAir: 45
   numOfCircleToShow: 1
-  p0: 0.35
-  p1: 0.4
-  p2: 0.3
-  p3: 0.2
+  p0: 0.15
+  p1: 0.3
+  p2: 0
+  p3: 0
 --- !u!114 &114000014113346480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27767,7 +27763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a44127681603849954235cf6fb81b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ableToLift: 0
+  objRB: []
 --- !u!137 &137000010454392880
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
