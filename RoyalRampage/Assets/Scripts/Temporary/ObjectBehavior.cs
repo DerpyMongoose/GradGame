@@ -167,6 +167,7 @@ public class ObjectBehavior : MonoBehaviour
     void Update()
     {
         CheckDamage();
+        //print(PlayerStates.lifted);
         if (gameObject.tag != "UniqueObjs")
         {
             if (PlayerStates.lifted)
