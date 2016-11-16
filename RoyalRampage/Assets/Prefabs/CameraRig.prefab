@@ -40,6 +40,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011790076990}
   - 114: {fileID: 114000013141997244}
+  - 114: {fileID: 114000014255499534}
+  - 114: {fileID: 114000011959786020}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -53,10 +55,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013268982810}
-  m_LocalRotation: {x: 0.007242425, y: 0.94656867, z: -0.3217171, w: 0.021296667}
-  m_LocalPosition: {x: -0.64, y: 6.7, z: 8.02}
+  m_LocalRotation: {x: 0, y: 0.96923095, z: -0.2461532, w: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 37.538002, y: 177.498, z: 0.001}
+  m_LocalEulerAnglesHint: {x: 28.5, y: 180, z: 0}
   m_Children:
   - {fileID: 4000013459927394}
   m_Father: {fileID: 0}
@@ -91,7 +93,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.03
-  far clip plane: 25
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -139,6 +141,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listenerId: 0
+--- !u!114 &114000011959786020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013268982810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded12943ecbb3ba498bc6925d7cdb108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013141997244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,7 +163,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c8a34ded98ef648b9c268a7fe39419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothness: 3
+  smoothness: 10
+--- !u!114 &114000014255499534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013268982810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae783d8de71fac4f9e2eacff018a130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124000010392089726
 Behaviour:
   m_ObjectHideFlags: 1
