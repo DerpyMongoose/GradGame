@@ -8,6 +8,7 @@ public class ProceduralFloorTexture : MonoBehaviour {
     private Texture2D normalMap;
     public int res = 256;
     public int offset = 1;
+    public float normalMapScale = 0.3f;
 
     public int amountOfSectionsX = 8;
     public int amountOfSectionsY = 3;
@@ -18,22 +19,23 @@ public class ProceduralFloorTexture : MonoBehaviour {
     List<int> sectionListX;
     public int xTile = 10;
     public int yTile = 10;
-    void OnEnable() {
 
+    void OnEnable() {
+        Debug.Log(res);
         GetComponent<Renderer>().material.shaderKeywords = new string[1] { "_NORMALMAP" };
         newTex = new Texture2D(res, res, TextureFormat.ARGB32, false);
-        //normalMap = (Texture2D)Resources.Load("woodNormalMap");
         normalMap = new Texture2D(res, res, TextureFormat.ARGB32, false);
 
         normalMap.wrapMode = TextureWrapMode.Repeat;
-        normalMap.filterMode = FilterMode.Trilinear;
+        //normalMap.filterMode = FilterMode.Trilinear;
 
         newTex.wrapMode = TextureWrapMode.Repeat;
-        newTex.filterMode = FilterMode.Trilinear;
+       // newTex.filterMode = FilterMode.Trilinear;
 
         GetComponent<Renderer>().material.mainTexture = newTex;
         GetComponent<Renderer>().material.mainTextureScale = new Vector2(xTile, yTile);
         GetComponent<Renderer>().material.SetTexture("_BumpMap", normalMap);
+        GetComponent<Renderer>().material.SetFloat("_BumpScale", normalMapScale);
         FloorPlanks();
     }
 
@@ -48,8 +50,8 @@ public class ProceduralFloorTexture : MonoBehaviour {
                 startX = sectionListX[i - 1];
             }
 
-            int section1 = Random.Range(70, 140);
-            int section2 = Random.Range(160, 210);
+            int section1 = Random.Range(res/4, (res/2) - (int)(res*0.1f));
+            int section2 = Random.Range((res/2) + (int)(res * 0.1f), (int)(res*0.75f));
             Color sectionOneCol = floorColor[Random.Range(0, 6)];
             Color sectionTwoCol = floorColor[Random.Range(0, 6)];
             Color sectionThreeCol = floorColor[Random.Range(0, 6)];
@@ -59,27 +61,23 @@ public class ProceduralFloorTexture : MonoBehaviour {
                         if (y <= section1) {
                             newTex.SetPixel(x, y, sectionOneCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section1 - offset || y < 0 + offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section1 - offset || y <= 0 + offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else if (y > section1 && y <= section2) {
                             newTex.SetPixel(x, y, sectionTwoCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section2 - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section2 - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else {
                             newTex.SetPixel(x, y, sectionThreeCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > res - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= res - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         }
-                        if(x < 0 + offset) {
-                            newTex.SetPixel(x, y, Color.black);
+                        if(x <= 0 + offset) {
                             normalMap.SetPixel(x, y, Color.black);
                         }
                     }
@@ -91,27 +89,23 @@ public class ProceduralFloorTexture : MonoBehaviour {
                         if (y <= section1) {
                             newTex.SetPixel(x, y, sectionOneCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section1 - offset || y < 0 + offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section1 - offset || y <= 0 + offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else if (y > section1 && y <= section2) {
                             newTex.SetPixel(x, y, sectionTwoCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section2 - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section2 - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else {
                             newTex.SetPixel(x, y, sectionThreeCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > res - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= res - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         }
-                        if (x < (startX + offset) || x > (sectionListX[i + 1] - offset)) {
-                            newTex.SetPixel(x, y, Color.black);
+                        if (x <= (startX + offset) || x >= (sectionListX[i + 1] - offset)) {
                             normalMap.SetPixel(x, y, Color.black);
                         }
                     }
@@ -123,27 +117,22 @@ public class ProceduralFloorTexture : MonoBehaviour {
                         if (y <= section1) {
                             newTex.SetPixel(x, y, sectionOneCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section1 - offset || y < 0 + offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section1 - offset || y <= 0 + offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else if (y > section1 && y <= section2) {
-                            newTex.SetPixel(x, y, sectionTwoCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > section2 - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= section2 - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         } else {
                             newTex.SetPixel(x, y, sectionThreeCol);
                             normalMap.SetPixel(x, y, Color.white);
-                            if (y > res - offset) {
-                                newTex.SetPixel(x, y, Color.black);
+                            if (y >= res - offset) {
                                 normalMap.SetPixel(x, y, Color.black);
                             }
                         }
-                        if (x < (startX + offset) || x > (sectionListX[i] - offset)) {
-                            newTex.SetPixel(x, y, Color.black);
+                        if (x <= (startX + offset) || x >= (sectionListX[i] - offset)) {
                             normalMap.SetPixel(x, y, Color.black);
                         }
                     }
@@ -152,6 +141,7 @@ public class ProceduralFloorTexture : MonoBehaviour {
         }
         newTex.Apply();
         normalMap.Apply();
+        createBumpMap();
     }
 
     void CreateSectionList() {
@@ -161,6 +151,27 @@ public class ProceduralFloorTexture : MonoBehaviour {
         }
     }
 
+    void createBumpMap() {
+        float xLeft;
+        float xRight;
+        float yUp;
+        float yDown;
+        float yDelta;
+        float xDelta;
+        for(int y = 0; y < res; y++) {
+            for(int x = 0; x < res; x++) {
 
+                xLeft = normalMap.GetPixel(x - 1, y).grayscale;
+                xRight = normalMap.GetPixel(x + 1, y).grayscale;
+                yUp = normalMap.GetPixel(x, y - 1).grayscale;
+                yDown = normalMap.GetPixel(x, y + 1).grayscale;
+                xDelta = ((xLeft - xRight) + 1f) * 0.5f;
+                yDelta = ((yUp - yDown) + 1f) * 0.5f;
+
+                normalMap.SetPixel(x,y,new Color(xDelta,yDelta,1.0f,1.0f));
+            }
+        }
+        normalMap.Apply();
+    }
 
 }

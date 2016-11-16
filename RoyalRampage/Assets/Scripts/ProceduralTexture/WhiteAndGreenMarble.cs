@@ -25,10 +25,11 @@ public class WhiteAndGreenMarble : MonoBehaviour {
 
     public int xTile = 10;
     public int yTile = 10;
-    public int offset = 20;
+    private int offset;
 
 
     void OnEnable() {
+        offset = res / 8;
         if (newTex == null) {
 
             //Create the texture
