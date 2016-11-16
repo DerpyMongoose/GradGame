@@ -3148,6 +3148,11 @@ Prefab:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 23000013660763424, guid: 705e00c75e6fc0c439a6440781829d99,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e504b480e778064795e58cd306a3c37, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 705e00c75e6fc0c439a6440781829d99, type: 2}
   m_IsPrefabParent: 0
@@ -3274,7 +3279,7 @@ Light:
     m_Type: 2
     m_Resolution: 2
     m_CustomResolution: -1
-    m_Strength: 0.25
+    m_Strength: 0.145
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2

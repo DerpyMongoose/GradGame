@@ -7,8 +7,8 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-    private int state;
-    [HideInInspector]
+	private int state;
+
     public string soundSwitch; // FOR AUDIO
 
     private Vector3 initialPos;

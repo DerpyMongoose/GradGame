@@ -253,7 +253,7 @@ public class PhysicalMovement : MonoBehaviour
 
 
     void OnCollisionEnter(Collision col)
-    {
+	{ print ("col enter");
         if (GameManager.instance.canPlayerMove)
         {
             if (col.collider.tag == "Destructable")
@@ -265,6 +265,8 @@ public class PhysicalMovement : MonoBehaviour
                     Rigidbody rig = col.collider.GetComponent<Rigidbody>();
                     PlayerStates.hitObject = true;
 
+					print ("am colliding");
+					GameManager.instance.playerHitObject ();
                     // SOUND OBJECT HIT
                     GameManager.instance.objectHit(col.collider.gameObject);
 

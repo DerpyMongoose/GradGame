@@ -13,9 +13,7 @@ public class AnimationManager : MonoBehaviour {
     private Animator playerAnim,
         scepterAnim;
     
-    void PlayerDashAnim()
-    {
-        //playerAnim.SetBool("is_dashing", true);
+    void PlayerDashAnim(){
         playerAnim.SetTrigger("dash_trig");
         scepterAnim.SetTrigger("scepterdash_trig");
     }
@@ -24,22 +22,31 @@ public class AnimationManager : MonoBehaviour {
 	void PlayerHitAnim(){
 		playerAnim.SetTrigger ("has_hit");
 		scepterAnim.SetTrigger("scepter_hasHitTrig");
-		//print(scepterAnim.SetTrigger("scepter_hasHitTrig"));
 	} 
+
+	// Spin
+	void PlayerSpinAnim(){
+		playerAnim.SetBool ("is_spinning", true);
+	}
+	void PlayerSpinAnimStop(){
+		playerAnim.SetBool ("is_spinning", false);
+	}
 
 	void OnEnable(){
         playerAnim = GameManager.instance.player.transform.GetChild(0).GetComponent<Animator>();
-        scepterAnim = GameObject.FindGameObjectWithTag("Scepter").GetComponent<Animator>();
+        scepterAnim = GameObject.FindGameObjectWithTag("scepter").GetComponent<Animator>();
         print(scepterAnim);
 
         GameManager.instance.OnPlayerDash += PlayerDashAnim;
 		GameManager.instance.OnPlayerHit += PlayerHitAnim;
+		GameManager.instance.OnPlayerSwirl += PlayerSpinAnim;
 
 	}
 
 	void OnDisable(){
         GameManager.instance.OnPlayerDash -= PlayerDashAnim;
 		GameManager.instance.OnPlayerHit -= PlayerHitAnim;
+		GameManager.instance.OnPlayerSwirl -= PlayerSpinAnim;
     }
 
 }
