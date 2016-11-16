@@ -58,6 +58,8 @@ MonoBehaviour:
   swirlDamage: 15
   wallDamage: 10
   objDamage: 20
+  rubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
   direction: {x: 0, y: 0, z: 0}
   objectList: []
   smallGlassScore: 1
@@ -66,36 +68,36 @@ MonoBehaviour:
   smallGlassLife: 5
   mediumGlassLife: 17
   largeGlassLife: 23
-  smallGlassRubbleAmount: 0
-  mediumGlassRubbleAmount: 0
-  largeGlassRubbleAmount: 0
+  smallGlassRubbleAmount: 1
+  mediumGlassRubbleAmount: 2
+  largeGlassRubbleAmount: 3
   smallWoodScore: 1
   mediumWoodScore: 1
   largeWoodScore: 1
   smallWoodLife: 8
   mediumWoodLife: 22
   largeWoodLife: 30
-  smallWoodRubbleAmount: 0
-  mediumWoodRubbleAmount: 0
-  largeWoodRubbleAmount: 0
+  smallWoodRubbleAmount: 1
+  mediumWoodRubbleAmount: 2
+  largeWoodRubbleAmount: 3
   smallStoneScore: 1
   mediumStoneScore: 1
   largeStoneScore: 1
   smallStoneLife: 9
   mediumStoneLife: 24
   largeStoneLife: 33
-  smallStoneRubbleAmount: 0
-  mediumStoneRubbleAmount: 0
-  largeStoneRubbleAmount: 0
+  smallStoneRubbleAmount: 1
+  mediumStoneRubbleAmount: 2
+  largeStoneRubbleAmount: 3
   smallMetalScore: 1
   mediumMetalScore: 1
   largeMetalScore: 1
   smallMetalLife: 10
   mediumMetalLife: 25
   largeMetalLife: 35
-  smallMetalRubbleAmount: 0
-  mediumMetalRubbleAmount: 0
-  largeMetalRubbleAmount: 0
+  smallMetalRubbleAmount: 1
+  mediumMetalRubbleAmount: 2
+  largeMetalRubbleAmount: 3
 --- !u!114 &114000012927986588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,8 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2672a1a6e060d8a4e9efa73e02e0bc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneToAnother: 300
-  direction: {x: 0, y: 0, z: 0}
   objectList: []
   barrelScore: 3
   barrelLife: 1

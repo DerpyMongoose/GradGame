@@ -58,6 +58,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
+        rubblePrefab = ObjectManagerV2.instance.rubblePrefab;
         switch (objMaterial)
         {
             case DestructableMaterial.GLASS:

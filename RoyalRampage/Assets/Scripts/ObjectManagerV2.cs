@@ -18,6 +18,9 @@ public class ObjectManagerV2 : MonoBehaviour
     public int wallDamage;
     public int objDamage;
 
+    [Header("rubble after destruction")]
+    public GameObject rubblePrefab;
+
     [HideInInspector]
     public Vector3 direction;
 
