@@ -173,6 +173,7 @@ public class GameManager {
 	public event GameAction OnObjectiveCompleted;
 	public event GameAction OnPointsCountingStart;
 	public event GameAction OnPointsCountingFinished;
+	public event GameAction OnPlayerHit;
 
     public void timerStart() {
 		if (OnTimerStart != null)
@@ -230,6 +231,10 @@ public class GameManager {
 	public void finishedCountingPoints(){
 		if (OnPointsCountingFinished != null)
 			OnPointsCountingFinished();
+	}
+	public void playerHitObject(){
+		if (OnPlayerHit != null)
+			OnPlayerHit();
 	}
 
     public delegate void LevelAction(float val);

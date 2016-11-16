@@ -15,12 +15,17 @@ public class AnimationManager : MonoBehaviour {
     
     void PlayerDashAnim()
     {
-
         //playerAnim.SetBool("is_dashing", true);
         playerAnim.SetTrigger("dash_trig");
         scepterAnim.SetTrigger("scepterdash_trig");
-
     }
+
+	// Hits
+	void PlayerHitAnim(){
+		playerAnim.SetTrigger ("has_hit");
+		scepterAnim.SetTrigger("scepter_hasHitTrig");
+		//print(scepterAnim.SetTrigger("scepter_hasHitTrig"));
+	} 
 
 	void OnEnable(){
         playerAnim = GameManager.instance.player.transform.GetChild(0).GetComponent<Animator>();
@@ -28,11 +33,13 @@ public class AnimationManager : MonoBehaviour {
         print(scepterAnim);
 
         GameManager.instance.OnPlayerDash += PlayerDashAnim;
+		GameManager.instance.OnPlayerHit += PlayerHitAnim;
 
 	}
 
 	void OnDisable(){
         GameManager.instance.OnPlayerDash -= PlayerDashAnim;
+		GameManager.instance.OnPlayerHit -= PlayerHitAnim;
     }
 
 }

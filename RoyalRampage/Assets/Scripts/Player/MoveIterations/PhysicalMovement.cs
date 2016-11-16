@@ -238,25 +238,33 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (col.collider.tag == "Destructable")
             {
-                Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+               
                 GetComponent<PlayerStates>().hitObject = true;
 
-                // SOUND OBJECT HIT
-                GameManager.instance.objectHit(col.collider.gameObject);
-
-                rig.useGravity = true;
-                if (GetComponent<PlayerStates>().lifted)
-                {
-                    rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-                }
-                else
-                {
-                    rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
-                }
+				//START HITTING ANIMATION
+				GameManager.instance.playerHitObject();
+				StartCoroutine (PlayerHitsObject(col));
             }
         }
     }
 
+	//actuall hit on object
+	private IEnumerator PlayerHitsObject(Collision col){
+		yield return new WaitForSeconds (0.6f);
+		// SOUND OBJECT HIT
+		GameManager.instance.objectHit(col.collider.gameObject);
+
+		Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+		rig.useGravity = true;
+		if (GetComponent<PlayerStates>().lifted)
+		{
+			rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+		}
+		else
+		{
+			rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+		}
+	}
 
     List<Vector2> gestureDetector = new List<Vector2>();
     Vector2 gestureSum = Vector2.zero;
