@@ -215,7 +215,7 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (rig[i] != null)
             {
-                 rig[i].transform.Rotate(Vector3.up, GetComponent<PlayerStates>().torgueForce);
+                rig[i].transform.Rotate(Vector3.up, GetComponent<PlayerStates>().torgueForce);
             }
         }
     }
@@ -227,6 +227,7 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (col[i].tag == "Destructable")
             {
+                col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
@@ -257,21 +258,26 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (col.collider.tag == "Destructable")
             {
-                Rigidbody rig = col.collider.GetComponent<Rigidbody>();
-                PlayerStates.hitObject = true;
-
-                // SOUND OBJECT HIT
-                GameManager.instance.objectHit(col.collider.gameObject);
-
-                //rig.useGravity = true;
-                rig.isKinematic = false;
-                if (PlayerStates.lifted)
+                //print(col.relativeVelocity.magnitude);
+                if (col.relativeVelocity.magnitude > GetComponent<PlayerStates>().colImpact)
                 {
-                    rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-                }
-                else
-                {
-                    rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
+                    Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+                    PlayerStates.hitObject = true;
+
+                    // SOUND OBJECT HIT
+                    GameManager.instance.objectHit(col.collider.gameObject);
+
+                    //rig.useGravity = true;
+                    rig.isKinematic = false;
+                    if (PlayerStates.lifted)
+                    {
+                        rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                    }
+                    else
+                    {
+                        rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                    }
                 }
             }
         }

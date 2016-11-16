@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012343953376}
   - 114: {fileID: 114000012927986588}
+  - 114: {fileID: 114000010418163654}
   m_Layer: 0
   m_Name: ObjectManager
   m_TagString: Untagged
@@ -40,7 +41,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000012927986588
+--- !u!114 &114000010418163654
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,9 +49,66 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011863732216}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9320393c3889a094f9c1e7792bd79037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneToAnother: 500
+  colImpact: 2
+  dashDamage: 5
+  swirlDamage: 15
+  wallDamage: 10
+  objDamage: 20
+  direction: {x: 0, y: 0, z: 0}
+  objectList: []
+  smallGlassScore: 1
+  mediumGlassScore: 1
+  largeGlassScore: 1
+  smallGlassLife: 5
+  mediumGlassLife: 17
+  largeGlassLife: 23
+  smallGlassRubbleAmount: 0
+  mediumGlassRubbleAmount: 0
+  largeGlassRubbleAmount: 0
+  smallWoodScore: 1
+  mediumWoodScore: 1
+  largeWoodScore: 1
+  smallWoodLife: 8
+  mediumWoodLife: 22
+  largeWoodLife: 30
+  smallWoodRubbleAmount: 0
+  mediumWoodRubbleAmount: 0
+  largeWoodRubbleAmount: 0
+  smallStoneScore: 1
+  mediumStoneScore: 1
+  largeStoneScore: 1
+  smallStoneLife: 9
+  mediumStoneLife: 24
+  largeStoneLife: 33
+  smallStoneRubbleAmount: 0
+  mediumStoneRubbleAmount: 0
+  largeStoneRubbleAmount: 0
+  smallMetalScore: 1
+  mediumMetalScore: 1
+  largeMetalScore: 1
+  smallMetalLife: 10
+  mediumMetalLife: 25
+  largeMetalLife: 35
+  smallMetalRubbleAmount: 0
+  mediumMetalRubbleAmount: 0
+  largeMetalRubbleAmount: 0
+--- !u!114 &114000012927986588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011863732216}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2672a1a6e060d8a4e9efa73e02e0bc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oneToAnother: 300
+  direction: {x: 0, y: 0, z: 0}
   objectList: []
   barrelScore: 3
   barrelLife: 1

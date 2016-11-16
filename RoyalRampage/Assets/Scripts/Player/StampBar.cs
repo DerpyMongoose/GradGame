@@ -71,6 +71,7 @@ public class StampBar : MonoBehaviour
             {
                 slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
                 PhysicalMovement.ableToLift = false;
+                ready = false;
                 slider.GetComponent<Image>().color = initialColor;
                 tempScore -= reachScore * (percentLoose / 100);
                 countSecond = 0f;

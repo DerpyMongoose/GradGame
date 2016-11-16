@@ -31,6 +31,7 @@ public class PlayerStates : MonoBehaviour
     public float distSwipe;
     public float rotationSpeed;
     public float degreesInAir;
+    public float colImpact;
     public int numOfCircleToShow;
     [Header("Cubic Bezier")]
     [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
@@ -123,20 +124,20 @@ public class PlayerStates : MonoBehaviour
                     timeLeftInLevel -= 0.005f;
                 }
                 timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
-                if(timeLeftInLevel <= timeTicker)
+                if (timeLeftInLevel <= timeTicker)
                 {
-                   timeTicker -= 1;
+                    timeTicker -= 1;
                     GameManager.instance.timerUpdate(timeTicker);
                 }
 
-            if (timeLeftInLevel <= timeRunningOut)
-            {
-                timeRunningOut = -1;
-                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
-            }
+                if (timeLeftInLevel <= timeRunningOut)
+                {
+                    timeRunningOut = -1;
+                    GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
+                }
 
-            //when timer runs out:
-            if (timeLeftInLevel <= 0f)
+                //when timer runs out:
+                if (timeLeftInLevel <= 0f)
                 {
                     timerText.text = "Timer: 0";
                     timerText.color = Color.red;
@@ -144,7 +145,7 @@ public class PlayerStates : MonoBehaviour
                     GameManager.instance.timerOut();
                     GameManager.instance.canPlayerDestroy = false;
                     GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
-            }
+                }
                 break;
         }
     }
