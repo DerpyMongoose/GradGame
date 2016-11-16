@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PhysicalMovement : MonoBehaviour
 {
-
+    private List<float> initialMass = new List<float>();
     private int touches, countTaps;
     private float distance, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
     private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime;
@@ -13,7 +13,9 @@ public class PhysicalMovement : MonoBehaviour
     private Rigidbody playerRig;
 
     [HideInInspector]
-    public bool ableToLift;
+    public static bool ableToLift, intoAir;
+    [HideInInspector]
+    public List<Rigidbody> objRB = new List<Rigidbody>();
 
 
 
@@ -31,7 +33,6 @@ public class PhysicalMovement : MonoBehaviour
         newSwipe = false;
         applyMove = false;
         direction = -Vector3.forward;
-
     }
 
     void FixedUpdate()
@@ -66,6 +67,7 @@ public class PhysicalMovement : MonoBehaviour
 
     void Update()
     {
+        //print(playerRig.velocity);
         if (GameManager.instance.canPlayerMove)
         {
             moveTimer += Time.deltaTime;
@@ -124,8 +126,9 @@ public class PhysicalMovement : MonoBehaviour
                         if (countTaps == 2 && tapsTimer < GetComponent<PlayerStates>().doubleTapTime && ableToLift && Vector3.Distance(firstTouch, secondTouch) < 1)
                         {
                             ableToLift = false;
-                            GetComponent<PlayerStates>().lifted = true;
-                            GetComponent<PlayerStates>().imInSlowMotion = true;
+                            PlayerStates.lifted = true;
+                            intoAir = true;
+                            PlayerStates.imInSlowMotion = true;
                             Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
                             Lift(hitColliders);
                         }
@@ -138,7 +141,7 @@ public class PhysicalMovement : MonoBehaviour
                         tapsTimer = 0;
                         firstTouch = Vector3.zero;
                         secondTouch = Vector3.zero;
-                        GetComponent<PlayerStates>().imInSlowMotion = false;
+                        PlayerStates.imInSlowMotion = false;
                         temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                         dragPoint = new Vector3(temp.x, 0, temp.z);
                         distance = Vector3.Distance(dragPoint, startPoint);
@@ -166,8 +169,9 @@ public class PhysicalMovement : MonoBehaviour
                 if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift)
                 {
                     ableToLift = false;
-                    GetComponent<PlayerStates>().lifted = true;
-                    GetComponent<PlayerStates>().imInSlowMotion = true;
+                    PlayerStates.lifted = true;
+                    intoAir = true;
+                    PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
                     Lift(hitColliders);
                 }
@@ -190,16 +194,30 @@ public class PhysicalMovement : MonoBehaviour
             if (col[i].tag == "Destructable")
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
-                Rigidbody rig = col[i].GetComponent<Rigidbody>();
-                rig.mass = 0.5f;
-                rig.AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                rig.AddTorque(Vector3.up * GetComponent<PlayerStates>().torgueForce);
+                objRB.Add(col[i].GetComponent<Rigidbody>());
+                initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
+                col[i].GetComponent<Rigidbody>().mass = 0.1f;
+                col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
+                //rig.AddTorque(Vector3.up * GetComponent<PlayerStates>().torgueForce);
                 col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
 
         // SOUND AND ANIMATION FOR STOMP
         GameManager.instance.playerStomp();
+        StartCoroutine(ReturnGravity(objRB, initialMass));
+    }
+
+
+    public void RotateObjs(List<Rigidbody> rig)
+    {
+        for (int i = 0; i < rig.Count; i++)
+        {
+            if (rig[i] != null)
+            {
+                rig[i].transform.Rotate(Vector3.up, GetComponent<PlayerStates>().torgueForce);
+            }
+        }
     }
 
 
@@ -209,16 +227,18 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (col[i].tag == "Destructable")
             {
+                col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
-                GetComponent<PlayerStates>().hitObject = true;
+                PlayerStates.hitObject = true;
 
                 // SOUND OBJECT HIT
                 GameManager.instance.objectHit(col[i].gameObject);
 
-                rig.useGravity = true;
-                if (GetComponent<PlayerStates>().lifted)
+                //rig.useGravity = true;
+                rig.isKinematic = false;
+                if (PlayerStates.lifted)
                 {
                     rig.AddForce((dir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().swirlForce);
                 }
@@ -238,23 +258,50 @@ public class PhysicalMovement : MonoBehaviour
         {
             if (col.collider.tag == "Destructable")
             {
-                Rigidbody rig = col.collider.GetComponent<Rigidbody>();
-                GetComponent<PlayerStates>().hitObject = true;
-
-                // SOUND OBJECT HIT
-                GameManager.instance.objectHit(col.collider.gameObject);
-
-                rig.useGravity = true;
-                if (GetComponent<PlayerStates>().lifted)
+                //print(col.relativeVelocity.magnitude);
+                if (col.relativeVelocity.magnitude > GetComponent<PlayerStates>().colImpact)
                 {
-                    rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-                }
-                else
-                {
-                    rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
+                    Rigidbody rig = col.collider.GetComponent<Rigidbody>();
+                    PlayerStates.hitObject = true;
+
+                    // SOUND OBJECT HIT
+                    GameManager.instance.objectHit(col.collider.gameObject);
+
+                    //rig.useGravity = true;
+                    rig.isKinematic = false;
+                    if (PlayerStates.lifted)
+                    {
+                        rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                    }
+                    else
+                    {
+                        rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                    }
                 }
             }
         }
+    }
+
+    IEnumerator ReturnGravity(List<Rigidbody> rig, List<float> mass)
+    {
+        print("I am into Coroutine");
+        yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
+        PlayerStates.lifted = false;
+        PlayerStates.imInSlowMotion = false;
+        PlayerStates.hitObject = false;
+        StampBar.increaseFill = true;
+        for (int i = 0; i < rig.Count; i++)
+        {
+            if (rig[i] != null)
+            {
+                rig[i].mass = mass[i];
+                //objRB.useGravity = true;
+                rig[i].isKinematic = false;
+            }
+        }
+        objRB.Clear();
+        initialMass.Clear();
     }
 
 
