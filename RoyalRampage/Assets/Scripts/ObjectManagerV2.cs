@@ -23,8 +23,8 @@ public class ObjectManagerV2 : MonoBehaviour
 
     [HideInInspector]
     public Vector3 direction;
-    [HideInInspector]
-    public int maxScore = 0;
+    //[HideInInspector]
+    //public int maxScore = 0;
 
     void Awake()
     {

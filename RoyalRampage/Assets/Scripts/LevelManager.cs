@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public float MultiplierTime;
     public int amountOfObjects;
     public Text MultiplierText;
+    public int maxScore = 57;
     [Range(0,1)]
     public float star1;
     [Range(0, 1)]
@@ -145,6 +146,8 @@ public class LevelManager : MonoBehaviour
         else continueButton.SetActive(false);
 
         MultiplierText.text = multiplier.ToString() + "x";
+
+        print(GameManager.instance.allStars);
     }
 
     public void Continue()
@@ -155,15 +158,15 @@ public class LevelManager : MonoBehaviour
     }
     public void Stars()
     {
-        if(score / ObjectManagerV2.instance.maxScore > star1 && score / ObjectManagerV2.instance.maxScore < star2)
+        if(score / maxScore > star1 && score / maxScore < star2)
         {
             stars = 1;
         }
-        if (score / ObjectManagerV2.instance.maxScore >= star2 && score / ObjectManagerV2.instance.maxScore < star3)
+        if (score / maxScore >= star2 && score / maxScore < star3)
         {
             stars = 2;
         }
-        if (score / ObjectManagerV2.instance.maxScore >= star3)
+        if (score / maxScore >= star3)
         {
             stars = 3;
         }
@@ -179,14 +182,23 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
+        //GameManager.instance.stars[GameManager.instance.currentLevel] = stars;
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
-        print(stars);
+
         starText.text = stars.ToString();
 
         ReplayPanel.SetActive(true);
-        GameManager.instance.allStars += stars;
+
+        if (GameManager.instance.stars != null)
+        {
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel])
+            {
+                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel];
+                GameManager.instance.allStars += stars;
+            }
+        }
         switch (levelResult)
         {
 		case "Level completed!":

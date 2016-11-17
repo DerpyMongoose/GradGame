@@ -2,46 +2,58 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIScript : MonoBehaviour {
+public class UIScript : MonoBehaviour
+{
 
     private float waitTimeMB = .13f;
     private float waitTimeSB = .3f;
 
+    Text starTotal;
 
-    void Start() {
+    void Start()
+    {
         GameManager.instance.Load();
+
         //set up the scene when opened
-        switch (GameManager.instance.CurrentScene()) {
-		case GameManager.Scene.INTRO:
+        switch (GameManager.instance.CurrentScene())
+        {
+            case GameManager.Scene.INTRO:
 
-			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
-			GameObject replayPanel = GameObject.Find ("replayPanel");
-			replayPanel.SetActive (false);
-			UpdateMenuBG ();
+            starTotal = GameObject.Find("starTotal").GetComponent<Text>();
+            starTotal.text = "Stars:" + GameManager.instance.allStars.ToString();
+            GameObject replayPanel = GameObject.Find("replayPanel");
+            replayPanel.SetActive(false);
+            UpdateMenuBG();
             break;
 
             case GameManager.Scene.GAME_OVER_NEXT_LEVEL:
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
             GameObject playBtn = GameObject.Find("PlayButton");
-                playBtn.SetActive(false);
-                GameObject ReplayBTN = GameObject.Find("replayPanel/ReplayButton");
-                ReplayBTN.SetActive(false);
-                Text scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            playBtn.SetActive(false);
+            GameObject ReplayBTN = GameObject.Find("replayPanel/ReplayButton");
+            ReplayBTN.SetActive(false);
+            Text scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
+            scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            starTotal.text = "Stars:" + GameManager.instance.allStars.ToString();
 
-                Text levelNum = GameObject.Find("replayPanel/NewLevelButton/levelnumber").GetComponentInChildren<Text>();
-                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
-                    GameManager.instance.levelsUnlocked++;
-                }
-                if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
-                    levelNum.text = (GameManager.instance.currentLevel + 1).ToString();
-                } else {
-                    levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
-                }
+            Text levelNum = GameObject.Find("replayPanel/NewLevelButton/levelnumber").GetComponentInChildren<Text>();
+            if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                GameManager.instance.levelsUnlocked++;
+            }
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                levelNum.text = (GameManager.instance.currentLevel + 1).ToString();
+            }
+            else
+            {
+                levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
+            }
 
-			UpdateMenuBG ();
+            UpdateMenuBG();
             break;
 
             case GameManager.Scene.GAME_OVER_REPLAY:
@@ -49,28 +61,30 @@ public class UIScript : MonoBehaviour {
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
             playBtn = GameObject.Find("PlayButton");
-                playBtn.SetActive(false);
-                GameObject NextLevelBTN = GameObject.Find("replayPanel/NewLevelButton");
-                NextLevelBTN.SetActive(false);
-                scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
-                scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            playBtn.SetActive(false);
+            GameObject NextLevelBTN = GameObject.Find("replayPanel/NewLevelButton");
+            NextLevelBTN.SetActive(false);
+            scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
+            scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            starTotal.text = "Stars:" + GameManager.instance.allStars.ToString();
             break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
 
-                 GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
-                //set the correct sprite on level icon
-                Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
-                Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
-                for(int i = 1; i <= 6; i++) {
-                    Image levelIcon = GameObject.Find("LevelInGame/Level" + i).GetComponent<Image>();
-                    if (i <= GameManager.instance.levelsUnlocked)
-                        levelIcon.sprite = unlockedSprite;
-                    else
-                        levelIcon.sprite = lockedSprite;
-                }
-				
+            //set the correct sprite on level icon
+            Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
+            Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
+            for (int i = 1; i <= 6; i++)
+            {
+                Image levelIcon = GameObject.Find("LevelInGame/Level" + i).GetComponent<Image>();
+                if (i <= GameManager.instance.levelsUnlocked)
+                    levelIcon.sprite = unlockedSprite;
+                else
+                    levelIcon.sprite = lockedSprite;
+            }
+
             break;
 
             case GameManager.Scene.STORE:
@@ -79,28 +93,32 @@ public class UIScript : MonoBehaviour {
         }
     }
 
-	public void BackToGame(){
+    public void BackToGame()
+    {
         PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
     }
 
-    public void BackToPreviousScreen() {
+    public void BackToPreviousScreen()
+    {
 
         // *** FOR AUDIO
         PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB,"BackToPreviousScreen"));
+        StartCoroutine(WaitButtonFinish(waitTimeMB, "BackToPreviousScreen"));
 
     }
 
-    public void ToNextLevel() {
-       
+    public void ToNextLevel()
+    {
+
         //***** FOR AUDIO
         PlayStartButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeSB,"ToNextLevel"));
-       
+        StartCoroutine(WaitButtonFinish(waitTimeSB, "ToNextLevel"));
+
     }
 
-    public void ToLevel(int level) {
+    public void ToLevel(int level)
+    {
 
         //***** FOR AUDIO
         if (level <= GameManager.instance.levelsUnlocked)
@@ -117,17 +135,19 @@ public class UIScript : MonoBehaviour {
 
     }
 
-    public void GoToStore() {
+    public void GoToStore()
+    {
         //***** FOR AUDIO
         PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB,"GoToStore"));
+        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToStore"));
     }
 
-    public void GoToLevelOverview() {
+    public void GoToLevelOverview()
+    {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB,"GoToLevelOverview"));
+        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
     }
 
     public void GoToInfo()
@@ -144,7 +164,7 @@ public class UIScript : MonoBehaviour {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
-       StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
 
     }
 
@@ -161,7 +181,7 @@ public class UIScript : MonoBehaviour {
             GameManager.instance.BackToPreviousScene();
             break;
 
-            case "ToNextLevel" :
+            case "ToNextLevel":
             int next_level;
             if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
             {
@@ -203,21 +223,25 @@ public class UIScript : MonoBehaviour {
         }
     }
 
-   
 
-    public void PlayMenuButtonSound(){
+
+    public void PlayMenuButtonSound()
+    {
         GameManager.instance.menuButtonClicked();
     }
 
-    public void PlayStartButtonSound(){
+    public void PlayStartButtonSound()
+    {
         GameManager.instance.startButtonClicked();
     }
 
-	private void UpdateMenuBG(){
-		if (GameManager.instance.menu_bg_sprite != null) {
-			Image bg = GameObject.FindGameObjectWithTag ("levelsPanel").GetComponent<Image> ();
-			bg.sprite = GameManager.instance.menu_bg_sprite;
-		}
-	}
+    private void UpdateMenuBG()
+    {
+        if (GameManager.instance.menu_bg_sprite != null)
+        {
+            Image bg = GameObject.FindGameObjectWithTag("levelsPanel").GetComponent<Image>();
+            bg.sprite = GameManager.instance.menu_bg_sprite;
+        }
+    }
 
 }

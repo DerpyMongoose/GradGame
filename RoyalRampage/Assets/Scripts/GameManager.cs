@@ -15,6 +15,9 @@ public class GameManager {
 
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
 
+    // The size of the array is the total amount of levels
+    public int[] stars = new int[6];
+
     public int allStars = 0;
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
@@ -257,7 +260,8 @@ public class GameManager {
         PlayerData data = new PlayerData();
         //data.currentLevel = currentLevel;
         data.levelsUnlocked = levelsUnlocked;
-        data.maxStars = allStars;
+        data.allStars = allStars;
+        data.stars = stars;
 
         bf.Serialize(file, data);
         file.Close();
@@ -275,7 +279,8 @@ public class GameManager {
 
             //currentLevel = data.currentLevel;
             levelsUnlocked = data.levelsUnlocked;
-            allStars = data.maxStars;
+            allStars = data.allStars;
+            stars = data.stars;
         }
 
     }
@@ -286,5 +291,6 @@ class PlayerData
 {
     //public int currentLevel;
     public int levelsUnlocked;
-    public int maxStars;
+    public int allStars;
+    public int[] stars;
 }
