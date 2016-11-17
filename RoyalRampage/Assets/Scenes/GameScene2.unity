@@ -1404,11 +1404,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
   soundSwitch: 
   isGrounded: 1
   hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 0
+  objSize: 0
 --- !u!65 &146452817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6913,11 +6916,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
   soundSwitch: 
   isGrounded: 1
   hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 0
+  objSize: 0
 --- !u!65 &684993928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8170,8 +8176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e69e3c26a3fe874d92f0db03255ed2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreToCompleteLevel: 66
-  timeToCompleteLevel: 30
+  scoreToCompleteLevel: 640
+  timeToCompleteLevel: 60
   MultiplierTime: 5
   amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
@@ -8304,11 +8310,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
   soundSwitch: 
   isGrounded: 1
   hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 0
+  objSize: 0
 --- !u!65 &863139720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10617,11 +10626,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
   soundSwitch: 
   isGrounded: 1
   hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 0
+  objSize: 0
 --- !u!65 &1079379803
 BoxCollider:
   m_ObjectHideFlags: 0
