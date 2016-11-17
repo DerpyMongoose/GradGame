@@ -50,9 +50,9 @@ public class LevelManager : MonoBehaviour
         amountOfObjects = 5;
         MultiplierTime = 5;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-		scoreText.text = "Score: " + "$" + score;
+		scoreText.text =  "$" + score; // in game score
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-        minScoreText.text = "Reach " + scoreToCompleteLevel + " to Win";
+        minScoreText.text = "Reach $" + scoreToCompleteLevel;
         guideText = GameObject.Find("GuideText").GetComponent<Text>();
         guideText.text = "Swipe and destroy objects";
 
@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             countObjects++;
-		scoreText.text = "Score: " + "$" + score;
+			scoreText.text = "$" + score; // in game score
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour
                 countObjects = 0;
             }
             score += points * multiplier;
-            scoreText.text = "Score: " + "$" + score;
+			scoreText.text = "$" + score; // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
@@ -130,7 +130,7 @@ public class LevelManager : MonoBehaviour
         }
         else continueButton.SetActive(false);
 
-        MultiplierText.text = multiplier.ToString() + "x";
+		MultiplierText.text = "x" + multiplier.ToString();
     }
 
     public void Continue()

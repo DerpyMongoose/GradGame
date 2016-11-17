@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012140872064}
   - 33: {fileID: 33000010615901846}
   - 23: {fileID: 23000011144002202}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_drawer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000011419374790}
   - 33: {fileID: 33000013310054414}
   - 23: {fileID: 23000012707437234}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_handle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000011552543948}
   - 33: {fileID: 33000011195367520}
   - 23: {fileID: 23000010013788732}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_handle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 54: {fileID: 54000011926187936}
   - 114: {fileID: 114000013522625474}
   - 65: {fileID: 65000010887270192}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wall_Table_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010080332230}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_drawer_grp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 4: {fileID: 4000011587346924}
   - 33: {fileID: 33000013108611050}
   - 23: {fileID: 23000011893905534}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011530511946}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_drawer_grp_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - 4: {fileID: 4000014107363438}
   - 33: {fileID: 33000014227507512}
   - 23: {fileID: 23000011584554140}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableWall_b_drawer_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Table
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
-  objSize: 0
+  objMaterial: 2
+  objSize: 2

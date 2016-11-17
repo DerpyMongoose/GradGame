@@ -24,7 +24,7 @@ GameObject:
   - 54: {fileID: 54000011176312992}
   - 114: {fileID: 114000011660680808}
   - 65: {fileID: 65000010983312718}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Small_Keg_Placeholder
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -122,7 +122,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Barrel
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
-  objSize: 0
+  objMaterial: 1
+  objSize: 1
