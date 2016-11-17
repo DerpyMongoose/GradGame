@@ -12,6 +12,10 @@ public class UIScript : MonoBehaviour {
         GameManager.instance.Load();
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene()) {
+		case GameManager.Scene.SPLASH:
+			StartCoroutine (SplashScreen());
+			break;
+
 		case GameManager.Scene.INTRO:
 
 			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
@@ -218,6 +222,26 @@ public class UIScript : MonoBehaviour {
 			Image bg = GameObject.FindGameObjectWithTag ("levelsPanel").GetComponent<Image> ();
 			bg.sprite = GameManager.instance.menu_bg_sprite;
 		}
+	}
+
+	private IEnumerator SplashScreen(){
+		GameObject dadiu = GameObject.FindGameObjectWithTag ("DadiuSplash");
+		GameObject unity = GameObject.FindGameObjectWithTag ("UnitySplash");
+		GameObject game = GameObject.FindGameObjectWithTag ("GameSplash");
+
+		unity.SetActive (false);
+		game.SetActive (false);
+
+		yield return new WaitForSeconds (1.5f);
+		unity.SetActive (true);
+		dadiu.SetActive (false);
+
+		yield return new WaitForSeconds (1.5f);
+		game.SetActive (true);
+		unity.SetActive (false);
+
+		yield return new WaitForSeconds (2f);
+		GameManager.instance.LoadGame ();
 	}
 
 }

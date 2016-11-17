@@ -19,9 +19,9 @@ public class GameManager {
     public int levelsUnlocked = 1;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
-        INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
+        SPLASH, INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
     }
-    private Scene currentScene = Scene.INTRO;
+	private Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.INTRO;
     public bool levelWon;
 
@@ -82,6 +82,12 @@ public class GameManager {
                 previousScene = Scene.GAME_OVER_REPLAY;
         }
     }
+
+	public void LoadGame(){
+		currentScene = Scene.INTRO;
+		SceneManager.LoadScene("MainMenu");
+		Time.timeScale = 1;
+	}
 
     public void StartLevel(int level){
 		//_instance = null;
