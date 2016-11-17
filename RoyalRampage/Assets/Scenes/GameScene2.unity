@@ -1369,7 +1369,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Name
@@ -1408,6 +1408,7 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0
@@ -2599,31 +2600,6 @@ Prefab:
     - target: {fileID: 4000013400599650, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: floor
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: Nwall
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: Ewall
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: Wwall
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014113346480, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: Swall
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114000011127634340, guid: 5950ab559094bff4693b84287113f3d8,
         type: 2}
@@ -7007,7 +6983,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Name
@@ -7046,6 +7022,7 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0
@@ -8302,8 +8279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e69e3c26a3fe874d92f0db03255ed2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreToCompleteLevel: 66
-  timeToCompleteLevel: 30
+  scoreToCompleteLevel: 640
+  timeToCompleteLevel: 60
   MultiplierTime: 5
   amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
@@ -8401,7 +8378,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Name
@@ -8440,6 +8417,7 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0
@@ -10717,7 +10695,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011676907514, guid: 93fc32ff1dc9ebb4c9629af6fd363ac1, type: 2}
       propertyPath: m_Name
@@ -10756,6 +10734,7 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0

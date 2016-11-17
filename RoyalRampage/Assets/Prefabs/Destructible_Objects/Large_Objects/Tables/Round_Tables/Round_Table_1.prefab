@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011235911922}
   - 33: {fileID: 33000013897683194}
   - 23: {fileID: 23000010154592454}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: table_a_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 54: {fileID: 54000012371761090}
   - 114: {fileID: 114000013084550204}
   - 65: {fileID: 65000012640341306}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Round_Table_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -147,6 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Table
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 2
+  objSize: 1

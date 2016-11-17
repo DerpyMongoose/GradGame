@@ -24,7 +24,7 @@ GameObject:
   - 54: {fileID: 54000010398297478}
   - 114: {fileID: 114000014108336296}
   - 65: {fileID: 65000012004493594}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Large_Pillar_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -118,6 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Statue
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 3
+  objMaterial: 2
+  objSize: 2

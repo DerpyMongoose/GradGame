@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013507345894}
   - 33: {fileID: 33000014013013306}
   - 23: {fileID: 23000013048657756}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_leg_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000010478377244}
   - 33: {fileID: 33000012545810436}
   - 23: {fileID: 23000012890260036}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_tableTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000014216230002}
   - 33: {fileID: 33000014138919936}
   - 23: {fileID: 23000011354660244}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_leg_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - 4: {fileID: 4000013741177090}
   - 33: {fileID: 33000011993729694}
   - 23: {fileID: 23000011254455302}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - 4: {fileID: 4000012102659056}
   - 33: {fileID: 33000013057503738}
   - 23: {fileID: 23000010174150056}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_leg_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - 54: {fileID: 54000013468810764}
   - 114: {fileID: 114000013022259442}
   - 65: {fileID: 65000010362779312}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Side_Table_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000014143486690}
   - 33: {fileID: 33000010138665042}
   - 23: {fileID: 23000012346693472}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableSide_a_leg_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,6 +482,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Table
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 2
+  objMaterial: 2
+  objSize: 1

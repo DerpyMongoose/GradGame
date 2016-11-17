@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011179483132}
   - 33: {fileID: 33000012992248068}
   - 23: {fileID: 23000013499524116}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grandfatherClock_b_tangents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000012580041868}
   - 33: {fileID: 33000010233459368}
   - 23: {fileID: 23000011937461536}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grandfatherClock_b_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000014288845914}
   - 33: {fileID: 33000011788671926}
   - 23: {fileID: 23000012880344832}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grandfatherClock_b_disk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012154583398}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grp_grandfatherClock_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - 65: {fileID: 65000010665994948}
   - 114: {fileID: 114000013606844614}
   - 54: {fileID: 54000011425925606}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Small_Grandfather_Clock
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - 4: {fileID: 4000011575372950}
   - 33: {fileID: 33000010315773188}
   - 23: {fileID: 23000011899974460}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grandfatherClock_b_goldCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,6 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Grandfather_Clock
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 0
+  objMaterial: 3
+  objSize: 0
