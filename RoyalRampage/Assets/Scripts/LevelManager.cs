@@ -15,8 +15,18 @@ public class LevelManager : MonoBehaviour
     public float MultiplierTime;
     public int amountOfObjects;
     public Text MultiplierText;
+    public int maxScore = 57;
+    [Range(0,1)]
+    public float star1;
+    [Range(0, 1)]
+    public float star2;
+    [Range(0, 1)]
+    public float star3;
 
+
+    int stars = 0;
     int score = 0;
+    Text starText;
     Text scoreText;
     Text minScoreText;
     Text guideText;
@@ -55,12 +65,14 @@ public class LevelManager : MonoBehaviour
         minScoreText.text = "Reach $" + scoreToCompleteLevel;
         guideText = GameObject.Find("GuideText").GetComponent<Text>();
         guideText.text = "Swipe and destroy objects";
+        
 
         ReplayPanel = GameObject.Find("replayPanel");
         InGamePanel = GameObject.Find("InGameGUI");
         ReplayBtn = GameObject.Find("ReplayButton");
         NewLevelBtn = GameObject.Find("NewLevelButton");
         continueButton = GameObject.Find("ContinueButton");
+        starText = GameObject.Find("stars").GetComponent<Text>();
         replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
@@ -100,16 +112,19 @@ public class LevelManager : MonoBehaviour
     //after the timer is out (wait for animation?)
     private void ShowEnding()
     {
-
        // print("ended");
         GameManager.instance.levelUnLoad(); // FOR AUDIO
 
-        if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
+        if (score >= scoreToCompleteLevel)
+        {
             guideText.text = "Level completed!";
+        }
         else
+        {
             guideText.text = "Game over";
+        }
 
-        guideText.gameObject.SetActive(true);
+        guideText.gameObject.SetActive(true);        
         StartCoroutine(ShowContinueScreen(guideText.text));
     }
 
@@ -131,6 +146,8 @@ public class LevelManager : MonoBehaviour
         else continueButton.SetActive(false);
 
 		MultiplierText.text = "x" + multiplier.ToString();
+
+        print(GameManager.instance.allStars);
     }
 
     public void Continue()
@@ -138,6 +155,21 @@ public class LevelManager : MonoBehaviour
         guideText.text = "Level completed!";
         guideText.gameObject.SetActive(true);
         StartCoroutine(ShowContinueScreen(guideText.text));
+    }
+    public void Stars()
+    {
+        if(score / maxScore > star1 && score / maxScore < star2)
+        {
+            stars = 1;
+        }
+        if (score / maxScore >= star2 && score / maxScore < star3)
+        {
+            stars = 2;
+        }
+        if (score / maxScore >= star3)
+        {
+            stars = 3;
+        }
     }
 
     //show replay screen after animation is done
@@ -149,10 +181,24 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
+        Stars();
+        //GameManager.instance.stars[GameManager.instance.currentLevel] = stars;
+
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
 
+        starText.text = stars.ToString();
+
         ReplayPanel.SetActive(true);
+
+        if (GameManager.instance.stars != null)
+        {
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel])
+            {
+                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel];
+                GameManager.instance.allStars += stars;
+            }
+        }
         switch (levelResult)
         {
 		case "Level completed!":
@@ -176,6 +222,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.levelWon = false;
             ReplayBtn.SetActive(true);
             NewLevelBtn.SetActive(false);
+            starText.text = stars.ToString();
                 break;
         }
 
