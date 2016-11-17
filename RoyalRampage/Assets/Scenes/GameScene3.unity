@@ -1365,6 +1365,7 @@ GameObject:
   - 33: {fileID: 333401032}
   - 64: {fileID: 1237502847}
   - 23: {fileID: 333401031}
+  - 114: {fileID: 333401033}
   m_Layer: 0
   m_Name: HallwayFloor
   m_TagString: Floor
@@ -1424,6 +1425,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333401029}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &333401033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333401029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9a05cfa35904e4bbdcc99e7186b88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  res: 512
+  sizeOfSquares: 30
+  xTile: 10
+  yTile: 10
+  colorTriangle1: {r: 0.9453125, g: 0.375, b: 0.50390625, a: 1}
+  colorTriangle2: {r: 0.73828125, g: 0.546875, b: 0.74609375, a: 1}
+  colorDots: {r: 0.96875, g: 0.578125, b: 0.1171875, a: 1}
 --- !u!1001 &355180368
 Prefab:
   m_ObjectHideFlags: 0
@@ -4725,6 +4744,7 @@ GameObject:
   - 33: {fileID: 1548077686}
   - 64: {fileID: 1548077685}
   - 23: {fileID: 1548077684}
+  - 114: {fileID: 1548077687}
   m_Layer: 0
   m_Name: LoungeFloor
   m_TagString: Floor
@@ -4797,6 +4817,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548077682}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1548077687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1548077682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9a05cfa35904e4bbdcc99e7186b88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  res: 512
+  sizeOfSquares: 30
+  xTile: 10
+  yTile: 10
+  colorTriangle1: {r: 0.9453125, g: 0.375, b: 0.50390625, a: 1}
+  colorTriangle2: {r: 0.73828125, g: 0.546875, b: 0.74609375, a: 1}
+  colorDots: {r: 0.96875, g: 0.578125, b: 0.1171875, a: 1}
 --- !u!1001 &1562996648
 Prefab:
   m_ObjectHideFlags: 0
