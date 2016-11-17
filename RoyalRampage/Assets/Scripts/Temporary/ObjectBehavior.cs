@@ -161,6 +161,7 @@ public class ObjectBehavior : MonoBehaviour
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
+        ObjectManagerV2.instance.maxScore += score;  
     }
 
 
