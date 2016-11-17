@@ -1137,8 +1137,8 @@ GameObject:
   - 65: {fileID: 65000012900280288}
   - 54: {fileID: 54000012304095802}
   - 114: {fileID: 114000013503495560}
-  - 114: {fileID: 114000014113346480}
   - 114: {fileID: 114000011127634340}
+  - 114: {fileID: 114000010228056426}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27684,6 +27684,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010228056426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010315909554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b679169ea52294098d589021939b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objRB: []
 --- !u!114 &114000011127634340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27696,7 +27708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
-  reachScore: 15
+  reachScore: 30
   looseRageAfter: 5
   percentLoose: 10
   loosePerSecond: 1
@@ -27713,40 +27725,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clamped: 0
-  maxMoveForce: 7000
   torgueForce: 0.02
-  hitForce: 500
-  swirlForce: 1500
-  liftForce: 30
+  hitForce: 800
+  swirlForce: 2000
+  liftForce: 25
   timeForSwipe: 1
-  timeForCircle: 0.5
-  SameTapTime: 0.05
+  timeForCircle: 1
+  SameTapTime: 0.1
   doubleTapTime: 0.15
   gravityTimer: 1.5
   swirlRadius: 2
   liftRadius: 3
-  distSwipe: 5
+  attackRange: 2
+  distSwipe: 1
   rotationSpeed: 4
   degreesInAir: 45
   colImpact: 2.5
   numOfCircleToShow: 1
-  p0: 0.15
-  p1: 0.3
-  p2: 0
-  p3: 0
---- !u!114 &114000014113346480
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010315909554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a44127681603849954235cf6fb81b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objRB: []
+  p0: 1
+  p1: 1
+  p2: 1
+  p3: 1
 --- !u!137 &137000010454392880
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

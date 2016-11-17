@@ -38,18 +38,8 @@ public class PhysicalMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (applyMove)
-        {
-            if (GetComponent<PlayerStates>().clamped)
-            {
-                if (force > GetComponent<PlayerStates>().maxMoveForce)
-                {
-                    force = GetComponent<PlayerStates>().maxMoveForce;
-                }
-            }
-            else
-            {
-                force = force * CubicBezier(moveTimer);
-            }
+        {          
+            force = force * CubicBezier(moveTimer);
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
 

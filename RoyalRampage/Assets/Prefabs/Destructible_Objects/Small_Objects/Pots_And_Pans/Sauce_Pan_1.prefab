@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000013829740362}
   - 114: {fileID: 114000013413159732}
   - 65: {fileID: 65000012375545096}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Sauce_Pan_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000012142564614}
   - 33: {fileID: 33000012584348912}
   - 23: {fileID: 23000012635340020}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: saucepan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000011486109492}
   - 33: {fileID: 33000011007402974}
   - 23: {fileID: 23000011670656510}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: saucepan_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Pot_And_Pan
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
+  objMaterial: 3
   objSize: 0

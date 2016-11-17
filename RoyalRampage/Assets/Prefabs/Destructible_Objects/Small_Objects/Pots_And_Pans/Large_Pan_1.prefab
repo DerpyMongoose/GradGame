@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011814432246}
   - 33: {fileID: 33000013802007752}
   - 23: {fileID: 23000012211546480}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pan_a_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 54: {fileID: 54000010592803896}
   - 114: {fileID: 114000013829528650}
   - 65: {fileID: 65000011487416422}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Large_Pan_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000010175023830}
   - 33: {fileID: 33000011360297230}
   - 23: {fileID: 23000011142680704}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pan_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Pot_And_Pan
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
+  objMaterial: 3
   objSize: 0

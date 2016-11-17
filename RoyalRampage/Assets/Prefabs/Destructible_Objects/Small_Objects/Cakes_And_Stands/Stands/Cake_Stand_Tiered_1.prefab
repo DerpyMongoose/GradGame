@@ -24,7 +24,7 @@ GameObject:
   - 54: {fileID: 54000013467680352}
   - 114: {fileID: 114000013456138142}
   - 65: {fileID: 65000013112819188}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cake_Stand_Tiered_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -122,7 +122,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Serving_Tray
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
+  objMaterial: 3
   objSize: 0
