@@ -37,6 +37,7 @@ public class UIScript : MonoBehaviour
             ReplayBTN.SetActive(false);
             Text scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
             scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            starTotal = GameObject.Find("starTotal").GetComponent<Text>();
             starTotal.text = "Stars:" + GameManager.instance.allStars.ToString();
 
             Text levelNum = GameObject.Find("replayPanel/NewLevelButton/levelnumber").GetComponentInChildren<Text>();
@@ -66,6 +67,7 @@ public class UIScript : MonoBehaviour
             NextLevelBTN.SetActive(false);
             scoreText = GameObject.Find("replayPanel/score").GetComponent<Text>();
             scoreText.text = "Score: " + "$" + GameManager.instance.score;
+            starTotal = GameObject.Find("starTotal").GetComponent<Text>();
             starTotal.text = "Stars:" + GameManager.instance.allStars.ToString();
             break;
 
