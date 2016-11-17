@@ -26,7 +26,7 @@ public class AnimationManager : MonoBehaviour {
 
 	// Spin
 	void PlayerSpinAnim(){
-		playerAnim.SetBool ("is_spinning", true);
+		playerAnim.SetTrigger ("spin_trig");
 	}
 	void PlayerSpinAnimStop(){
 		playerAnim.SetBool ("is_spinning", false);
