@@ -246,4 +246,27 @@ public class UIScript : MonoBehaviour
         }
     }
 
+	public void LoadGame(){
+		GameManager.instance.LoadGame ();
+	}
+	/*private IEnumerator SplashScreen(){
+		GameObject dadiu = GameObject.FindGameObjectWithTag ("DadiuSplash");
+		GameObject unity = GameObject.FindGameObjectWithTag ("UnitySplash");
+		GameObject game = GameObject.FindGameObjectWithTag ("GameSplash");
+
+		unity.SetActive (false);
+		game.SetActive (false);
+
+		yield return new WaitForSeconds (1.5f);
+		unity.SetActive (true);
+		dadiu.SetActive (false);
+
+		yield return new WaitForSeconds (1.5f);
+		game.SetActive (true);
+		unity.SetActive (false);
+
+		yield return new WaitForSeconds (2f);
+		GameManager.instance.LoadGame ();
+	}*/
+
 }
