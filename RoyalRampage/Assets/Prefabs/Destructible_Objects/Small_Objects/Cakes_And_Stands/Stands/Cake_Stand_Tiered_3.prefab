@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000011945444632}
   - 114: {fileID: 114000012002306420}
   - 65: {fileID: 65000012047408188}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cake_Stand_Tiered_3
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000010586588136}
   - 33: {fileID: 33000012864821604}
   - 23: {fileID: 23000011231322412}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cakeStand_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013738534362}
   - 33: {fileID: 33000014057243420}
   - 23: {fileID: 23000012967695050}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cakeStand_a_dinnerPlate_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000011518768736}
   - 33: {fileID: 33000013430019584}
   - 23: {fileID: 23000011275588310}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cakeStand_a_dinnerPlate_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000011676569084}
   - 33: {fileID: 33000014024585882}
   - 23: {fileID: 23000010367550104}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cakeStand_a_dinnerPlate_c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Serving_Tray
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
+  objMaterial: 3
   objSize: 0

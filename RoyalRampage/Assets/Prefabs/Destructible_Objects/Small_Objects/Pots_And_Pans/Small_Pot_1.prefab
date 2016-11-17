@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000013342256936}
   - 114: {fileID: 114000010128273338}
   - 65: {fileID: 65000014110245992}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Small_Pot_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000010100965756}
   - 33: {fileID: 33000011147594324}
   - 23: {fileID: 23000010660423878}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pot_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000014285576370}
   - 33: {fileID: 33000013144437844}
   - 23: {fileID: 23000013733710988}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pot_a_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Pot_And_Pan
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
+  objMaterial: 3
   objSize: 0

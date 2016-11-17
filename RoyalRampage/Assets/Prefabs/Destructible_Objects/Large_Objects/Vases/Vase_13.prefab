@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011354023150}
   - 33: {fileID: 33000012866883414}
   - 23: {fileID: 23000014211231064}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: vase_n_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 54: {fileID: 54000011176493478}
   - 114: {fileID: 114000013254208538}
   - 65: {fileID: 65000011060539380}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Vase_13
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -151,7 +151,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Porcelain
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0
-  objSize: 0
+  objSize: 1
