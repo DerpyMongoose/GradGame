@@ -34,6 +34,7 @@ public class GameManager {
     public int score = 0;
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
+	public bool isPaused = false;
 
 	//getters:
 	public static GameManager instance{
@@ -91,6 +92,15 @@ public class GameManager {
 		currentScene = Scene.INTRO;
 		SceneManager.LoadScene("MainMenu");
 		Time.timeScale = 1;
+	}
+
+	public void PauseGame(){
+		if (isPaused) {
+			Time.timeScale = 0;
+		}
+		else if (!isPaused) {
+			Time.timeScale = 1;
+		}
 	}
 
     public void StartLevel(int level){
