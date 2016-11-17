@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000011990421502}
   - 114: {fileID: 114000013050062818}
   - 65: {fileID: 65000010868881954}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Clay_Jar_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000011858819932}
   - 33: {fileID: 33000011884771140}
   - 23: {fileID: 23000010371643274}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: clayJar_lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013814161766}
   - 33: {fileID: 33000010176487398}
   - 23: {fileID: 23000013996351488}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: clayJar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: China
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 0

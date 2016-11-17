@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000011209481620}
   - 114: {fileID: 114000012308346940}
   - 65: {fileID: 65000013436405494}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Coffee_Table_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000013747214026}
   - 33: {fileID: 33000014020100948}
   - 23: {fileID: 23000010194232228}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_leg_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000011662824104}
   - 33: {fileID: 33000011167519538}
   - 23: {fileID: 23000011837635438}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_leg_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000013847848600}
   - 33: {fileID: 33000013900562302}
   - 23: {fileID: 23000010726830090}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_leg_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000012691897646}
   - 33: {fileID: 33000013320039240}
   - 23: {fileID: 23000011203312570}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_tableTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000010414393556}
   - 33: {fileID: 33000010076956446}
   - 23: {fileID: 23000011594015446}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_leg_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000011552277048}
   - 33: {fileID: 33000011111465782}
   - 23: {fileID: 23000013347378368}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: tableCoffe_a_rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,8 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Table
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 0
-  objSize: 0
+  objMaterial: 2
+  objSize: 1
