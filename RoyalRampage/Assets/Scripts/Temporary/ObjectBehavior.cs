@@ -4,10 +4,11 @@ using System.Collections;
 public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
-    private int life;
-    private int rubbleAmount;
-    private int state;
     [HideInInspector]
+    public int life, initialLife;
+    private int rubbleAmount;
+	private int state;
+
     public string soundSwitch; // FOR AUDIO
 
     private Vector3 initialPos;
@@ -32,13 +33,18 @@ public class ObjectBehavior : MonoBehaviour
 
 
     //object name to be used for Quest system??
-    public enum DestructableObject
+    public enum DestructableMaterial
     {
-        BARREL, CHAIR, TABLE, WARDROBE, BED, BOX
+        GLASS, WOOD, STONE, METAL
     }
 
-    public DestructableObject objType;
+    public enum DestructableSize
+    {
+        SMALL, MEDIUM, LARGE
+    }
 
+    public DestructableMaterial objMaterial;
+    public DestructableSize objSize;
     // Use this for initialization
     //void OnEnable()
     //{
@@ -52,62 +58,107 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-
-        switch (objType)
+        rubblePrefab = ObjectManagerV2.instance.rubblePrefab;
+        switch (objMaterial)
         {
-            case DestructableObject.BARREL:
-                score = ObjectManager.instance.barrelScore;
-                life = ObjectManager.instance.barrelLife;
-                rubbleAmount = ObjectManager.instance.barrelRubbleAmount;
-                rubblePrefab = ObjectManager.instance.barrelRubblePrefab;
-                soundSwitch = ObjectManager.instance.barrelSwitch;
+            case DestructableMaterial.GLASS:
+                switch (objSize)
+                {
+                    case DestructableSize.SMALL:
+                        score = ObjectManagerV2.instance.smallGlassScore;
+                        life = ObjectManagerV2.instance.smallGlassLife;
+                        rubbleAmount = ObjectManagerV2.instance.smallGlassRubbleAmount;
+                        break;
+                    case DestructableSize.MEDIUM:
+                        score = ObjectManagerV2.instance.mediumGlassScore;
+                        life = ObjectManagerV2.instance.mediumGlassLife;
+                        rubbleAmount = ObjectManagerV2.instance.mediumGlassRubbleAmount;
+                        break;
+                    case DestructableSize.LARGE:
+                        score = ObjectManagerV2.instance.largeGlassScore;
+                        life = ObjectManagerV2.instance.largeGlassLife;
+                        rubbleAmount = ObjectManagerV2.instance.largeGlassRubbleAmount;
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case DestructableObject.BED:
-                score = ObjectManager.instance.bedScore;
-                life = ObjectManager.instance.bedLife;
-                rubbleAmount = ObjectManager.instance.bedRubbleAmount;
-                rubblePrefab = ObjectManager.instance.bedRubblePrefab;
-                soundSwitch = ObjectManager.instance.bedSwitch;
+            case DestructableMaterial.WOOD:
+                switch (objSize)
+                {
+                    case DestructableSize.SMALL:
+                        score = ObjectManagerV2.instance.smallWoodScore;
+                        life = ObjectManagerV2.instance.smallWoodLife;
+                        rubbleAmount = ObjectManagerV2.instance.smallWoodRubbleAmount;
+                        break;
+                    case DestructableSize.MEDIUM:
+                        score = ObjectManagerV2.instance.mediumWoodScore;
+                        life = ObjectManagerV2.instance.mediumWoodLife;
+                        rubbleAmount = ObjectManagerV2.instance.mediumWoodRubbleAmount;
+                        break;
+                    case DestructableSize.LARGE:
+                        score = ObjectManagerV2.instance.largeWoodScore;
+                        life = ObjectManagerV2.instance.largeWoodLife;
+                        rubbleAmount = ObjectManagerV2.instance.largeWoodRubbleAmount;
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case DestructableObject.BOX:
-                score = ObjectManager.instance.boxScore;
-                life = ObjectManager.instance.boxLife;
-                rubbleAmount = ObjectManager.instance.boxRubbleAmount;
-                rubblePrefab = ObjectManager.instance.boxRubblePrefab;
-                soundSwitch = ObjectManager.instance.boxSwitch;
+            case DestructableMaterial.STONE:
+                switch (objSize)
+                {
+                    case DestructableSize.SMALL:
+                        score = ObjectManagerV2.instance.smallStoneScore;
+                        life = ObjectManagerV2.instance.smallStoneLife;
+                        rubbleAmount = ObjectManagerV2.instance.smallStoneRubbleAmount;
+                        break;
+                    case DestructableSize.MEDIUM:
+                        score = ObjectManagerV2.instance.mediumStoneScore;
+                        life = ObjectManagerV2.instance.mediumStoneLife;
+                        rubbleAmount = ObjectManagerV2.instance.mediumStoneRubbleAmount;
+                        break;
+                    case DestructableSize.LARGE:
+                        score = ObjectManagerV2.instance.largeStoneScore;
+                        life = ObjectManagerV2.instance.largeStoneLife;
+                        rubbleAmount = ObjectManagerV2.instance.largeStoneRubbleAmount;
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case DestructableObject.CHAIR:
-                score = ObjectManager.instance.chairScore;
-                life = ObjectManager.instance.chairLife;
-                rubbleAmount = ObjectManager.instance.chairRubbleAmount;
-                rubblePrefab = ObjectManager.instance.chairRubblePrefab;
-                soundSwitch = ObjectManager.instance.chairSwitch;
+            case DestructableMaterial.METAL:
+                switch (objSize)
+                {
+                    case DestructableSize.SMALL:
+                        score = ObjectManagerV2.instance.smallMetalScore;
+                        life = ObjectManagerV2.instance.smallMetalLife;
+                        rubbleAmount = ObjectManagerV2.instance.smallMetalRubbleAmount;
+                        break;
+                    case DestructableSize.MEDIUM:
+                        score = ObjectManagerV2.instance.mediumMetalScore;
+                        life = ObjectManagerV2.instance.mediumMetalLife;
+                        rubbleAmount = ObjectManagerV2.instance.mediumMetalRubbleAmount;
+                        break;
+                    case DestructableSize.LARGE:
+                        score = ObjectManagerV2.instance.largeMetalScore;
+                        life = ObjectManagerV2.instance.largeMetalLife;
+                        rubbleAmount = ObjectManagerV2.instance.largeMetalRubbleAmount;
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case DestructableObject.TABLE:
-                score = ObjectManager.instance.tableScore;
-                life = ObjectManager.instance.tableLife;
-                rubbleAmount = ObjectManager.instance.tableRubbleAmount;
-                rubblePrefab = ObjectManager.instance.tableRubblePrefab;
-                soundSwitch = ObjectManager.instance.tableSwitch;
-                break;
-            case DestructableObject.WARDROBE:
-                score = ObjectManager.instance.wardrobeScore;
-                life = ObjectManager.instance.wardrobeLife;
-                rubbleAmount = ObjectManager.instance.wardrobeRubbleAmount;
-                rubblePrefab = ObjectManager.instance.wardrobeRubblePrefab;
-                soundSwitch = ObjectManager.instance.wardrobeSwitch;
-                break;
+
             default:
                 break;
 
         }
         state = 1;
-        particleSys = GetComponent<ParticleSystem>();
+        initialLife = life;
+        //particleSys = GetComponent<ParticleSystem>(); //////////////DO WE STILL NEED THESE PARTICLES?????
+        //particleSys.Stop();
         objRB = GetComponent<Rigidbody>();
-        if (gameObject.tag != "UniqueObjs")
-        {
-            initialMass = objRB.mass;
-        }
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
     }
@@ -115,31 +166,31 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.player.GetComponent<PlayerStates>().lifted)
+        CheckDamage();
+        //print(PlayerStates.lifted);
+        if (gameObject.tag != "UniqueObjs")
         {
-            if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion)
+            if (PlayerStates.lifted)
             {
-                //checkHeight = 0;
-                objRB.useGravity = false;
-                //lifted = true;
+                //APPLY TRANSFORM ROTATION
+                GameManager.instance.player.GetComponent<PhysicalMovement>().RotateObjs(GameManager.instance.player.GetComponent<PhysicalMovement>().objRB);
 
-                coroutine = ReturnGravity();
-                StartCoroutine(coroutine);
+                if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && PlayerStates.imInSlowMotion)
+                {
+                    //objRB.useGravity = false;
+                    objRB.isKinematic = true;
+                }
+                else
+                {
+                    //objRB.useGravity = true;
+                    objRB.isKinematic = false;
+                }
             }
-            else
+
+            if (!Mathf.Approximately(initialPos.y, transform.position.y))
             {
-                objRB.useGravity = true;
+                isGrounded = false;
             }
-        }
-
-        if (GameManager.instance.player.GetComponent<PlayerStates>().hitObject && gameObject.tag != "UniqueObjs")
-        {
-            objRB.mass = initialMass;
-        }
-
-        if (!Mathf.Approximately(initialPos.y, transform.position.y))
-        {
-            isGrounded = false;
         }
     }
 
@@ -153,88 +204,121 @@ public class ObjectBehavior : MonoBehaviour
         Destroy(obj);
     }
 
-    IEnumerator ReturnGravity()
+
+
+    void CheckDamage()
     {
-        yield return new WaitForSeconds(GameManager.instance.player.GetComponent<PlayerStates>().gravityTimer);
-        GameManager.instance.player.GetComponent<PlayerStates>().lifted = false;
-        GameManager.instance.player.GetComponent<PlayerStates>().imInSlowMotion = false;
-        GameManager.instance.player.GetComponent<PlayerStates>().hitObject = false;
-        GameManager.instance.player.GetComponent<StampBar>().increaseFill = true;
-        objRB.mass = initialMass;
-        objRB.useGravity = true;
+        if (life <= 0)
+        {
+            DestroyObj(gameObject);
+        }
+        else if (life < initialLife)
+        {
+            //particleSys.Play();
+        }
+
     }
+
+
 
     void OnCollisionEnter(Collision col)
     {
-
-        if (col.collider.gameObject == player)
+        //print(col.relativeVelocity.magnitude);
+        if (col.relativeVelocity.magnitude > ObjectManagerV2.instance.colImpact)
         {
-            hit = true;
+            if (col.collider.gameObject == player)
+            {
+                hit = true;
 
-            // SOUND OBJECT HIT
-            GameManager.instance.objectHit(gameObject);
+                // SOUND OBJECT HIT
+                GameManager.instance.objectHit(gameObject);
 
-            //Damage system, it takes more hits to destroy
-            /*if(state == (life - life) + state)
-            {
-                if (state >= life)
-                {           
-                    for (int i = 0; i < rubbleAmount; i++)
-                    {
-                        Instantiate(rubblePrefab,transform.position, Quaternion.identity);
-                    }
-					if()
-                    {
-
-                    }
-                }*/
-            if (particleSys != null)
-            {
-                particleSys.startSize *= state;
-                particleSys.Play();
-            }
-            /*state += 1;
-        }*/
-        }
-        if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
-        {
-            if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
-            {
-                DestroyObj(gameObject);
-            }
-            if (isGrounded == false)
-            {
-                DestroyObj(gameObject);
-            }
-            if (isGrounded == true)
-            {
-                if(GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
+                //Damage system, it takes more hits to destroy
+                /*if(state == (life - life) + state)
                 {
-                    GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
-                }
-                DestroyObj(gameObject);
-                DestroyObj(col.gameObject);
-            }
-        }
+                    if (state >= life)
+                    {           
+                        for (int i = 0; i < rubbleAmount; i++)
+                        {
+                            Instantiate(rubblePrefab,transform.position, Quaternion.identity);
+                        }
+                        if()
+                        {
 
-        if (gameObject.tag != "UniqueObjs")
-        {
-            if (col.collider.tag == "Wall")
-            {
-                DestroyObj(gameObject);
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-
-            //********** 4 AUDIO and ANIMATION
-
-            if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
-            {
-                if (hasLanded == false && isGrounded == false)
+                        }
+                    }*/
+                if (particleSys != null)
                 {
-                    GameManager.instance.objectLanding(gameObject);
-                    //print ("landing" + gameObject);
+                    particleSys.startSize *= state;
+                    particleSys.Play();
                 }
-                hasLanded = true;
+                /*state += 1;
+            }*/
+            }
+            if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
+            {
+                if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
+                {
+                    //Both are in the air. Addforce to the second object to the direction you hit it + 45 degrees angle (Both objects need to be damaged). 
+                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);  //THE ISSUE IS THAT IT IS ALSO APPLY THE SAME FORCE TO THE ACTUAL OBJECT THAT HIT THE OTHER ON THE AIR.
+
+                    life -= ObjectManagerV2.instance.objDamage;
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                    //col.gameObject.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.up).normalized * ObjectManagerV2.instance.oneToAnother); 
+                    //DestroyObj(gameObject); //Give damage not destroy
+                }
+                //if (isGrounded == false && col.collider.tag != "UniqueObjs") //AS IT IS RIGHT NOW IT WILL PUSH THE COLLIDED OBJECTS BELOW FLOOR
+                //{
+                //    //object the player hit is on air and the object hits another obj. Before it dies needs to apply force to the other object which collided with (addForce to the object to the direction you hit it) (Both objects need to be damaged).
+                //    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                //    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+
+                //    life -= 20;
+                //    col.gameObject.GetComponent<ObjectBehavior>().life -= 20;
+                //    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
+                //    //DestroyObj(gameObject); //Give damage not destroy
+                //}
+                if (isGrounded == true)
+                {
+                    if (GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
+                    {
+                        GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
+                    }
+                    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
+                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                    if (col.gameObject.tag != "UniqueObjs")
+                    {
+                        col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                    }
+
+                    life -= ObjectManagerV2.instance.objDamage;
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                    //DestroyObj(gameObject); //Give damage not destroy
+                    //DestroyObj(col.gameObject); //Give damage not destroy
+                }
+            }
+
+            if (gameObject.tag != "UniqueObjs")
+            {
+                if (col.collider.tag == "Wall")
+                {
+                    //DestroyObj(gameObject);
+                    life -= ObjectManagerV2.instance.wallDamage;
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+
+                //********** 4 AUDIO and ANIMATION
+
+                if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+                {
+                    if (hasLanded == false && isGrounded == false)
+                    {
+                        GameManager.instance.objectLanding(gameObject);
+                        //print ("landing" + gameObject);
+                    }
+                    hasLanded = true;
+                }
             }
         }
     }

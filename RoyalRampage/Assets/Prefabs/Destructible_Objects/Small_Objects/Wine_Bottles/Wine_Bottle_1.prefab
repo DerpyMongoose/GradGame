@@ -39,8 +39,7 @@ GameObject:
   - 95: {fileID: 95000013552114326}
   - 54: {fileID: 54000012201758414}
   - 114: {fileID: 114000012173802530}
-  - 65: {fileID: 65000013480515676}
-  - 136: {fileID: 136000013235173870}
+  - 65: {fileID: 65000014209281510}
   m_Layer: 2
   m_Name: Wine_Bottle_1
   m_TagString: Destructable
@@ -102,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011777789610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.582, y: 0.5849772, z: -28.873}
+  m_LocalPosition: {x: 21.359, y: 1, z: -21.618}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -260,7 +259,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!65 &65000013480515676
+--- !u!65 &65000014209281510
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -270,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.500146, y: 1.0165036, z: 5.7713346}
-  m_Center: {x: -0.49276352, y: 0.6089926, z: -0.16822815}
+  m_Size: {x: 8.180359, y: 29.623365, z: 8.180359}
+  m_Center: {x: 0, y: 15.079212, z: 0}
 --- !u!95 &95000013552114326
 Animator:
   serializedVersion: 3
@@ -300,19 +299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Bottle
   isGrounded: 1
+  hasLanded: 1
   score: 0
-  objType: 1
---- !u!136 &136000013235173870
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011777789610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 4.9756823
-  m_Height: 31.437088
-  m_Direction: 1
-  m_Center: {x: 0, y: 16, z: 0}
+  objMaterial: 0
+  objSize: 0
