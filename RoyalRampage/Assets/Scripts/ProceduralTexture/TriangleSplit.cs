@@ -46,7 +46,7 @@ public class TriangleSplit : MonoBehaviour {
                 } else {
                     newTex.SetPixel(x, y, Color.green);
                 }
-                if(x < sizeOfSquares && y < sizeOfSquares) {
+                if (x < sizeOfSquares && y < sizeOfSquares) {
                     newTex.SetPixel(x, y, Color.red);
                 }
                 if (x < sizeOfSquares && y > (res - sizeOfSquares)) {
