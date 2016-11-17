@@ -10,10 +10,7 @@ public class PlayerStates : MonoBehaviour
 
     [HideInInspector]
     public static bool imInSlowMotion, lifted, hitObject;
-    [Header("ApplyClamp")]
-    public bool clamped = true;
     [Header("Forces")]
-    public float maxMoveForce;
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
@@ -25,9 +22,11 @@ public class PlayerStates : MonoBehaviour
     public float doubleTapTime;
     public float gravityTimer;
     [Header("Radius")]
+    //public float dashRadius;
     public float swirlRadius;
     public float liftRadius;
     [Header("Mixed")]
+    public float attackRange;
     public float distSwipe;
     public float rotationSpeed;
     public float degreesInAir;

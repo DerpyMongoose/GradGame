@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011612671074}
   - 33: {fileID: 33000013538389930}
   - 23: {fileID: 23000011552765678}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: wineBottle_cork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - 54: {fileID: 54000012201758414}
   - 114: {fileID: 114000012173802530}
   - 65: {fileID: 65000014209281510}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wine_Bottle_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - 4: {fileID: 4000010512840674}
   - 33: {fileID: 33000011885328282}
   - 23: {fileID: 23000013129493504}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: wineBottle_label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - 4: {fileID: 4000012140043300}
   - 33: {fileID: 33000010427911214}
   - 23: {fileID: 23000012069880260}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: wineBottle_glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,8 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundSwitch: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Bottle
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
-  objType: 1
+  objMaterial: 0
+  objSize: 0

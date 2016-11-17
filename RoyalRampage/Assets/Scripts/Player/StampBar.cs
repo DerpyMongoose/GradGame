@@ -48,11 +48,13 @@ public class StampBar : MonoBehaviour
             tempScore = reachScore;
             if (!ready)
             {
-                PhysicalMovement.ableToLift = true;
+                //PhysicalMovement.ableToLift = true;
+                SwipeHalf.ableToLift = true;
                 ready = true;
             }
             slider.GetComponent<Image>().color = Color.red;
-            if (PhysicalMovement.intoAir)
+            //if (PhysicalMovement.intoAir)
+            if(SwipeHalf.intoAir)
             {
                 tempScore = 0f;
                 fillBar = 0f;
@@ -60,7 +62,8 @@ public class StampBar : MonoBehaviour
                 slider.GetComponent<Image>().color = initialColor;
                 increaseFill = false;
                 ready = false;
-                PhysicalMovement.intoAir = false;
+                //PhysicalMovement.intoAir = false;
+                SwipeHalf.intoAir = false;
             }
         }
 
@@ -70,7 +73,8 @@ public class StampBar : MonoBehaviour
             if (countSecond >= loosePerSecond)
             {
                 slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
-                PhysicalMovement.ableToLift = false;
+                //PhysicalMovement.ableToLift = false;
+                SwipeHalf.ableToLift = false;
                 ready = false;
                 slider.GetComponent<Image>().color = initialColor;
                 tempScore -= reachScore * (percentLoose / 100);

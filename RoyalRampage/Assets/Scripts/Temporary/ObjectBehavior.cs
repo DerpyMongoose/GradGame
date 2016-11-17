@@ -4,11 +4,11 @@ using System.Collections;
 public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
-    [HideInInspector]
+    //[HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-    private int state;
-    [HideInInspector]
+	private int state;
+
     public string soundSwitch; // FOR AUDIO
 
     private Vector3 initialPos;
@@ -20,7 +20,8 @@ public class ObjectBehavior : MonoBehaviour
 
     [HideInInspector]
     public bool isGrounded = true;
-    private bool hit = false;
+    [HideInInspector]
+    public bool hit = false;
     private bool readyToCheck;
     private bool lifted;
 
@@ -167,13 +168,15 @@ public class ObjectBehavior : MonoBehaviour
     void Update()
     {
         CheckDamage();
+        CheckVelocity();
         //print(PlayerStates.lifted);
         if (gameObject.tag != "UniqueObjs")
         {
             if (PlayerStates.lifted)
             {
                 //APPLY TRANSFORM ROTATION
-                GameManager.instance.player.GetComponent<PhysicalMovement>().RotateObjs(GameManager.instance.player.GetComponent<PhysicalMovement>().objRB);
+                //GameManager.instance.player.GetComponent<PhysicalMovement>().RotateObjs(GameManager.instance.player.GetComponent<PhysicalMovement>().objRB);
+                GameManager.instance.player.GetComponent<SwipeHalf>().RotateObjs(GameManager.instance.player.GetComponent<SwipeHalf>().objRB);
 
                 if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && PlayerStates.imInSlowMotion)
                 {
@@ -219,6 +222,14 @@ public class ObjectBehavior : MonoBehaviour
 
     }
 
+    void CheckVelocity()
+    {
+        if(gameObject.tag != "UniqueObjs" && objRB.velocity.magnitude == 0)
+        {
+            hit = false;
+        }
+    }
+
 
 
     void OnCollisionEnter(Collision col)
@@ -228,7 +239,7 @@ public class ObjectBehavior : MonoBehaviour
         {
             if (col.collider.gameObject == player)
             {
-                hit = true;
+                //hit = true; //Hit true will become when you actually swiped the object.
 
                 // SOUND OBJECT HIT
                 GameManager.instance.objectHit(gameObject);
@@ -257,46 +268,55 @@ public class ObjectBehavior : MonoBehaviour
             }
             if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
             {
-                if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
-                {
-                    //Both are in the air. Addforce to the second object to the direction you hit it + 45 degrees angle (Both objects need to be damaged). 
-                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);  //THE ISSUE IS THAT IT IS ALSO APPLY THE SAME FORCE TO THE ACTUAL OBJECT THAT HIT THE OTHER ON THE AIR.
-
-                    life -= ObjectManagerV2.instance.objDamage;
-                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
-                    //col.gameObject.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.up).normalized * ObjectManagerV2.instance.oneToAnother); 
-                    //DestroyObj(gameObject); //Give damage not destroy
-                }
-                //if (isGrounded == false && col.collider.tag != "UniqueObjs") //AS IT IS RIGHT NOW IT WILL PUSH THE COLLIDED OBJECTS BELOW FLOOR
+                col.collider.GetComponent<ObjectBehavior>().hit = true;
+                //if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
                 //{
-                //    //object the player hit is on air and the object hits another obj. Before it dies needs to apply force to the other object which collided with (addForce to the object to the direction you hit it) (Both objects need to be damaged).
+                //    //Both are in the air. Addforce to the second object to the direction you hit it + 45 degrees angle (Both objects need to be damaged). 
                 //    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                //    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                //    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);  //THE ISSUE IS THAT IT IS ALSO APPLY THE SAME FORCE TO THE ACTUAL OBJECT THAT HIT THE OTHER ON THE AIR.
 
-                //    life -= 20;
-                //    col.gameObject.GetComponent<ObjectBehavior>().life -= 20;
-                //    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
+                //    life -= ObjectManagerV2.instance.objDamage;
+                //    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                //    //col.gameObject.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.up).normalized * ObjectManagerV2.instance.oneToAnother); 
                 //    //DestroyObj(gameObject); //Give damage not destroy
                 //}
-                if (isGrounded == true)
-                {
-                    if (GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
-                    {
-                        GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
-                    }
-                    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
-                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                    if (col.gameObject.tag != "UniqueObjs")
-                    {
-                        col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
-                    }
+                ////if (isGrounded == false && col.collider.tag != "UniqueObjs") //AS IT IS RIGHT NOW IT WILL PUSH THE COLLIDED OBJECTS BELOW FLOOR
+                ////{
+                ////    //object the player hit is on air and the object hits another obj. Before it dies needs to apply force to the other object which collided with (addForce to the object to the direction you hit it) (Both objects need to be damaged).
+                ////    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                ////    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
 
-                    life -= ObjectManagerV2.instance.objDamage;
-                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
-                    //DestroyObj(gameObject); //Give damage not destroy
-                    //DestroyObj(col.gameObject); //Give damage not destroy
+                ////    life -= 20;
+                ////    col.gameObject.GetComponent<ObjectBehavior>().life -= 20;
+                ////    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
+                ////    //DestroyObj(gameObject); //Give damage not destroy
+                ////}
+                //if (isGrounded == true)
+                //{
+                //    if (GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
+                //    {
+                //        GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
+                //    }
+                //    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
+                //    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                //    if (col.gameObject.tag != "UniqueObjs")
+                //    {
+                //        col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                //    }
+
+                //    life -= ObjectManagerV2.instance.objDamage;
+                //    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                //    //DestroyObj(gameObject); //Give damage not destroy
+                //    //DestroyObj(col.gameObject); //Give damage not destroy
+                //}
+
+                ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                if (col.gameObject.tag != "UniqueObjs")
+                {
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
                 }
+                life -= ObjectManagerV2.instance.objDamage;
+                col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
             }
 
             if (gameObject.tag != "UniqueObjs")
@@ -304,8 +324,8 @@ public class ObjectBehavior : MonoBehaviour
                 if (col.collider.tag == "Wall")
                 {
                     //DestroyObj(gameObject);
+                    //GetComponent<Rigidbody>().velocity = Vector3.zero;
                     life -= ObjectManagerV2.instance.wallDamage;
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
 
                 //********** 4 AUDIO and ANIMATION
