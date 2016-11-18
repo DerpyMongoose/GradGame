@@ -81,29 +81,34 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    Startlevel();
+                    GameManager.instance.levelLoad();
                 }
 
-                if (Input.GetKey(KeyCode.R))
-                {
-                    Startlevel();
-                }
-                break;
+            if(hitObject == true)
+            {
+                Startlevel();
+            }
+
+            if (Input.GetKey(KeyCode.R))
+            {
+                Startlevel();
+            }
+            break;
 
             case PlayerState.IDLE:
-                break;
+            break;
 
             case PlayerState.WALKING:
-                break;
+            break;
 
             case PlayerState.ATTACKING:
-                break;
+            break;
 
             //after timer is out - losing/winning ending
             case PlayerState.ENDING:
-                break;
+            break;
         }
     }
 
@@ -115,38 +120,42 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.IDLE:
             case PlayerState.WALKING:
             case PlayerState.ATTACKING:
-                if (!imInSlowMotion)
-                {
-                    timeLeftInLevel -= Time.deltaTime;
-                }
-                else
-                {
-                    timeLeftInLevel -= 0.005f;
-                }
-					timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-                if (timeLeftInLevel <= timeTicker)
-                {
-                    timeTicker -= 1;
-                    GameManager.instance.timerUpdate(timeTicker);
-                }
+            if (GameManager.instance.levelManager.multiplier > 1)
+            {
+                timeLeftInLevel -= 0;
+            }
+            else if (!imInSlowMotion)
+            {
+                timeLeftInLevel -= Time.deltaTime;
+            }
+            else
+            {
+                timeLeftInLevel -= 0.005f;
+            }
+            timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
+            if (timeLeftInLevel <= timeTicker)
+            {
+                timeTicker -= 1;
+                GameManager.instance.timerUpdate(timeTicker);
+            }
 
-                if (timeLeftInLevel <= timeRunningOut)
-                {
-                    timeRunningOut = -1;
-                    GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
-                }
+            if (timeLeftInLevel <= timeRunningOut)
+            {
+                timeRunningOut = -1;
+                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
+            }
 
-                //when timer runs out:
-                if (timeLeftInLevel <= 0f)
-                {
-					timerText.text = "0";  // for the level timer
-                    timerText.color = Color.red;
-                    state = PlayerState.ENDING;
-                    GameManager.instance.timerOut();
-                    GameManager.instance.canPlayerDestroy = false;
-                    GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
-                }
-                break;
+            //when timer runs out:
+            if (timeLeftInLevel <= 0f)
+            {
+                timerText.text = "0";  // for the level timer
+                timerText.color = Color.red;
+                state = PlayerState.ENDING;
+                GameManager.instance.timerOut();
+                GameManager.instance.canPlayerDestroy = false;
+                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
+            }
+            break;
         }
     }
 
@@ -160,6 +169,14 @@ public class PlayerStates : MonoBehaviour
     private void Move()
     {
 
+    }
+
+    void OnCollisionEnter(Collision hit)
+    {
+        if(hit.transform.tag == "Destructable")
+        {
+            hitObject = true;
+        }
     }
 
 }

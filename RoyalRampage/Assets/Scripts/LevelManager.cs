@@ -22,6 +22,10 @@ public class LevelManager : MonoBehaviour
     public float star2;
     [Range(0, 1)]
     public float star3;
+    [Range(0, 1)]
+    public float star4;
+    [Range(0, 1)]
+    public float star5;
 
 
     int stars = 0;
@@ -37,21 +41,21 @@ public class LevelManager : MonoBehaviour
     GameObject NewLevelBtn;
 	GameObject IntroTapPanel;
     private GameObject continueButton;
-    private int multiplier;
+    public int multiplier;
     private float countMultiTime;
     private int countObjects;
 
     void OnEnable()
     {
         GameManager.instance.OnObjectDestructed += IncreaseScore;
-        GameManager.instance.OnTimerStart += StartLevel;
+        GameManager.instance.OnLevelLoad += StartLevel;
         GameManager.instance.OnTimerOut += ShowEnding;
     }
 
     void OnDisable()
     {
         GameManager.instance.OnObjectDestructed -= IncreaseScore;
-        GameManager.instance.OnTimerStart -= StartLevel;
+        GameManager.instance.OnLevelLoad -= StartLevel;
         GameManager.instance.OnTimerOut -= ShowEnding;
     }
 
@@ -92,6 +96,7 @@ public class LevelManager : MonoBehaviour
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
+                //Timer shouldn't change during combo.
                 multiplier++;
                 countObjects = 0;
             }
@@ -171,9 +176,17 @@ public class LevelManager : MonoBehaviour
         {
             stars = 2;
         }
-        if (score / maxScore >= star3)
+        if (score / maxScore >= star3 && score / maxScore < star4)
         {
             stars = 3;
+        }
+        if (score / maxScore >= star4 && score / maxScore < star5)
+        {
+            stars = 4;
+        }
+        if (score / maxScore >= star5)
+        {
+            stars = 5;
         }
     }
 
@@ -187,7 +200,6 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
-        GameManager.instance.stars[GameManager.instance.currentLevel] = stars;
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
@@ -198,9 +210,9 @@ public class LevelManager : MonoBehaviour
 
         if (GameManager.instance.stars != null)
         {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel])
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
             {
-                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel];
+                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
                 GameManager.instance.allStars += stars;
             }
         }

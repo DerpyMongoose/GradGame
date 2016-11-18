@@ -7,7 +7,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-	private int state;
+    private int state;
 
     public string soundSwitch; // FOR AUDIO
 
@@ -215,15 +215,22 @@ public class ObjectBehavior : MonoBehaviour
         if (life <= 0)
         {
             //DestroyObj(gameObject); /////////////////////////////////////////////////////THIS NEEDS TO BE UNCOMMENTED AND THE REST LINES INSIDE THIS IF TO BE COMMENTED IF WE WANT THE PREVIOUS INTERACTION.
-            /*for (int p = 0; p < transform.childCount; p++)
+            try
             {
-                if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                for (int p = 0; p < transform.childCount; p++)
                 {
-                    transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                    if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                    {
+                        transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                    }
                 }
+                GetComponent<FracturedObject>().CollapseChunks();
+                DestroyObj(gameObject);
             }
-            GetComponent<FracturedObject>().CollapseChunks();*/
-            DestroyObj(gameObject);
+            catch
+            {
+                DestroyObj(gameObject);
+            }
         }
         else if (life < initialLife)
         {
@@ -234,7 +241,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if(gameObject.tag != "UniqueObjs" && objRB.velocity.magnitude == 0)
+        if (gameObject.tag != "UniqueObjs" && objRB.velocity.magnitude == 0)
         {
             hit = false;
         }
