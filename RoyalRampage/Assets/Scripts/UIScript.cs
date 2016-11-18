@@ -9,6 +9,7 @@ public class UIScript : MonoBehaviour
     private float waitTimeSB = .3f;
 
 	GameObject pause_menu;
+	GameObject settings_menu;
 
     Text starTotal;
 
@@ -98,6 +99,8 @@ public class UIScript : MonoBehaviour
 		case GameManager.Scene.GAME:
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
+			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
+			settings_menu.SetActive(false);
 			break;
         }
     }
@@ -173,16 +176,47 @@ public class UIScript : MonoBehaviour
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+        //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+		settings_menu.SetActive (true);
 
     }
+
+	public void CloseSettings()
+	{
+
+		//***** FOR AUDIO
+		PlayMenuButtonSound();
+		//StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+		settings_menu.SetActive (false);
+
+	}
 
 	public void PauseGame(){
 
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
-		StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		GameManager.instance.isPaused = true;
+		pause_menu.SetActive (true);
+		GameManager.instance.PauseGame();
 
+	}
+	public void UnPauseGame(){
+		
+		//***** FOR AUDIO
+		PlayMenuButtonSound();
+		StartCoroutine(WaitButtonFinish(waitTimeMB, "UnPauseGame"));
+		GameManager.instance.isPaused = false;
+		GameManager.instance.PauseGame();
+		print ("unpausing");
+	}
+
+	public void RestartGame(){
+
+		//***** FOR AUDIO
+		PlayMenuButtonSound();
+		GameManager.instance.isPaused = false;
+		GameManager.instance.BackToGame();
 	}
 
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
@@ -233,14 +267,8 @@ public class UIScript : MonoBehaviour
             GameManager.instance.GoToInfo();
             break;
 
-            case "GoToSettings":
-            GameManager.instance.GoToSettings();
-            break;
-
-		case "PauseGame":
-			GameManager.instance.isPaused = true;
-			pause_menu.SetActive (true);
-			GameManager.instance.PauseGame();
+		case "UnPauseGame":
+			pause_menu.SetActive (false);
 			break;
 
         }

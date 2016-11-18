@@ -147,7 +147,7 @@ public class LevelManager : MonoBehaviour
 
 		MultiplierText.text = "x" + multiplier.ToString();
 
-        print(GameManager.instance.allStars);
+        //print(GameManager.instance.allStars);
     }
 
     public void Continue()
