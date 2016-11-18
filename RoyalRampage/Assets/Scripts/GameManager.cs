@@ -15,13 +15,17 @@ public class GameManager {
 
 	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
 
+    // The size of the array is the total amount of levels
+    public int[] stars = new int[6];
+
+    public int allStars = 0;
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
-        INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
+        SPLASH, INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
     }
-    private Scene currentScene = Scene.INTRO;
+	private Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.INTRO;
     public bool levelWon;
 
@@ -30,6 +34,7 @@ public class GameManager {
     public int score = 0;
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
+	public bool isPaused = false;
 
 	//getters:
 	public static GameManager instance{
@@ -82,6 +87,21 @@ public class GameManager {
                 previousScene = Scene.GAME_OVER_REPLAY;
         }
     }
+
+	public void LoadGame(){
+		currentScene = Scene.INTRO;
+		SceneManager.LoadScene("MainMenu");
+		Time.timeScale = 1;
+	}
+
+	public void PauseGame(){
+		if (isPaused) {
+			Time.timeScale = 0;
+		}
+		else if (!isPaused) {
+			Time.timeScale = 1;
+		}
+	}
 
     public void StartLevel(int level){
 		//_instance = null;
@@ -261,6 +281,8 @@ public class GameManager {
         PlayerData data = new PlayerData();
         //data.currentLevel = currentLevel;
         data.levelsUnlocked = levelsUnlocked;
+        data.allStars = allStars;
+        data.stars = stars;
 
         bf.Serialize(file, data);
         file.Close();
@@ -278,6 +300,8 @@ public class GameManager {
 
             //currentLevel = data.currentLevel;
             levelsUnlocked = data.levelsUnlocked;
+            allStars = data.allStars;
+            stars = data.stars;
         }
 
     }
@@ -288,4 +312,6 @@ class PlayerData
 {
     //public int currentLevel;
     public int levelsUnlocked;
+    public int allStars;
+    public int[] stars;
 }
