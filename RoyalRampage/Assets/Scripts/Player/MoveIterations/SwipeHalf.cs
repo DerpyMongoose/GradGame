@@ -37,14 +37,39 @@ public class SwipeHalf : MonoBehaviour
     {
         if (applyMove)
         {
+            //force = force * CubicBezier(moveTimer);
+            //playerRig.AddForce(direction.normalized * force);
+            ////playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
+            //playerRig.velocity = Vector3.zero;
+            //transform.rotation = Quaternion.LookRotation(direction);
+            //if (playerRig.velocity.magnitude > GetComponent<PlayerStates>().maxVelocity)
+            //{
+            //    var maxForce = (playerRig.mass * (GetComponent<PlayerStates>().maxVelocity * GetComponent<PlayerStates>().maxVelocity)) / 2;
+            //    var difForce = force - maxForce;
+            //    playerRig.AddForce(-direction.normalized * difForce);
+            //}
+
+            ////dash sound
+            //if (newDash == true)
+            //{
+            //    GameManager.instance.playerDash();
+            //    newDash = false;
+            //}
+
+            //applyMove = false;
+
+            var highForce = 40.0f;
             force = force * CubicBezier(moveTimer);
+            var playerVelocity = playerRig.mass * (force * force) / 2;
+            print(force);
             playerRig.AddForce(direction.normalized * force);
             //playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
             playerRig.velocity = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(direction);
-            if (playerRig.velocity.magnitude > GetComponent<PlayerStates>().maxVelocity)
+            if (playerVelocity > highForce)
             {
-                var maxForce = (playerRig.mass * (GetComponent<PlayerStates>().maxVelocity * GetComponent<PlayerStates>().maxVelocity)) / 2;
+                var maxForce = (playerRig.mass * (highForce * highForce)) / 2;
+                print("max:" + maxForce);
                 var difForce = force - maxForce;
                 playerRig.AddForce(-direction.normalized * difForce);
             }
@@ -58,9 +83,6 @@ public class SwipeHalf : MonoBehaviour
 
             applyMove = false;
         }
-        //print(playerRig.velocity.magnitude);
-        //print((playerRig.mass * (25 * 25)) / 2);
-        //print(playerRig.velocity.magnitude);
     }
 
 
