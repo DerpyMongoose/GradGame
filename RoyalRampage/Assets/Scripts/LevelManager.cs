@@ -251,7 +251,7 @@ public class LevelManager : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		GameManager.instance.startCountingPoints ();
 		int start = 0;
-		float duration = (float)new_score * (1f / 100f); //show with speed of 100 points per second
+		float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
 		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
 			float progress = timer / duration;
 			int temp_score = (int)Mathf.Lerp (start, new_score, progress);
