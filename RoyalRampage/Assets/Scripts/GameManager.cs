@@ -13,7 +13,7 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
+	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2"};
 
     // The size of the array is the total amount of levels
     public int[] stars = new int[6];

@@ -37,40 +37,24 @@ public class SwipeHalf : MonoBehaviour
     {
         if (applyMove)
         {
-            //force = force * CubicBezier(moveTimer);
-            //playerRig.AddForce(direction.normalized * force);
-            ////playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
-            //playerRig.velocity = Vector3.zero;
-            //transform.rotation = Quaternion.LookRotation(direction);
-            //if (playerRig.velocity.magnitude > GetComponent<PlayerStates>().maxVelocity)
-            //{
-            //    var maxForce = (playerRig.mass * (GetComponent<PlayerStates>().maxVelocity * GetComponent<PlayerStates>().maxVelocity)) / 2;
-            //    var difForce = force - maxForce;
-            //    playerRig.AddForce(-direction.normalized * difForce);
-            //}
+            float highForce = GameManager.instance.player.GetComponent<PlayerStates>().maxVelocity;
 
-            ////dash sound
-            //if (newDash == true)
-            //{
-            //    GameManager.instance.playerDash();
-            //    newDash = false;
-            //}
-
-            //applyMove = false;
-
-            var highForce = 40.0f;
             force = force * CubicBezier(moveTimer);
-            var playerVelocity = playerRig.mass * (force * force) / 2;
-            print(force);
+            float playerVelocity = playerRig.mass * (playerRig.velocity.magnitude * playerRig.velocity.magnitude) / 2;
+
+            //print("force: " + force);
             playerRig.AddForce(direction.normalized * force);
-            //playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
-            playerRig.velocity = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(direction);
-            if (playerVelocity > highForce)
+            float maxForce = (playerRig.mass * (highForce * highForce)) / 2;
+
+            //print("player velocity: " + playerVelocity);
+            //print("max: " + maxForce);
+
+            if (playerVelocity > maxForce)
             {
-                var maxForce = (playerRig.mass * (highForce * highForce)) / 2;
-                print("max:" + maxForce);
+
                 var difForce = force - maxForce;
+                //print("diff: " + difForce);
                 playerRig.AddForce(-direction.normalized * difForce);
             }
 
