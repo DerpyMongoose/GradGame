@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 
@@ -72,7 +71,6 @@ public class AddToLanguage : EditorWindow {
                 showText += "\n" + key + " : " + word;
                 key = "";
                 word = "";
-                DebugFunction();
             }
             Repaint();
         }
@@ -85,6 +83,7 @@ public class AddToLanguage : EditorWindow {
 
     }
 
+    //Create the xml language
     private void CreateXml(string language) {
         if (keysAndWords.Count > 0) {
             XDocument doc = new XDocument(new XElement(language,
@@ -93,21 +92,22 @@ public class AddToLanguage : EditorWindow {
                 new XElement("Key", obj.Key),
                 new XElement("Value", obj.Word))));
 
-            doc.Save(language + ".xml");
+            doc.Save("Assets/Resources/" + language + ".xml");
         }
         
     }
 
+    //Add the word to the xml document
     private void AddToXml(string language) {
 
         try {
-            XElement doc = XElement.Load(language + ".xml");
+            XElement doc = XElement.Load("Assets/Resources/" + language + ".xml");
             foreach (KeyAndWord obj in keysAndWords) {
                 doc.Add(new XElement("Word",
                     new XElement("Key", obj.Key),
                     new XElement("Value", obj.Word)));
             }
-            doc.Save(language + ".xml");
+            doc.Save("Assets/Resources/" + language + ".xml");
         } catch {
             CreateXml(language);
         }
@@ -118,7 +118,6 @@ public class AddToLanguage : EditorWindow {
         try {
             alreadyAdded = new List<KeyAndWord>();
             alreadyAdded = LanguageManager.instance.ReturnSet(index);
-            Debug.Log(alreadyAdded.Count);
             if (alreadyAdded.Count != 0) {
                 foreach (KeyAndWord set in alreadyAdded) {
                     showText += "\n" + set.Key + " : " + set.Word;
@@ -127,14 +126,6 @@ public class AddToLanguage : EditorWindow {
 
         } catch {
             showText = "What words are you adding";
-        }
-    }
-
-    void DebugFunction() {
-        if (keysAndWords.Count != 0) {
-            for (int i = 0; i < keysAndWords.Count; i++) {
-                Debug.Log(keysAndWords[i].Key + " : " + keysAndWords[i].Word);
-            }
         }
     }
 }

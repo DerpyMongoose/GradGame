@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
@@ -21,13 +21,19 @@ public class LanguageManager {
             return _instance;
         }
     }
-
+    //Function to get a word from the xml file
     public string ReturnWord(string key) {
+        //Load xml as textasset
+        TextAsset textAsset = (TextAsset)Resources.Load(languages[languageSelect],typeof(TextAsset));
         string result = "";
-        XElement doc = XElement.Load(languages[languageSelect] + ".xml");
+        //Create xml document
+        XmlDocument doc = new XmlDocument();
+        doc.LoadXml(textAsset.text);
+        //Convert to Xelement
+        XElement e = XElement.Load(new XmlNodeReader(doc));
+        IEnumerable<XElement> var = e.Elements();
 
-        IEnumerable<XElement> var = doc.Elements();
-
+        //find the word
         foreach (XElement node in var) {
             if (node.Element("Key").Value == key) {
                 result += node.Element("Value").Value;
@@ -36,10 +42,12 @@ public class LanguageManager {
         return result;
     }
 
+    //Function to display the current words
+    //in the unity editor
     public List<KeyAndWord> ReturnSet(int index) {
         List<KeyAndWord> result = new List<KeyAndWord>();
 
-        XElement doc = XElement.Load(languages[index] + ".xml");
+        XElement doc = XElement.Load("Assets/Resources/" + languages[index] + ".xml");
 
         IEnumerable<XElement> var = doc.Elements();
 
@@ -48,5 +56,16 @@ public class LanguageManager {
             Word = node.Element("Value").Value});
         }
         return result;
+    }
+
+    //Delegate to change the language in the entire scene
+    public delegate void ChangeLanguage();
+
+    public event ChangeLanguage ChangeText;
+
+    public void changeText () {
+        if(ChangeText != null) {
+            ChangeText();
+        }
     }
 }

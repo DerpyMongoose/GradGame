@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Xml.Linq;
-using System.Collections;
 
 public class KeyAndWord {
 
