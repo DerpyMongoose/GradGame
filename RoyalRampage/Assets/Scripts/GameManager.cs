@@ -23,7 +23,7 @@ public class GameManager {
     public int levelsUnlocked = 1;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
-        SPLASH, INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
+        SPLASH, INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE, MENU
     }
 	private Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.INTRO;
@@ -128,7 +128,7 @@ public class GameManager {
         currentScene = Scene.LEVELS_OVERVIEW;
     }
 
-    public void GoToInfo() {
+   /* public void GoToInfo() {
         //_instance = null;
         //SceneManager.LoadScene("Help");
         Time.timeScale = 1;
@@ -142,7 +142,7 @@ public class GameManager {
         Time.timeScale = 1;
         SetPreviousScene();
         currentScene = Scene.SETTINGS;
-    }
+    }*/
 
     public void BackToGame(){
 		//_instance = null;
@@ -158,6 +158,12 @@ public class GameManager {
         Time.timeScale = 1;
         currentScene = previousScene;
     }
+
+	public void GoToMainMenu(){
+		SceneManager.LoadScene("menu_mockup");
+		Time.timeScale = 1;
+		currentScene = Scene.INTRO;
+	}
 
 	//delegates
 	public delegate void DestructionAction(GameObject obj);

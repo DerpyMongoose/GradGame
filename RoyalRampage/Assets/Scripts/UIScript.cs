@@ -219,6 +219,11 @@ public class UIScript : MonoBehaviour
 		GameManager.instance.BackToGame();
 	}
 
+	public void GoToMainMenu(){
+		PlayMenuButtonSound();
+		StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
+	}
+
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
     {
         yield return new WaitForSeconds(waitTime);
@@ -271,6 +276,9 @@ public class UIScript : MonoBehaviour
 			pause_menu.SetActive (false);
 			break;
 
+		case "GoToMainMenu":
+			GameManager.instance.GoToMainMenu ();
+			break;
         }
     }
 
