@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
+    public int currencyPerStar = 50;
     [Range(0,1)]
     public float star1;
     [Range(0, 1)]
@@ -190,6 +191,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void CalculateCurrency () {
+        GameManager.instance.currency = stars * currencyPerStar;
+    }
+
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult)
     {
@@ -200,6 +205,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
+        CalculateCurrency();
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop

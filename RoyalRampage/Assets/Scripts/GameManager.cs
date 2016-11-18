@@ -22,6 +22,7 @@ public class GameManager {
     public int allStars = 0;
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
+    public int currency = 200;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
         SPLASH, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
@@ -275,6 +276,8 @@ public class GameManager {
         data.levelsUnlocked = levelsUnlocked;
         data.allStars = allStars;
         data.stars = stars;
+        data.currency = currency;
+        
 
         bf.Serialize(file, data);
         file.Close();
@@ -294,6 +297,7 @@ public class GameManager {
             levelsUnlocked = data.levelsUnlocked;
             allStars = data.allStars;
             stars = data.stars;
+            currency = data.currency;
         }
 
     }
@@ -304,6 +308,7 @@ class PlayerData
 {
     //public int currentLevel;
     public int levelsUnlocked;
+    public int currency;
     public int allStars;
     public int[] stars;
 }
