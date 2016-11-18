@@ -8,6 +8,8 @@ public class UIScript : MonoBehaviour
     private float waitTimeMB = .13f;
     private float waitTimeSB = .3f;
 
+	GameObject pause_menu;
+
     Text starTotal;
 
     void Awake()
@@ -97,6 +99,11 @@ public class UIScript : MonoBehaviour
             case GameManager.Scene.STORE:
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
             break;
+
+		case GameManager.Scene.GAME:
+			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
+			pause_menu.SetActive(false);
+			break;
         }
     }
 
@@ -175,6 +182,14 @@ public class UIScript : MonoBehaviour
 
     }
 
+	public void PauseGame(){
+
+		//***** FOR AUDIO
+		PlayMenuButtonSound();
+		StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+
+	}
+
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
     {
         yield return new WaitForSeconds(waitTime);
@@ -226,6 +241,12 @@ public class UIScript : MonoBehaviour
             case "GoToSettings":
             GameManager.instance.GoToSettings();
             break;
+
+		case "PauseGame":
+			GameManager.instance.isPaused = true;
+			pause_menu.SetActive (true);
+			GameManager.instance.PauseGame();
+			break;
 
         }
     }

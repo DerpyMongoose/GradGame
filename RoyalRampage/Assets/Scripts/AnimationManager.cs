@@ -31,6 +31,10 @@ public class AnimationManager : MonoBehaviour {
 	void PlayerSpinAnimStop(){
 		playerAnim.SetBool ("is_spinning", false);
 	}
+	// Stomp
+	void PlayerStompAnim(){
+		playerAnim.SetTrigger ("stomp_trig");
+	}
 
 	void OnEnable(){
         playerAnim = GameManager.instance.player.transform.GetChild(0).GetComponent<Animator>();

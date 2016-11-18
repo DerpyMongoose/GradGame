@@ -2790,6 +2790,10 @@ MonoBehaviour:
   MultiplierTime: 5
   amountOfObjects: 5
   MultiplierText: {fileID: 803790971}
+  maxScore: 57
+  star1: 0
+  star2: 0
+  star3: 0
 --- !u!114 &848426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5409,11 +5413,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 848426169}
     - target: {fileID: 114000013391880670, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
