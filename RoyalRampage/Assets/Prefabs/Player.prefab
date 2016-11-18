@@ -6844,6 +6844,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011995923718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011428428740}
+  - 65: {fileID: 65000012252950658}
+  - 114: {fileID: 114000012958346308}
+  m_Layer: 0
+  m_Name: SwipeCone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012000509088
 GameObject:
   m_ObjectHideFlags: 1
@@ -18659,6 +18676,19 @@ Transform:
   - {fileID: 4000010173790358}
   m_Father: {fileID: 4000012581760974}
   m_RootOrder: 0
+--- !u!4 &4000011428428740
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011995923718}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013400599650}
+  m_RootOrder: 2
 --- !u!4 &4000011435601568
 Transform:
   m_ObjectHideFlags: 1
@@ -24792,6 +24822,7 @@ Transform:
   m_Children:
   - {fileID: 4000012106683860}
   - {fileID: 4000012957716674}
+  - {fileID: 4000011428428740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013415135976
@@ -27638,6 +27669,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 2
+--- !u!65 &65000012252950658
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011995923718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.51, y: 1.77, z: 1.235561}
+  m_Center: {x: 0, y: 1.04, z: 0.1822185}
 --- !u!65 &65000012900280288
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -27714,6 +27757,17 @@ MonoBehaviour:
   loosePerSecond: 1
   tempScore: 0
   timeToLowRage: 0
+--- !u!114 &114000012958346308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011995923718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d517350b7e7aff04588460084a30571d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013503495560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27729,6 +27783,7 @@ MonoBehaviour:
   hitForce: 800
   swirlForce: 2000
   liftForce: 25
+  maxVelocity: 25
   timeForSwipe: 1
   timeForCircle: 1
   SameTapTime: 0.1
@@ -27742,8 +27797,8 @@ MonoBehaviour:
   degreesInAir: 45
   colImpact: 2.5
   numOfCircleToShow: 1
-  p0: 1
-  p1: 1
+  p0: 0.65
+  p1: 0.8
   p2: 1
   p3: 1
 --- !u!137 &137000010454392880
