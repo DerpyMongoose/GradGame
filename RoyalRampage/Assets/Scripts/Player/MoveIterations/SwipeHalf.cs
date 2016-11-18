@@ -248,7 +248,6 @@ public class SwipeHalf : MonoBehaviour
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
-                PlayerStates.hitObject = true;
                 col[i].GetComponent<ObjectBehavior>().hit = true;
 
                 // SOUND OBJECT HIT
@@ -300,7 +299,6 @@ public class SwipeHalf : MonoBehaviour
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
         PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
-        PlayerStates.hitObject = false;
         StampBar.increaseFill = true;
         for (int i = 0; i < rig.Count; i++)
         {
