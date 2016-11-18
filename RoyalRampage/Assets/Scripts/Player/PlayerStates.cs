@@ -9,15 +9,13 @@ public class PlayerStates : MonoBehaviour
 {
 
     [HideInInspector]
-    public static bool imInSlowMotion, lifted, hitObject;
-    [Header("ApplyClamp")]
-    public bool clamped = true;
+    public static bool imInSlowMotion, lifted, hitObject, swiped;
     [Header("Forces")]
-    public float maxMoveForce;
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
     public float liftForce;
+    public float maxVelocity;
     [Header("Times")]
     public float timeForSwipe;
     public float timeForCircle;
@@ -25,9 +23,11 @@ public class PlayerStates : MonoBehaviour
     public float doubleTapTime;
     public float gravityTimer;
     [Header("Radius")]
+    //public float dashRadius;
     public float swirlRadius;
     public float liftRadius;
     [Header("Mixed")]
+    public float attackRange;
     public float distSwipe;
     public float rotationSpeed;
     public float degreesInAir;
@@ -64,7 +64,7 @@ public class PlayerStates : MonoBehaviour
         //update timer
         timerText = GameObject.Find("TimeLeftText").GetComponent<Text>();
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
-        timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
+        timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
         GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
@@ -123,7 +123,7 @@ public class PlayerStates : MonoBehaviour
                 {
                     timeLeftInLevel -= 0.005f;
                 }
-                timerText.text = "Timer: " + timeLeftInLevel.ToString("F1");
+					timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
                 if (timeLeftInLevel <= timeTicker)
                 {
                     timeTicker -= 1;
@@ -139,7 +139,7 @@ public class PlayerStates : MonoBehaviour
                 //when timer runs out:
                 if (timeLeftInLevel <= 0f)
                 {
-                    timerText.text = "Timer: 0";
+					timerText.text = "0";  // for the level timer
                     timerText.color = Color.red;
                     state = PlayerState.ENDING;
                     GameManager.instance.timerOut();

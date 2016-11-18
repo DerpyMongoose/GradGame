@@ -12,6 +12,10 @@ public class TriangleSplit : MonoBehaviour {
     public int xTile = 10;
     public int yTile = 10;
 
+	public Color colorTriangle1 = new Color (242f/256f, 96f/256f, 129f/256f);
+	public Color colorTriangle2 = new Color (189f/256f, 140f/256f, 191f/256f);
+	public Color colorDots = new Color (248f/256f, 148f/256f, 30f/256f);
+
 
 
     void OnEnable() {
@@ -39,24 +43,25 @@ public class TriangleSplit : MonoBehaviour {
 
     void CreateTexture() {
 
+
         for (int y = 0; y < res; y++) {
             for (int x = 0; x < res; x++) {
                 if (x <= splitList[x].X && y <= splitList[x].Y) {
-                    newTex.SetPixel(x, y, Color.blue);
+					newTex.SetPixel(x, y, colorTriangle1);
                 } else {
-                    newTex.SetPixel(x, y, Color.green);
+					newTex.SetPixel(x, y, colorTriangle2);
                 }
-                if (x < sizeOfSquares && y < sizeOfSquares) {
-                    newTex.SetPixel(x, y, Color.red);
+                if(x < sizeOfSquares && y < sizeOfSquares) {
+					newTex.SetPixel(x, y, colorDots);
                 }
                 if (x < sizeOfSquares && y > (res - sizeOfSquares)) {
-                    newTex.SetPixel(x, y, Color.red);
+					newTex.SetPixel(x, y, colorDots);
                 }
                 if (x > (res - sizeOfSquares) && y > (res - sizeOfSquares)) {
-                    newTex.SetPixel(x, y, Color.red);
+					newTex.SetPixel(x, y, colorDots);
                 }
                 if (x > (res - sizeOfSquares) && y < sizeOfSquares) {
-                    newTex.SetPixel(x, y, Color.red);
+					newTex.SetPixel(x, y, colorDots);
                 }
             }
         }

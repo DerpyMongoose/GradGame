@@ -22,7 +22,7 @@ GameObject:
   - 54: {fileID: 54000011161581690}
   - 114: {fileID: 114000011100083342}
   - 65: {fileID: 65000012918779684}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Tall_Pillar_1
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000010835112134}
   - 33: {fileID: 33000013769377588}
   - 23: {fileID: 23000012181651372}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pillar_a_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013160942018}
   - 33: {fileID: 33000011017122476}
   - 23: {fileID: 23000011243451598}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pillar_a_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000013071333724}
   - 33: {fileID: 33000013324547112}
   - 23: {fileID: 23000011188036710}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pillar_a_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,6 +281,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Statue
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 3
+  objMaterial: 2
+  objSize: 2

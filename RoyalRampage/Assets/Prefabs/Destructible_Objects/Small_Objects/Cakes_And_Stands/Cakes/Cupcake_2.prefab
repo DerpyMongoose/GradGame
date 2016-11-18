@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011415631798}
   - 33: {fileID: 33000012031316096}
   - 23: {fileID: 23000013600181552}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cupcakeFrosting_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000013735568166}
   - 33: {fileID: 33000011460789774}
   - 23: {fileID: 23000010525910464}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: cupcake_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 65: {fileID: 65000010364314020}
   - 54: {fileID: 54000012381229964}
   - 114: {fileID: 114000010845557698}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Cupcake_2
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -214,6 +214,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Food
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 1
+  objMaterial: 0
+  objSize: 0

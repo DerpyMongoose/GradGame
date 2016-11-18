@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012243333048}
   - 33: {fileID: 33000012481231488}
   - 23: {fileID: 23000010061277586}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_leg_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 65: {fileID: 65000011131016700}
   - 54: {fileID: 54000011171447370}
   - 114: {fileID: 114000013295500060}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Lounge_Couch_3
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000012777854028}
   - 33: {fileID: 33000012907391668}
   - 23: {fileID: 23000011945630522}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_armRestHolder_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000011694527648}
   - 33: {fileID: 33000012249104046}
   - 23: {fileID: 23000012399350640}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000013484803088}
   - 33: {fileID: 33000014254948542}
   - 23: {fileID: 23000010409316784}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_armRestHolder_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000011341870650}
   - 33: {fileID: 33000012235751732}
   - 23: {fileID: 23000010023872248}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_cushion_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000013540588292}
   - 33: {fileID: 33000010489053734}
   - 23: {fileID: 23000012571388698}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_pillow_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - 4: {fileID: 4000010654061042}
   - 33: {fileID: 33000010076344436}
   - 23: {fileID: 23000012116368120}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_leg_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - 4: {fileID: 4000011755717674}
   - 33: {fileID: 33000010516273398}
   - 23: {fileID: 23000010398989116}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_leg_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - 4: {fileID: 4000011068228530}
   - 33: {fileID: 33000010320126028}
   - 23: {fileID: 23000012431445050}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_leg_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - 4: {fileID: 4000011084968698}
   - 33: {fileID: 33000010045532150}
   - 23: {fileID: 23000012220413066}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_cushion_m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013013635444}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_fabric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - 4: {fileID: 4000013624482978}
   - 33: {fileID: 33000012508141218}
   - 23: {fileID: 23000010428173316}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_pillow_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011803211502}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - 4: {fileID: 4000012685220644}
   - 33: {fileID: 33000010090518702}
   - 23: {fileID: 23000014198693370}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: couch_b_couch_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,6 +942,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Chair
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 4
+  objMaterial: 1
+  objSize: 2

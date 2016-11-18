@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013500704494}
   - 33: {fileID: 33000012149749356}
   - 23: {fileID: 23000013902660706}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_leg_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000014039983250}
   - 33: {fileID: 33000014124549764}
   - 23: {fileID: 23000012306993230}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_rim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000010437738030}
   - 33: {fileID: 33000013850039824}
   - 23: {fileID: 23000011641294532}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_armRestHolder_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - 65: {fileID: 65000011529507704}
   - 114: {fileID: 114000011045923922}
   - 54: {fileID: 54000013089689948}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Lounge_Chair_3
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000010763666860}
   - 33: {fileID: 33000013943523342}
   - 23: {fileID: 23000011900313182}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_pillow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000010734543284}
   - 33: {fileID: 33000012356433470}
   - 23: {fileID: 23000012480060632}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_leg_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000011367545268}
   - 33: {fileID: 33000011957697230}
   - 23: {fileID: 23000014138534740}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_leg_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - 4: {fileID: 4000011283692430}
   - 33: {fileID: 33000011456685252}
   - 23: {fileID: 23000013017035736}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_leg_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - 4: {fileID: 4000012387047200}
   - 33: {fileID: 33000011553124938}
   - 23: {fileID: 23000013769099924}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_cushion_m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - 4: {fileID: 4000013031454008}
   - 33: {fileID: 33000010020909368}
   - 23: {fileID: 23000013158806032}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_couch_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012065988430}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_fabric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - 4: {fileID: 4000010067391642}
   - 33: {fileID: 33000010766329114}
   - 23: {fileID: 23000010279915924}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_armRestHolder_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011618364234}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - 4: {fileID: 4000013411259308}
   - 33: {fileID: 33000011658820714}
   - 23: {fileID: 23000011500425250}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: loungeChair_b_cushion_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,6 +875,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Chair
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 1
+  objMaterial: 1
+  objSize: 2
