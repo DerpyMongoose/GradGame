@@ -90,7 +90,7 @@ public class GameManager {
 
 	public void LoadGame(){
 		currentScene = Scene.INTRO;
-		SceneManager.LoadScene("MainMenu");
+		SceneManager.LoadScene("Animatic");
 		Time.timeScale = 1;
 	}
 
