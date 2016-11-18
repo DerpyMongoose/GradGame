@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: toon_dress
+  m_Name: toon_gold
   m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -120,7 +120,7 @@ Material:
       second: 1
     - first:
         name: _Shininess
-      second: 0.06
+      second: 0.19
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -129,10 +129,10 @@ Material:
       second: 1
     - first:
         name: _SpecularSmooth
-      second: 1
+      second: 0.509
     - first:
         name: _Specularity
-      second: 0.558
+      second: 1
     - first:
         name: _SrcBlend
       second: 1
@@ -148,16 +148,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.3361175, g: 0.17906576, b: 0.5294118, a: 1}
+      second: {r: 1, g: 0.74117655, b: 0.35294116, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HighlightColor
-      second: {r: 0.9264706, g: 0.8787846, b: 0.8787846, a: 1}
+      second: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
     - first:
         name: _ShadowColor
-      second: {r: 1, g: 0.5764706, b: 0.5803922, a: 1}
+      second: {r: 0.3897059, g: 0.32385904, b: 0.048713237, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 0.07309689, g: 0.11362021, b: 0.38235295, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
