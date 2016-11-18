@@ -182,7 +182,6 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
-        GameManager.instance.stars[GameManager.instance.currentLevel] = stars;
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
@@ -193,9 +192,9 @@ public class LevelManager : MonoBehaviour
 
         if (GameManager.instance.stars != null)
         {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel])
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
             {
-                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel];
+                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
                 GameManager.instance.allStars += stars;
             }
         }
