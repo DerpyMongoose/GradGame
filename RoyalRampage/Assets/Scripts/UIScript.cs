@@ -12,7 +12,7 @@ public class UIScript : MonoBehaviour
 
     void Awake()
     {
-        Handheld.PlayFullScreenMovie("AnimaticFinal");
+        Handheld.PlayFullScreenMovie("AnimaticFinal.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
     }
 
     void Start()
