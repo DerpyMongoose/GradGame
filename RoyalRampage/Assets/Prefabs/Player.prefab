@@ -24815,8 +24815,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010315909554}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -27783,7 +27783,7 @@ MonoBehaviour:
   hitForce: 800
   swirlForce: 2000
   liftForce: 25
-  maxVelocity: 25
+  maxVelocity: 10
   timeForSwipe: 1
   timeForCircle: 1
   SameTapTime: 0.1
@@ -27797,10 +27797,10 @@ MonoBehaviour:
   degreesInAir: 45
   colImpact: 2.5
   numOfCircleToShow: 1
-  p0: 0.65
-  p1: 0.8
-  p2: 1
-  p3: 1
+  p0: 0.25
+  p1: 0.3
+  p2: 0.4
+  p3: 0.4
 --- !u!137 &137000010454392880
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

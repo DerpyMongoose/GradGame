@@ -13,7 +13,7 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
+	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2"};
 	private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -26,7 +26,7 @@ public class GameManager {
     public enum Scene {
         SPLASH, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
     }
-	private Scene currentScene = Scene.PLAY_MENU;// Scene.SPLASH;
+	private Scene currentScene = Scene.SPLASH;
 	private Scene previousScene = Scene.PLAY_MENU;
     public bool levelWon;
 

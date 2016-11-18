@@ -37,40 +37,24 @@ public class SwipeHalf : MonoBehaviour
     {
         if (applyMove)
         {
-            //force = force * CubicBezier(moveTimer);
-            //playerRig.AddForce(direction.normalized * force);
-            ////playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
-            //playerRig.velocity = Vector3.zero;
-            //transform.rotation = Quaternion.LookRotation(direction);
-            //if (playerRig.velocity.magnitude > GetComponent<PlayerStates>().maxVelocity)
-            //{
-            //    var maxForce = (playerRig.mass * (GetComponent<PlayerStates>().maxVelocity * GetComponent<PlayerStates>().maxVelocity)) / 2;
-            //    var difForce = force - maxForce;
-            //    playerRig.AddForce(-direction.normalized * difForce);
-            //}
+            float highForce = GameManager.instance.player.GetComponent<PlayerStates>().maxVelocity;
 
-            ////dash sound
-            //if (newDash == true)
-            //{
-            //    GameManager.instance.playerDash();
-            //    newDash = false;
-            //}
-
-            //applyMove = false;
-
-            var highForce = 40.0f;
             force = force * CubicBezier(moveTimer);
-            var playerVelocity = playerRig.mass * (force * force) / 2;
-            print(force);
+            float playerVelocity = playerRig.mass * (playerRig.velocity.magnitude * playerRig.velocity.magnitude) / 2;
+
+            //print("force: " + force);
             playerRig.AddForce(direction.normalized * force);
-            //playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
-            playerRig.velocity = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(direction);
-            if (playerVelocity > highForce)
+            float maxForce = (playerRig.mass * (highForce * highForce)) / 2;
+
+            //print("player velocity: " + playerVelocity);
+            //print("max: " + maxForce);
+
+            if (playerVelocity > maxForce)
             {
-                var maxForce = (playerRig.mass * (highForce * highForce)) / 2;
-                print("max:" + maxForce);
+
                 var difForce = force - maxForce;
+                //print("diff: " + difForce);
                 playerRig.AddForce(-direction.normalized * difForce);
             }
 
@@ -264,7 +248,6 @@ public class SwipeHalf : MonoBehaviour
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
-                PlayerStates.hitObject = true;
                 col[i].GetComponent<ObjectBehavior>().hit = true;
 
                 // SOUND OBJECT HIT
@@ -316,7 +299,6 @@ public class SwipeHalf : MonoBehaviour
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
         PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
-        PlayerStates.hitObject = false;
         StampBar.increaseFill = true;
         for (int i = 0; i < rig.Count; i++)
         {
