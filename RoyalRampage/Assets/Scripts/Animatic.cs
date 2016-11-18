@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Animatic : MonoBehaviour {
 
 	void Start ()
     {
-        Handheld.PlayFullScreenMovie("AnimaticFinal");
+        Handheld.PlayFullScreenMovie("AnimaticFinal.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
+        SceneManager.LoadScene("MainMenu");
     }
 }

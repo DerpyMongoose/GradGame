@@ -12,11 +12,6 @@ public class UIScript : MonoBehaviour
 
     Text starTotal;
 
-    void Awake()
-    {
-        Handheld.PlayFullScreenMovie("AnimaticFinal.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
-    }
-
     void Start()
     {
         GameManager.instance.Load();
