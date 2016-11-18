@@ -13,6 +13,10 @@ public class UIScript : MonoBehaviour
 	GameObject levels_menu;
 	GameObject levels;
 	GameObject play_menu;
+    GameObject instr_Menu;
+    GameObject instr_Slides;
+    Transform[] instr_SlidesChildren;
+    public int slide = 4;
 
     Text starTotal;
 
@@ -48,7 +52,7 @@ public class UIScript : MonoBehaviour
 			levels_menu.SetActive(false);
 			play_menu = GameObject.FindGameObjectWithTag ("PlayPanel");
 
-			UpdateMenuBG();
+            UpdateMenuBG();
 			break;
 
 		case GameManager.Scene.LEVELS_OVERVIEW:
@@ -73,6 +77,17 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
+            if(GameManager.instance.currentLevel == 1)
+            {          
+                instr_Menu = GameObject.Find("HelpGame");
+                instr_Slides = GameObject.Find("HelpSlides");
+                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+                instr_Menu.SetActive(true);
+            }
+            else
+            {
+                instr_Menu.SetActive(false);
+            }
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -81,6 +96,16 @@ public class UIScript : MonoBehaviour
 
         }
 			
+    }
+
+    public void InstructionsNext()
+    {
+        instr_SlidesChildren[slide].gameObject.SetActive(false);
+        slide -= 1;
+        if(slide == 0)
+        {
+            instr_Menu.SetActive(false);
+        }
     }
 
     public void BackToGame()
