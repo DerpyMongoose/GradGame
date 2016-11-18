@@ -203,10 +203,10 @@ public class AudioManager : MonoBehaviour {
 
 	//**********volume ********
 	void UpdateMusicVolume(float volume){
-
+		print ("music " + volume);
 	}
 	void UpdateSFXVolume(float volume){
-
+		print ("sfx " + volume);
 	}
 
 	//****** play sound ****************
