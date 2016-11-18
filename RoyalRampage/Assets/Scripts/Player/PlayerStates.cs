@@ -9,12 +9,13 @@ public class PlayerStates : MonoBehaviour
 {
 
     [HideInInspector]
-    public static bool imInSlowMotion, lifted, hitObject;
+    public static bool imInSlowMotion, lifted, hitObject, swiped;
     [Header("Forces")]
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
     public float liftForce;
+    public float maxVelocity;
     [Header("Times")]
     public float timeForSwipe;
     public float timeForCircle;

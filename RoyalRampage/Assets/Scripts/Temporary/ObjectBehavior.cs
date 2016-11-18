@@ -4,7 +4,7 @@ using System.Collections;
 public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
-    //[HideInInspector]
+    [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
 	private int state;
@@ -214,6 +214,15 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
+            //DestroyObj(gameObject); /////////////////////////////////////////////////////THIS NEEDS TO BE UNCOMMENTED AND THE REST LINES INSIDE THIS IF TO BE COMMENTED IF WE WANT THE PREVIOUS INTERACTION.
+            for (int p = 0; p < transform.childCount; p++)
+            {
+                if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                {
+                    transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                }
+            }
+            GetComponent<FracturedObject>().CollapseChunks();
             DestroyObj(gameObject);
         }
         else if (life < initialLife)
