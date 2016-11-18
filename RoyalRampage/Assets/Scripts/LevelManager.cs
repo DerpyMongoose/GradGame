@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     Text replayScoreText;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
+	GameObject IntroTapPanel;
     private GameObject continueButton;
     private int multiplier;
     private float countMultiTime;
@@ -67,8 +68,9 @@ public class LevelManager : MonoBehaviour
         guideText.text = "Swipe and destroy objects";
         
 
-        ReplayPanel = GameObject.Find("replayPanel");
-        InGamePanel = GameObject.Find("InGameGUI");
+		ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
+		InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
+		IntroTapPanel = GameObject.FindGameObjectWithTag("IntroTapPanel");
         ReplayBtn = GameObject.Find("ReplayButton");
         NewLevelBtn = GameObject.Find("NewLevelButton");
         continueButton = GameObject.Find("ContinueButton");
@@ -76,6 +78,7 @@ public class LevelManager : MonoBehaviour
         replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
+		InGamePanel.SetActive (false);
         GameManager.instance.levelLoad(); // FOR AUDIO
     }
 
@@ -105,6 +108,8 @@ public class LevelManager : MonoBehaviour
     {
         //print ("started");
         //guideText.gameObject.SetActive(false);
+		IntroTapPanel.SetActive(false);
+		InGamePanel.SetActive (true);
         guideText.text = "";
         GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
