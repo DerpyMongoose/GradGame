@@ -13,7 +13,8 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"GameScene1","GameScene2","GameScene3"};
+	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2"};
+	private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
     public int[] stars = new int[6];
@@ -23,10 +24,10 @@ public class GameManager {
     public int levelsUnlocked = 1;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
-        SPLASH, INTRO, GAME, GAME_OVER_REPLAY, GAME_OVER_NEXT_LEVEL, INFO, SETTINGS, LEVELS_OVERVIEW, STORE
+        SPLASH, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
     }
 	private Scene currentScene = Scene.SPLASH;
-    private Scene previousScene = Scene.INTRO;
+	private Scene previousScene = Scene.PLAY_MENU;
     public bool levelWon;
 
 	public Sprite menu_bg_sprite;
@@ -34,6 +35,7 @@ public class GameManager {
     public int score = 0;
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
+	public bool isPaused = false;
 
 	//getters:
 	public static GameManager instance{
@@ -76,30 +78,31 @@ public class GameManager {
     }
 
     private void SetPreviousScene() {
-        if (currentScene == Scene.INTRO)
-            previousScene = Scene.INTRO;
-        if(currentScene == Scene.GAME) {
-			//levelUnLoad(); // FOR AUDIO
-            if (levelWon == true)
-                previousScene = Scene.GAME_OVER_NEXT_LEVEL;
-            else
-                previousScene = Scene.GAME_OVER_REPLAY;
-        }
+		if (currentScene == Scene.LEVELS_OVERVIEW)
+			previousScene = Scene.LEVELS_OVERVIEW;
+		else if (currentScene == Scene.PLAY_MENU)
+			previousScene = Scene.PLAY_MENU;
     }
 
+	//after splash screen
 	public void LoadGame(){
-		currentScene = Scene.INTRO;
-		SceneManager.LoadScene("MainMenu");
+		SceneManager.LoadScene("Animatic");
 		Time.timeScale = 1;
 	}
 
+	public void PauseGame(){
+		if (isPaused) {
+			Time.timeScale = 0;
+		}
+		else if (!isPaused) {
+			Time.timeScale = 1;
+		}
+	}
+
     public void StartLevel(int level){
-		//_instance = null;
-		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[level - 1]);
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
-		//levelLoad (); // FOR AUDIO
 	}
 
 	public void GoToStore(){
@@ -110,44 +113,33 @@ public class GameManager {
         currentScene = Scene.STORE;
     }
 
-    public void GoTolevelOverview() {
-        //_instance = null;
-        SceneManager.LoadScene("GameLevelsGUI");
-        Time.timeScale = 1;
+    public void GoToLevelOverview() {
         SetPreviousScene();
         currentScene = Scene.LEVELS_OVERVIEW;
     }
 
-    public void GoToInfo() {
-        //_instance = null;
-        //SceneManager.LoadScene("Help");
-        Time.timeScale = 1;
-        SetPreviousScene();
-        currentScene = Scene.INFO;
-    }
-
-    public void GoToSettings() {
-        //_instance = null;
-        //SceneManager.LoadScene("Settings");
-        Time.timeScale = 1;
-        SetPreviousScene();
-        currentScene = Scene.SETTINGS;
-    }
-
+	public void CloseLevelOverview() {
+		SetPreviousScene();
+		currentScene = Scene.PLAY_MENU;
+	}
+	
     public void BackToGame(){
-		//_instance = null;
-		//levelUnLoad();
 		SceneManager.LoadScene (GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
 		Time.timeScale = 1;
         currentScene = Scene.GAME;
-		//levelLoad ();	// FOR AUDIO
 	}
 
     public void BackToPreviousScene() {
-        SceneManager.LoadScene("MainMenu");
+		SceneManager.LoadScene(MAIN_MENU);
         Time.timeScale = 1;
         currentScene = previousScene;
     }
+
+	public void GoToMainMenu(){
+		SceneManager.LoadScene(MAIN_MENU);
+		Time.timeScale = 1;
+		currentScene = Scene.PLAY_MENU;
+	}
 
 	//delegates
 	public delegate void DestructionAction(GameObject obj);

@@ -4,10 +4,10 @@ using System.Collections;
 public class ObjectBehavior : MonoBehaviour
 {
     private GameObject rubblePrefab;
-    //[HideInInspector]
+    [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-	private int state;
+    private int state;
 
     public string soundSwitch; // FOR AUDIO
 
@@ -214,7 +214,23 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-            DestroyObj(gameObject);
+            //DestroyObj(gameObject); /////////////////////////////////////////////////////THIS NEEDS TO BE UNCOMMENTED AND THE REST LINES INSIDE THIS IF TO BE COMMENTED IF WE WANT THE PREVIOUS INTERACTION.
+            try
+            {
+                for (int p = 0; p < transform.childCount; p++)
+                {
+                    if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                    {
+                        transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                    }
+                }
+                GetComponent<FracturedObject>().CollapseChunks();
+                DestroyObj(gameObject);
+            }
+            catch
+            {
+                DestroyObj(gameObject);
+            }
         }
         else if (life < initialLife)
         {
@@ -225,7 +241,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if(gameObject.tag != "UniqueObjs" && objRB.velocity.magnitude == 0)
+        if (gameObject.tag != "UniqueObjs" && objRB.velocity.magnitude == 0)
         {
             hit = false;
         }

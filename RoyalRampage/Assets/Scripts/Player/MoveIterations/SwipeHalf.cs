@@ -10,13 +10,15 @@ public class SwipeHalf : MonoBehaviour
     private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
     private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime;
     private bool newDash = false;   // for dashsound
-    private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction, attackDir, firstTouch, secondTouch;
+    private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction, firstTouch, secondTouch;
     private Rigidbody playerRig;
 
     [HideInInspector]
     public static bool ableToLift, intoAir;
     [HideInInspector]
     public List<Rigidbody> objRB = new List<Rigidbody>();
+    [HideInInspector]
+    public static Vector3 attackDir;
 
 
     void Start()
@@ -35,15 +37,24 @@ public class SwipeHalf : MonoBehaviour
     {
         if (applyMove)
         {
+            float highForce = GameManager.instance.player.GetComponent<PlayerStates>().maxVelocity;
+
             force = force * CubicBezier(moveTimer);
+            float playerVelocity = playerRig.mass * (playerRig.velocity.magnitude * playerRig.velocity.magnitude) / 2;
+
+            //print("force: " + force);
             playerRig.AddForce(direction.normalized * force);
-            //playerRig.AddForce(direction.normalized * GetComponent<PlayerStates>().moveForce);
-            playerRig.velocity = Vector3.zero;
             transform.rotation = Quaternion.LookRotation(direction);
-            if (playerRig.velocity.magnitude > 25)
+            float maxForce = (playerRig.mass * (highForce * highForce)) / 2;
+
+            //print("player velocity: " + playerVelocity);
+            //print("max: " + maxForce);
+
+            if (playerVelocity > maxForce)
             {
-                var maxForce = (playerRig.mass * (25 * 25)) / 2;
+
                 var difForce = force - maxForce;
+                //print("diff: " + difForce);
                 playerRig.AddForce(-direction.normalized * difForce);
             }
 
@@ -56,9 +67,6 @@ public class SwipeHalf : MonoBehaviour
 
             applyMove = false;
         }
-        //print(playerRig.velocity.magnitude);
-        //print((playerRig.mass * (25 * 25)) / 2);
-        //print(playerRig.velocity.magnitude);
     }
 
 
@@ -138,13 +146,12 @@ public class SwipeHalf : MonoBehaviour
                     dragPointAtt = new Vector3(temp.x, 0, temp.z);
                     attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
                     attackDir = dragPointAtt - startPointAtt;
-                    if (attackDist > GetComponent<PlayerStates>().distSwipe)
-                    {
-                        transform.rotation = Quaternion.LookRotation(attackDir);
-                        Dash(attackDir);
-                        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().dashRadius);
-                        //Dash2(hitColliders);
-                    }
+                    transform.rotation = Quaternion.LookRotation(attackDir);
+                    PlayerStates.swiped = true;
+                    StartCoroutine("SwipeTimer");
+                    //Dash(attackDir);
+                    //Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().dashRadius);
+                    //Dash2(hitColliders);
                 }
 
             }
@@ -184,6 +191,12 @@ public class SwipeHalf : MonoBehaviour
         }
     }
 
+    IEnumerator SwipeTimer()
+    {
+        yield return new WaitForSeconds(Time.deltaTime);
+        PlayerStates.swiped = false;
+    }
+
     //void Dash2(Collider[] col)
     //{
     //    for (int i = 0; i < col.Length; i++)
@@ -195,36 +208,36 @@ public class SwipeHalf : MonoBehaviour
     //    }
     //}
 
-    void Dash(Vector3 direction) //Hit needs to become true here
-    {
-        bool decreaseHp = true;
-        for (float i = transform.position.x - 1f; i < transform.position.x + 1f; i += 0.1f)
-        {
-            Ray ray = new Ray(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized);
-            Debug.DrawRay(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized * GetComponent<PlayerStates>().attackRange, Color.red, 2f);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, GetComponent<PlayerStates>().attackRange);
-            if (hit.collider != null && hit.collider.tag == "Destructable")
-            {
-                Rigidbody rig = hit.collider.GetComponent<Rigidbody>();
-                rig.isKinematic = false;
-                hit.collider.GetComponent<ObjectBehavior>().hit = true;
-                if (PlayerStates.lifted)
-                {
-                    rig.AddForce((attackDir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-                }
-                else
-                {
-                    rig.AddForce(attackDir.normalized * GetComponent<PlayerStates>().hitForce);
-                }
-                if (decreaseHp)
-                {
-                    hit.collider.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
-                    decreaseHp = false;
-                }
-            }
-        }
-    }
+    //void Dash(Vector3 direction) //Hit needs to become true here
+    //{
+    //    bool decreaseHp = true;
+    //    for (float i = transform.position.x - 1f; i < transform.position.x + 1f; i += 0.1f)
+    //    {
+    //        Ray ray = new Ray(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized);
+    //        Debug.DrawRay(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized * GetComponent<PlayerStates>().attackRange, Color.red, 2f);
+    //        RaycastHit hit;
+    //        Physics.Raycast(ray, out hit, GetComponent<PlayerStates>().attackRange);
+    //        if (hit.collider != null && hit.collider.tag == "Destructable")
+    //        {
+    //            Rigidbody rig = hit.collider.GetComponent<Rigidbody>();
+    //            rig.isKinematic = false;
+    //            hit.collider.GetComponent<ObjectBehavior>().hit = true;
+    //            if (PlayerStates.lifted)
+    //            {
+    //                rig.AddForce((attackDir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+    //            }
+    //            else
+    //            {
+    //                rig.AddForce(attackDir.normalized * GetComponent<PlayerStates>().hitForce);
+    //            }
+    //            if (decreaseHp)
+    //            {
+    //                hit.collider.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
+    //                decreaseHp = false;
+    //            }
+    //        }
+    //    }
+    //}
 
     void Swirling(Collider[] col) // hit needs to become true here
     {
@@ -235,11 +248,12 @@ public class SwipeHalf : MonoBehaviour
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = col[i].GetComponent<Rigidbody>();
                 Vector3 dir = col[i].transform.position - transform.position;
-                PlayerStates.hitObject = true;
                 col[i].GetComponent<ObjectBehavior>().hit = true;
 
                 // SOUND OBJECT HIT
                 GameManager.instance.objectHit(col[i].gameObject);
+                // ANIMATION OBJECT HIT
+                GameManager.instance.playerHitObject();
 
                 //rig.useGravity = true;
                 rig.isKinematic = false;
@@ -285,7 +299,6 @@ public class SwipeHalf : MonoBehaviour
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
         PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
-        PlayerStates.hitObject = false;
         StampBar.increaseFill = true;
         for (int i = 0; i < rig.Count; i++)
         {
