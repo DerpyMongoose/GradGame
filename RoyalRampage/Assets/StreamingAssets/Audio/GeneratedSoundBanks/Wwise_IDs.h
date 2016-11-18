@@ -86,7 +86,6 @@ namespace AK
             {
                 static const AkUniqueID BARREL = 442447909U;
                 static const AkUniqueID BASKET = 1931853987U;
-                static const AkUniqueID BOOK = 1761501022U;
                 static const AkUniqueID BOTTLE = 3848582449U;
                 static const AkUniqueID CHAIR = 48383104U;
                 static const AkUniqueID CHINA = 4260845482U;
@@ -98,13 +97,11 @@ namespace AK
                 static const AkUniqueID GRAND_PIANO = 1892659287U;
                 static const AkUniqueID GRANDFATHER_CLOCK = 2995585464U;
                 static const AkUniqueID LAMP = 657744959U;
-                static const AkUniqueID PLANT = 114672780U;
                 static const AkUniqueID PORCELAIN = 3020931316U;
                 static const AkUniqueID POT_AND_PAN = 2200909088U;
                 static const AkUniqueID SERVING_TRAY = 333711018U;
                 static const AkUniqueID SHELF = 3086965867U;
                 static const AkUniqueID STATUE = 939730917U;
-                static const AkUniqueID SUIT_OF_ARMOR = 4241762846U;
                 static const AkUniqueID TABLE = 2048817515U;
                 static const AkUniqueID TROPHY = 762946915U;
                 static const AkUniqueID WHEELED_TRAY = 716963392U;
@@ -138,7 +135,6 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
-        static const AkUniqueID IMPACT_VELOCITY = 238739503U;
         static const AkUniqueID LEVEL_TIME = 2699314947U;
         static const AkUniqueID POINT_COUNTER = 5057028U;
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
