@@ -333,8 +333,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Buy50Objects
+      - m_Target: {fileID: 2077126267}
+        m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -675,9 +675,10 @@ GameObject:
   - 224: {fileID: 956603483}
   - 222: {fileID: 956603485}
   - 114: {fileID: 956603484}
+  - 114: {fileID: 956603486}
   m_Layer: 5
   m_Name: Currency
-  m_TagString: Untagged
+  m_TagString: Currency
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -739,6 +740,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 956603482}
+--- !u!114 &956603486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 956603482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0e22f037441164188a937c94846879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Currency
 --- !u!1001 &1233675623
 Prefab:
   m_ObjectHideFlags: 0
@@ -1006,8 +1019,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Buy120Objects
+      - m_Target: {fileID: 2077126267}
+        m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1263,8 +1276,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Buy80Objects
+      - m_Target: {fileID: 2077126267}
+        m_MethodName: BuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1516,6 +1529,7 @@ GameObject:
   - 114: {fileID: 2077126263}
   - 114: {fileID: 2077126262}
   - 114: {fileID: 2077126266}
+  - 114: {fileID: 2077126267}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1607,5 +1621,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad5444bee9b05744e92d1aa93795caa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2077126267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2077126261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9033f675b0700db4184a0a25da8f9aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

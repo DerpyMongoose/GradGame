@@ -26,5 +26,6 @@ public class StoreManager : MonoBehaviour {
 
     public void BuyItem () {
         GameManager.instance.currency -= 10;
+        GameObject.FindGameObjectWithTag("Currency").GetComponent<CurrencyUIScript>().changeText();
     }
 }

@@ -15,7 +15,7 @@ public class CurrencyUIScript : MonoBehaviour {
         LanguageManager.instance.ChangeText -= changeText;
     }
 
-    private void changeText() {
+    public void changeText() {
         GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + GameManager.instance.currency;
     }
 }
