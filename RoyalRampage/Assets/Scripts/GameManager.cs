@@ -242,6 +242,8 @@ public class GameManager {
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;
     public event LevelAction OnMusicStateChange;
+	public event LevelAction OnMusicVolumeChange;
+	public event LevelAction OnSFXVolumeChange;
 
     public void timerUpdate(float val)
     {
@@ -253,6 +255,14 @@ public class GameManager {
         if (OnMusicStateChange != null)
             OnMusicStateChange(val);
     }
+	public void changeSFXVolume(float val){
+		if (OnSFXVolumeChange != null)
+			OnSFXVolumeChange(val);
+	}
+	public void changeMusicVolume(float val){
+		if (OnMusicVolumeChange != null)
+			OnMusicVolumeChange(val);
+	}
 
     //SAVE-LOAD
     public void Save()

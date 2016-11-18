@@ -241,6 +241,14 @@ public class UIScript : MonoBehaviour
 		StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
 	}
 
+	public void UpdateMusicVolume(float volume){
+		GameManager.instance.changeMusicVolume (volume);
+	}
+
+	public void UpdateSFXVolume(float volume){
+		GameManager.instance.changeSFXVolume (volume);
+	}
+
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
     {
         yield return new WaitForSeconds(waitTime);
