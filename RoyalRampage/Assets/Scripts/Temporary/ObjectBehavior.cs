@@ -7,7 +7,6 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-	private int state;
 
     public string soundSwitch; // FOR AUDIO
 
@@ -155,7 +154,6 @@ public class ObjectBehavior : MonoBehaviour
                 break;
 
         }
-        state = 1;
         initialLife = life;
         //particleSys = GetComponent<ParticleSystem>(); //////////////DO WE STILL NEED THESE PARTICLES?????
         //particleSys.Stop();
@@ -268,11 +266,11 @@ public class ObjectBehavior : MonoBehaviour
 
                         }
                     }*/
-                if (particleSys != null)
+                /*if (particleSys != null)
                 {
                     particleSys.startSize *= state;
                     particleSys.Play();
-                }
+                }*/
                 /*state += 1;
             }*/
             }

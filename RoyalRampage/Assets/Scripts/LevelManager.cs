@@ -22,6 +22,10 @@ public class LevelManager : MonoBehaviour
     public float star2;
     [Range(0, 1)]
     public float star3;
+    [Range(0, 1)]
+    public float star4;
+    [Range(0, 1)]
+    public float star5;
 
 
     int stars = 0;
@@ -36,7 +40,7 @@ public class LevelManager : MonoBehaviour
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     private GameObject continueButton;
-    private int multiplier;
+    public int multiplier;
     private float countMultiTime;
     private int countObjects;
 
@@ -89,6 +93,7 @@ public class LevelManager : MonoBehaviour
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
+                //Timer shouldn't change during combo.
                 multiplier++;
                 countObjects = 0;
             }
@@ -166,9 +171,17 @@ public class LevelManager : MonoBehaviour
         {
             stars = 2;
         }
-        if (score / maxScore >= star3)
+        if (score / maxScore >= star3 && score / maxScore < star4)
         {
             stars = 3;
+        }
+        if (score / maxScore >= star4 && score / maxScore < star5)
+        {
+            stars = 4;
+        }
+        if (score / maxScore >= star5)
+        {
+            stars = 5;
         }
     }
 
