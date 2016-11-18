@@ -48,14 +48,14 @@ public class LevelManager : MonoBehaviour
     void OnEnable()
     {
         GameManager.instance.OnObjectDestructed += IncreaseScore;
-        GameManager.instance.OnTimerStart += StartLevel;
+        GameManager.instance.OnLevelLoad += StartLevel;
         GameManager.instance.OnTimerOut += ShowEnding;
     }
 
     void OnDisable()
     {
         GameManager.instance.OnObjectDestructed -= IncreaseScore;
-        GameManager.instance.OnTimerStart -= StartLevel;
+        GameManager.instance.OnLevelLoad -= StartLevel;
         GameManager.instance.OnTimerOut -= ShowEnding;
     }
 

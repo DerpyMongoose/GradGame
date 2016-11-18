@@ -81,7 +81,11 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    GameManager.instance.levelLoad();
+                }
+
             if(hitObject == true)
             {
                 Startlevel();

@@ -7549,6 +7549,26 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 848426169}
+    - target: {fileID: 224000012577372328, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013825305356, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012413712662, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010649852608, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
@@ -8279,11 +8299,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e69e3c26a3fe874d92f0db03255ed2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreToCompleteLevel: 640
+  scoreToCompleteLevel: 100
   timeToCompleteLevel: 60
   MultiplierTime: 5
   amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
+  maxScore: 57
+  star1: 0
+  star2: 0
+  star3: 0
+  star4: 0
+  star5: 0
+  multiplier: 0
 --- !u!114 &848426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
