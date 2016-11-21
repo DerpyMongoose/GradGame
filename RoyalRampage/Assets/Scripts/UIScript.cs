@@ -127,8 +127,8 @@ public class UIScript : MonoBehaviour
     public void InstructionsNext()
     {
         instr_SlidesChildren[slide].gameObject.SetActive(false);
-        slide += 1;
-        if(slide == 4)
+        slide -= 1;
+        if(slide == 0)
         {
             instr_Menu.SetActive(false);
         }
@@ -137,7 +137,7 @@ public class UIScript : MonoBehaviour
     public void InstructionBack()
     {
         instr_SlidesChildren[slide].gameObject.SetActive(false);
-        slide -= 1;
+        slide += 1;
     }
 
     public void BackToGame()
