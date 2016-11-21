@@ -11,6 +11,7 @@ public class PlayerStates : MonoBehaviour
     [HideInInspector]
     public static bool imInSlowMotion, lifted, hitObject, swiped;
     [Header("Forces")]
+    public float moveForce;
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
