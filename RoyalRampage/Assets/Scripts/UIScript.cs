@@ -16,13 +16,14 @@ public class UIScript : MonoBehaviour
     GameObject instr_Menu;
     GameObject instr_Slides;
     Transform[] instr_SlidesChildren;
+    [HideInInspector]
     public int slide = 4;
 
 	GameObject help_menu;
 	GameObject [] slides;
 	GameObject arrowL;
 	GameObject arrowR;
-	int current_slide = 1;
+	int current_slide = 0;
 
     Text starTotal;
 
@@ -114,6 +115,10 @@ public class UIScript : MonoBehaviour
             {
                 instr_Menu.SetActive(false);
             }
+            if(instr_SlidesChildren[1])
+            {
+
+            }
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -128,7 +133,8 @@ public class UIScript : MonoBehaviour
     {
         instr_SlidesChildren[slide].gameObject.SetActive(false);
         slide -= 1;
-        if(slide == 0)
+        print(slide);
+        if(slide == 5)
         {
             instr_Menu.SetActive(false);
         }
@@ -136,8 +142,8 @@ public class UIScript : MonoBehaviour
 
     public void InstructionBack()
     {
-        instr_SlidesChildren[slide].gameObject.SetActive(false);
-        slide += 1;
+        instr_SlidesChildren[slide].gameObject.SetActive(true);
+        slide -= 1;
     }
 
     public void BackToGame()
