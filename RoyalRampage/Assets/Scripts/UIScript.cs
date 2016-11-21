@@ -107,7 +107,7 @@ public class UIScript : MonoBehaviour
 		case GameManager.Scene.GAME:
             if(GameManager.instance.currentLevel == 1)
             {          
-                instr_Menu = GameObject.Find("HelpGame");
+				instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
                 instr_Slides = GameObject.Find("HelpSlides");
                 back_Button = GameObject.Find("left");
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
@@ -448,4 +448,8 @@ public class UIScript : MonoBehaviour
 		GameManager.instance.LoadGame ();
 	}*/
 
+	public void Continue()
+	{
+		GameManager.instance.timerOut();
+	}
 }

@@ -32,6 +32,10 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public int score;
 
+    [Range(0.0f, 1.0f)]
+    public float currencySpawnChance = 0.1f;
+
+
 
     //object name to be used for Quest system??
     public enum DestructableMaterial
@@ -209,6 +213,7 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
+            
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
@@ -220,10 +225,18 @@ public class ObjectBehavior : MonoBehaviour
                 }
                 GetComponent<FracturedObject>().CollapseChunks();
                 DestroyObj(gameObject);
+                if (currencySpawnChance > 0.0f)
+                {
+                    SpawnCurrency();
+                }
             }
             catch
             {
                 DestroyObj(gameObject);
+                if (currencySpawnChance > 0.0f)
+                {
+                    SpawnCurrency();
+                }
             }
         }
     }
@@ -237,6 +250,16 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
+
+    void SpawnCurrency()
+    {
+        float randomVal = Random.value;
+
+        if (randomVal < currencySpawnChance)
+        {//Optimise!
+            Instantiate((GameObject)Resources.Load("Collectibles/Currency", typeof(GameObject)), new Vector3(transform.position.x, 0.2f, transform.position.z), Quaternion.identity);
+        }
+    }
 
 
     void OnCollisionEnter(Collision col)
