@@ -93,7 +93,7 @@ public class PlayerStates : MonoBehaviour
 
             if (Input.GetKey(KeyCode.R))
             {
-                Startlevel();
+				GameManager.instance.levelLoad();
             }
             break;
 

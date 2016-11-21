@@ -238,6 +238,7 @@ public class UIScript : MonoBehaviour
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
 		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		print("pausing");
 		GameManager.instance.isPaused = true;
 		pause_menu.SetActive (true);
 		GameManager.instance.PauseGame();

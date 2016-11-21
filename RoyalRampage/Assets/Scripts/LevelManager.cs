@@ -84,7 +84,8 @@ public class LevelManager : MonoBehaviour
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
 		InGamePanel.SetActive (false);
-        GameManager.instance.levelLoad(); // FOR AUDIO
+       // GameManager.instance.levelLoad(); // FOR AUDIO
+		print("level set up");
     }
 
     private void IncreaseScore(GameObject destructedObj)
