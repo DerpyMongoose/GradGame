@@ -112,14 +112,14 @@ public class UIScript : MonoBehaviour
                 back_Button = GameObject.Find("left");
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
                 instr_Menu.SetActive(true);
+                if (slide == 4)
+                {
+                    back_Button.SetActive(false);
+                }
             }
             else
             {
-                instr_Menu.SetActive(false);
-            }
-            if(slide == 4)
-            {
-                back_Button.SetActive(false);
+                //instr_Menu.SetActive(false);
             }
           
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
