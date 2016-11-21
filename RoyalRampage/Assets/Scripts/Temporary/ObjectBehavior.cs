@@ -7,20 +7,21 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public int life, initialLife;
     private int rubbleAmount;
-    private int state;
-    [HideInInspector]
+
     public string soundSwitch; // FOR AUDIO
 
     private Vector3 initialPos;
 
     private Rigidbody objRB;
     private GameObject player;
-    private ParticleSystem particleSys;
     private IEnumerator coroutine;
 
     [HideInInspector]
+    public ParticleSystem particleSys;
+    [HideInInspector]
     public bool isGrounded = true;
-    private bool hit = false;
+    [HideInInspector]
+    public bool hit = false;
     private bool readyToCheck;
     private bool lifted;
 
@@ -154,35 +155,33 @@ public class ObjectBehavior : MonoBehaviour
                 break;
 
         }
-        state = 1;
         initialLife = life;
-        //particleSys = GetComponent<ParticleSystem>(); //////////////DO WE STILL NEED THESE PARTICLES?????
-        //particleSys.Stop();
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         initialPos = transform.position;
+        particleSys = GetComponent<ParticleSystem>();
+        //ObjectManagerV2.instance.maxScore += score;  
     }
 
 
     void Update()
     {
         CheckDamage();
-        //print(PlayerStates.lifted);
+        CheckVelocity();
         if (gameObject.tag != "UniqueObjs")
         {
             if (PlayerStates.lifted)
             {
                 //APPLY TRANSFORM ROTATION
-                GameManager.instance.player.GetComponent<PhysicalMovement>().RotateObjs(GameManager.instance.player.GetComponent<PhysicalMovement>().objRB);
+                GameManager.instance.player.GetComponent<SwipeHalf>().RotateObjs(GameManager.instance.player.GetComponent<SwipeHalf>().objRB);
 
                 if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && PlayerStates.imInSlowMotion)
                 {
-                    //objRB.useGravity = false;
+                    //objRB.velocity = Vector3.zero;
                     objRB.isKinematic = true;
                 }
                 else
                 {
-                    //objRB.useGravity = true;
                     objRB.isKinematic = false;
                 }
             }
@@ -210,13 +209,32 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-            DestroyObj(gameObject);
+            try
+            {
+                for (int p = 0; p < transform.childCount; p++)
+                {
+                    if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                    {
+                        transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                    }
+                }
+                GetComponent<FracturedObject>().CollapseChunks();
+                DestroyObj(gameObject);
+            }
+            catch
+            {
+                DestroyObj(gameObject);
+            }
         }
-        else if (life < initialLife)
-        {
-            //particleSys.Play();
-        }
+    }
 
+    void CheckVelocity()
+    {
+        if (gameObject.tag != "UniqueObjs" && Mathf.Round(objRB.velocity.magnitude) == 0)
+        {
+            //print("Hit becomes false now");
+            hit = false;
+        }
     }
 
 
@@ -228,84 +246,30 @@ public class ObjectBehavior : MonoBehaviour
         {
             if (col.collider.gameObject == player)
             {
-                hit = true;
-
-                // SOUND OBJECT HIT
                 GameManager.instance.objectHit(gameObject);
-
-                //Damage system, it takes more hits to destroy
-                /*if(state == (life - life) + state)
-                {
-                    if (state >= life)
-                    {           
-                        for (int i = 0; i < rubbleAmount; i++)
-                        {
-                            Instantiate(rubblePrefab,transform.position, Quaternion.identity);
-                        }
-                        if()
-                        {
-
-                        }
-                    }*/
-                if (particleSys != null)
-                {
-                    particleSys.startSize *= state;
-                    particleSys.Play();
-                }
-                /*state += 1;
-            }*/
             }
+
             if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
             {
-                if (isGrounded == false && col.gameObject.GetComponent<ObjectBehavior>().isGrounded == false)
+                col.collider.GetComponent<ObjectBehavior>().hit = true;
+                // PLAY DAMAGE PARTICLE
+                particleSys.Play();
+                col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                ObjectManagerV2.instance.direction = col.transform.position - transform.position;
+                if (col.gameObject.tag != "UniqueObjs")
                 {
-                    //Both are in the air. Addforce to the second object to the direction you hit it + 45 degrees angle (Both objects need to be damaged). 
-                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);  //THE ISSUE IS THAT IT IS ALSO APPLY THE SAME FORCE TO THE ACTUAL OBJECT THAT HIT THE OTHER ON THE AIR.
-
-                    life -= ObjectManagerV2.instance.objDamage;
-                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
-                    //col.gameObject.GetComponent<Rigidbody>().AddForce((-Vector3.forward + Vector3.up).normalized * ObjectManagerV2.instance.oneToAnother); 
-                    //DestroyObj(gameObject); //Give damage not destroy
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
                 }
-                //if (isGrounded == false && col.collider.tag != "UniqueObjs") //AS IT IS RIGHT NOW IT WILL PUSH THE COLLIDED OBJECTS BELOW FLOOR
-                //{
-                //    //object the player hit is on air and the object hits another obj. Before it dies needs to apply force to the other object which collided with (addForce to the object to the direction you hit it) (Both objects need to be damaged).
-                //    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                //    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
-
-                //    life -= 20;
-                //    col.gameObject.GetComponent<ObjectBehavior>().life -= 20;
-                //    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
-                //    //DestroyObj(gameObject); //Give damage not destroy
-                //}
-                if (isGrounded == true)
-                {
-                    if (GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().killerObj.name == gameObject.transform.parent.name && GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().victimObj.name == col.gameObject.transform.parent.name)
-                    {
-                        GameManager.instance.levelManager.gameObject.GetComponent<ProceduralObjectives>().completeObjective = true;
-                    }
-                    //col.gameObject.GetComponent<Rigidbody>().AddForce(-Vector3.forward.normalized * ObjectManagerV2.instance.oneToAnother);
-                    ObjectManagerV2.instance.direction = col.transform.position - transform.position;
-                    if (col.gameObject.tag != "UniqueObjs")
-                    {
-                        col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
-                    }
-
-                    life -= ObjectManagerV2.instance.objDamage;
-                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
-                    //DestroyObj(gameObject); //Give damage not destroy
-                    //DestroyObj(col.gameObject); //Give damage not destroy
-                }
+                life -= ObjectManagerV2.instance.objDamage;
+                col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
             }
 
             if (gameObject.tag != "UniqueObjs")
             {
                 if (col.collider.tag == "Wall")
                 {
-                    //DestroyObj(gameObject);
+                    //GetComponent<Rigidbody>().velocity = Vector3.zero;
                     life -= ObjectManagerV2.instance.wallDamage;
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
 
                 //********** 4 AUDIO and ANIMATION
@@ -315,7 +279,6 @@ public class ObjectBehavior : MonoBehaviour
                     if (hasLanded == false && isGrounded == false)
                     {
                         GameManager.instance.objectLanding(gameObject);
-                        //print ("landing" + gameObject);
                     }
                     hasLanded = true;
                 }

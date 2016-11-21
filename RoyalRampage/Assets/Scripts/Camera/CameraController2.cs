@@ -31,7 +31,7 @@ public class CameraController2 : MonoBehaviour
         Physics.Linecast(transform.position, player.transform.position, out hit);
         if (hit.transform != null)
         {
-            if (hit.transform.gameObject != player)
+            if (hit.transform.tag == "Wall")
             {
                 tempTrans = hit.transform.gameObject;
                 if (hit.transform.GetComponent<MeshRenderer>() != null)

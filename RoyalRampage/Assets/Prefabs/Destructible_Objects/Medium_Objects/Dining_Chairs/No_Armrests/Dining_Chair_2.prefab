@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011538032886}
   - 33: {fileID: 33000011182070684}
   - 23: {fileID: 23000012265191138}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: chairDining_b_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 114: {fileID: 114000013936806582}
   - 54: {fileID: 54000013600753752}
   - 65: {fileID: 65000012342957302}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Dining_Chair_2
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013192117674}
   - 33: {fileID: 33000013317232676}
   - 23: {fileID: 23000013882899252}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: chairDining_b_cushion_seat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,6 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Chair
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 1
+  objMaterial: 1
+  objSize: 2

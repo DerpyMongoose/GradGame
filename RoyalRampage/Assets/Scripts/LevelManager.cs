@@ -15,8 +15,23 @@ public class LevelManager : MonoBehaviour
     public float MultiplierTime;
     public int amountOfObjects;
     public Text MultiplierText;
+    public int maxScore = 57;
+    public int currencyPerStar = 50;
+    [Range(0,1)]
+    public float star1;
+    [Range(0, 1)]
+    public float star2;
+    [Range(0, 1)]
+    public float star3;
+    [Range(0, 1)]
+    public float star4;
+    [Range(0, 1)]
+    public float star5;
 
+
+    int stars = 0;
     int score = 0;
+    Text starText;
     Text scoreText;
     Text minScoreText;
     Text guideText;
@@ -25,22 +40,23 @@ public class LevelManager : MonoBehaviour
     Text replayScoreText;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
+	GameObject IntroTapPanel;
     private GameObject continueButton;
-    private int multiplier;
+    public int multiplier;
     private float countMultiTime;
     private int countObjects;
 
     void OnEnable()
     {
         GameManager.instance.OnObjectDestructed += IncreaseScore;
-        GameManager.instance.OnTimerStart += StartLevel;
+        GameManager.instance.OnLevelLoad += StartLevel;
         GameManager.instance.OnTimerOut += ShowEnding;
     }
 
     void OnDisable()
     {
         GameManager.instance.OnObjectDestructed -= IncreaseScore;
-        GameManager.instance.OnTimerStart -= StartLevel;
+        GameManager.instance.OnLevelLoad -= StartLevel;
         GameManager.instance.OnTimerOut -= ShowEnding;
     }
 
@@ -50,21 +66,26 @@ public class LevelManager : MonoBehaviour
         amountOfObjects = 5;
         MultiplierTime = 5;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-		scoreText.text = "Score: " + "$" + score;
+		scoreText.text =  "$" + score; // in game score
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-        minScoreText.text = "Reach " + scoreToCompleteLevel + " to Win";
+        minScoreText.text = "Reach $" + scoreToCompleteLevel;
         guideText = GameObject.Find("GuideText").GetComponent<Text>();
         guideText.text = "Swipe and destroy objects";
+        
 
-        ReplayPanel = GameObject.Find("replayPanel");
-        InGamePanel = GameObject.Find("InGameGUI");
+		ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
+		InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
+		IntroTapPanel = GameObject.FindGameObjectWithTag("IntroTapPanel");
         ReplayBtn = GameObject.Find("ReplayButton");
         NewLevelBtn = GameObject.Find("NewLevelButton");
         continueButton = GameObject.Find("ContinueButton");
+        starText = GameObject.Find("stars").GetComponent<Text>();
         replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
-        GameManager.instance.levelLoad(); // FOR AUDIO
+		InGamePanel.SetActive (false);
+       // GameManager.instance.levelLoad(); // FOR AUDIO
+		print("level set up");
     }
 
     private void IncreaseScore(GameObject destructedObj)
@@ -73,15 +94,16 @@ public class LevelManager : MonoBehaviour
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             countObjects++;
-		scoreText.text = "Score: " + "$" + score;
+			scoreText.text = "$" + score; // in game score
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
+                //Timer shouldn't change during combo.
                 multiplier++;
                 countObjects = 0;
             }
             score += points * multiplier;
-            scoreText.text = "Score: " + "$" + score;
+			scoreText.text = "$" + score; // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
@@ -93,6 +115,8 @@ public class LevelManager : MonoBehaviour
     {
         //print ("started");
         //guideText.gameObject.SetActive(false);
+		IntroTapPanel.SetActive(false);
+		InGamePanel.SetActive (true);
         guideText.text = "";
         GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
@@ -100,16 +124,19 @@ public class LevelManager : MonoBehaviour
     //after the timer is out (wait for animation?)
     private void ShowEnding()
     {
-
        // print("ended");
         GameManager.instance.levelUnLoad(); // FOR AUDIO
 
-        if (score >= scoreToCompleteLevel || ObjectManager.instance.objectList.Count <= 1)
+        if (score >= scoreToCompleteLevel)
+        {
             guideText.text = "Level completed!";
+        }
         else
+        {
             guideText.text = "Game over";
+        }
 
-        guideText.gameObject.SetActive(true);
+        guideText.gameObject.SetActive(true);        
         StartCoroutine(ShowContinueScreen(guideText.text));
     }
 
@@ -130,7 +157,9 @@ public class LevelManager : MonoBehaviour
         }
         else continueButton.SetActive(false);
 
-        MultiplierText.text = multiplier.ToString() + "x";
+		MultiplierText.text = "x" + multiplier.ToString();
+
+        //print(GameManager.instance.allStars);
     }
 
     public void Continue()
@@ -138,6 +167,33 @@ public class LevelManager : MonoBehaviour
         guideText.text = "Level completed!";
         guideText.gameObject.SetActive(true);
         StartCoroutine(ShowContinueScreen(guideText.text));
+    }
+    public void Stars()
+    {
+        if(score / maxScore > star1 && score / maxScore < star2)
+        {
+            stars = 1;
+        }
+        if (score / maxScore >= star2 && score / maxScore < star3)
+        {
+            stars = 2;
+        }
+        if (score / maxScore >= star3 && score / maxScore < star4)
+        {
+            stars = 3;
+        }
+        if (score / maxScore >= star4 && score / maxScore < star5)
+        {
+            stars = 4;
+        }
+        if (score / maxScore >= star5)
+        {
+            stars = 5;
+        }
+    }
+
+    public void CalculateCurrency () {
+        GameManager.instance.currency = stars * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -149,10 +205,24 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
+        Stars();
+        CalculateCurrency();
+
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
 
+        starText.text = stars.ToString();
+
         ReplayPanel.SetActive(true);
+
+        if (GameManager.instance.stars != null)
+        {
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
+            {
+                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
+                GameManager.instance.allStars += stars;
+            }
+        }
         switch (levelResult)
         {
 		case "Level completed!":
@@ -176,6 +246,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.levelWon = false;
             ReplayBtn.SetActive(true);
             NewLevelBtn.SetActive(false);
+            starText.text = stars.ToString();
                 break;
         }
 
@@ -187,7 +258,7 @@ public class LevelManager : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		GameManager.instance.startCountingPoints ();
 		int start = 0;
-		float duration = (float)new_score * (1f / 100f); //show with speed of 100 points per second
+		float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
 		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
 			float progress = timer / duration;
 			int temp_score = (int)Mathf.Lerp (start, new_score, progress);

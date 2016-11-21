@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013798637290}
   - 33: {fileID: 33000013890764984}
   - 23: {fileID: 23000013242556070}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: vase_k_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - 54: {fileID: 54000010186073036}
   - 114: {fileID: 114000012448171096}
   - 65: {fileID: 65000010930179968}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Vase_12
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -147,6 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a643f12930e41640bf00b1c7f17f513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  initialLife: 0
+  soundSwitch: Porcelain
   isGrounded: 1
+  hit: 0
+  hasLanded: 1
   score: 0
-  objType: 0
+  objMaterial: 0
+  objSize: 1
