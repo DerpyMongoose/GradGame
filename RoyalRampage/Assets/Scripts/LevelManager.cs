@@ -232,7 +232,7 @@ public class LevelManager : MonoBehaviour
 			Text levelNum = NewLevelBtn.GetComponentInChildren<Text> ();
 			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				GameManager.instance.levelsUnlocked++;
-				GameManager.instance.Save ();
+				
 			}
 			if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
 				levelNum.text = (GameManager.instance.currentLevel + 1).ToString ();
@@ -250,7 +250,8 @@ public class LevelManager : MonoBehaviour
                 break;
         }
 
-		StartCoroutine (CountPointsTo(score)); // show counting score
+        GameManager.instance.Save();
+        StartCoroutine (CountPointsTo(score)); // show counting score
     }
 
 	//counting score "animation"

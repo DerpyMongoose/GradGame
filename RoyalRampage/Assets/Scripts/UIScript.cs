@@ -28,6 +28,11 @@ public class UIScript : MonoBehaviour
 
     Text starTotal;
 
+    void OnApplicationQuit()
+    {
+        GameManager.instance.Save();
+    }
+
     void Start()
     {
         
