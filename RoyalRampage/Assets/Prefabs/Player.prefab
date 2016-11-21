@@ -27779,13 +27779,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForce: 45
   torgueForce: 0.02
   hitForce: 800
   swirlForce: 2000
   liftForce: 25
   maxVelocity: 10
-  timeForSwipe: 1
-  timeForCircle: 1
+  timeForSwipe: 0.35
+  timeForCircle: 0.5
   SameTapTime: 0.1
   doubleTapTime: 0.15
   gravityTimer: 1.5
@@ -27794,7 +27795,7 @@ MonoBehaviour:
   attackRange: 2
   distSwipe: 1
   rotationSpeed: 4
-  degreesInAir: 45
+  degreesInAir: 15
   colImpact: 2.5
   numOfCircleToShow: 1
   p0: 0.25
