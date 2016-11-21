@@ -33,6 +33,7 @@ public class PlayerStates : MonoBehaviour
     public float rotationSpeed;
     public float degreesInAir;
     public float colImpact;
+    public float smoothPick;
     public int numOfCircleToShow;
     [Header("Cubic Bezier")]
     [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
