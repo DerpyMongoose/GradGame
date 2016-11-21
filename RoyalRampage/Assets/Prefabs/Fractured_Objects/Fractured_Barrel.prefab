@@ -334,7 +334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010598327788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.29, y: 0.321, z: -2.45}
+  m_LocalPosition: {x: 1.1446717, y: 0.321, z: -1.4541492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1274,6 +1274,7 @@ MonoBehaviour:
   hit: 0
   hasLanded: 1
   score: 0
+  currencySpawnChance: 0.1
   objMaterial: 1
   objSize: 1
 --- !u!114 &114000014005390680
@@ -1442,7 +1443,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 339826722
+  randomSeed: -538765943
   InitialModule:
     serializedVersion: 2
     enabled: 1
