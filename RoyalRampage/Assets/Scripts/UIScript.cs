@@ -13,6 +13,16 @@ public class UIScript : MonoBehaviour
 	GameObject levels_menu;
 	GameObject levels;
 	GameObject play_menu;
+    GameObject instr_Menu;
+    GameObject instr_Slides;
+    Transform[] instr_SlidesChildren;
+    public int slide = 4;
+
+	GameObject help_menu;
+	GameObject [] slides;
+	GameObject arrowL;
+	GameObject arrowR;
+	int current_slide = 1;
 
     Text starTotal;
 
@@ -35,20 +45,30 @@ public class UIScript : MonoBehaviour
             break;*/
 
 		case GameManager.Scene.PLAY_MENU:
-			GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
 			//update level on play icon
-			Text levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-			levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString();
+			Text levelNum = GameObject.FindGameObjectWithTag ("level_number").GetComponentInChildren<Text> ();
+			levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString ();
 
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
-			settings_menu.SetActive(false);
+			settings_menu.SetActive (false);
 			levels_menu = GameObject.FindGameObjectWithTag ("LevelPanel");
 			levels = GameObject.FindGameObjectWithTag ("Levels");
-			levels_menu.SetActive(false);
+			levels_menu.SetActive (false);
 			play_menu = GameObject.FindGameObjectWithTag ("PlayPanel");
 
-			UpdateMenuBG();
+			slides = new GameObject[5];
+			GameObject help_slides = GameObject.FindGameObjectWithTag ("HelpSlides");
+			for (int i = 0; i < 5; i++) {
+				slides [i] = help_slides.transform.GetChild (i).gameObject;
+			}
+			arrowL = GameObject.FindGameObjectWithTag ("help_left");
+			arrowR = GameObject.FindGameObjectWithTag ("help_right");
+			help_menu = GameObject.FindGameObjectWithTag ("HelpPanel");
+			help_menu.SetActive (false);
+
+            UpdateMenuBG();
 			break;
 
 		case GameManager.Scene.LEVELS_OVERVIEW:
@@ -65,6 +85,16 @@ public class UIScript : MonoBehaviour
 			levels = GameObject.FindGameObjectWithTag ("Levels");
 			play_menu = GameObject.FindGameObjectWithTag ("PlayPanel");
 			play_menu.SetActive (false);
+
+			slides = new GameObject[5];
+			help_slides = GameObject.FindGameObjectWithTag ("HelpSlides");
+			for (int i = 0; i < 5; i++) {
+				slides [i] = help_slides.transform.GetChild (i).gameObject;
+			}
+			arrowL = GameObject.FindGameObjectWithTag ("help_left");
+			arrowR = GameObject.FindGameObjectWithTag ("help_right");
+			help_menu = GameObject.FindGameObjectWithTag ("HelpPanel");
+			help_menu.SetActive (false);
 			UpdateLevelOverview ();
             break;
 
@@ -73,6 +103,17 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
+            if(GameManager.instance.currentLevel == 1)
+            {          
+                instr_Menu = GameObject.Find("HelpGame");
+                instr_Slides = GameObject.Find("HelpSlides");
+                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+                instr_Menu.SetActive(true);
+            }
+            else
+            {
+                instr_Menu.SetActive(false);
+            }
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -81,6 +122,22 @@ public class UIScript : MonoBehaviour
 
         }
 			
+    }
+
+    public void InstructionsNext()
+    {
+        instr_SlidesChildren[slide].gameObject.SetActive(false);
+        slide -= 1;
+        if(slide == 0)
+        {
+            instr_Menu.SetActive(false);
+        }
+    }
+
+    public void InstructionBack()
+    {
+        instr_SlidesChildren[slide].gameObject.SetActive(false);
+        slide += 1;
     }
 
     public void BackToGame()
@@ -148,17 +205,22 @@ public class UIScript : MonoBehaviour
 		StartCoroutine(WaitButtonFinish(waitTimeMB, "CloseLevelOverview"));
 	}
 
-    public void GoToInfo()
-    {
+    public void GoToInfo(){
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
-        //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToInfo"));
-
+		help_menu.SetActive (true);
+		UpdateHelpSlides ("open");
     }
 
-    public void GoToSettings()
-    {
+	public void CloseInfo(){
+		PlayMenuButtonSound();
+		help_menu.SetActive (false);
+
+	}
+
+
+    public void GoToSettings(){
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
@@ -182,6 +244,7 @@ public class UIScript : MonoBehaviour
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
 		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		print("pausing");
 		GameManager.instance.isPaused = true;
 		pause_menu.SetActive (true);
 		GameManager.instance.PauseGame();
@@ -208,6 +271,14 @@ public class UIScript : MonoBehaviour
 	public void GoToMainMenu(){
 		PlayMenuButtonSound();
 		StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
+	}
+
+	public void UpdateMusicVolume(Slider slider){
+		GameManager.instance.changeMusicVolume (slider.value);
+	}
+
+	public void UpdateSFXVolume(Slider slider){
+		GameManager.instance.changeSFXVolume (slider.value);
 	}
 
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
@@ -305,6 +376,35 @@ public class UIScript : MonoBehaviour
 				levelIcon.sprite = unlockedSprite;
 			else
 				levelIcon.sprite = lockedSprite;
+		}
+	}
+
+	public void UpdateHelpSlides(string arrow){
+		for (int i = 0; i < slides.Length; i++) {
+			slides [i].SetActive (false);
+		}
+		arrowL.SetActive (true);
+		arrowR.SetActive (true);
+		switch (arrow) {
+		case "open":
+			current_slide = 1;
+			slides [current_slide - 1].SetActive (true);
+			arrowL.SetActive (false);
+			break;
+
+		case "left":
+			current_slide--;
+			slides [current_slide - 1].SetActive (true);
+			if(current_slide == 1)
+				arrowL.SetActive (false);
+			break;
+
+		case "right":
+			current_slide++;
+			slides [current_slide - 1].SetActive (true);
+			if(current_slide == slides.Length)
+				arrowR.SetActive (false);
+			break;
 		}
 	}
 

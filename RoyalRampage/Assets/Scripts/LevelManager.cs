@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
+    public int currencyPerStar = 50;
     [Range(0,1)]
     public float star1;
     [Range(0, 1)]
@@ -83,7 +84,8 @@ public class LevelManager : MonoBehaviour
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
 		InGamePanel.SetActive (false);
-        GameManager.instance.levelLoad(); // FOR AUDIO
+       // GameManager.instance.levelLoad(); // FOR AUDIO
+		print("level set up");
     }
 
     private void IncreaseScore(GameObject destructedObj)
@@ -190,6 +192,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void CalculateCurrency () {
+        GameManager.instance.currency = stars * currencyPerStar;
+    }
+
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult)
     {
@@ -200,6 +206,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
+        CalculateCurrency();
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
@@ -251,7 +258,7 @@ public class LevelManager : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		GameManager.instance.startCountingPoints ();
 		int start = 0;
-		float duration = (float)new_score * (1f / 100f); //show with speed of 100 points per second
+		float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
 		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
 			float progress = timer / duration;
 			int temp_score = (int)Mathf.Lerp (start, new_score, progress);
