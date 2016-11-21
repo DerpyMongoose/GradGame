@@ -15,6 +15,7 @@ public class UIScript : MonoBehaviour
 	GameObject play_menu;
     GameObject instr_Menu;
     GameObject instr_Slides;
+    GameObject back_Button;
     Transform[] instr_SlidesChildren;
     [HideInInspector]
     public int slide = 4;
@@ -108,6 +109,7 @@ public class UIScript : MonoBehaviour
             {          
                 instr_Menu = GameObject.Find("HelpGame");
                 instr_Slides = GameObject.Find("HelpSlides");
+                back_Button = GameObject.Find("left");
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
                 instr_Menu.SetActive(true);
             }
@@ -115,10 +117,11 @@ public class UIScript : MonoBehaviour
             {
                 instr_Menu.SetActive(false);
             }
-            if(instr_SlidesChildren[1])
+            if(slide == 4)
             {
-
+                back_Button.SetActive(false);
             }
+          
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -131,19 +134,26 @@ public class UIScript : MonoBehaviour
 
     public void InstructionsNext()
     {
+        if(slide < 5)
+        {
+            back_Button.SetActive(true);
+        }
         instr_SlidesChildren[slide].gameObject.SetActive(false);
         slide -= 1;
-        print(slide);
-        if(slide == 5)
+        if(slide == 0)
         {
             instr_Menu.SetActive(false);
         }
     }
 
     public void InstructionBack()
-    {
-        instr_SlidesChildren[slide].gameObject.SetActive(true);
-        slide -= 1;
+    {    
+        slide += 1;
+        if (slide == 4)
+        {
+            back_Button.SetActive(false);
+        }
+        instr_SlidesChildren[slide].gameObject.SetActive(true);    
     }
 
     public void BackToGame()
