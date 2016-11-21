@@ -206,7 +206,7 @@ GameObject:
   - 114: {fileID: 114000010005470090}
   - 65: {fileID: 65000011050503864}
   m_Layer: 0
-  m_Name: Double_Door
+  m_Name: Large_Double_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +817,9 @@ MonoBehaviour:
   life: 0
   initialLife: 0
   soundSwitch: 
+  particleSys: {fileID: 0}
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
   objMaterial: 1
