@@ -14,7 +14,7 @@ public class ProceduralObjectives : MonoBehaviour {
     public GameObject killerObj, victimObj;
 
 
-	void Start () {
+	void Awake () {
         guideText = GameObject.FindGameObjectWithTag("GuideText");
         largeObjs = GameObject.FindGameObjectWithTag("LargeObjects");
         mediumObjs = GameObject.FindGameObjectWithTag("MediumObjects");

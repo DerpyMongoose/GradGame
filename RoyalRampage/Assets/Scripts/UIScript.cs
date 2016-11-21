@@ -15,20 +15,27 @@ public class UIScript : MonoBehaviour
 	GameObject play_menu;
     GameObject instr_Menu;
     GameObject instr_Slides;
+    GameObject back_Button;
     Transform[] instr_SlidesChildren;
+    [HideInInspector]
     public int slide = 4;
 
 	GameObject help_menu;
 	GameObject [] slides;
 	GameObject arrowL;
 	GameObject arrowR;
-	int current_slide = 1;
+	int current_slide = 0;
 
     Text starTotal;
 
+    void OnApplicationQuit()
+    {
+        GameManager.instance.Save();
+    }
+
     void Start()
     {
-       // GameManager.instance.Load();
+        
 
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene())
@@ -43,6 +50,10 @@ public class UIScript : MonoBehaviour
             replayPanel.SetActive(false);
             UpdateMenuBG();
             break;*/
+		case GameManager.Scene.SPLASH:
+			GameManager.instance.Load ();
+			GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
+			break;
 
 		case GameManager.Scene.PLAY_MENU:
 			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
@@ -103,17 +114,22 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
+			instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
+			instr_Slides = GameObject.FindGameObjectWithTag ("HelpSlides");
+			back_Button = GameObject.FindGameObjectWithTag ("help_left");
+			instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+			instr_Menu.SetActive(false);
+
             if(GameManager.instance.currentLevel == 1)
-            {          
-                instr_Menu = GameObject.Find("HelpGame");
-                instr_Slides = GameObject.Find("HelpSlides");
-                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+            {
                 instr_Menu.SetActive(true);
             }
-            else
+
+            if(slide == 4)
             {
-                instr_Menu.SetActive(false);
+                back_Button.SetActive(false);
             }
+          
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -126,12 +142,26 @@ public class UIScript : MonoBehaviour
 
     public void InstructionsNext()
     {
+        if(slide < 5)
+        {
+            back_Button.SetActive(true);
+        }
         instr_SlidesChildren[slide].gameObject.SetActive(false);
         slide -= 1;
         if(slide == 0)
         {
             instr_Menu.SetActive(false);
         }
+    }
+
+    public void InstructionBack()
+    {    
+        slide += 1;
+        if (slide == 4)
+        {
+            back_Button.SetActive(false);
+        }
+        instr_SlidesChildren[slide].gameObject.SetActive(true);    
     }
 
     public void BackToGame()
@@ -238,6 +268,7 @@ public class UIScript : MonoBehaviour
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
 		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		print("pausing");
 		GameManager.instance.isPaused = true;
 		pause_menu.SetActive (true);
 		GameManager.instance.PauseGame();
@@ -425,4 +456,8 @@ public class UIScript : MonoBehaviour
 		GameManager.instance.LoadGame ();
 	}*/
 
+	public void Continue()
+	{
+		GameManager.instance.timerOut();
+	}
 }

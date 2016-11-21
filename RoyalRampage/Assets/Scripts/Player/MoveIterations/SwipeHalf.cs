@@ -8,7 +8,7 @@ public class SwipeHalf : MonoBehaviour
     private List<float> initialMass = new List<float>();
     private int touches, countTaps;
     private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
-    private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime;
+    private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime, rightOk, leftOk;
     private bool newDash = false;   // for dashsound
     private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction, firstTouch, secondTouch;
     private Rigidbody playerRig;
@@ -39,24 +39,25 @@ public class SwipeHalf : MonoBehaviour
         {
             float highForce = GameManager.instance.player.GetComponent<PlayerStates>().maxVelocity;
 
-            force = force * CubicBezier(moveTimer);
+            //force = force * CubicBezier(moveTimer);
             float playerVelocity = playerRig.mass * (playerRig.velocity.magnitude * playerRig.velocity.magnitude) / 2;
 
             //print("force: " + force);
             playerRig.AddForce(direction.normalized * force);
-            transform.rotation = Quaternion.LookRotation(direction);
+            playerRig.velocity = Vector3.zero;
+            //transform.rotation = Quaternion.LookRotation(direction);
             float maxForce = (playerRig.mass * (highForce * highForce)) / 2;
 
             //print("player velocity: " + playerVelocity);
             //print("max: " + maxForce);
 
-            if (playerVelocity > maxForce)
-            {
+            //if (playerVelocity > maxForce)
+            //{
 
-                var difForce = force - maxForce;
-                //print("diff: " + difForce);
-                playerRig.AddForce(-direction.normalized * difForce);
-            }
+            //    var difForce = force - maxForce;
+            //    //print("diff: " + difForce);
+            //    playerRig.AddForce(-direction.normalized * difForce);
+            //}
 
             //dash sound
             if (newDash == true)
@@ -72,16 +73,16 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
-        //print(Mathf.Round(playerRig.velocity.magnitude));
-
+        //print(rightOk);
+        //print(leftOk);
         moveTimer += Time.deltaTime;
         circleTimer += Time.deltaTime;
 
         touches = Input.touchCount;
 
-        if (touches > 1)
+        if (touches > 2)
         {
-            touches = 1;
+            touches = 2;
         }
 
         for (int i = 0; i < touches; i++)
@@ -93,11 +94,16 @@ public class SwipeHalf : MonoBehaviour
                 //HERE MOVING////////////////////////
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
+                    rightOk = true;
                     newSwipe = true;
                     newDash = true;
                     moveTimer = 0;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     startPoint = new Vector3(temp.x, 0, temp.z);
+
+                    //playerRig.velocity = Vector3.zero;
+                    //playerRig.angularVelocity = Vector3.zero;
+                    //playerRig.Sleep();
                 }
                 else if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
                 {
@@ -105,17 +111,20 @@ public class SwipeHalf : MonoBehaviour
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
                     distance = Vector3.Distance(dragPoint, startPoint);
+                    //print(distance);
                     direction = dragPoint - startPoint;
-                    speed = distance / moveTimer;
-                    acc = speed / moveTimer;
-                    force = playerRig.mass * acc;
+                    //speed = distance / moveTimer;
+                    speed = distance;
+                    //acc = speed / moveTimer;
+                    //force = playerRig.mass * acc;
+                    force = playerRig.mass * (speed * GetComponent<PlayerStates>().moveForce);
                     if (distance > GetComponent<PlayerStates>().distSwipe)
                     {
-                        if (Mathf.Round(playerRig.velocity.magnitude) == 0)
-                        {
-                            applyMove = true;
-                            //rotationTime = true;
-                        }
+                        //if (Mathf.Round(playerRig.velocity.magnitude) == 0)
+                        //{
+                        applyMove = true;
+                        //rotationTime = true;
+                        //}
                     }
 
                     if (moveTimer >= GetComponent<PlayerStates>().timeForSwipe && newSwipe)
@@ -124,6 +133,10 @@ public class SwipeHalf : MonoBehaviour
                         newSwipe = false;
                     }
                 }
+                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                {
+                    rightOk = false;
+                }
             }
             else if (Input.GetTouch(i).position.x > Screen.width / 2)
             {
@@ -131,17 +144,20 @@ public class SwipeHalf : MonoBehaviour
                 if (isGestureDone())
                 {
                     //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+					GameManager.instance.playerSwirl();
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
                     Swirling(hitColliders);
                 }
 
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
+                    leftOk = true;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     startPointAtt = new Vector3(temp.x, 0, temp.z);
                 }
                 else if (Input.GetTouch(i).phase == TouchPhase.Ended)
                 {
+                    leftOk = false;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPointAtt = new Vector3(temp.x, 0, temp.z);
                     attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
@@ -149,9 +165,6 @@ public class SwipeHalf : MonoBehaviour
                     transform.rotation = Quaternion.LookRotation(attackDir);
                     PlayerStates.swiped = true;
                     StartCoroutine("SwipeTimer");
-                    //Dash(attackDir);
-                    //Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().dashRadius);
-                    //Dash2(hitColliders);
                 }
 
             }
@@ -159,9 +172,8 @@ public class SwipeHalf : MonoBehaviour
 
         if (Input.touchCount == 2)
         {
-            if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift)
+            if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
             {
-                //print("I am here");
                 ableToLift = false;
                 PlayerStates.lifted = true;
                 intoAir = true;
@@ -176,7 +188,7 @@ public class SwipeHalf : MonoBehaviour
             powerTime = 0;
         }
 
-        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
     }
 
 
@@ -197,48 +209,6 @@ public class SwipeHalf : MonoBehaviour
         PlayerStates.swiped = false;
     }
 
-    //void Dash2(Collider[] col)
-    //{
-    //    for (int i = 0; i < col.Length; i++)
-    //    {
-    //        if (col[i].tag == "Destructable")
-    //        {
-
-    //        }
-    //    }
-    //}
-
-    //void Dash(Vector3 direction) //Hit needs to become true here
-    //{
-    //    bool decreaseHp = true;
-    //    for (float i = transform.position.x - 1f; i < transform.position.x + 1f; i += 0.1f)
-    //    {
-    //        Ray ray = new Ray(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized);
-    //        Debug.DrawRay(new Vector3(i, transform.position.y, transform.position.z), attackDir.normalized * GetComponent<PlayerStates>().attackRange, Color.red, 2f);
-    //        RaycastHit hit;
-    //        Physics.Raycast(ray, out hit, GetComponent<PlayerStates>().attackRange);
-    //        if (hit.collider != null && hit.collider.tag == "Destructable")
-    //        {
-    //            Rigidbody rig = hit.collider.GetComponent<Rigidbody>();
-    //            rig.isKinematic = false;
-    //            hit.collider.GetComponent<ObjectBehavior>().hit = true;
-    //            if (PlayerStates.lifted)
-    //            {
-    //                rig.AddForce((attackDir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-    //            }
-    //            else
-    //            {
-    //                rig.AddForce(attackDir.normalized * GetComponent<PlayerStates>().hitForce);
-    //            }
-    //            if (decreaseHp)
-    //            {
-    //                hit.collider.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
-    //                decreaseHp = false;
-    //            }
-    //        }
-    //    }
-    //}
-
     void Swirling(Collider[] col) // hit needs to become true here
     {
         for (int i = 0; i < col.Length; i++)
@@ -255,7 +225,9 @@ public class SwipeHalf : MonoBehaviour
                 // ANIMATION OBJECT HIT
                 GameManager.instance.playerHitObject();
 
-                //rig.useGravity = true;
+                // PLAY DAMAGE PARTICLE
+                col[i].GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+
                 rig.isKinematic = false;
                 if (PlayerStates.lifted)
                 {
@@ -268,7 +240,7 @@ public class SwipeHalf : MonoBehaviour
                 col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
             }
         }
-        GameManager.instance.playerSwirl();
+       
     }
 
 
@@ -283,7 +255,6 @@ public class SwipeHalf : MonoBehaviour
                 initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
                 col[i].GetComponent<Rigidbody>().mass = 0.1f;
                 col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                //rig.AddTorque(Vector3.up * GetComponent<PlayerStates>().torgueForce);
                 col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
@@ -295,7 +266,6 @@ public class SwipeHalf : MonoBehaviour
 
     IEnumerator ReturnGravity(List<Rigidbody> rig, List<float> mass)
     {
-        //print("I am into Coroutine");
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
         PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
@@ -305,7 +275,6 @@ public class SwipeHalf : MonoBehaviour
             if (rig[i] != null)
             {
                 rig[i].mass = mass[i];
-                //objRB.useGravity = true;
                 rig[i].isKinematic = false;
             }
         }
@@ -338,14 +307,14 @@ public class SwipeHalf : MonoBehaviour
             else if (Input.touches[Input.touchCount - 1].phase == TouchPhase.Moved)
             {
                 Vector2 p = Input.touches[Input.touchCount - 1].position;
-                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 10) //Default was 10
+                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 10) //Default was 10 (make it 5 for the arc)
                 {
                     gestureDetector.Add(p);
                 }
             }
         }
 
-        if (gestureDetector.Count < 10) //Default was 10
+        if (gestureDetector.Count < 10) //Default was 10 (make it 5 for the arc)
         {
             return false;
         }
@@ -374,7 +343,7 @@ public class SwipeHalf : MonoBehaviour
 
         int gestureBase = (Screen.width + Screen.height) / 4;
 
-        if (gestureLength > gestureBase && gestureSum.magnitude < gestureBase / 2) //gestureBase divided by 2 for a half arc
+        if (gestureLength > gestureBase && gestureSum.magnitude < gestureBase / 2) //gestureBase need to be divided by 2 for an arc
         {
             gestureDetector.Clear();
             gestureCount++;
