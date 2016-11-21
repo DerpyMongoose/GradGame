@@ -1,27 +1,47 @@
 fileFormatVersion: 2
-guid: 70473bde8ed36fd4ca132b76cac2cb42
-timeCreated: 1479213691
+guid: 41d54aada84b002408be7509f0996aa1
+timeCreated: 1479472520
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: pCylinder1
-    100002: pSphere1
+    100000: ctrls
+    100002: jnt
     100004: //RootNode
-    400000: pCylinder1
-    400002: pSphere1
+    100006: scepter_expressions
+    100008: scepter_locator
+    100010: scepter_main
+    100012: scepterChain_01
+    100014: scepterChain_02
+    100016: scepterChain_03
+    100018: scepterChain_04
+    100020: scepterChain_05
+    100022: scepterChain_06
+    100024: scepterChain_07
+    100026: scepterChain_08
+    100028: scepterChain_09
+    400000: ctrls
+    400002: jnt
     400004: //RootNode
-    2300000: pCylinder1
-    2300002: pSphere1
-    3300000: pCylinder1
-    3300002: pSphere1
-    4300000: pSphere1
-    4300002: pCylinder1
+    400006: scepter_expressions
+    400008: scepter_locator
+    400010: scepter_main
+    400012: scepterChain_01
+    400014: scepterChain_02
+    400016: scepterChain_03
+    400018: scepterChain_04
+    400020: scepterChain_05
+    400022: scepterChain_06
+    400024: scepterChain_07
+    400026: scepterChain_08
+    400028: scepterChain_09
     7400000: Idle
     7400002: Dash
     7400004: Spin
     7400006: Stomp
     7400008: Hit
+    7400010: Dash_Recoil
+    7400012: Dash_Stop
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -71,18 +91,42 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: pCylinder1
+      - path: ctrls
         weight: 1
-      - path: pSphere1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Dash
       takeName: Take 001
-      firstFrame: 74
-      lastFrame: 88
+      firstFrame: 66
+      lastFrame: 92
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -105,18 +149,42 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: pCylinder1
+      - path: ctrls
         weight: 1
-      - path: pSphere1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Spin
       takeName: Take 001
-      firstFrame: 115
-      lastFrame: 185
+      firstFrame: 144
+      lastFrame: 197
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -139,18 +207,42 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: pCylinder1
+      - path: ctrls
         weight: 1
-      - path: pSphere1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Stomp
       takeName: Take 001
-      firstFrame: 190
-      lastFrame: 220
+      firstFrame: 216
+      lastFrame: 260
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -173,18 +265,42 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: pCylinder1
+      - path: ctrls
         weight: 1
-      - path: pSphere1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Hit
       takeName: Take 001
-      firstFrame: 89
-      lastFrame: 110
+      firstFrame: 199
+      lastFrame: 216
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -207,13 +323,153 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: pCylinder1
+      - path: ctrls
         weight: 1
-      - path: pSphere1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dash_Recoil
+      takeName: Take 001
+      firstFrame: 112
+      lastFrame: 131
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Dash_Stop
+      takeName: Take 001
+      firstFrame: 92
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

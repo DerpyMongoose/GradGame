@@ -13,23 +13,25 @@ public class AnimationManager : MonoBehaviour {
     private Animator playerAnim,
         scepterAnim;
     
+	//dash
     void PlayerDashAnim(){
         playerAnim.SetTrigger("dash_trig");
-        scepterAnim.SetTrigger("scepterdash_trig");
+        //scepterAnim.SetTrigger("scepterdash_trig");
     }
+	void PlayerDashRecoilAnim(){
+		playerAnim.SetTrigger("dash_end_trig");
+		//scepterAnim.SetTrigger("scepterdash_trig");
+	}
 
 	// Hits
 	void PlayerHitAnim(){
 		playerAnim.SetTrigger ("has_hit");
-		scepterAnim.SetTrigger("scepter_hasHitTrig");
+		//scepterAnim.SetTrigger("scepter_hasHitTrig");
 	} 
 
 	// Spin
 	void PlayerSpinAnim(){
 		playerAnim.SetTrigger ("spin_trig");
-	}
-	void PlayerSpinAnimStop(){
-		playerAnim.SetBool ("is_spinning", false);
 	}
 	// Stomp
 	void PlayerStompAnim(){
@@ -37,13 +39,15 @@ public class AnimationManager : MonoBehaviour {
 	}
 
 	void OnEnable(){
-        playerAnim = GameManager.instance.player.transform.GetChild(0).GetComponent<Animator>();
+		playerAnim = GameObject.FindGameObjectWithTag("queen").GetComponent<Animator>();
         scepterAnim = GameObject.FindGameObjectWithTag("scepter").GetComponent<Animator>();
-        print(scepterAnim);
+		print (playerAnim);
+		print (scepterAnim);
 
         GameManager.instance.OnPlayerDash += PlayerDashAnim;
 		GameManager.instance.OnPlayerHit += PlayerHitAnim;
 		GameManager.instance.OnPlayerSwirl += PlayerSpinAnim;
+		GameManager.instance.OnPlayerStomp += PlayerStompAnim;
 
 	}
 
@@ -51,6 +55,7 @@ public class AnimationManager : MonoBehaviour {
         GameManager.instance.OnPlayerDash -= PlayerDashAnim;
 		GameManager.instance.OnPlayerHit -= PlayerHitAnim;
 		GameManager.instance.OnPlayerSwirl -= PlayerSpinAnim;
+		GameManager.instance.OnPlayerStomp -= PlayerStompAnim;
     }
 
 }
