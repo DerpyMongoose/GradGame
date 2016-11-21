@@ -105,7 +105,7 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
-            if(GameManager.instance.currentLevel == 1)
+            if(GameManager.instance.currentLevel == 1 && GameManager.instance.isInstructed == false)
             {          
 				instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
                 instr_Slides = GameObject.Find("HelpSlides");
@@ -143,6 +143,8 @@ public class UIScript : MonoBehaviour
         if(slide == 0)
         {
             instr_Menu.SetActive(false);
+            GameManager.instance.isInstructed = true;
+            GameManager.instance.Save();
         }
     }
 
