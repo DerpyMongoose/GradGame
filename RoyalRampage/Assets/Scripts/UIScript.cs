@@ -30,7 +30,7 @@ public class UIScript : MonoBehaviour
 
     void Start()
     {
-       // GameManager.instance.Load();
+        
 
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene())
@@ -45,6 +45,10 @@ public class UIScript : MonoBehaviour
             replayPanel.SetActive(false);
             UpdateMenuBG();
             break;*/
+		case GameManager.Scene.SPLASH:
+			GameManager.instance.Load ();
+			GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
+			break;
 
 		case GameManager.Scene.PLAY_MENU:
 			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
@@ -105,18 +109,17 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
+			instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
+			instr_Slides = GameObject.FindGameObjectWithTag ("HelpSlides");
+			back_Button = GameObject.FindGameObjectWithTag ("help_left");
+			instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+			instr_Menu.SetActive(false);
+
             if(GameManager.instance.currentLevel == 1)
-            {          
-				instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
-                instr_Slides = GameObject.Find("HelpSlides");
-                back_Button = GameObject.Find("left");
-                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+            {
                 instr_Menu.SetActive(true);
             }
-            else
-            {
-                instr_Menu.SetActive(false);
-            }
+
             if(slide == 4)
             {
                 back_Button.SetActive(false);
