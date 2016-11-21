@@ -408,7 +408,7 @@ GameObject:
   - 33: {fileID: 82740046}
   - 65: {fileID: 275623887}
   - 23: {fileID: 82740045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1281,7 +1281,7 @@ GameObject:
   - 33: {fileID: 332116846}
   - 65: {fileID: 332116845}
   - 23: {fileID: 332116844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2431,7 +2431,7 @@ GameObject:
   - 33: {fileID: 703610476}
   - 65: {fileID: 703610475}
   - 23: {fileID: 703610474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2776,6 +2776,26 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 848426169}
+    - target: {fileID: 224000012577372328, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013825305356, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012413712662, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010649852608, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
@@ -2895,6 +2915,14 @@ MonoBehaviour:
   MultiplierTime: 5
   amountOfObjects: 5
   MultiplierText: {fileID: 803790971}
+  maxScore: 57
+  currencyPerStar: 50
+  star1: 0
+  star2: 0
+  star3: 0
+  star4: 0
+  star5: 0
+  multiplier: 0
 --- !u!114 &848426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3048,7 +3076,7 @@ GameObject:
   - 33: {fileID: 963208415}
   - 65: {fileID: 963208414}
   - 23: {fileID: 963208413}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (8)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3187,7 +3215,7 @@ GameObject:
   - 33: {fileID: 989081320}
   - 65: {fileID: 989081319}
   - 23: {fileID: 989081318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (10)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3481,7 +3509,7 @@ GameObject:
   - 33: {fileID: 1065469466}
   - 65: {fileID: 1065469465}
   - 23: {fileID: 1065469464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4149,7 +4177,7 @@ GameObject:
   - 33: {fileID: 1293613839}
   - 65: {fileID: 1293613838}
   - 23: {fileID: 1293613837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4575,7 +4603,7 @@ GameObject:
   - 33: {fileID: 1492666099}
   - 65: {fileID: 1492666098}
   - 23: {fileID: 1492666097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (9)
   m_TagString: Wall
   m_Icon: {fileID: 0}
