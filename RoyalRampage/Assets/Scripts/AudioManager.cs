@@ -201,6 +201,14 @@ public class AudioManager : MonoBehaviour {
 		PlaySound(objectiveCompleted, gameObject);
 	}
 
+	//**********volume ********
+	void UpdateMusicVolume(float volume){
+		print ("music " + volume);
+	}
+	void UpdateSFXVolume(float volume){
+		print ("sfx " + volume);
+	}
+
 	//****** play sound ****************
 
 	private void PlaySound(string eventName, GameObject audioSource){
@@ -240,6 +248,8 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectiveCompleted += CompletedObjective;
 		GameManager.instance.OnPointsCountingStart += CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
+		GameManager.instance.OnMusicVolumeChange += UpdateMusicVolume;
+		GameManager.instance.OnSFXVolumeChange += UpdateSFXVolume;
     }
 
 	void OnDisable(){
@@ -270,5 +280,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectiveCompleted -= CompletedObjective;
 		GameManager.instance.OnPointsCountingStart -= CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
+		GameManager.instance.OnMusicVolumeChange -= UpdateMusicVolume;
+		GameManager.instance.OnSFXVolumeChange -= UpdateSFXVolume;
     }
 }

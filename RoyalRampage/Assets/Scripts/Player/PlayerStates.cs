@@ -11,6 +11,7 @@ public class PlayerStates : MonoBehaviour
     [HideInInspector]
     public static bool imInSlowMotion, lifted, hitObject, swiped;
     [Header("Forces")]
+    public float moveForce;
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
@@ -58,7 +59,7 @@ public class PlayerStates : MonoBehaviour
     Text timerText;
 
 
-    void Start()
+    void Awake()
     {
         //DontDestroyOnLoad (gameObject);
         //update timer
@@ -93,7 +94,7 @@ public class PlayerStates : MonoBehaviour
 
             if (Input.GetKey(KeyCode.R))
             {
-                Startlevel();
+				GameManager.instance.levelLoad();
             }
             break;
 

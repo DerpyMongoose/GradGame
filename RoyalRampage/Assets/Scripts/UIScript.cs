@@ -13,12 +13,18 @@ public class UIScript : MonoBehaviour
 	GameObject levels_menu;
 	GameObject levels;
 	GameObject play_menu;
+    GameObject instr_Menu;
+    GameObject instr_Slides;
+    GameObject back_Button;
+    Transform[] instr_SlidesChildren;
+    [HideInInspector]
+    public int slide = 4;
 
 	GameObject help_menu;
 	GameObject [] slides;
 	GameObject arrowL;
 	GameObject arrowR;
-	int current_slide = 1;
+	int current_slide = 0;
 
     Text starTotal;
 
@@ -64,7 +70,7 @@ public class UIScript : MonoBehaviour
 			help_menu = GameObject.FindGameObjectWithTag ("HelpPanel");
 			help_menu.SetActive (false);
 
-			UpdateMenuBG();
+            UpdateMenuBG();
 			break;
 
 		case GameManager.Scene.LEVELS_OVERVIEW:
@@ -99,6 +105,23 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
+            if(GameManager.instance.currentLevel == 1)
+            {          
+                instr_Menu = GameObject.Find("HelpGame");
+                instr_Slides = GameObject.Find("HelpSlides");
+                back_Button = GameObject.Find("left");
+                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+                instr_Menu.SetActive(true);
+            }
+            else
+            {
+                instr_Menu.SetActive(false);
+            }
+            if(slide == 4)
+            {
+                back_Button.SetActive(false);
+            }
+          
 			pause_menu = GameObject.FindGameObjectWithTag ("PausePanel");
 			pause_menu.SetActive(false);
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
@@ -107,6 +130,30 @@ public class UIScript : MonoBehaviour
 
         }
 			
+    }
+
+    public void InstructionsNext()
+    {
+        if(slide < 5)
+        {
+            back_Button.SetActive(true);
+        }
+        instr_SlidesChildren[slide].gameObject.SetActive(false);
+        slide -= 1;
+        if(slide == 0)
+        {
+            instr_Menu.SetActive(false);
+        }
+    }
+
+    public void InstructionBack()
+    {    
+        slide += 1;
+        if (slide == 4)
+        {
+            back_Button.SetActive(false);
+        }
+        instr_SlidesChildren[slide].gameObject.SetActive(true);    
     }
 
     public void BackToGame()
@@ -213,6 +260,7 @@ public class UIScript : MonoBehaviour
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
 		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		print("pausing");
 		GameManager.instance.isPaused = true;
 		pause_menu.SetActive (true);
 		GameManager.instance.PauseGame();
@@ -239,6 +287,14 @@ public class UIScript : MonoBehaviour
 	public void GoToMainMenu(){
 		PlayMenuButtonSound();
 		StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
+	}
+
+	public void UpdateMusicVolume(Slider slider){
+		GameManager.instance.changeMusicVolume (slider.value);
+	}
+
+	public void UpdateSFXVolume(Slider slider){
+		GameManager.instance.changeSFXVolume (slider.value);
 	}
 
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
