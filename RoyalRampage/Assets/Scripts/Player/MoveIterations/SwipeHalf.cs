@@ -144,6 +144,7 @@ public class SwipeHalf : MonoBehaviour
                 if (isGestureDone())
                 {
                     //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+					GameManager.instance.playerSwirl();
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
                     Swirling(hitColliders);
                 }
@@ -239,7 +240,7 @@ public class SwipeHalf : MonoBehaviour
                 col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
             }
         }
-        GameManager.instance.playerSwirl();
+       
     }
 
 

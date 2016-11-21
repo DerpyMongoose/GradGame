@@ -152,10 +152,7 @@ public class PlayerStates : MonoBehaviour
             {
                 timerText.text = "0";  // for the level timer
                 timerText.color = Color.red;
-                state = PlayerState.ENDING;
-                GameManager.instance.timerOut();
-                GameManager.instance.canPlayerDestroy = false;
-                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
+				GameManager.instance.timerOut();
             }
             break;
         }
@@ -168,9 +165,11 @@ public class PlayerStates : MonoBehaviour
         GameManager.instance.timerStart();
     }
 
-    private void Move()
+    private void EndLevel()
     {
-
+		state = PlayerState.ENDING;
+		GameManager.instance.canPlayerDestroy = false;
+		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
     }
 
     void OnCollisionEnter(Collision hit)
@@ -181,4 +180,11 @@ public class PlayerStates : MonoBehaviour
         }
     }
 
+	void OnEnable(){
+		GameManager.instance.OnTimerOut += EndLevel;
+	}
+
+	void OnDisable(){
+		GameManager.instance.OnTimerOut -= EndLevel;
+	}
 }
