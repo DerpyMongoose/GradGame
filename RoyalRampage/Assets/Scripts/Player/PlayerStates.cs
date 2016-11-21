@@ -59,7 +59,7 @@ public class PlayerStates : MonoBehaviour
     Text timerText;
 
 
-    void Start()
+    void Awake()
     {
         //DontDestroyOnLoad (gameObject);
         //update timer
