@@ -61,6 +61,7 @@ public class UIScript : MonoBehaviour
 			//update level on play icon
 			Text levelNum = GameObject.FindGameObjectWithTag ("level_number").GetComponentInChildren<Text> ();
 			levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString ();
+            GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
 			settings_menu.SetActive (false);
@@ -120,7 +121,7 @@ public class UIScript : MonoBehaviour
 			instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
 			instr_Menu.SetActive(false);
 
-            if(GameManager.instance.currentLevel == 1)
+            if(GameManager.instance.currentLevel == 1 && GameManager.instance.isInstructed == false)
             {
                 instr_Menu.SetActive(true);
             }
