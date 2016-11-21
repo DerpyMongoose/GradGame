@@ -244,6 +244,7 @@ public class UIScript : MonoBehaviour
 		//***** FOR AUDIO
 		PlayMenuButtonSound();
 		//StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
+		print("pausing");
 		GameManager.instance.isPaused = true;
 		pause_menu.SetActive (true);
 		GameManager.instance.PauseGame();
@@ -270,6 +271,14 @@ public class UIScript : MonoBehaviour
 	public void GoToMainMenu(){
 		PlayMenuButtonSound();
 		StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
+	}
+
+	public void UpdateMusicVolume(Slider slider){
+		GameManager.instance.changeMusicVolume (slider.value);
+	}
+
+	public void UpdateSFXVolume(Slider slider){
+		GameManager.instance.changeSFXVolume (slider.value);
 	}
 
     private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
