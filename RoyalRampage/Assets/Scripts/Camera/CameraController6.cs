@@ -38,8 +38,6 @@ public class CameraController6 : MonoBehaviour
         {
             if (hit.transform.tag == "Wall")
             {
-                print(hit.transform.position);
-
                 Vector3 direction = player.transform.position - transform.position;
                 Quaternion rotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotSmooth);
