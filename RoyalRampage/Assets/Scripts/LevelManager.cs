@@ -118,7 +118,6 @@ public class LevelManager : MonoBehaviour
 		IntroTapPanel.SetActive(false);
 		InGamePanel.SetActive (true);
         guideText.text = "";
-        GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
 
     //after the timer is out (wait for animation?)

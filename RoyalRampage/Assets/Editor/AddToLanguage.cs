@@ -38,8 +38,6 @@ public class AddToLanguage : EditorWindow {
             ShowXml();
             defaultIndex = index;
         }
-
-        Debug.Log(index);
     }
 
     void OnGUI() {

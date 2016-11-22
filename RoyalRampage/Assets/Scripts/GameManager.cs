@@ -37,6 +37,7 @@ public class GameManager {
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
 	public bool isPaused = false;
+    public bool isInstructed = false;
 
 	//getters:
 	public static GameManager instance{
@@ -277,6 +278,7 @@ public class GameManager {
         data.allStars = allStars;
         data.stars = stars;
         data.currency = currency;
+        data.isInstructed = isInstructed;
         
 
         bf.Serialize(file, data);
@@ -298,6 +300,7 @@ public class GameManager {
             allStars = data.allStars;
             stars = data.stars;
             currency = data.currency;
+            isInstructed = data.isInstructed;
         }
 
     }
@@ -311,4 +314,5 @@ class PlayerData
     public int currency;
     public int allStars;
     public int[] stars;
+    public bool isInstructed;
 }
