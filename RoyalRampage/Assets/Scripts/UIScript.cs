@@ -177,6 +177,7 @@ public class UIScript : MonoBehaviour
     public void InstructionsSkip()
     {
         instr_Menu.SetActive(false);
+        GameManager.instance.isInstructed = true;
     }
 
     public void BackToGame()
