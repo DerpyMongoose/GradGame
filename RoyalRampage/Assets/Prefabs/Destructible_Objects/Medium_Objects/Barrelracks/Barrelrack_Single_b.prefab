@@ -25,7 +25,7 @@ GameObject:
   - 114: {fileID: 114000013598308482}
   - 65: {fileID: 65000012465641068}
   m_Layer: 0
-  m_Name: Barrelrack_Single_1
+  m_Name: Barrelrack_Single_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010145900602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.250134, y: 0.00023396492, z: -24.132973}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: 8b9b25aa335059d49b23c2a3720dfb39, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -121,8 +121,11 @@ MonoBehaviour:
   life: 0
   initialLife: 0
   soundSwitch: 
+  particleSys: {fileID: 0}
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
+  currencySpawnChance: 0.1
   objMaterial: 1
   objSize: 1
