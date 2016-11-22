@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: goldLight_spec
+  m_Name: brownDark_a_gloss
   m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -129,10 +129,10 @@ Material:
       second: 1
     - first:
         name: _SpecularSmooth
-      second: 0.01
+      second: 0.76
     - first:
         name: _Specularity
-      second: 0.29
+      second: 0.419
     - first:
         name: _SrcBlend
       second: 1
@@ -148,16 +148,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.8670385, b: 0.5808823, a: 1}
+      second: {r: 0.27205884, g: 0.16301456, b: 0.06401384, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HighlightColor
-      second: {r: 1, g: 0.956998, b: 0.9411765, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _ShadowColor
-      second: {r: 0.7205882, g: 0.4919879, b: 0, a: 1}
+      second: {r: 0.3529412, g: 0.21960786, b: 0.09411766, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 1, g: 0.89269775, b: 0.66176474, a: 1}
+      second: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
