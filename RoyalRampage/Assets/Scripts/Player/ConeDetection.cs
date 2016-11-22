@@ -15,6 +15,9 @@ public class ConeDetection : MonoBehaviour
                 rig.isKinematic = false;
                 col.GetComponent<ObjectBehavior>().hit = true;
 
+				///SOUND PLAYER HIT OBJECT
+				GameManager.instance.objectHit (col.gameObject);
+
                 // PLAY DAMAGE PARTICLE
                 //print(col.bounds.extents.y * 2);
                 col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS

@@ -16,26 +16,28 @@ public class AnimationManager : MonoBehaviour {
 	//dash
     void PlayerDashAnim(){
         playerAnim.SetTrigger("dash_trig");
-        //scepterAnim.SetTrigger("scepterdash_trig");
+		scepterAnim.SetTrigger("dash_trig_scepter");
     }
 	void PlayerDashRecoilAnim(){
 		playerAnim.SetTrigger("dash_end_trig");
-		//scepterAnim.SetTrigger("scepterdash_trig");
+		scepterAnim.SetTrigger("dash_end_trig_scepter");
 	}
 
 	// Hits
 	void PlayerHitAnim(){
 		playerAnim.SetTrigger ("has_hit");
-		//scepterAnim.SetTrigger("scepter_hasHitTrig");
+		scepterAnim.SetTrigger("has_hit_scepter");
 	} 
 
 	// Spin
 	void PlayerSpinAnim(){
 		playerAnim.SetTrigger ("spin_trig");
+		scepterAnim.SetTrigger ("spin_trig_scepter");
 	}
 	// Stomp
 	void PlayerStompAnim(){
 		playerAnim.SetTrigger ("stomp_trig");
+		scepterAnim.SetTrigger ("stomp_trig_scepter");
 	}
 
 	void OnEnable(){
