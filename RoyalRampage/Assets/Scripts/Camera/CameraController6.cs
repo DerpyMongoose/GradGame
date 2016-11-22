@@ -34,7 +34,6 @@ public class CameraController6 : MonoBehaviour
         transform.rotation = offsetRotation;
 
         Physics.Linecast(player.transform.position, transform.position, out hit, 1 << 8);
-        Debug.DrawLine(player.transform.position, transform.position);
         if (hit.transform != null)
         {
             if (hit.transform.tag == "Wall")
