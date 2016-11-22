@@ -11,6 +11,7 @@ public class PlayerStates : MonoBehaviour
     [HideInInspector]
     public static bool imInSlowMotion, lifted, hitObject, swiped;
     [Header("Forces")]
+    public float moveForce;
     public float torgueForce;
     public float hitForce;
     public float swirlForce;
@@ -32,6 +33,7 @@ public class PlayerStates : MonoBehaviour
     public float rotationSpeed;
     public float degreesInAir;
     public float colImpact;
+    public float smoothPick;
     public int numOfCircleToShow;
     [Header("Cubic Bezier")]
     [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
@@ -53,12 +55,18 @@ public class PlayerStates : MonoBehaviour
         READY, IDLE, WALKING, ATTACKING, ENDING
     }
 
-    PlayerState state = PlayerState.READY;
+    PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
 
-
     void Start()
+    {
+        hitObject = false;
+        state = PlayerState.READY;
+
+    }
+
+    void Awake()
     {
         //DontDestroyOnLoad (gameObject);
         //update timer
@@ -72,7 +80,7 @@ public class PlayerStates : MonoBehaviour
 
     void Update()
     {
-
+        print(state);
         //update level timer
         UpdateLevelTimer();
 
@@ -84,16 +92,18 @@ public class PlayerStates : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
+                print("LoadLevelStart");
                 }
 
             if(hitObject == true)
             {
                 Startlevel();
+                print("hit");
             }
 
             if (Input.GetKey(KeyCode.R))
             {
-                Startlevel();
+				GameManager.instance.levelLoad();
             }
             break;
 
@@ -150,10 +160,7 @@ public class PlayerStates : MonoBehaviour
             {
                 timerText.text = "0";  // for the level timer
                 timerText.color = Color.red;
-                state = PlayerState.ENDING;
-                GameManager.instance.timerOut();
-                GameManager.instance.canPlayerDestroy = false;
-                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
+				GameManager.instance.timerOut();
             }
             break;
         }
@@ -166,9 +173,11 @@ public class PlayerStates : MonoBehaviour
         GameManager.instance.timerStart();
     }
 
-    private void Move()
+    private void EndLevel()
     {
-
+		state = PlayerState.ENDING;
+		GameManager.instance.canPlayerDestroy = false;
+		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
     }
 
     void OnCollisionEnter(Collision hit)
@@ -179,4 +188,11 @@ public class PlayerStates : MonoBehaviour
         }
     }
 
+	void OnEnable(){
+		GameManager.instance.OnTimerOut += EndLevel;
+    }
+
+	void OnDisable(){
+		GameManager.instance.OnTimerOut -= EndLevel;
+	}
 }

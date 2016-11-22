@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4419067, g: 0.49081814, b: 0.5707319, a: 1}
+  m_IndirectSpecularColor: {r: 0.4419066, g: 0.49081814, b: 0.5707319, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -408,7 +408,7 @@ GameObject:
   - 33: {fileID: 82740046}
   - 65: {fileID: 275623887}
   - 23: {fileID: 82740045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1281,7 +1281,7 @@ GameObject:
   - 33: {fileID: 332116846}
   - 65: {fileID: 332116845}
   - 23: {fileID: 332116844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2431,7 +2431,7 @@ GameObject:
   - 33: {fileID: 703610476}
   - 65: {fileID: 703610475}
   - 23: {fileID: 703610474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2742,7 +2742,6 @@ GameObject:
   - 4: {fileID: 848426168}
   - 114: {fileID: 848426169}
   - 114: {fileID: 848426167}
-  - 114: {fileID: 848426170}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2758,7 +2757,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 848426166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c72331f5d2e3c5945b005ca4ce4454fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 020b88f179f209148b7a84ef71c249f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &848426168
@@ -2791,27 +2790,13 @@ MonoBehaviour:
   amountOfObjects: 5
   MultiplierText: {fileID: 803790971}
   maxScore: 57
+  currencyPerStar: 50
   star1: 0
   star2: 0
   star3: 0
   star4: 0
   star5: 0
   multiplier: 0
---- !u!114 &848426170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 848426166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6eb7bd040cc4f46810adf8c3b3c506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishedGuide: 0
-  completeObjective: 0
-  killerObj: {fileID: 0}
-  victimObj: {fileID: 0}
 --- !u!1 &852025897
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,7 +2935,7 @@ GameObject:
   - 33: {fileID: 963208415}
   - 65: {fileID: 963208414}
   - 23: {fileID: 963208413}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (8)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3094,7 +3079,7 @@ GameObject:
   - 33: {fileID: 989081320}
   - 65: {fileID: 989081319}
   - 23: {fileID: 989081318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (10)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3388,7 +3373,7 @@ GameObject:
   - 33: {fileID: 1065469466}
   - 65: {fileID: 1065469465}
   - 23: {fileID: 1065469464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4056,7 +4041,7 @@ GameObject:
   - 33: {fileID: 1293613839}
   - 65: {fileID: 1293613838}
   - 23: {fileID: 1293613837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4128,6 +4113,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293613835}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1379526371 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013268982810, guid: 814648a664d369d4a8063742d341bc70,
+    type: 2}
+  m_PrefabInternal: {fileID: 1841352795}
+--- !u!114 &1379526372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379526371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c9767104951bc43b84b80a840c9113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothness: 3
+  rotSmooth: 3
 --- !u!1001 &1383532853
 Prefab:
   m_ObjectHideFlags: 0
@@ -4482,7 +4485,7 @@ GameObject:
   - 33: {fileID: 1492666099}
   - 65: {fileID: 1492666098}
   - 23: {fileID: 1492666097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (9)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5283,7 +5286,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000013141997244, guid: 814648a664d369d4a8063742d341bc70, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 814648a664d369d4a8063742d341bc70, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1849470775

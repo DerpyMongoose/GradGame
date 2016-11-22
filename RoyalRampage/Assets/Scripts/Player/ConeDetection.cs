@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ConeDetection : MonoBehaviour {
+public class ConeDetection : MonoBehaviour
+{
 
     void OnTriggerStay(Collider col)
     {
         if (col.tag == "Destructable")
         {
-            //print("I am in collision");
             var decreaseHp = true;
-            //PlayerStates.ableToSwipe = true;
             if (PlayerStates.swiped)
             {
                 Rigidbody rig = col.GetComponent<Rigidbody>();
                 rig.isKinematic = false;
                 col.GetComponent<ObjectBehavior>().hit = true;
+
+                // PLAY DAMAGE PARTICLE
+                //print(col.bounds.extents.y * 2);
+                col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+
                 if (PlayerStates.lifted)
                 {
-                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce); // Error here
                 }
                 else
                 {
@@ -28,7 +32,6 @@ public class ConeDetection : MonoBehaviour {
                     col.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
                     decreaseHp = false;
                 }
-                //PlayerStates.swiped = false;
             }
         }
     }

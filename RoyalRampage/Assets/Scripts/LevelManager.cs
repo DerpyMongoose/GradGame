@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
+    public int currencyPerStar = 50;
     [Range(0,1)]
     public float star1;
     [Range(0, 1)]
@@ -83,7 +84,8 @@ public class LevelManager : MonoBehaviour
         ReplayPanel.SetActive(false);
         continueButton.SetActive(false);
 		InGamePanel.SetActive (false);
-        GameManager.instance.levelLoad(); // FOR AUDIO
+       // GameManager.instance.levelLoad(); // FOR AUDIO
+		print("level set up");
     }
 
     private void IncreaseScore(GameObject destructedObj)
@@ -116,7 +118,6 @@ public class LevelManager : MonoBehaviour
 		IntroTapPanel.SetActive(false);
 		InGamePanel.SetActive (true);
         guideText.text = "";
-        GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
 
     //after the timer is out (wait for animation?)
@@ -190,6 +191,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void CalculateCurrency () {
+        GameManager.instance.currency = stars * currencyPerStar;
+    }
+
     //show replay screen after animation is done
     private IEnumerator ShowContinueScreen(string levelResult)
     {
@@ -200,6 +205,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
         Stars();
+        CalculateCurrency();
 
         InGamePanel.SetActive(false);
         replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
@@ -225,7 +231,7 @@ public class LevelManager : MonoBehaviour
 			Text levelNum = NewLevelBtn.GetComponentInChildren<Text> ();
 			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				GameManager.instance.levelsUnlocked++;
-				GameManager.instance.Save ();
+				
 			}
 			if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
 				levelNum.text = (GameManager.instance.currentLevel + 1).ToString ();
@@ -243,7 +249,8 @@ public class LevelManager : MonoBehaviour
                 break;
         }
 
-		StartCoroutine (CountPointsTo(score)); // show counting score
+        GameManager.instance.Save();
+        StartCoroutine (CountPointsTo(score)); // show counting score
     }
 
 	//counting score "animation"

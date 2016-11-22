@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4395975, g: 0.48794484, b: 0.5681134, a: 1}
+  m_IndirectSpecularColor: {r: 0.43959752, g: 0.4879449, b: 0.56811357, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ GameObject:
   - 33: {fileID: 82374166}
   - 65: {fileID: 82374165}
   - 23: {fileID: 82374164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (12)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - 33: {fileID: 106391545}
   - 65: {fileID: 106391544}
   - 23: {fileID: 106391543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (14)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   - 33: {fileID: 169594997}
   - 65: {fileID: 169594996}
   - 23: {fileID: 169594995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (10)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1121,7 +1121,7 @@ GameObject:
   - 33: {fileID: 228140278}
   - 65: {fileID: 228140277}
   - 23: {fileID: 228140276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (16)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1205,7 +1205,7 @@ GameObject:
   - 33: {fileID: 232341226}
   - 65: {fileID: 232341225}
   - 23: {fileID: 232341224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (17)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1219,10 +1219,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 232341222}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.5, y: 2.5, z: -13}
-  m_LocalScale: {x: 6, y: 5, z: 1.0000021}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalScale: {x: 1, y: 5, z: 6}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 608566592}
   m_RootOrder: 12
@@ -1321,6 +1321,11 @@ Prefab:
       propertyPath: slider
       value: 
       objectReference: {fileID: 775224831}
+    - target: {fileID: 114000013503495560, guid: 5950ab559094bff4693b84287113f3d8,
+        type: 2}
+      propertyPath: smoothPick
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
   m_IsPrefabParent: 0
@@ -1732,7 +1737,7 @@ GameObject:
   - 33: {fileID: 332116846}
   - 65: {fileID: 332116845}
   - 23: {fileID: 332116844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3162,7 +3167,7 @@ GameObject:
   - 33: {fileID: 577174337}
   - 65: {fileID: 577174336}
   - 23: {fileID: 577174335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (9)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3473,7 +3478,7 @@ GameObject:
   - 33: {fileID: 599846189}
   - 65: {fileID: 599846188}
   - 23: {fileID: 599846187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3772,7 +3777,7 @@ GameObject:
   - 33: {fileID: 644520475}
   - 65: {fileID: 644520474}
   - 23: {fileID: 644520473}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (21)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4415,26 +4420,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011970756394, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 848426169}
-    - target: {fileID: 114000013557173868, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 848426169}
-    - target: {fileID: 224000012413712662, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010649852608, guid: 75143ac6572fa884b8ae2362e3064a3b,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224000012577372328, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_AnchorMax.y
@@ -4445,8 +4430,34 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011848751690, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 224000012413712662, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010649852608, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013456228230, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010427997414, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013772728014, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011193037830, guid: 75143ac6572fa884b8ae2362e3064a3b,
+        type: 2}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4730,7 +4741,7 @@ GameObject:
   - 33: {fileID: 820270223}
   - 65: {fileID: 820270222}
   - 23: {fileID: 820270221}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4970,7 +4981,6 @@ GameObject:
   - 4: {fileID: 848426168}
   - 114: {fileID: 848426169}
   - 114: {fileID: 848426167}
-  - 114: {fileID: 848426170}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -4986,7 +4996,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 848426166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c72331f5d2e3c5945b005ca4ce4454fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 020b88f179f209148b7a84ef71c249f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &848426168
@@ -5019,27 +5029,13 @@ MonoBehaviour:
   amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
   maxScore: 57
+  currencyPerStar: 50
   star1: 0
   star2: 0
   star3: 0
   star4: 0
   star5: 0
   multiplier: 0
---- !u!114 &848426170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 848426166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6eb7bd040cc4f46810adf8c3b3c506, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finishedGuide: 0
-  completeObjective: 0
-  killerObj: {fileID: 0}
-  victimObj: {fileID: 0}
 --- !u!1001 &850773973
 Prefab:
   m_ObjectHideFlags: 0
@@ -5380,7 +5376,7 @@ GameObject:
   - 33: {fileID: 941621718}
   - 65: {fileID: 941621717}
   - 23: {fileID: 941621716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (22)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5661,6 +5657,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4000014273360032, guid: c669ce9aa56c80a41891a2c36e367a66,
     type: 2}
   m_PrefabInternal: {fileID: 984919049}
+--- !u!1001 &990245828
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.75167465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.439
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -35.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010932241628, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 59c256ee68aead141892682b30fe6c45, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &995711518
 Prefab:
   m_ObjectHideFlags: 0
@@ -5843,7 +5881,7 @@ GameObject:
   - 33: {fileID: 1009141500}
   - 65: {fileID: 1009141499}
   - 23: {fileID: 1009141498}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (11)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6294,7 +6332,7 @@ GameObject:
   - 33: {fileID: 1065469466}
   - 65: {fileID: 1065469465}
   - 23: {fileID: 1065469464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6743,7 +6781,7 @@ GameObject:
   - 33: {fileID: 1123434965}
   - 65: {fileID: 1123434964}
   - 23: {fileID: 1123434963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (15)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6978,7 +7016,7 @@ GameObject:
   - 33: {fileID: 1145936076}
   - 65: {fileID: 1145936075}
   - 23: {fileID: 1145936074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (13)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8186,7 +8224,7 @@ GameObject:
   - 33: {fileID: 1347863167}
   - 65: {fileID: 1347863166}
   - 23: {fileID: 1347863165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (23)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10994,7 +11032,7 @@ GameObject:
   - 33: {fileID: 1753840980}
   - 65: {fileID: 1753840979}
   - 23: {fileID: 1753840978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (26)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11772,7 +11810,7 @@ GameObject:
   - 33: {fileID: 1854144115}
   - 65: {fileID: 1854144114}
   - 23: {fileID: 1854144113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (8)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11907,7 +11945,7 @@ GameObject:
   - 33: {fileID: 1878604230}
   - 65: {fileID: 1878604229}
   - 23: {fileID: 1878604228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (25)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -12256,7 +12294,7 @@ GameObject:
   - 33: {fileID: 1966484969}
   - 65: {fileID: 1966484968}
   - 23: {fileID: 1966484967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wall (24)
   m_TagString: Wall
   m_Icon: {fileID: 0}

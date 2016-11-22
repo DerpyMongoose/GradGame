@@ -13,7 +13,7 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2"};
+	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2","GameScene3"};
 	private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -22,6 +22,7 @@ public class GameManager {
     public int allStars = 0;
 	public int currentLevel = 1;
     public int levelsUnlocked = 1;
+    public int currency = 200;
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene {
         SPLASH, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
@@ -36,6 +37,7 @@ public class GameManager {
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
 	public bool isPaused = false;
+    public bool isInstructed = false;
 
 	//getters:
 	public static GameManager instance{
@@ -242,6 +244,8 @@ public class GameManager {
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;
     public event LevelAction OnMusicStateChange;
+	public event LevelAction OnMusicVolumeChange;
+	public event LevelAction OnSFXVolumeChange;
 
     public void timerUpdate(float val)
     {
@@ -253,6 +257,14 @@ public class GameManager {
         if (OnMusicStateChange != null)
             OnMusicStateChange(val);
     }
+	public void changeSFXVolume(float val){
+		if (OnSFXVolumeChange != null)
+			OnSFXVolumeChange(val);
+	}
+	public void changeMusicVolume(float val){
+		if (OnMusicVolumeChange != null)
+			OnMusicVolumeChange(val);
+	}
 
     //SAVE-LOAD
     public void Save()
@@ -265,6 +277,9 @@ public class GameManager {
         data.levelsUnlocked = levelsUnlocked;
         data.allStars = allStars;
         data.stars = stars;
+        data.currency = currency;
+        data.isInstructed = isInstructed;
+        
 
         bf.Serialize(file, data);
         file.Close();
@@ -284,6 +299,8 @@ public class GameManager {
             levelsUnlocked = data.levelsUnlocked;
             allStars = data.allStars;
             stars = data.stars;
+            currency = data.currency;
+            isInstructed = data.isInstructed;
         }
 
     }
@@ -294,6 +311,8 @@ class PlayerData
 {
     //public int currentLevel;
     public int levelsUnlocked;
+    public int currency;
     public int allStars;
     public int[] stars;
+    public bool isInstructed;
 }
