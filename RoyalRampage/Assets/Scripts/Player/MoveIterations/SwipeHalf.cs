@@ -29,6 +29,7 @@ public class SwipeHalf : MonoBehaviour
         moveTimer = 0;
         newSwipe = false;
         applyMove = false;
+        //inAir = false;
         direction = -Vector3.forward;
     }
 
@@ -101,9 +102,6 @@ public class SwipeHalf : MonoBehaviour
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     startPoint = new Vector3(temp.x, 0, temp.z);
 
-                    //playerRig.velocity = Vector3.zero;
-                    //playerRig.angularVelocity = Vector3.zero;
-                    //playerRig.Sleep();
                 }
                 else if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
                 {
@@ -144,7 +142,7 @@ public class SwipeHalf : MonoBehaviour
                 if (isGestureDone())
                 {
                     //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
-					GameManager.instance.playerSwirl();
+                    GameManager.instance.playerSwirl();
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
                     Swirling(hitColliders);
                 }
@@ -175,7 +173,6 @@ public class SwipeHalf : MonoBehaviour
             if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
             {
                 ableToLift = false;
-                PlayerStates.lifted = true;
                 intoAir = true;
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
@@ -226,30 +223,34 @@ public class SwipeHalf : MonoBehaviour
                 GameManager.instance.playerHitObject();
 
                 // PLAY DAMAGE PARTICLE
-                col[i].GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 rig.isKinematic = false;
-                if (PlayerStates.lifted)
+                if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
-                    rig.AddForce((dir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().swirlForce);
+                    var tempDir = new Vector3(dir.x, 0.0f, dir.z);
+                    rig.AddForce((tempDir.normalized) * GetComponent<PlayerStates>().swirlForce);
                 }
                 else
                 {
-                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
+                rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
                 }
                 col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
             }
         }
-       
+
     }
 
 
     void Lift(Collider[] col)
     {
+        //inAir = true;
         for (int i = 0; i < col.Length; i++)
         {
             if (col[i].tag == "Destructable")
             {
+
+                col[i].GetComponent<ObjectBehavior>().lifted = true;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 objRB.Add(col[i].GetComponent<Rigidbody>());
                 initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
@@ -261,21 +262,23 @@ public class SwipeHalf : MonoBehaviour
 
         // SOUND AND ANIMATION FOR STOMP
         GameManager.instance.playerStomp();
-        StartCoroutine(ReturnGravity(objRB, initialMass));
+        StartCoroutine(ReturnGravity(objRB, initialMass));      
     }
 
     IEnumerator ReturnGravity(List<Rigidbody> rig, List<float> mass)
-    {
+    {       
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
-        PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
         StampBar.increaseFill = true;
+        //inAir = false;
         for (int i = 0; i < rig.Count; i++)
         {
             if (rig[i] != null)
             {
                 rig[i].mass = mass[i];
                 rig[i].isKinematic = false;
+                rig[i].GetComponent<ObjectBehavior>().slowed = false;
+                rig[i].GetComponent<ObjectBehavior>().lifted = false;
             }
         }
         objRB.Clear();

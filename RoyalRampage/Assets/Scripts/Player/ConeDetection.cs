@@ -4,6 +4,7 @@ using System.Collections;
 public class ConeDetection : MonoBehaviour
 {
 
+
     void OnTriggerStay(Collider col)
     {
         if (col.tag == "Destructable")
@@ -16,10 +17,9 @@ public class ConeDetection : MonoBehaviour
                 col.GetComponent<ObjectBehavior>().hit = true;
 
                 // PLAY DAMAGE PARTICLE
-                //print(col.bounds.extents.y * 2);
                 col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
-                if (PlayerStates.lifted)
+                if (col.GetComponent<ObjectBehavior>().lifted)
                 {
                     rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
                 }
