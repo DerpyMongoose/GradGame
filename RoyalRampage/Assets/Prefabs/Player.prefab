@@ -28595,7 +28595,7 @@ Animator:
   m_GameObject: {fileID: 1000013258933172}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8ee4e62761572a948b4e4fe9f0c84958, type: 3}
-  m_Controller: {fileID: 9100000, guid: 83963905ba826ba4190ee617945939cf, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -28741,13 +28741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 45
+  moveForce: 100
   torgueForce: 1
   hitForce: 600
   swirlForce: 1200
   liftForce: 25
   maxVelocity: 10
-  timeForSwipe: 0.35
+  timeForSwipe: 0.125
   timeForCircle: 0.5
   SameTapTime: 0.1
   gravityTimer: 2
