@@ -52,10 +52,16 @@ public class PlayerStates : MonoBehaviour
         READY, IDLE, WALKING, ATTACKING, ENDING
     }
 
-    PlayerState state = PlayerState.READY;
+    PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
 
+    void Start()
+    {
+        hitObject = false;
+        state = PlayerState.READY;
+
+    }
 
     void Awake()
     {
@@ -71,7 +77,7 @@ public class PlayerStates : MonoBehaviour
 
     void Update()
     {
-
+        print(state);
         //update level timer
         UpdateLevelTimer();
 
@@ -83,11 +89,13 @@ public class PlayerStates : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
+                print("LoadLevelStart");
                 }
 
             if(hitObject == true)
             {
                 Startlevel();
+                print("hit");
             }
 
             if (Input.GetKey(KeyCode.R))
@@ -179,7 +187,7 @@ public class PlayerStates : MonoBehaviour
 
 	void OnEnable(){
 		GameManager.instance.OnTimerOut += EndLevel;
-	}
+    }
 
 	void OnDisable(){
 		GameManager.instance.OnTimerOut -= EndLevel;

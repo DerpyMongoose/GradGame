@@ -5625,6 +5625,7 @@ GameObject:
   - 222: {fileID: 1941123642}
   - 114: {fileID: 1941123641}
   - 114: {fileID: 1941123640}
+  - 114: {fileID: 1941123643}
   m_Layer: 5
   m_Name: DKLang (1)
   m_TagString: Untagged
@@ -5740,6 +5741,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1941123638}
+--- !u!114 &1941123643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941123638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad259da0822e5445829ff241adc4864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1986436481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5751,6 +5764,7 @@ GameObject:
   - 224: {fileID: 1986436482}
   - 222: {fileID: 1986436484}
   - 114: {fileID: 1986436483}
+  - 114: {fileID: 1986436485}
   m_Layer: 5
   m_Name: currency
   m_TagString: Untagged
@@ -5774,8 +5788,8 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -405, y: -506}
-  m_SizeDelta: {x: 293, y: 178}
+  m_AnchoredPosition: {x: -390, y: -506}
+  m_SizeDelta: {x: 450, y: 178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986436483
 MonoBehaviour:
@@ -5799,7 +5813,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4e57dcd3065873945bb1e95316afe113, type: 3}
-    m_FontSize: 120
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -5818,6 +5832,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1986436481}
+--- !u!114 &1986436485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1986436481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0e22f037441164188a937c94846879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Currency
 --- !u!1 &2015395705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5830,6 +5856,7 @@ GameObject:
   - 222: {fileID: 2015395709}
   - 114: {fileID: 2015395708}
   - 114: {fileID: 2015395707}
+  - 114: {fileID: 2015395710}
   m_Layer: 5
   m_Name: ENGLang (1)
   m_TagString: Untagged
@@ -5945,6 +5972,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015395705}
+--- !u!114 &2015395710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015395705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad259da0822e5445829ff241adc4864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
 --- !u!1001 &2121772968
 Prefab:
   m_ObjectHideFlags: 0

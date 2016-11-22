@@ -21,7 +21,7 @@ public class ConeDetection : MonoBehaviour
 
                 if (col.GetComponent<ObjectBehavior>().lifted)
                 {
-                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce); // Error here
                 }
                 else
                 {

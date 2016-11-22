@@ -66,9 +66,9 @@ public class LevelManager : MonoBehaviour
         amountOfObjects = 5;
         MultiplierTime = 5;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-		scoreText.text =  "$" + score; // in game score
+		scoreText.text = score.ToString(); // in game score
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-        minScoreText.text = "Reach $" + scoreToCompleteLevel;
+        minScoreText.text = "Reach " + scoreToCompleteLevel;
         guideText = GameObject.Find("GuideText").GetComponent<Text>();
         guideText.text = "Swipe and destroy objects";
         
@@ -94,7 +94,7 @@ public class LevelManager : MonoBehaviour
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             countObjects++;
-			scoreText.text = "$" + score; // in game score
+			scoreText.text = score.ToString(); // in game score
             countMultiTime = 0;
             if(countObjects == amountOfObjects)
             {
@@ -103,7 +103,7 @@ public class LevelManager : MonoBehaviour
                 countObjects = 0;
             }
             score += points * multiplier;
-			scoreText.text = "$" + score; // in game score
+			scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
@@ -118,7 +118,6 @@ public class LevelManager : MonoBehaviour
 		IntroTapPanel.SetActive(false);
 		InGamePanel.SetActive (true);
         guideText.text = "";
-        GetComponent<ProceduralObjectives>().finishedGuide = true;
     }
 
     //after the timer is out (wait for animation?)
@@ -209,7 +208,7 @@ public class LevelManager : MonoBehaviour
         CalculateCurrency();
 
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + "$" + "0"; //will be updated in counting loop
+        replayScoreText.text = "Score: " + "0"; //will be updated in counting loop
 
         starText.text = stars.ToString();
 
@@ -263,11 +262,11 @@ public class LevelManager : MonoBehaviour
 		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
 			float progress = timer / duration;
 			int temp_score = (int)Mathf.Lerp (start, new_score, progress);
-			replayScoreText.text = "Score: " + "$" + temp_score;
+			replayScoreText.text = "Score: " + temp_score;
 			GameManager.instance.audioManager.UpdatePointCounter (temp_score);
 			yield return null;
 		}
-		replayScoreText.text = "Score: " + "$" + new_score;
+		replayScoreText.text = "Score: " + new_score;
 		GameManager.instance.audioManager.UpdatePointCounter (new_score);
 		GameManager.instance.finishedCountingPoints ();
 	}
