@@ -126,7 +126,6 @@ public class UIScript : MonoBehaviour
                 skip_Button = GameObject.Find("skip");
 
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
-                skip_Button.SetActive(false);
                 instr_Menu.SetActive(false);
 
                 if (GameManager.instance.currentLevel == 1 && GameManager.instance.isInstructed == false)
@@ -155,6 +154,7 @@ public class UIScript : MonoBehaviour
         if (slide < 5)
         {
             back_Button.SetActive(true);
+            skip_Button.SetActive(false);
         }
         instr_SlidesChildren[slide].gameObject.SetActive(false);
         slide -= 1;
@@ -171,6 +171,7 @@ public class UIScript : MonoBehaviour
         if (slide == 4)
         {
             back_Button.SetActive(false);
+            skip_Button.SetActive(true);
         }
         instr_SlidesChildren[slide].gameObject.SetActive(true);
     }
