@@ -16,6 +16,7 @@ public class UIScript : MonoBehaviour
     GameObject instr_Menu;
     GameObject instr_Slides;
     GameObject back_Button;
+    GameObject skip_Button;
     Transform[] instr_SlidesChildren;
     [HideInInspector]
     public int slide = 4;
@@ -35,8 +36,6 @@ public class UIScript : MonoBehaviour
 
     void Start()
     {
-
-
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene())
         {
@@ -124,6 +123,8 @@ public class UIScript : MonoBehaviour
                 instr_Menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 instr_Slides = GameObject.FindGameObjectWithTag("HelpSlides");
                 back_Button = GameObject.FindGameObjectWithTag("help_left");
+                skip_Button = GameObject.Find("skip");
+
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
                 instr_Menu.SetActive(false);
 
@@ -135,6 +136,7 @@ public class UIScript : MonoBehaviour
                 if (slide == 4)
                 {
                     back_Button.SetActive(false);
+                    skip_Button.SetActive(true);
                 }
 
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
@@ -170,6 +172,11 @@ public class UIScript : MonoBehaviour
             back_Button.SetActive(false);
         }
         instr_SlidesChildren[slide].gameObject.SetActive(true);
+    }
+
+    public void InstructionsSkip()
+    {
+        instr_Menu.SetActive(false);
     }
 
     public void BackToGame()
