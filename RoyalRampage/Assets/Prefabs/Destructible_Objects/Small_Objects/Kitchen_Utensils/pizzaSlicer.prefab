@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011422278584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.79262, y: 0.052467857, z: -26.13275}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: 569c1be1e6416624bb8f8ec55d230f40, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -121,8 +121,11 @@ MonoBehaviour:
   life: 0
   initialLife: 0
   soundSwitch: 
+  particleSys: {fileID: 0}
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
+  currencySpawnChance: 0.1
   objMaterial: 3
   objSize: 0
