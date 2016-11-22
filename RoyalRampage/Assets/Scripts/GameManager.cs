@@ -13,7 +13,7 @@ public class GameManager {
 	private LevelManager _levelManager;
 	private AudioManager _audioManager;
 
-	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2"};
+	private static string[] GAME_SCENES = {"FracturedLevel","GameScene1","GameScene2","GameScene3"};
 	private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -37,6 +37,7 @@ public class GameManager {
     public bool canPlayerMove = false;
     public bool canPlayerDestroy = false;
 	public bool isPaused = false;
+    public bool isInstructed = false;
 
 	//getters:
 	public static GameManager instance{
@@ -277,6 +278,7 @@ public class GameManager {
         data.allStars = allStars;
         data.stars = stars;
         data.currency = currency;
+        data.isInstructed = isInstructed;
         
 
         bf.Serialize(file, data);
@@ -298,6 +300,7 @@ public class GameManager {
             allStars = data.allStars;
             stars = data.stars;
             currency = data.currency;
+            isInstructed = data.isInstructed;
         }
 
     }
@@ -311,4 +314,5 @@ class PlayerData
     public int currency;
     public int allStars;
     public int[] stars;
+    public bool isInstructed;
 }

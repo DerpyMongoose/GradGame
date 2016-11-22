@@ -28,9 +28,14 @@ public class UIScript : MonoBehaviour
 
     Text starTotal;
 
+    void OnApplicationQuit()
+    {
+        GameManager.instance.Save();
+    }
+
     void Start()
     {
-       // GameManager.instance.Load();
+        
 
         //set up the scene when opened
         switch (GameManager.instance.CurrentScene())
@@ -45,6 +50,10 @@ public class UIScript : MonoBehaviour
             replayPanel.SetActive(false);
             UpdateMenuBG();
             break;*/
+		case GameManager.Scene.SPLASH:
+			GameManager.instance.Load ();
+			GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
+			break;
 
 		case GameManager.Scene.PLAY_MENU:
 			GameManager.instance.changeMusicState (AudioManager.IN_MAIN_MENU);  // FOR AUDIO
@@ -52,6 +61,7 @@ public class UIScript : MonoBehaviour
 			//update level on play icon
 			Text levelNum = GameObject.FindGameObjectWithTag ("level_number").GetComponentInChildren<Text> ();
 			levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString ();
+            GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
 			settings_menu = GameObject.FindGameObjectWithTag ("SettingPanel");
 			settings_menu.SetActive (false);
@@ -105,18 +115,17 @@ public class UIScript : MonoBehaviour
             break;
 
 		case GameManager.Scene.GAME:
-            if(GameManager.instance.currentLevel == 1)
-            {          
-                instr_Menu = GameObject.Find("HelpGame");
-                instr_Slides = GameObject.Find("HelpSlides");
-                back_Button = GameObject.Find("left");
-                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+			instr_Menu = GameObject.FindGameObjectWithTag ("HelpPanel");
+			instr_Slides = GameObject.FindGameObjectWithTag ("HelpSlides");
+			back_Button = GameObject.FindGameObjectWithTag ("help_left");
+			instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+			instr_Menu.SetActive(false);
+
+            if(GameManager.instance.currentLevel == 1 && GameManager.instance.isInstructed == false)
+            {
                 instr_Menu.SetActive(true);
             }
-            else
-            {
-                instr_Menu.SetActive(false);
-            }
+
             if(slide == 4)
             {
                 back_Button.SetActive(false);
@@ -448,4 +457,8 @@ public class UIScript : MonoBehaviour
 		GameManager.instance.LoadGame ();
 	}*/
 
+	public void Continue()
+	{
+		GameManager.instance.timerOut();
+	}
 }

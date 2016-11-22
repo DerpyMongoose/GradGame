@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012612735844}
   - 33: {fileID: 33000012298429434}
   - 23: {fileID: 23000010746353614}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: grandfatherClock_a_disk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012232378428}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: grp_grandfatherClock_a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - 4: {fileID: 4000010504022082}
   - 33: {fileID: 33000012371382462}
   - 23: {fileID: 23000011283366762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: grandfatherClock_a_goldCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - 4: {fileID: 4000014161629620}
   - 33: {fileID: 33000010540863806}
   - 23: {fileID: 23000013258571842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: grandfatherClock_a_wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - 54: {fileID: 54000010755083864}
   - 65: {fileID: 65000010714131932}
   - 114: {fileID: 114000010546633042}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Large_Grandfather_Clock
   m_TagString: Destructable
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - 4: {fileID: 4000012632143006}
   - 33: {fileID: 33000013286306136}
   - 23: {fileID: 23000012155983396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: grandfatherClock_a_tangents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013376388500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: -33.73}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -209,7 +209,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 36ea7437eee56af42840a1d9eaf32300, type: 2}
+  - {fileID: 2100000, guid: 265ae96c06ac2ed45bec52aa44801156, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -238,7 +238,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: e06327807d48d654e9434cbe700e8b74, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -267,7 +267,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: e06327807d48d654e9434cbe700e8b74, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -296,7 +296,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: bbe0d27fbed8b2047912d779a7bb78f2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -397,10 +397,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 0
   initialLife: 0
-  soundSwitch: Grandfather_Clock
+  soundSwitch: 
   isGrounded: 1
-  hit: 0
   hasLanded: 1
   score: 0
-  objMaterial: 3
-  objSize: 2
+  objMaterial: 0
+  objSize: 0
