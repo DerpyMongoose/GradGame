@@ -126,6 +126,7 @@ public class UIScript : MonoBehaviour
                 skip_Button = GameObject.Find("skip");
 
                 instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
+                skip_Button.SetActive(false);
                 instr_Menu.SetActive(false);
 
                 if (GameManager.instance.currentLevel == 1 && GameManager.instance.isInstructed == false)
