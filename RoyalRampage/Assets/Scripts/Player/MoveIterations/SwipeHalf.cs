@@ -248,7 +248,7 @@ public class SwipeHalf : MonoBehaviour
                 GameManager.instance.playerHitObject();
 
                 // PLAY DAMAGE PARTICLE
-                rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {

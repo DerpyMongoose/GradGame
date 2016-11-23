@@ -26,7 +26,7 @@ public class ConeDetection : MonoBehaviour
 				GameManager.instance.objectHit (col.gameObject);
 
                 // PLAY DAMAGE PARTICLE
-                col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 if (col.GetComponent<ObjectBehavior>().lifted)
                 {

@@ -162,7 +162,7 @@ public class ObjectBehavior : MonoBehaviour
         initialLife = life;
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
-        particleSys = GetComponent<ParticleSystem>();
+        //particleSys = GetComponent<ParticleSystem>();
         slowed = false;
         lifted = false;
         //ObjectManagerV2.instance.maxScore += score;  
@@ -288,7 +288,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 col.collider.GetComponent<ObjectBehavior>().hit = true;
                 // PLAY DAMAGE PARTICLE
-                particleSys.Play();
+                //particleSys.Play();
                 col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
                 ObjectManagerV2.instance.direction = col.transform.position - transform.position;
                 if (col.gameObject.tag != "UniqueObjs")
