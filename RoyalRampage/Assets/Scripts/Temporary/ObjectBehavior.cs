@@ -10,8 +10,6 @@ public class ObjectBehavior : MonoBehaviour
 
     public string soundSwitch; // FOR AUDIO
 
-    private Vector3 initialPos;
-
     private Rigidbody objRB;
     private GameObject player;
     private IEnumerator coroutine;
@@ -19,11 +17,13 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public ParticleSystem particleSys;
     [HideInInspector]
-    public bool isGrounded = true;
-    [HideInInspector]
     public bool hit = false;
+    [HideInInspector]
+    public bool slowed;
+    [HideInInspector]
+    public bool lifted;
+
     private bool readyToCheck;
-    private bool lifted;
 
     public bool hasLanded = true;
 
@@ -162,9 +162,22 @@ public class ObjectBehavior : MonoBehaviour
         initialLife = life;
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
-        initialPos = transform.position;
         particleSys = GetComponent<ParticleSystem>();
+        slowed = false;
+        lifted = false;
         //ObjectManagerV2.instance.maxScore += score;  
+
+        //Disable all the children.
+        if (gameObject.tag != "UniqueObjs")
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<FracturedChunk>() != null)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
 
@@ -172,27 +185,21 @@ public class ObjectBehavior : MonoBehaviour
     {
         CheckDamage();
         CheckVelocity();
-        if (gameObject.tag != "UniqueObjs")
-        {
-            if (PlayerStates.lifted)
-            {
-                //APPLY TRANSFORM ROTATION
-                GameManager.instance.player.GetComponent<SwipeHalf>().RotateObjs(GameManager.instance.player.GetComponent<SwipeHalf>().objRB);
 
-                if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && PlayerStates.imInSlowMotion)
-                {
-                    //objRB.velocity = Vector3.zero;
-                    objRB.isKinematic = true;
-                }
-                else
-                {
-                    objRB.isKinematic = false;
-                }
+        if (lifted)
+        {
+            //APPLY TRANSFORM ROTATION
+            transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
+
+            if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && !slowed) //Checking if the object reached its peak and if it has already been slowed down from slowMotion.
+            {
+                objRB.isKinematic = true;
+                slowed = true;
             }
 
-            if (!Mathf.Approximately(initialPos.y, transform.position.y))
+            if (PlayerStates.imInSlowMotion)
             {
-                isGrounded = false;
+                transform.position -= Vector3.up * 0.01f;
             }
         }
     }
@@ -213,13 +220,14 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-            
+
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
                 {
                     if (transform.GetChild(p).GetComponent<FracturedChunk>() != null)
                     {
+                        transform.GetChild(p).gameObject.SetActive(true);
                         transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
                     }
                 }
@@ -243,10 +251,11 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if (gameObject.tag != "UniqueObjs" && Mathf.Round(objRB.velocity.magnitude) == 0)
+        if (Mathf.Round(objRB.velocity.magnitude) == 0)
         {
             //print("Hit becomes false now");
             hit = false;
+
         }
     }
 
@@ -257,7 +266,7 @@ public class ObjectBehavior : MonoBehaviour
 
         if (randomVal < currencySpawnChance)
         {//Optimise!
-            Instantiate((GameObject)Resources.Load("Collectibles/Currency", typeof(GameObject)), new Vector3(transform.position.x, 0.2f, transform.position.z), Quaternion.identity);
+            Instantiate((GameObject)Resources.Load("Collectibles/Currency", typeof(GameObject)), new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         }
     }
 
@@ -297,27 +306,14 @@ public class ObjectBehavior : MonoBehaviour
 
                 //********** 4 AUDIO and ANIMATION
 
-                if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
+                if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
-                    if (hasLanded == false && isGrounded == false)
+                    if (hasLanded == false)
                     {
                         GameManager.instance.objectLanding(gameObject);
                     }
                     hasLanded = true;
                 }
-            }
-        }
-    }
-
-    void OnCollisionStay(Collision col)
-    {
-        if (gameObject.tag != "UniqueObjs")
-        {
-            if (col.collider.tag == "Floor" || objRB.velocity == Vector3.zero)
-            {
-                isGrounded = true;
-
-                initialPos = transform.position;
             }
         }
     }

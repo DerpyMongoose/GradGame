@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010319119210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4844413, y: 2.339633, z: -19.996443}
+  m_LocalPosition: {x: 0.32, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -117,7 +117,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 994d649b30dd0fe4492c9fe501d97e28, type: 2}
+  - {fileID: 2100000, guid: 440d8ec7e3e011d4c9b60c562ab57f62, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -146,7 +146,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ca3c2af95bf593e45885bff22c7f56c1, type: 2}
+  - {fileID: 2100000, guid: 1e169e568f720c946b1b6f5d1d46996c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -217,8 +217,11 @@ MonoBehaviour:
   life: 0
   initialLife: 0
   soundSwitch: 
+  particleSys: {fileID: 0}
   isGrounded: 1
+  hit: 0
   hasLanded: 1
   score: 0
+  currencySpawnChance: 0.1
   objMaterial: 1
   objSize: 1
