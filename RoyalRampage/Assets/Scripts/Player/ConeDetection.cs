@@ -22,6 +22,9 @@ public class ConeDetection : MonoBehaviour
                 Rigidbody rig = col.GetComponent<Rigidbody>();
                 col.GetComponent<ObjectBehavior>().hit = true;
 
+				///SOUND PLAYER HIT OBJECT
+				GameManager.instance.objectHit (col.gameObject);
+
                 // PLAY DAMAGE PARTICLE
                 col.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
