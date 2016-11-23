@@ -34,6 +34,7 @@ public class AnimationManager : MonoBehaviour {
 	void PlayerSpinAnim(){
 		playerAnim.SetTrigger ("spin_trig");
 		scepterAnim.SetTrigger ("spin_trig");
+		PlaySpinParticle ();
 	}
 	public void PlaySpinParticle(){
 		spinParticle.Play ();
