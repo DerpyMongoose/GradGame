@@ -24,6 +24,8 @@ public class SwipeHalf : MonoBehaviour
     public IEnumerator coroutine;
 
     private bool spinningAnim = false;
+	private bool swipeToHit = false;
+	private Collider[] liftColliders;
 
     void Start()
     {
@@ -157,33 +159,31 @@ public class SwipeHalf : MonoBehaviour
                     Swirling(hitColliders);
                 }
 
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    spinningAnim = false;
-                    leftOk = true;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPointAtt = new Vector3(temp.x, 0, temp.z);
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    leftOk = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPointAtt = new Vector3(temp.x, 0, temp.z);
-                    attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    //print(attackDist);
-                    if (attackDist > 1f)
-                    {
-                        attackDir = dragPointAtt - startPointAtt;
-                        transform.rotation = Quaternion.LookRotation(attackDir);
-                        PlayerStates.swiped = true;
-                        StartCoroutine("SwipeTimer");
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					spinningAnim = false;
+					leftOk = true;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					startPointAtt = new Vector3 (temp.x, 0, temp.z);
+					swipeToHit = false; //cannot hit on click only!!!!
+				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
+					leftOk = false;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
+					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
+					//print(attackDist);
+					if (attackDist > 1f) {
+						attackDir = dragPointAtt - startPointAtt;
+						transform.rotation = Quaternion.LookRotation (attackDir);
+						PlayerStates.swiped = true;
+						StartCoroutine ("SwipeTimer");
 
-                        ///HIT ANIMATION
-                        if (spinningAnim == false)
-                        {
-                            GameManager.instance.playerHitObject();
-                        }
-                    }
+						///HIT ANIMATION
+						if (spinningAnim == false && swipeToHit == true) {
+							GameManager.instance.playerHitObject ();
+						}
+					}
+				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
+					swipeToHit = true; //only hit if player move finger to swipe
                 }
 
             }
@@ -197,7 +197,13 @@ public class SwipeHalf : MonoBehaviour
                 intoAir = true;
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                Lift(hitColliders);
+                //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+				liftColliders = new Collider[hitColliders.Length];
+				for (int i = 0; i < hitColliders.Length; i++) {
+					liftColliders[i] = hitColliders[i];
+				}
+				// SOUND AND ANIMATION FOR STOMP
+				GameManager.instance.playerStomp();
             }
         }
 
@@ -208,7 +214,6 @@ public class SwipeHalf : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
     }
-
 
     IEnumerator SwipeTimer()
     {
@@ -255,6 +260,10 @@ public class SwipeHalf : MonoBehaviour
 
     }
 
+	public void StartLifting(){
+		Lift(liftColliders);
+		liftColliders = null;
+	}
 
     void Lift(Collider[] col)
     {
@@ -274,8 +283,8 @@ public class SwipeHalf : MonoBehaviour
             }
         }
 
-        // SOUND AND ANIMATION FOR STOMP
-        GameManager.instance.playerStomp();
+       
+        
         coroutine = ReturnGravity(objRB, initialMass);
         StartCoroutine(coroutine);
     }
