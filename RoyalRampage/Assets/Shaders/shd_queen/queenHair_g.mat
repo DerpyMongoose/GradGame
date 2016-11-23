@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: queenSkin
+  m_Name: queenHair_g
   m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 318f573d5a3540b449cb7060f89a837d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 08b8e55ff5131634baff6c726cd65af3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -148,16 +148,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 0.9362069, b: 0.72794116, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HighlightColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.9338235, g: 0.9338235, b: 0.9338235, a: 1}
     - first:
         name: _ShadowColor
-      second: {r: 0.7941176, g: 0.63814986, b: 0.5663927, a: 1}
+      second: {r: 0.5441177, g: 0.5441177, b: 0.5441177, a: 1}
     - first:
         name: _SpecColor
       second: {r: 1, g: 1, b: 1, a: 1}
