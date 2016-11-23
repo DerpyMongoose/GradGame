@@ -125,7 +125,7 @@ GameObject:
   - 65: {fileID: 65000013380044924}
   m_Layer: 0
   m_Name: Vase_b
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -462,8 +462,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011396166754}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 0, z: -16.99849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1851,8 +1851,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Porcelain
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1

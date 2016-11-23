@@ -142,9 +142,10 @@ GameObject:
   - 114: {fileID: 114000012457983464}
   - 54: {fileID: 54000010076832912}
   - 114: {fileID: 114000011245387066}
+  - 65: {fileID: 65000012336374998}
   m_Layer: 0
   m_Name: GrandfatherClock_a
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,8 +544,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011041739938}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -22.437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2076,6 +2077,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 43000012310253954, guid: 31b0250b72599994d828293d13d3b91e, type: 2}
+--- !u!65 &65000012336374998
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011041739938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8810215, y: 2.9515665, z: 0.5573076}
+  m_Center: {x: 0.017678484, y: 1.4757832, z: -0.053024292}
 --- !u!114 &114000010182377792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2383,8 +2396,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Grandfather_Clock
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1

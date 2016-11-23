@@ -25,7 +25,7 @@ GameObject:
   - 65: {fileID: 65000011322047554}
   m_Layer: 0
   m_Name: PlateDinner
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,8 +146,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010241434588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.423665, y: 0.776, z: -14.988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -527,8 +527,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2626502, y: 0.021609902, z: 0.25990024}
-  m_Center: {x: 0.0014702156, y: 0.018843234, z: -0.0009755343}
+  m_Size: {x: 0.2626502, y: 0.031059027, z: 0.25990024}
+  m_Center: {x: 0.0014702082, y: 0.014118671, z: -0.0009756088}
 --- !u!114 &114000010196280124
 MonoBehaviour:
   m_ObjectHideFlags: 1
