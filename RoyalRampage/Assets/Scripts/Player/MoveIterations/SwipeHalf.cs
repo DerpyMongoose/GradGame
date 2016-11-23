@@ -25,7 +25,7 @@ public class SwipeHalf : MonoBehaviour
 
     private bool spinningAnim = false;
 	private bool swipeToHit = false;
-	private Collider[] liftColliders;
+	private List<Collider> liftColliders = new List<Collider>();
 
     void Start()
     {
@@ -198,9 +198,14 @@ public class SwipeHalf : MonoBehaviour
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
                 //Lift(hitColliders); //RUN FROM ANIMATION EVENT
-				liftColliders = new Collider[hitColliders.Length];
+                if (liftColliders != null) {
+                    liftColliders.Clear();
+                }
 				for (int i = 0; i < hitColliders.Length; i++) {
-					liftColliders[i] = hitColliders[i];
+                    if (hitColliders[i].tag == "Destructable")
+                    {
+                        liftColliders.Add(hitColliders[i]);
+                    }
 				}
 				// SOUND AND ANIMATION FOR STOMP
 				GameManager.instance.playerStomp();
@@ -261,25 +266,25 @@ public class SwipeHalf : MonoBehaviour
     }
 
 	public void StartLifting(){
-		Lift(liftColliders);
-		liftColliders = null;
+		Lift();
+		//liftColliders = null;
 	}
 
-    void Lift(Collider[] col)
+    void Lift()
     {
         //inAir = true;
-        for (int i = 0; i < col.Length; i++)
+        for (int i = 0; i < liftColliders.Count; i++)
         {
-            if (col[i].tag == "Destructable")
+            if (liftColliders[i].tag == "Destructable")
             {
 
-                col[i].GetComponent<ObjectBehavior>().lifted = true;
+                liftColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
-                objRB.Add(col[i].GetComponent<Rigidbody>());
-                initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
-                col[i].GetComponent<Rigidbody>().mass = 1f;
-                col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
+                objRB.Add(liftColliders[i].GetComponent<Rigidbody>());
+                initialMass.Add(liftColliders[i].GetComponent<Rigidbody>().mass);
+                liftColliders[i].GetComponent<Rigidbody>().mass = 1f;
+                liftColliders[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
+                liftColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
 
