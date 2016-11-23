@@ -18,7 +18,6 @@ public class CameraController7 : MonoBehaviour
     private GameObject tempTrans;
 
     public GameObject dummy;
-    public GameObject pivot;
 
     private Vector3 offset;
     private Vector3 dummyOffset;
@@ -39,14 +38,15 @@ public class CameraController7 : MonoBehaviour
 
     void FixedUpdate()
     {
+        Physics.Linecast(player.transform.position, dummy.transform.position, out hit, 1 << 8);
         switch (state_)
         {
             case state.FREE:
                 Vector3 targetCamPos = player.transform.position + offset;
                 transform.position = Vector3.Lerp(transform.position, targetCamPos, Time.deltaTime * smoothness);
                 transform.rotation = offsetRotation;
-                Debug.DrawLine(player.transform.position, dummy.transform.position, Color.blue);
-                Physics.Linecast(player.transform.position, pivot.transform.position, out hit, 1 << 8);
+                dummy.transform.position = Vector3.Lerp(transform.position, targetCamPos, Time.deltaTime * smoothness);
+                dummy.transform.rotation = offsetRotation;                
                 if (hit.transform != null)
                 {
                     if (hit.transform.tag == "Wall")
@@ -57,16 +57,15 @@ public class CameraController7 : MonoBehaviour
                 print("free");
                 break;
             case state.WALL:
-                Vector3 direction = player.transform.position - pivot.transform.position;
+                Vector3 direction = player.transform.position - transform.position;
                 Quaternion rotation = Quaternion.LookRotation(direction);
-                pivot.transform.rotation = Quaternion.Lerp(pivot.transform.rotation, rotation, Time.deltaTime * rotSmooth);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotSmooth);
                 //transform.RotateAround();
-                pivot.transform.position = new Vector3(player.transform.position.x, pivot.transform.position.y, hit.point.z - 0.1f);
+                transform.position = new Vector3(player.transform.position.x, transform.position.y, hit.point.z - 0.1f);
                 dummy.transform.position = player.transform.position + dummyOffset;
-                Debug.DrawLine(player.transform.position, dummy.transform.position, Color.red);
-                Physics.Linecast(player.transform.position, dummy.transform.position, out hit, 1 << 8);
                 if (hit.transform != null)
                 {
+                    print(hit.transform);
                     if (hit.transform.gameObject == dummy)
                     {
                         print("Heyooo");
