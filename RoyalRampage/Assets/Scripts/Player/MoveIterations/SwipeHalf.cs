@@ -24,6 +24,8 @@ public class SwipeHalf : MonoBehaviour
     public IEnumerator coroutine;
 
     private bool spinningAnim = false;
+	private bool swipeToHit = false;
+	private List<Collider> liftColliders = new List<Collider>();
 
     void Start()
     {
@@ -157,33 +159,31 @@ public class SwipeHalf : MonoBehaviour
                     Swirling(hitColliders);
                 }
 
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    spinningAnim = false;
-                    leftOk = true;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPointAtt = new Vector3(temp.x, 0, temp.z);
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    leftOk = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPointAtt = new Vector3(temp.x, 0, temp.z);
-                    attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    //print(attackDist);
-                    if (attackDist > 1f)
-                    {
-                        attackDir = dragPointAtt - startPointAtt;
-                        transform.rotation = Quaternion.LookRotation(attackDir);
-                        PlayerStates.swiped = true;
-                        StartCoroutine("SwipeTimer");
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					spinningAnim = false;
+					leftOk = true;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					startPointAtt = new Vector3 (temp.x, 0, temp.z);
+					swipeToHit = false; //cannot hit on click only!!!!
+				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
+					leftOk = false;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
+					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
+					//print(attackDist);
+					if (attackDist > 1f) {
+						attackDir = dragPointAtt - startPointAtt;
+						transform.rotation = Quaternion.LookRotation (attackDir);
+						PlayerStates.swiped = true;
+						StartCoroutine ("SwipeTimer");
 
-                        ///HIT ANIMATION
-                        if (spinningAnim == false)
-                        {
-                            GameManager.instance.playerHitObject();
-                        }
-                    }
+						///HIT ANIMATION
+						if (spinningAnim == false && swipeToHit == true) {
+							GameManager.instance.playerHitObject ();
+						}
+					}
+				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
+					swipeToHit = true; //only hit if player move finger to swipe
                 }
 
             }
@@ -197,7 +197,18 @@ public class SwipeHalf : MonoBehaviour
                 intoAir = true;
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                Lift(hitColliders);
+                //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+                if (liftColliders != null) {
+                    liftColliders.Clear();
+                }
+				for (int i = 0; i < hitColliders.Length; i++) {
+                    if (hitColliders[i].tag == "Destructable")
+                    {
+                        liftColliders.Add(hitColliders[i]);
+                    }
+				}
+				// SOUND AND ANIMATION FOR STOMP
+				GameManager.instance.playerStomp();
             }
         }
 
@@ -208,7 +219,6 @@ public class SwipeHalf : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
     }
-
 
     IEnumerator SwipeTimer()
     {
@@ -238,7 +248,7 @@ public class SwipeHalf : MonoBehaviour
                 GameManager.instance.playerHitObject();
 
                 // PLAY DAMAGE PARTICLE
-                rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
@@ -255,27 +265,31 @@ public class SwipeHalf : MonoBehaviour
 
     }
 
+	public void StartLifting(){
+		Lift();
+		//liftColliders = null;
+	}
 
-    void Lift(Collider[] col)
+    void Lift()
     {
         //inAir = true;
-        for (int i = 0; i < col.Length; i++)
+        for (int i = 0; i < liftColliders.Count; i++)
         {
-            if (col[i].tag == "Destructable")
+            if (liftColliders[i].tag == "Destructable" && liftColliders[i] != null)
             {
 
-                col[i].GetComponent<ObjectBehavior>().lifted = true;
+                liftColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
-                objRB.Add(col[i].GetComponent<Rigidbody>());
-                initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
-                col[i].GetComponent<Rigidbody>().mass = 1f;
-                col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
+                objRB.Add(liftColliders[i].GetComponent<Rigidbody>());
+                initialMass.Add(liftColliders[i].GetComponent<Rigidbody>().mass);
+                liftColliders[i].GetComponent<Rigidbody>().mass = 1f;
+                liftColliders[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
+                liftColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
 
-        // SOUND AND ANIMATION FOR STOMP
-        GameManager.instance.playerStomp();
+       
+        
         coroutine = ReturnGravity(objRB, initialMass);
         StartCoroutine(coroutine);
     }
