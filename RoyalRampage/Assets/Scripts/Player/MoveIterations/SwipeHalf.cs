@@ -21,6 +21,8 @@ public class SwipeHalf : MonoBehaviour
     public static Vector3 attackDir;
 
 	private bool spinningAnim = false;
+	private bool swipeToHit = false;
+	private Collider[] liftColliders;
 
     void Start()
     {
@@ -154,6 +156,7 @@ public class SwipeHalf : MonoBehaviour
 					leftOk = true;
 					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
 					startPointAtt = new Vector3 (temp.x, 0, temp.z);
+					swipeToHit = false; //cannot hit on click only!!!!
 				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
 					leftOk = false;
 					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
@@ -164,10 +167,12 @@ public class SwipeHalf : MonoBehaviour
 					PlayerStates.swiped = true;
 					StartCoroutine ("SwipeTimer");
 
-					///HIT ANIMATION
-					if (spinningAnim == false) {
-						GameManager.instance.playerHitObject ();
+						///HIT ANIMATION
+					if (spinningAnim == false && swipeToHit == true) {
+							GameManager.instance.playerHitObject ();
 					}
+				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
+					swipeToHit = true; //only hit if player move finger to swipe
 				}
 
             }
@@ -181,7 +186,13 @@ public class SwipeHalf : MonoBehaviour
                 intoAir = true;
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                Lift(hitColliders);
+                //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+				liftColliders = new Collider[hitColliders.Length];
+				for (int i = 0; i < hitColliders.Length; i++) {
+					liftColliders[i] = hitColliders[i];
+				}
+				// SOUND AND ANIMATION FOR STOMP
+				GameManager.instance.playerStomp();
             }
         }
 
@@ -246,6 +257,10 @@ public class SwipeHalf : MonoBehaviour
 
     }
 
+	public void StartLifting(){
+		Lift(liftColliders);
+		liftColliders = null;
+	}
 
     void Lift(Collider[] col)
     {
@@ -265,8 +280,8 @@ public class SwipeHalf : MonoBehaviour
             }
         }
 
-        // SOUND AND ANIMATION FOR STOMP
-        GameManager.instance.playerStomp();
+       
+        
         StartCoroutine(ReturnGravity(objRB, initialMass));      
     }
 

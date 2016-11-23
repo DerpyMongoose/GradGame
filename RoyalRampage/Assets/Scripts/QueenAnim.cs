@@ -8,5 +8,6 @@ public class QueenAnim : MonoBehaviour {
 	}
 	public void PlayStompParticle(){
 		GameManager.instance.animationManager.PlayStompParticle ();
+		GameManager.instance.player.GetComponent<SwipeHalf> ().StartLifting ();
 	}
 }
