@@ -15,6 +15,7 @@ public class UIScript : MonoBehaviour {
     GameObject settings_menu;
     GameObject levels_menu;
     GameObject levels;
+    GameObject levels_Panel;
     GameObject play_menu;
     GameObject instr_Menu;
     GameObject instr_Slides;
@@ -143,7 +144,9 @@ public class UIScript : MonoBehaviour {
             
             pause_menu.SetActive(false);      
             settings_menu.SetActive(false);
-            behindPanelButton.SetActive(false);
+                levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
+                levels_Panel.SetActive(false);
+                behindPanelButton.SetActive(false);
             break;
 
         }
