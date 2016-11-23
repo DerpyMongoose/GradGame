@@ -159,36 +159,31 @@ public class SwipeHalf : MonoBehaviour
                     Swirling(hitColliders);
                 }
 
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    spinningAnim = false;
-                    leftOk = true;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPointAtt = new Vector3(temp.x, 0, temp.z);
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					spinningAnim = false;
+					leftOk = true;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					startPointAtt = new Vector3 (temp.x, 0, temp.z);
 					swipeToHit = false; //cannot hit on click only!!!!
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    leftOk = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPointAtt = new Vector3(temp.x, 0, temp.z);
-                    attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    //print(attackDist);
-                    if (attackDist > 1f)
-                    {
-                        attackDir = dragPointAtt - startPointAtt;
-                        transform.rotation = Quaternion.LookRotation(attackDir);
-                        PlayerStates.swiped = true;
-                        StartCoroutine("SwipeTimer");
+				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
+					leftOk = false;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
+					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
+					//print(attackDist);
+					if (attackDist > 1f) {
+						attackDir = dragPointAtt - startPointAtt;
+						transform.rotation = Quaternion.LookRotation (attackDir);
+						PlayerStates.swiped = true;
+						StartCoroutine ("SwipeTimer");
 
-                        ///HIT ANIMATION
-					if (spinningAnim == false && swipeToHit == true)
-                        {
+						///HIT ANIMATION
+						if (spinningAnim == false && swipeToHit == true) {
 							GameManager.instance.playerHitObject ();
-                        }
-		} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
+						}
+					}
+				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
 					swipeToHit = true; //only hit if player move finger to swipe
-                    }
                 }
 
             }
