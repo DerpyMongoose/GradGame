@@ -199,7 +199,10 @@ public class ObjectBehavior : MonoBehaviour
 
             if (PlayerStates.imInSlowMotion)
             {
-                transform.position -= Vector3.up * 0.01f;
+                if (!hasLanded)
+                {
+                    transform.position -= Vector3.up * 0.003f;
+                }
             }
         }
     }
