@@ -67,7 +67,7 @@ public class PhysicalMovement : MonoBehaviour
             {
                 tapsTimer += 0.01f;
             }
-            if (countTaps >= 2 || tapsTimer >= GetComponent<PlayerStates>().doubleTapTime)
+            if (countTaps >= 2 /*|| tapsTimer >= GetComponent<PlayerStates>().doubleTapTime*/)
             {
                 countTaps = 0;
                 startTimer = false;
@@ -113,10 +113,10 @@ public class PhysicalMovement : MonoBehaviour
                         {
                             secondTouch = new Vector3(temp.x, 0, temp.z);
                         }
-                        if (countTaps == 2 && tapsTimer < GetComponent<PlayerStates>().doubleTapTime && ableToLift && Vector3.Distance(firstTouch, secondTouch) < 1)
+                        if (countTaps == 2 /*&& tapsTimer < GetComponent<PlayerStates>().doubleTapTime*/ && ableToLift && Vector3.Distance(firstTouch, secondTouch) < 1)
                         {
                             ableToLift = false;
-                            PlayerStates.lifted = true;
+                            //PlayerStates.lifted = true;
                             intoAir = true;
                             PlayerStates.imInSlowMotion = true;
                             Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
@@ -159,7 +159,7 @@ public class PhysicalMovement : MonoBehaviour
                 if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift)
                 {
                     ableToLift = false;
-                    PlayerStates.lifted = true;
+                    //PlayerStates.lifted = true;
                     intoAir = true;
                     PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
@@ -227,14 +227,14 @@ public class PhysicalMovement : MonoBehaviour
 
                 //rig.useGravity = true;
                 rig.isKinematic = false;
-                if (PlayerStates.lifted)
-                {
-                    rig.AddForce((dir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().swirlForce);
-                }
-                else
-                {
-                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
-                }
+                //if (PlayerStates.lifted)
+                //{
+                //    rig.AddForce((dir.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().swirlForce);
+                //}
+                //else
+                //{
+                //    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
+                //}
             }
         }
         GameManager.instance.playerSwirl();
@@ -248,8 +248,8 @@ public class PhysicalMovement : MonoBehaviour
             if (col.collider.tag == "Destructable")
             {
                 //print(col.relativeVelocity.magnitude);
-                if (col.relativeVelocity.magnitude > GetComponent<PlayerStates>().colImpact)
-                {
+                //if (col.relativeVelocity.magnitude > GetComponent<PlayerStates>().colImpact)
+                //{
                     col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
                     Rigidbody rig = col.collider.GetComponent<Rigidbody>();
 
@@ -260,15 +260,15 @@ public class PhysicalMovement : MonoBehaviour
 
                     //rig.useGravity = true;
                     rig.isKinematic = false;
-                    if (PlayerStates.lifted)
-                    {
-                        rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
-                    }
-                    else
-                    {
-                        rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
-                    }
-                }
+                    //if (PlayerStates.lifted)
+                    //{
+                    //    rig.AddForce((direction.normalized + new Vector3(0, GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce);
+                    //}
+                    //else
+                    //{
+                    //    rig.AddForce(direction.normalized * GetComponent<PlayerStates>().hitForce);
+                    //}
+               //}
             }
         }
     }
@@ -277,7 +277,7 @@ public class PhysicalMovement : MonoBehaviour
     {
         print("I am into Coroutine");
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
-        PlayerStates.lifted = false;
+        //PlayerStates.lifted = false;
         PlayerStates.imInSlowMotion = false;
         StampBar.increaseFill = true;
         for (int i = 0; i < rig.Count; i++)
