@@ -275,7 +275,7 @@ public class SwipeHalf : MonoBehaviour
         //inAir = true;
         for (int i = 0; i < liftColliders.Count; i++)
         {
-            if (liftColliders[i].tag == "Destructable")
+            if (liftColliders[i].tag == "Destructable" && liftColliders[i] != null)
             {
 
                 liftColliders[i].GetComponent<ObjectBehavior>().lifted = true;
