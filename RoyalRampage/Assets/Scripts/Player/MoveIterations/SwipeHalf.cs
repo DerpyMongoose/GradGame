@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SwipeHalf : MonoBehaviour
 {
 
-    private List<float> initialMass = new List<float>();
     private int touches, countTaps;
     private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
     private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime, rightOk, leftOk;
@@ -18,7 +17,11 @@ public class SwipeHalf : MonoBehaviour
     [HideInInspector]
     public List<Rigidbody> objRB = new List<Rigidbody>();
     [HideInInspector]
+    public List<float> initialMass = new List<float>();
+    [HideInInspector]
     public static Vector3 attackDir;
+    [HideInInspector]
+    public IEnumerator coroutine;
 
 
     void Start()
@@ -105,6 +108,11 @@ public class SwipeHalf : MonoBehaviour
                 }
                 else if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
                 {
+                    if (coroutine != null)
+                    {
+                        StopCoroutine(coroutine);
+                        Reverse(objRB, initialMass);
+                    }
                     PlayerStates.imInSlowMotion = false;
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
@@ -159,10 +167,14 @@ public class SwipeHalf : MonoBehaviour
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPointAtt = new Vector3(temp.x, 0, temp.z);
                     attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    attackDir = dragPointAtt - startPointAtt;
-                    transform.rotation = Quaternion.LookRotation(attackDir);
-                    PlayerStates.swiped = true;
-                    StartCoroutine("SwipeTimer");
+                    //print(attackDist);
+                    if (attackDist > 1f)
+                    {
+                        attackDir = dragPointAtt - startPointAtt;
+                        transform.rotation = Quaternion.LookRotation(attackDir);
+                        PlayerStates.swiped = true;
+                        StartCoroutine("SwipeTimer");
+                    }
                 }
 
             }
@@ -189,17 +201,6 @@ public class SwipeHalf : MonoBehaviour
     }
 
 
-    public void RotateObjs(List<Rigidbody> rig)
-    {
-        for (int i = 0; i < rig.Count; i++)
-        {
-            if (rig[i] != null)
-            {
-                rig[i].transform.Rotate(Vector3.up, GetComponent<PlayerStates>().torgueForce);
-            }
-        }
-    }
-
     IEnumerator SwipeTimer()
     {
         yield return new WaitForSeconds(Time.deltaTime);
@@ -208,6 +209,11 @@ public class SwipeHalf : MonoBehaviour
 
     void Swirling(Collider[] col) // hit needs to become true here
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            Reverse(objRB, initialMass);
+        }
         for (int i = 0; i < col.Length; i++)
         {
             if (col[i].tag == "Destructable")
@@ -225,7 +231,6 @@ public class SwipeHalf : MonoBehaviour
                 // PLAY DAMAGE PARTICLE
                 rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
-                rig.isKinematic = false;
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
                     var tempDir = new Vector3(dir.x, 0.0f, dir.z);
@@ -254,7 +259,7 @@ public class SwipeHalf : MonoBehaviour
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 objRB.Add(col[i].GetComponent<Rigidbody>());
                 initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
-                col[i].GetComponent<Rigidbody>().mass = 0.1f;
+                col[i].GetComponent<Rigidbody>().mass = 1f;
                 col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
                 col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
@@ -262,12 +267,18 @@ public class SwipeHalf : MonoBehaviour
 
         // SOUND AND ANIMATION FOR STOMP
         GameManager.instance.playerStomp();
-        StartCoroutine(ReturnGravity(objRB, initialMass));      
+        coroutine = ReturnGravity(objRB, initialMass);
+        StartCoroutine(coroutine);      
     }
 
     IEnumerator ReturnGravity(List<Rigidbody> rig, List<float> mass)
     {       
         yield return new WaitForSeconds(GetComponent<PlayerStates>().gravityTimer);
+        Reverse(rig, mass);
+    }
+
+    public void Reverse(List<Rigidbody> rig, List<float> mass)
+    {
         PlayerStates.imInSlowMotion = false;
         StampBar.increaseFill = true;
         //inAir = false;
@@ -283,6 +294,7 @@ public class SwipeHalf : MonoBehaviour
         }
         objRB.Clear();
         initialMass.Clear();
+        coroutine = null;
     }
 
     float CubicBezier(float t)

@@ -12,8 +12,14 @@ public class ConeDetection : MonoBehaviour
             var decreaseHp = true;
             if (PlayerStates.swiped)
             {
+                var script = GetComponentInParent<SwipeHalf>();
+                if (script.coroutine != null)
+                {
+                    script.StopCoroutine(script.coroutine);
+                    script.Reverse(script.objRB, script.initialMass);
+                }
+
                 Rigidbody rig = col.GetComponent<Rigidbody>();
-                rig.isKinematic = false;
                 col.GetComponent<ObjectBehavior>().hit = true;
 
                 // PLAY DAMAGE PARTICLE
@@ -21,7 +27,7 @@ public class ConeDetection : MonoBehaviour
 
                 if (col.GetComponent<ObjectBehavior>().lifted)
                 {
-                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GetComponent<PlayerStates>().hitForce); // Error here
+                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GameManager.instance.player.GetComponent<PlayerStates>().hitForce); // Error here
                 }
                 else
                 {
