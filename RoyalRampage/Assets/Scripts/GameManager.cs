@@ -13,6 +13,7 @@ public class GameManager
     private GameObject _player;
     private LevelManager _levelManager;
     private AudioManager _audioManager;
+	private AnimationManager _animationManager;
 
     private static string[] GAME_SCENES = { "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
     private static string MAIN_MENU = "Menu";
@@ -84,6 +85,17 @@ public class GameManager
         }
 
     }
+
+	public AnimationManager animationManager
+	{
+		get
+		{
+			if (_animationManager == null)
+				_animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
+			return _animationManager;
+		}
+
+	}
 
     //scene management
     public Scene CurrentScene()
