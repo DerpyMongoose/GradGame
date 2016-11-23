@@ -14,7 +14,8 @@ public class CurrencyPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, GameManager.instance.player.transform.position, Time.deltaTime * smoothValue);
+        var destination = new Vector3(GameManager.instance.player.transform.position.x, transform.position.y, GameManager.instance.player.transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * smoothValue);
 
     }
 
