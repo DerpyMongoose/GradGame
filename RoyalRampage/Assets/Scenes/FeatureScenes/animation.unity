@@ -129,19 +129,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013778807420, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.867
-      objectReference: {fileID: 0}
-    - target: {fileID: 137000011840093998, guid: 5950ab559094bff4693b84287113f3d8,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4609597ba05964e4098a0046bfeb89a0, type: 2}
-    - target: {fileID: 1000012367365648, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
   m_IsPrefabParent: 0
@@ -2455,29 +2442,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010075651248, guid: 139686ffbe78f8247a5ab41f6fbc42fd,
     type: 2}
   m_PrefabInternal: {fileID: 643106628}
---- !u!1 &670921125 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012917094002, guid: 814648a664d369d4a8063742d341bc70,
-    type: 2}
-  m_PrefabInternal: {fileID: 1841352795}
---- !u!114 &670921132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 670921125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860e82cd7a6bb4a29a4b7add4ec78d10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shutterAngle: 270
-  _sampleCount: 8
-  _frameBlending: 0
-  _reconstructionShader: {fileID: 4800000, guid: 60701d53f4c638048b5e49c197d08b77,
-    type: 3}
-  _frameBlendingShader: {fileID: 4800000, guid: 95caa7c3844725840aec8dad64ac258e,
-    type: 3}
 --- !u!1 &703610472
 GameObject:
   m_ObjectHideFlags: 0

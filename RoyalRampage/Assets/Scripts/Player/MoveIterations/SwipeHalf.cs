@@ -20,6 +20,7 @@ public class SwipeHalf : MonoBehaviour
     [HideInInspector]
     public static Vector3 attackDir;
 
+	private bool spinningAnim = false;
 
     void Start()
     {
@@ -143,27 +144,31 @@ public class SwipeHalf : MonoBehaviour
                 {
                     //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
                     GameManager.instance.playerSwirl();
+					spinningAnim = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
                     Swirling(hitColliders);
                 }
 
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    leftOk = true;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPointAtt = new Vector3(temp.x, 0, temp.z);
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    leftOk = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPointAtt = new Vector3(temp.x, 0, temp.z);
-                    attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    attackDir = dragPointAtt - startPointAtt;
-                    transform.rotation = Quaternion.LookRotation(attackDir);
-                    PlayerStates.swiped = true;
-                    StartCoroutine("SwipeTimer");
-                }
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					spinningAnim = false;
+					leftOk = true;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					startPointAtt = new Vector3 (temp.x, 0, temp.z);
+				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
+					leftOk = false;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
+					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
+					attackDir = dragPointAtt - startPointAtt;
+					transform.rotation = Quaternion.LookRotation (attackDir);
+					PlayerStates.swiped = true;
+					StartCoroutine ("SwipeTimer");
+
+					///HIT ANIMATION
+					if (spinningAnim == false) {
+						GameManager.instance.playerHitObject ();
+					}
+				}
 
             }
         }

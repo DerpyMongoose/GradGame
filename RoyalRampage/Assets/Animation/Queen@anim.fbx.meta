@@ -2539,7 +2539,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Spin
       takeName: Take 001
-      firstFrame: 144
+      firstFrame: 160
       lastFrame: 197
       wrapMode: 0
       orientationOffsetY: 0
@@ -3419,7 +3419,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.6066348
+        functionName: PlayStompParticle
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 466208f75f0c75b469819e5ead8f6895,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
