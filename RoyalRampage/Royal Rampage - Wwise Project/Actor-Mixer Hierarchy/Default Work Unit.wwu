@@ -5,11 +5,11 @@
 			<ChildrenList>
 				<ActorMixer Name="Objects" ID="{FEDF7EC3-350C-46F7-8487-96C875524AD5}" ShortID="160032090">
 					<PropertyList>
-						<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+						<Property Name="BelowThresholdBehavior" Type="int16" Value="2"/>
 						<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 						<Property Name="MaxSoundPerInstance" Type="int16">
 							<ValueList>
-								<Value>16</Value>
+								<Value>10</Value>
 							</ValueList>
 						</Property>
 						<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
@@ -17,7 +17,7 @@
 						<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
 						<Property Name="PriorityDistanceOffset" Type="int16">
 							<ValueList>
-								<Value>-20</Value>
+								<Value>-40</Value>
 							</ValueList>
 						</Property>
 						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
@@ -527,6 +527,7 @@
 								</SwitchContainer>
 								<SwitchContainer Name="Basket" ID="{89B25650-94B7-4363-A544-485F2C32ACF8}" ShortID="221730783">
 									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>800</Value>
@@ -541,6 +542,17 @@
 													</Modifier>
 												</ModifierInfo>
 											</ModifierList>
+										</Property>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
+											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -1911,6 +1923,20 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="Chair" ID="{777D47B6-C787-4CB9-9537-7A461DC0757C}" ShortID="700263147">
+									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -2387,6 +2413,20 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="China" ID="{8D35711E-F5EA-4880-9C43-4618D872AACF}" ShortID="954510363">
+									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>60</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -3333,6 +3373,19 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="Cutlery" ID="{39E32FD8-1B3C-4F42-887E-1E85D310D355}" ShortID="1044734752">
+									<PropertyList>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-20</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -4128,6 +4181,20 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="Food" ID="{2D0A2266-420B-4474-81B9-C51084F6E5BD}" ShortID="1040346245">
+									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>60</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6462,6 +6529,20 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="Grandfather Clock" ID="{B21E49B7-E024-429A-A802-16DAF69DD8A0}" ShortID="390945925">
+									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>60</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -10463,9 +10544,21 @@
 								</SwitchContainer>
 								<SwitchContainer Name="Statue" ID="{4D36568A-5F8E-4C9A-8808-2F2480A08E4B}" ShortID="460725904">
 									<PropertyList>
+										<Property Name="OverridePriority" Type="bool" Value="True"/>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>-600</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Priority" Type="int16">
+											<ValueList>
+												<Value>60</Value>
+											</ValueList>
+										</Property>
+										<Property Name="PriorityDistanceFactor" Type="bool" Value="True"/>
+										<Property Name="PriorityDistanceOffset" Type="int16">
+											<ValueList>
+												<Value>-40</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
