@@ -36,7 +36,7 @@ public class CameraController7 : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         Physics.Linecast(player.transform.position, dummy.transform.position, out hit, 1 << 8);
         switch (state_)
@@ -54,7 +54,6 @@ public class CameraController7 : MonoBehaviour
                         state_ = state.WALL;
                     }
                 }
-                print("free");
                 break;
             case state.WALL:
                 Vector3 direction = player.transform.position - transform.position;
@@ -68,11 +67,9 @@ public class CameraController7 : MonoBehaviour
                     print(hit.transform);
                     if (hit.transform.gameObject == dummy)
                     {
-                        print("Heyooo");
                         state_ = state.FREE;
                     }
                 }
-                print("wall");
                 break;
             default:
                 break;

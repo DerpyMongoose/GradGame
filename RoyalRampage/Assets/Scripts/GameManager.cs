@@ -13,8 +13,9 @@ public class GameManager
     private GameObject _player;
     private LevelManager _levelManager;
     private AudioManager _audioManager;
+	private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
+	private static string[] GAME_SCENES = {"GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -84,6 +85,17 @@ public class GameManager
         }
 
     }
+
+	public AnimationManager animationManager
+	{
+		get
+		{
+			if (_animationManager == null)
+				_animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
+			return _animationManager;
+		}
+
+	}
 
     //scene management
     public Scene CurrentScene()

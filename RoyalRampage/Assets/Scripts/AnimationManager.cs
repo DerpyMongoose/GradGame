@@ -12,37 +12,47 @@ public class AnimationManager : MonoBehaviour {
 
     private Animator playerAnim,
         scepterAnim;
+	private ParticleSystem spinParticle, stompParticle;
     
 	//dash
     void PlayerDashAnim(){
         playerAnim.SetTrigger("dash_trig");
-        //scepterAnim.SetTrigger("scepterdash_trig");
+		scepterAnim.SetTrigger("dash_trig");
     }
 	void PlayerDashRecoilAnim(){
 		playerAnim.SetTrigger("dash_end_trig");
-		//scepterAnim.SetTrigger("scepterdash_trig");
+		scepterAnim.SetTrigger("dash_end_trig");
 	}
 
 	// Hits
 	void PlayerHitAnim(){
 		playerAnim.SetTrigger ("has_hit");
-		//scepterAnim.SetTrigger("scepter_hasHitTrig");
+		scepterAnim.SetTrigger("has_hit");
 	} 
 
 	// Spin
 	void PlayerSpinAnim(){
 		playerAnim.SetTrigger ("spin_trig");
+		scepterAnim.SetTrigger ("spin_trig");
+		PlaySpinParticle ();
+	}
+	public void PlaySpinParticle(){
+		spinParticle.Play ();
 	}
 	// Stomp
 	void PlayerStompAnim(){
 		playerAnim.SetTrigger ("stomp_trig");
+		scepterAnim.SetTrigger ("stomp_trig");
+	}
+	public void PlayStompParticle(){
+		stompParticle.Play ();
 	}
 
 	void OnEnable(){
 		playerAnim = GameObject.FindGameObjectWithTag("queen").GetComponent<Animator>();
         scepterAnim = GameObject.FindGameObjectWithTag("scepter").GetComponent<Animator>();
-		print (playerAnim);
-		print (scepterAnim);
+		spinParticle = GameObject.FindGameObjectWithTag("spinParticle").GetComponent<ParticleSystem>();
+		stompParticle = GameObject.FindGameObjectWithTag("stompParticle").GetComponent<ParticleSystem>();
 
         GameManager.instance.OnPlayerDash += PlayerDashAnim;
 		GameManager.instance.OnPlayerHit += PlayerHitAnim;

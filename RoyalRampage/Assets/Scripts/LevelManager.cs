@@ -255,16 +255,18 @@ public class LevelManager : MonoBehaviour
 
 	//counting score "animation"
 	IEnumerator CountPointsTo (int new_score) {
-		yield return new WaitForSeconds(1f);
-		GameManager.instance.startCountingPoints ();
-		int start = 0;
-		float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
-		for (float timer = 0; timer < duration; timer += Time.deltaTime) {
-			float progress = timer / duration;
-			int temp_score = (int)Mathf.Lerp (start, new_score, progress);
-			replayScoreText.text = "Score: " + temp_score;
-			GameManager.instance.audioManager.UpdatePointCounter (temp_score);
-			yield return null;
+		if (new_score > 0) {
+			yield return new WaitForSeconds (1f);
+			GameManager.instance.startCountingPoints ();
+			int start = 0;
+			float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
+			for (float timer = 0; timer < duration; timer += Time.deltaTime) {
+				float progress = timer / duration;
+				int temp_score = (int)Mathf.Lerp (start, new_score, progress);
+				replayScoreText.text = "Score: " + temp_score;
+				GameManager.instance.audioManager.UpdatePointCounter (temp_score);
+				yield return null;
+			}
 		}
 		replayScoreText.text = "Score: " + new_score;
 		GameManager.instance.audioManager.UpdatePointCounter (new_score);
