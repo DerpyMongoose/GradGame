@@ -165,6 +165,7 @@ public class ObjectBehavior : MonoBehaviour
         //particleSys = GetComponent<ParticleSystem>();
         slowed = false;
         lifted = false;
+        hit = false;
         //ObjectManagerV2.instance.maxScore += score;  
 
         //Disable all the children.
@@ -183,8 +184,11 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        CheckDamage();
-        CheckVelocity();
+        if (hit)
+        {
+            CheckDamage();
+            CheckVelocity();
+        }
 
         if (lifted)
         {
@@ -254,7 +258,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if (Mathf.Round(objRB.velocity.magnitude) == 0)
+        if (objRB.velocity.magnitude <= 0.5f)
         {
             //print("Hit becomes false now");
             hit = false;
