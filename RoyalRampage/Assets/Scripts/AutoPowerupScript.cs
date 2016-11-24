@@ -8,9 +8,11 @@ public class AutoPowerupScript : MonoBehaviour {
 		var scale = other.transform.localScale;
 		other.transform.localScale = scale * 2;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public AudioManager findSth(){
+		AudioManager cam = null;
+		cam = GameObject.FindObjectOfType<AudioManager>() as AudioManager;
+		Debug.Log(cam);
+		return cam;
 	}
 }
