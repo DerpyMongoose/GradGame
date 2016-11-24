@@ -30,11 +30,11 @@ public class ConeDetection : MonoBehaviour
 
                 if (col.GetComponent<ObjectBehavior>().lifted)
                 {
-                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GameManager.instance.player.GetComponent<PlayerStates>().hitForce); // Error here
+                    rig.AddForce((SwipeHalf.attackDir.normalized + new Vector3(0, GameManager.instance.player.GetComponent<PlayerStates>().degreesInAir / 90, 0)) * GameManager.instance.player.GetComponent<PlayerStates>().hitForce, ForceMode.Impulse); // Error here
                 }
                 else
                 {
-                    rig.AddForce(SwipeHalf.attackDir.normalized * GameManager.instance.player.GetComponent<PlayerStates>().hitForce);
+                    rig.AddForce(SwipeHalf.attackDir.normalized * GameManager.instance.player.GetComponent<PlayerStates>().hitForce, ForceMode.Impulse);
                 }
                 if (decreaseHp)
                 {

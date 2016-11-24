@@ -253,11 +253,11 @@ public class SwipeHalf : MonoBehaviour
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
                     var tempDir = new Vector3(dir.x, 0.0f, dir.z);
-                    rig.AddForce((tempDir.normalized) * GetComponent<PlayerStates>().swirlForce);
+                    rig.AddForce((tempDir.normalized) * GetComponent<PlayerStates>().swirlForce, ForceMode.Impulse);
                 }
                 else
                 {
-                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
+                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce, ForceMode.Impulse);
                 }
                 col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
             }

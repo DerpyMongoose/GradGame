@@ -289,11 +289,11 @@ public class ObjectBehavior : MonoBehaviour
                 col.collider.GetComponent<ObjectBehavior>().hit = true;
                 // PLAY DAMAGE PARTICLE
                 //particleSys.Play();
-                col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
                 ObjectManagerV2.instance.direction = col.transform.position - transform.position;
                 if (col.gameObject.tag != "UniqueObjs")
                 {
-                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
                 life -= ObjectManagerV2.instance.objDamage;
                 col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
