@@ -28665,8 +28665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72382e2a83a53df439c156a44881f830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swirlEnded: 0
   objRB: []
   initialMass: []
+  tempColliders: []
 --- !u!114 &114000010355984574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28764,7 +28766,7 @@ MonoBehaviour:
   timeForCircle: 0.5
   SameTapTime: 0.1
   gravityTimer: 3
-  swirlRadius: 2
+  swirlRadius: 1
   liftRadius: 3
   distSwipe: 1
   rotationSpeed: 4
