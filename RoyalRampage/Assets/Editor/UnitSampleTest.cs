@@ -9,10 +9,14 @@ namespace UnityTest{
 
 		[Test]
 		public void SimpleCamTest(){
-			//Assert.That (2 + 2 == 4);
-			var test = GameObject.FindObjectOfType<AutoPowerupScript>() as AutoPowerupScript;
+			var test = GameManager.instance.audioManager;
 			Assert.That (test.findSth()!=null);
 
+		}
+		
+		[Test]
+		public void SimpleAddition(){
+			Assert.That (2 + 2 == 4);
 		}
 	}
 }

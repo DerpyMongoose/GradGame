@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="Unity Tests" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-11-24" time="14:02:14">
+  <environment nunit-version="2.6.4-Unity" clr-version="2.0.50727.1433" os-version="Microsoft Windows NT 6.1.7601.0" platform="Win32NT" cwd="C:\Users\GradGame\RoyalRampage" machine-name="AAU102326" user="dadiu" user-domain="AAU102326" unity-version="5.4.1f1" unity-platform="WindowsEditor" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite name="RoyalRampage" type="Assembly" executed="True" result="Success" success="True" time="0.007">
+    <results>
+      <test-case name="UnityTest.UnitSampleTest.SimpleCamTest" executed="True" result="Error" success="False" time="0.007">
+        <failure>
+          <message>
+<![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]>
+          </message>
+          <stack-trace>
+<![CDATA[at UnityTest.UnitSampleTest.SimpleCamTest () [0x00006] in C:\Users\GradGame\RoyalRampage\Assets\Editor\UnitSampleTest.cs:14
+]]>
+          </stack-trace>
+        </failure>
+      </test-case>
+    </results>
+  </test-suite>
+</test-results>
