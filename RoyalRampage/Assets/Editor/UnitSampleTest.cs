@@ -12,4 +12,8 @@ public class UnitSampleTest {
 		Assert.That (test.findSth()!=null);
 
 	}
+
+	public void RunUnitTest(){
+		SimpleCamTest ();
+	}
 }
