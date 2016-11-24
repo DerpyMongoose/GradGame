@@ -66,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011318518822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.37, y: 0.37, z: 0.37}
+  m_LocalPosition: {x: -3.625284, y: 0.9789327, z: 2.7685757}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010098152122}
@@ -151,8 +151,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Porcelain
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
