@@ -86,36 +86,39 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
-                print("LoadLevelStart");
+                    print("LoadLevelStart");
                 }
 
-            if(hitObject == true)
-            {
-                Startlevel();
-                print("hit");
-            }
-
-            if (Input.GetKey(KeyCode.R))
-            {
-				GameManager.instance.levelLoad();
-            }
-            break;
+                if (hitObject == true)
+                {
+                    Startlevel();
+                    print("hit");
+                }
+                if (SwipeHalf.startTutTimer == true)
+                {
+                    Startlevel();
+                }
+                if (Input.GetKey(KeyCode.R))
+                {
+                    GameManager.instance.levelLoad();
+                }
+                break;
 
             case PlayerState.IDLE:
-            break;
+                break;
 
             case PlayerState.WALKING:
-            break;
+                break;
 
             case PlayerState.ATTACKING:
-            break;
+                break;
 
             //after timer is out - losing/winning ending
             case PlayerState.ENDING:
-            break;
+                break;
         }
     }
 
@@ -127,39 +130,59 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.IDLE:
             case PlayerState.WALKING:
             case PlayerState.ATTACKING:
-            if (GameManager.instance.levelManager.multiplier > 1)
-            {
-                timeLeftInLevel -= 0;
-            }
-            else if (!imInSlowMotion)
-            {
-                timeLeftInLevel -= Time.deltaTime;
-            }
-            else
-            {
-                timeLeftInLevel -= 0.005f;
-            }
-            timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-            if (timeLeftInLevel <= timeTicker)
-            {
-                timeTicker -= 1;
-                GameManager.instance.timerUpdate(timeTicker);
-            }
+                if (GameManager.instance.levelManager.multiplier > 1)
+                {
+                    timeLeftInLevel -= 0;
+                }
+                else if (!imInSlowMotion)
+                {
+                    timeLeftInLevel -= Time.deltaTime;
+                }
+                else
+                {
+                    timeLeftInLevel -= 0.005f;
+                }
 
-            if (timeLeftInLevel <= timeRunningOut)
-            {
-                timeRunningOut = -1;
-                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
-            }
+                timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
+                if (timeLeftInLevel <= timeTicker)
+                {
+                    timeTicker -= 1;
+                    GameManager.instance.timerUpdate(timeTicker);
+                }
 
-            //when timer runs out:
-            if (timeLeftInLevel <= 0f)
-            {
-                timerText.text = "0";  // for the level timer
-                timerText.color = Color.red;
-				GameManager.instance.timerOut();
-            }
-            break;
+                if (timeLeftInLevel <= timeRunningOut)
+                {
+                    timeRunningOut = -1;
+                    GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
+                }
+
+                //when timer runs out:
+                if (timeLeftInLevel <= 0f)
+                { //Move stuff to events
+                    if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == false)
+                    {
+                        GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
+                        GameManager.instance.levelManager.guideText.text = "Try again";
+                        timerText.text = "0";  // for the level timer
+                        timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
+                        SwipeHalf.startTutTimer = false;
+                    }
+                    else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == true)
+                    {
+                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACk;
+                        GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
+                        timeLeftInLevel = 0;
+
+                        GameObject.Find("Target").SetActive(false);
+                    }
+                    else if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+                    {
+                        timerText.text = "0";  // for the level timer
+                        timerText.color = Color.red;
+                        GameManager.instance.timerOut();
+                    }
+                }
+                break;
         }
     }
 
@@ -172,24 +195,30 @@ public class PlayerStates : MonoBehaviour
 
     private void EndLevel()
     {
-		state = PlayerState.ENDING;
-		GameManager.instance.canPlayerDestroy = false;
-		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
+        state = PlayerState.ENDING;
+        GameManager.instance.canPlayerDestroy = false;
+        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
     }
 
     void OnCollisionEnter(Collision hit)
     {
-        if(hit.transform.tag == "Destructable")
+        if (hit.transform.tag == "Destructable")
         {
-            hitObject = true;
+            if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
+            {
+                SwipeHalf.startTutTimer = true;
+            }
+            else hitObject = true;
         }
     }
 
-	void OnEnable(){
-		GameManager.instance.OnTimerOut += EndLevel;
+    void OnEnable()
+    {
+        GameManager.instance.OnTimerOut += EndLevel;
     }
 
-	void OnDisable(){
-		GameManager.instance.OnTimerOut -= EndLevel;
-	}
+    void OnDisable()
+    {
+        GameManager.instance.OnTimerOut -= EndLevel;
+    }
 }

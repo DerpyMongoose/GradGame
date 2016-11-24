@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class SwipeHalf : MonoBehaviour
 {
+    public static bool startTutTimer = false;
 
     private int touches, countTaps;
     private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
@@ -24,8 +25,8 @@ public class SwipeHalf : MonoBehaviour
     public IEnumerator coroutine;
 
     private bool spinningAnim = false;
-	private bool swipeToHit = false;
-	private List<Collider> liftColliders = new List<Collider>();
+    private bool swipeToHit = false;
+    private List<Collider> liftColliders = new List<Collider>();
 
     void Start()
     {
@@ -99,91 +100,105 @@ public class SwipeHalf : MonoBehaviour
             if (Input.GetTouch(i).position.x <= Screen.width / 2)
             {
                 //HERE MOVING////////////////////////
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
                 {
-                    rightOk = true;
-                    newSwipe = true;
-                    newDash = true;
-                    moveTimer = 0;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPoint = new Vector3(temp.x, 0, temp.z);
-
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
-                {
-                    if (coroutine != null)
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
                     {
-                        StopCoroutine(coroutine);
-                        Reverse(objRB, initialMass);
-                    }
-                    PlayerStates.imInSlowMotion = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPoint = new Vector3(temp.x, 0, temp.z);
-                    distance = Vector3.Distance(dragPoint, startPoint);
-                    //print(distance);
-                    direction = dragPoint - startPoint;
-                    //speed = distance / moveTimer;
-                    speed = distance;
-                    //acc = speed / moveTimer;
-                    //force = playerRig.mass * acc;
-                    force = playerRig.mass * (speed * GetComponent<PlayerStates>().moveForce);
-                    if (distance > GetComponent<PlayerStates>().distSwipe)
-                    {
-                        //if (Mathf.Round(playerRig.velocity.magnitude) == 0)
-                        //{
-                        applyMove = true;
-                        //rotationTime = true;
-                        //}
+                        rightOk = true;
+                        newSwipe = true;
+                        newDash = true;
+                        moveTimer = 0;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        startPoint = new Vector3(temp.x, 0, temp.z);
                     }
 
-                    if (moveTimer >= GetComponent<PlayerStates>().timeForSwipe && newSwipe)
+                    else if (Input.GetTouch(i).phase == TouchPhase.Moved && newSwipe)
                     {
-                        applyMove = false;
-                        newSwipe = false;
+                        if (coroutine != null)
+                        {
+                            StopCoroutine(coroutine);
+                            Reverse(objRB, initialMass);
+                        }
+                        startTutTimer = true;
+                        PlayerStates.imInSlowMotion = false;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        dragPoint = new Vector3(temp.x, 0, temp.z);
+                        distance = Vector3.Distance(dragPoint, startPoint);
+                        //print(distance);
+                        direction = dragPoint - startPoint;
+                        //speed = distance / moveTimer;
+                        speed = distance;
+                        //acc = speed / moveTimer;
+                        //force = playerRig.mass * acc;
+                        force = playerRig.mass * (speed * GetComponent<PlayerStates>().moveForce);
+                        if (distance > GetComponent<PlayerStates>().distSwipe)
+                        {
+                            //if (Mathf.Round(playerRig.velocity.magnitude) == 0)
+                            //{
+                            applyMove = true;
+                            //rotationTime = true;
+                            //}
+                        }
+
+                        if (moveTimer >= GetComponent<PlayerStates>().timeForSwipe && newSwipe)
+                        {
+                            applyMove = false;
+                            newSwipe = false;
+                        }
                     }
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    rightOk = false;
+                    else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                    {
+                        rightOk = false;
+                    }
                 }
             }
             else if (Input.GetTouch(i).position.x > Screen.width / 2)
             {
-                //HERE ATTACKING////////////////////
-                if (isGestureDone())
+                if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.ATTACk)
                 {
-                    //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
-                    GameManager.instance.playerSwirl();
-                    spinningAnim = true;
-                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
-                    Swirling(hitColliders);
+                    //HERE ATTACKING////////////////////
+                    if (isGestureDone())
+                    {
+                        //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+                        GameManager.instance.playerSwirl();
+                        spinningAnim = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+                        Swirling(hitColliders);
+                    }
+
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    {
+                        spinningAnim = false;
+                        leftOk = true;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        startPointAtt = new Vector3(temp.x, 0, temp.z);
+                        swipeToHit = false; //cannot hit on click only!!!!
+                    }
+                    else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                    {
+                        leftOk = false;
+                        temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
+                        dragPointAtt = new Vector3(temp.x, 0, temp.z);
+                        attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
+                        //print(attackDist);
+                        if (attackDist > 1f)
+                        {
+                            attackDir = dragPointAtt - startPointAtt;
+                            transform.rotation = Quaternion.LookRotation(attackDir);
+                            PlayerStates.swiped = true;
+                            StartCoroutine("SwipeTimer");
+
+                            ///HIT ANIMATION
+                            if (spinningAnim == false && swipeToHit == true)
+                            {
+                                GameManager.instance.playerHitObject();
+                            }
+                        }
+                    }
                 }
-
-				if (Input.GetTouch (i).phase == TouchPhase.Began) {
-					spinningAnim = false;
-					leftOk = true;
-					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
-					startPointAtt = new Vector3 (temp.x, 0, temp.z);
-					swipeToHit = false; //cannot hit on click only!!!!
-				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
-					leftOk = false;
-					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
-					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
-					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
-					//print(attackDist);
-					if (attackDist > 1f) {
-						attackDir = dragPointAtt - startPointAtt;
-						transform.rotation = Quaternion.LookRotation (attackDir);
-						PlayerStates.swiped = true;
-						StartCoroutine ("SwipeTimer");
-
-						///HIT ANIMATION
-						if (spinningAnim == false && swipeToHit == true) {
-							GameManager.instance.playerHitObject ();
-						}
-					}
-				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
-					swipeToHit = true; //only hit if player move finger to swipe
+                else if (Input.GetTouch(i).phase == TouchPhase.Moved)
+                {
+                    swipeToHit = true; //only hit if player move finger to swipe
                 }
 
             }
@@ -198,17 +213,19 @@ public class SwipeHalf : MonoBehaviour
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
                 //Lift(hitColliders); //RUN FROM ANIMATION EVENT
-                if (liftColliders != null) {
+                if (liftColliders != null)
+                {
                     liftColliders.Clear();
                 }
-				for (int i = 0; i < hitColliders.Length; i++) {
+                for (int i = 0; i < hitColliders.Length; i++)
+                {
                     if (hitColliders[i].tag == "Destructable")
                     {
                         liftColliders.Add(hitColliders[i]);
                     }
-				}
-				// SOUND AND ANIMATION FOR STOMP
-				GameManager.instance.playerStomp();
+                }
+                // SOUND AND ANIMATION FOR STOMP
+                GameManager.instance.playerStomp();
             }
         }
 
@@ -265,10 +282,11 @@ public class SwipeHalf : MonoBehaviour
 
     }
 
-	public void StartLifting(){
-		Lift();
-		//liftColliders = null;
-	}
+    public void StartLifting()
+    {
+        Lift();
+        //liftColliders = null;
+    }
 
     void Lift()
     {
@@ -288,8 +306,8 @@ public class SwipeHalf : MonoBehaviour
             }
         }
 
-       
-        
+
+
         coroutine = ReturnGravity(objRB, initialMass);
         StartCoroutine(coroutine);
     }
