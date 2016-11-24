@@ -10,7 +10,7 @@ namespace UnityTest{
 		[Test]
 		public void SimpleCamTest(){
 			var test = GameManager.instance.audioManager;
-			Assert.That (test.findSth()!=null);
+			Assert.That (test!=null);
 
 		}
 		
