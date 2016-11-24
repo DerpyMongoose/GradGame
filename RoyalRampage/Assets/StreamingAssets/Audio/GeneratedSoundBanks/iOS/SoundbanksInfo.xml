@@ -27,9 +27,7 @@
 				<Event Id="4027780260" Name="Menu_Button_Play" ObjectPath="\Events\Default Work Unit\Menu_Button_Play"/>
 				<Event Id="350081739" Name="Music_System_Play" ObjectPath="\Events\Default Work Unit\Music_System_Play"/>
 				<Event Id="3509289057" Name="Music_System_Stop" ObjectPath="\Events\Default Work Unit\Music_System_Stop" MaxAttenuation="0.000000"/>
-				<Event Id="491891602" Name="Object_Action_Play" ObjectPath="\Events\Default Work Unit\Object_Action_Play"/>
-				<Event Id="453371149" Name="Objective_Announced_Play" ObjectPath="\Events\Default Work Unit\Objective_Announced_Play"/>
-				<Event Id="635791921" Name="Objective_Completed_Play" ObjectPath="\Events\Default Work Unit\Objective_Completed_Play"/>
+				<Event Id="491891602" Name="Object_Action_Play" ObjectPath="\Events\Default Work Unit\Object_Action_Play" MaxAttenuation="20.000000"/>
 				<Event Id="1311831249" Name="Points_Counting_Play" ObjectPath="\Events\Default Work Unit\Points_Counting_Play"/>
 				<Event Id="2563246215" Name="Points_Counting_Stop" ObjectPath="\Events\Default Work Unit\Points_Counting_Stop" MaxAttenuation="0.000000"/>
 				<Event Id="3286289918" Name="Points_Rewarded_Play" ObjectPath="\Events\Default Work Unit\Points_Rewarded_Play"/>
@@ -39,6 +37,7 @@
 				<Event Id="278413312" Name="Start_Game_Button_Play" ObjectPath="\Events\Default Work Unit\Start_Game_Button_Play"/>
 				<Event Id="3839850873" Name="Stomp_Play" ObjectPath="\Events\Default Work Unit\Stomp_Play"/>
 				<Event Id="3295885793" Name="Timer_Tick_Play" ObjectPath="\Events\Default Work Unit\Timer_Tick_Play"/>
+				<Event Id="886445783" Name="Tutorial_Check_Mark_Play" ObjectPath="\Events\Default Work Unit\Tutorial_Check_Mark_Play"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="21864923" Language="SFX">
@@ -125,10 +124,6 @@
 					<ShortName>Cutlery Destruction_2.wav</ShortName>
 					<Path>SFX\Cutlery Destruction_2_3ADACB5C.wem</Path>
 				</File>
-				<File Id="339792523" Language="SFX">
-					<ShortName>Objective_Completed.wav</ShortName>
-					<Path>SFX\Objective_Completed_6CD91716.wem</Path>
-				</File>
 				<File Id="351242880" Language="SFX">
 					<ShortName>Chair Hit.wav</ShortName>
 					<Path>SFX\Chair Hit_3ADACB5C.wem</Path>
@@ -168,10 +163,6 @@
 				<File Id="482608613" Language="SFX">
 					<ShortName>Statue Destruction_1.wav</ShortName>
 					<Path>SFX\Statue Destruction_1_3ADACB5C.wem</Path>
-				</File>
-				<File Id="485878556" Language="SFX">
-					<ShortName>Objective_Announced.wav</ShortName>
-					<Path>SFX\Objective_Announced_32731160.wem</Path>
 				</File>
 				<File Id="488188212" Language="SFX">
 					<ShortName>Table Hit.wav</ShortName>
@@ -297,10 +288,6 @@
 					<ShortName>Pots and Pans Landing.wav</ShortName>
 					<Path>SFX\Pots and Pans Landing_3ADACB5C.wem</Path>
 				</File>
-				<File Id="908577113" Language="SFX">
-					<ShortName>Bonus_Star.wav</ShortName>
-					<Path>SFX\Bonus_Star_3ADACB5C.wem</Path>
-				</File>
 				<File Id="919817392" Language="SFX">
 					<ShortName>Music_In_Main_Menu.wav</ShortName>
 					<Path>SFX\Music_In_Main_Menu_4D7BABE6.wem</Path>
@@ -368,6 +355,10 @@
 				<File Id="1055892793" Language="SFX">
 					<ShortName>China Destruction_2.wav</ShortName>
 					<Path>SFX\China Destruction_2_3ADACB5C.wem</Path>
+				</File>
+				<File Id="1064324686" Language="SFX">
+					<ShortName>Tutorial_Check_Mark.wav</ShortName>
+					<Path>SFX\Tutorial_Check_Mark_3ADACB5C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
