@@ -26,6 +26,7 @@ public class StampBar : MonoBehaviour
     void Start()
     {
         slider.GetComponent<Image>().fillAmount = 0f;
+        fillBar = 0f;
         initialColor = slider.GetComponent<Image>().color;
         increaseFill = true;
         countSecond = 0f;

@@ -165,6 +165,7 @@ public class ObjectBehavior : MonoBehaviour
         //particleSys = GetComponent<ParticleSystem>();
         slowed = false;
         lifted = false;
+        hit = false;
         //ObjectManagerV2.instance.maxScore += score;  
 
         //Disable all the children.
@@ -183,8 +184,11 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        CheckDamage();
-        CheckVelocity();
+        if (hit)
+        {
+            CheckDamage();
+            CheckVelocity();
+        }
 
         if (lifted)
         {
@@ -254,7 +258,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if (Mathf.Round(objRB.velocity.magnitude) == 0)
+        if (objRB.velocity.magnitude <= 0.5f)
         {
             //print("Hit becomes false now");
             hit = false;
@@ -289,11 +293,11 @@ public class ObjectBehavior : MonoBehaviour
                 col.collider.GetComponent<ObjectBehavior>().hit = true;
                 // PLAY DAMAGE PARTICLE
                 //particleSys.Play();
-                col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
                 ObjectManagerV2.instance.direction = col.transform.position - transform.position;
                 if (col.gameObject.tag != "UniqueObjs")
                 {
-                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
                 life -= ObjectManagerV2.instance.objDamage;
                 col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
