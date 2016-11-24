@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: queenDress
+  m_Name: gem_red
   m_Shader: {fileID: 4800000, guid: 77d16477f0ec3194cabcbc2953f1f1af, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -129,10 +129,10 @@ Material:
       second: 1
     - first:
         name: _SpecularSmooth
-      second: 0
+      second: 0.075
     - first:
         name: _Specularity
-      second: 0
+      second: 0.331
     - first:
         name: _SrcBlend
       second: 1
@@ -148,16 +148,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.5294118, g: 0.10510382, b: 0.41236144, a: 1}
+      second: {r: 0.8235294, g: 0.030276798, b: 0.030276798, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HighlightColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 0.9918864, b: 0.9705882, a: 1}
     - first:
         name: _ShadowColor
-      second: {r: 0.20128869, g: 0.03027682, b: 0.41176468, a: 1}
+      second: {r: 0.125, g: 0.125, b: 0.125, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.3897059, g: 0.37537846, b: 0.38223618, a: 1}
