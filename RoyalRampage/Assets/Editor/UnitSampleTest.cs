@@ -9,14 +9,32 @@ namespace UnityTest{
 
 		[Test]
 		public void SimpleCamTest(){
-			var test = GameManager.instance.audioManager;
-			Assert.That (test!=null);
+			var objManager = new ObjectManagerV2 ();
+			objManager.mediumGlassLife = 10;
+			var objBehavior = new ObjectBehavior ();
+			objBehavior.life = objManager.mediumGlassLife;
+			Assert.AreEqual (10, objBehavior.life);
 
+			objManager.objDamage = 7;
+			objBehavior.life -= objManager.objDamage;
+			Assert.AreEqual (3, objBehavior.life);
 		}
 		
 		[Test]
 		public void SimpleAddition(){
-			Assert.That (2 + 2 == 4);
+			var obj = new ObjectBehaviourTest();
+			obj.life = 10;
+			obj.TestCollisionEnter (7);
+			Assert.AreEqual (3, obj.life);
 		}
+	}
+}
+
+
+public partial class ObjectBehaviourTest{
+	public int life;
+
+	public void TestCollisionEnter (int objDamage){
+		life -= objDamage;
 	}
 }
