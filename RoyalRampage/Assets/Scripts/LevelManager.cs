@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 {
 
     [SerializeField]
-    int scoreToCompleteLevel = 10; 
+    int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
     public float MultiplierTime;
     public int amountOfObjects;
@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     Text starText;
     Text scoreText;
     Text minScoreText;
+    [HideInInspector]
     public Text guideText;
     GameObject InGamePanel;
     GameObject ReplayPanel;
@@ -45,11 +46,27 @@ public class LevelManager : MonoBehaviour
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
     private GameObject continueButton;
+    [HideInInspector]
     public int multiplier;
     private float countMultiTime;
     private int countObjects;
-
-    
+    [HideInInspector]
+    //You'll regret using this boolean
+    public bool spawnedObject = false;
+    [Header("Tutorial Object")]
+    public GameObject tutorialPrefab;
+    private ObjectBehavior objBehavior;
+    GameObject tutorialBarrel;
+    GameObject tutorialBarrel2;
+    GameObject tutorialBarrel3;
+    GameObject tutorialBarrel4;
+    GameObject tutorialBarrel5;
+    GameObject tutorialBarrel6;
+    bool smashed;
+    bool smashed2;
+    bool startTimer;
+    float timer, timer2;
+    int initialHP;
 
     void OnEnable()
     {
@@ -67,6 +84,11 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        smashed = false;
+        smashed2 = false;
+        startTimer = false;
+        timer = 0;
+        timer2 = 0;
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
         countMultiTime = 0;
@@ -115,7 +137,7 @@ public class LevelManager : MonoBehaviour
 
     private void IncreaseScore(GameObject destructedObj)
     {
-        if (GameManager.instance.canPlayerDestroy)
+        if (GameManager.instance.canPlayerDestroy && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             countObjects++;
@@ -199,30 +221,216 @@ public class LevelManager : MonoBehaviour
                 switch (GameManager.instance.TutorialState())
                 {
                     case GameManager.Tutorial.MOVEMENT:
-                        if(SwipeHalf.startTutTimer == true)
+                        if (SwipeHalf.startTutTimer == true)
                         {
+                            //COLORED PANEL FOR COMMUNICATING MOVING
                             guideText.text = "Reach the finish-line before the timer runs out!";
                         }
-                        if(GameManager.instance.levelManager.targetReached == true)
+                        if (GameManager.instance.levelManager.targetReached == true)
                         {
-                            guideText.text = "Great job!";
+                            guideText.text = "Great job!!!";
                         }
                         break;
-                    case GameManager.Tutorial.ATTACk:
+                    case GameManager.Tutorial.ATTACK:
 
-                        guideText.text = "Swipe the right side of the screen to attack";
+                        if (spawnedObject == false)
+                        {
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            guideText.text = "Swipe the right side of the screen to hit the barrel";
+                            GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
+                            spawnedObject = true;
+                        }
+                        if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true)
+                        {
+                            //COLORED PANEL FOR COMMUNICATING ATTACK
+                            //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
+                            smashed = true;
+                            guideText.text = "You're amazing!!!";
+                            if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == false)
+                            {
+                                smashed = false;
+                                GameManager.instance.tutorial = GameManager.Tutorial.CHAIN;
+                            }
+                        }
+
                         break;
                     case GameManager.Tutorial.CHAIN:
+                        if (spawnedObject == true)
+                        {
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3)), Quaternion.identity);
+                            initialHP = tutorialBarrel.GetComponent<ObjectBehavior>().life;
+                            guideText.text = "Hit the barrel with the barrel";
 
-                        guideText.text = "placeholder";
+                            spawnedObject = false;
+                        }
+                        if ((tutorialBarrel.GetComponent<ObjectBehavior>().hit == true && tutorialBarrel2.GetComponent<ObjectBehavior>().hit == false) || smashed2 == true)
+                        {
+                            smashed2 = true;
+                            if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == false)
+                            {
+                                tutorialBarrel.transform.position = (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1));
+                                tutorialBarrel.transform.rotation = Quaternion.identity;
+                                tutorialBarrel.GetComponent<ObjectBehavior>().life = initialHP;
+                            }
+                        }
+
+                        if (tutorialBarrel2.GetComponent<ObjectBehavior>().hit == true || smashed == true)
+                        {
+                            //COLORED PANEL FOR COMMUNICATING ATTACK
+                            //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
+                            smashed = true;
+                            smashed2 = false;
+                            if (tutorialBarrel2.GetComponent<ObjectBehavior>().hit == false)
+                            {
+                                GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
+                            }
+                            guideText.text = "Bullseye!";
+                        }
+
                         break;
                     case GameManager.Tutorial.SWIRL:
+                        if (spawnedObject == false)
+                        {
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
+                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            ObjectManagerV2.instance.canDamage = false;
+                            GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
+                            guideText.text = "Make a circle on the right side to spin attack";
 
-                        guideText.text = "Make a circle on the right side of the screen to do a swirl attack";
+                            spawnedObject = true;
+
+                        }
+                        if (PlayerStates.swiped == true)
+                        {
+                            guideText.text = "Make a circle on the right side to spin attack, baka";
+                            startTimer = true;
+                        }
+
+                        if (startTimer == true)
+                        {
+                            timer += Time.deltaTime;
+                            if (timer > 1f)
+                            {
+                                tutorialBarrel.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1);
+                                tutorialBarrel.transform.rotation = Quaternion.identity;
+                                tutorialBarrel2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel2.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1);
+                                tutorialBarrel2.transform.rotation = Quaternion.identity;
+                                tutorialBarrel3.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel3.transform.position = GameManager.instance.player.transform.position - new Vector3(1f, 0, 0);
+                                tutorialBarrel3.transform.rotation = Quaternion.identity;
+                                tutorialBarrel4.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel4.transform.position = GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0);
+                                tutorialBarrel4.transform.rotation = Quaternion.identity;
+                                tutorialBarrel5.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel5.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1);
+                                tutorialBarrel5.transform.rotation = Quaternion.identity;
+                                tutorialBarrel6.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel6.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1);
+                                tutorialBarrel6.transform.rotation = Quaternion.identity;
+                                timer = 0;
+                                startTimer = false;
+                            }
+                        }
+                        if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
+                        {
+                            guideText.text = "You're my hero!";
+                            ObjectManagerV2.instance.canDamage = true;
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 1f)
+                            {
+                                GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
+                                timer2 = 0;
+                                GameManager.instance.tutorial = GameManager.Tutorial.STOMP;
+                            }
+                        }
                         break;
                     case GameManager.Tutorial.STOMP:
+                        //Show the bar with animation
+                        if (spawnedObject == true)
+                        {
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
+                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            ObjectManagerV2.instance.canDamage = false;
+                            GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
+                            guideText.text = "You're enraged! Tap on both sides at the same time to stomp";
+                            spawnedObject = false;
+                        }
+                        if (PlayerStates.swiped == true)
+                        {
+                            guideText.text = "Make a circle on the right side to spin attack, baka";
+                            startTimer = true;
+                        }
 
-                        guideText.text = "Double tap ";
+                        if (startTimer == true)
+                        {
+                            timer += Time.deltaTime;
+                            if (timer > 1f)
+                            {
+                                tutorialBarrel.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1);
+                                tutorialBarrel.transform.rotation = Quaternion.identity;
+                                tutorialBarrel2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel2.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1);
+                                tutorialBarrel2.transform.rotation = Quaternion.identity;
+                                tutorialBarrel3.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel3.transform.position = GameManager.instance.player.transform.position - new Vector3(1f, 0, 0);
+                                tutorialBarrel3.transform.rotation = Quaternion.identity;
+                                tutorialBarrel4.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel4.transform.position = GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0);
+                                tutorialBarrel4.transform.rotation = Quaternion.identity;
+                                tutorialBarrel5.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel5.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1);
+                                tutorialBarrel5.transform.rotation = Quaternion.identity;
+                                tutorialBarrel6.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel6.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1);
+                                tutorialBarrel6.transform.rotation = Quaternion.identity;
+                                timer = 0;
+                                startTimer = false;
+                            }
+                        }
+                        if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
+                        {                                                      
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 1f)
+                            {
+                                tutorialBarrel.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1);
+                                tutorialBarrel.transform.rotation = Quaternion.identity;
+                                tutorialBarrel2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel2.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1);
+                                tutorialBarrel2.transform.rotation = Quaternion.identity;
+                                tutorialBarrel3.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel3.transform.position = GameManager.instance.player.transform.position - new Vector3(1f, 0, 0);
+                                tutorialBarrel3.transform.rotation = Quaternion.identity;
+                                tutorialBarrel4.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel4.transform.position = GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0);
+                                tutorialBarrel4.transform.rotation = Quaternion.identity;
+                                tutorialBarrel5.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel5.transform.position = GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1);
+                                tutorialBarrel5.transform.rotation = Quaternion.identity;
+                                tutorialBarrel6.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                                tutorialBarrel6.transform.position = GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1);
+                                tutorialBarrel6.transform.rotation = Quaternion.identity;
+                                timer = 0;
+                                GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
+                            }
+                        }
+                        GameManager.instance.player.GetComponent<StampBar>().fillBar = 1f;
+                        if(SwipeHalf.intoAir == true)
+                        {
+                            guideText.text = "You're a beast! BEAST QUEEN!";
+                        }                     
                         break;
                 }
                 break;

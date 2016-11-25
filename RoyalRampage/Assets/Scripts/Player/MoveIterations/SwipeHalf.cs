@@ -26,14 +26,16 @@ public class SwipeHalf : MonoBehaviour
     [HideInInspector]
     public IEnumerator coroutine;
     [HideInInspector]
-	public List<Collider> tempColliders = new List<Collider>();
+    public List<Collider> tempColliders = new List<Collider>();
+    [HideInInspector]
+    public bool swirlTut;
 
     private bool spinningAnim = false;
     private bool swipeToHit = false;
 
     void Start()
     {
-
+        swirlTut = false;
         playerRig = GetComponent<Rigidbody>();
         touches = 0;
         moveTimer = 0;
@@ -159,27 +161,28 @@ public class SwipeHalf : MonoBehaviour
             }
             else if (Input.GetTouch(i).position.x > Screen.width / 2)
             {
-                if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.ATTACk)
+                if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() != GameManager.Tutorial.MOVEMENT)
                 {
                     //HERE ATTACKING////////////////////
-                if (swirlEnded)
-                {
-                    if (isGestureDone())
+                    if (swirlEnded)
                     {
-                        swirlEnded = false;
-                        //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
-                        GameManager.instance.playerSwirl();
-                        spinningAnim = true;
-                        Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
-                        for (int k = 0; k < hitColliders.Length; k++)
+                        if (isGestureDone())
                         {
-                            if (hitColliders[k].tag == "Destructable")
+                            swirlTut = true;
+                            swirlEnded = false;
+                            //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+                            GameManager.instance.playerSwirl();
+                            spinningAnim = true;
+                            Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+                            for (int k = 0; k < hitColliders.Length; k++)
                             {
-                                tempColliders.Add(hitColliders[k]);
+                                if (hitColliders[k].tag == "Destructable")
+                                {
+                                    tempColliders.Add(hitColliders[k]);
+                                }
                             }
+                            //Swirling(hitColliders);
                         }
-                        //Swirling(hitColliders);
-                    }
                     }
 
                     if (Input.GetTouch(i).phase == TouchPhase.Began)
@@ -200,12 +203,12 @@ public class SwipeHalf : MonoBehaviour
                         if (attackDist > 1f)
                         {
                             attackDir = dragPointAtt - startPointAtt;
-                        if (spinningAnim == false)
-                        {
-                            transform.rotation = Quaternion.LookRotation(attackDir);
-                            PlayerStates.swiped = true;
-                            StartCoroutine("SwipeTimer");
-                        }
+                            if (spinningAnim == false)
+                            {
+                                transform.rotation = Quaternion.LookRotation(attackDir);
+                                PlayerStates.swiped = true;
+                                StartCoroutine("SwipeTimer");
+                            }
 
                             ///HIT ANIMATION
                             if (spinningAnim == false && swipeToHit == true)
@@ -214,43 +217,46 @@ public class SwipeHalf : MonoBehaviour
                             }
                         }
                     }
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Moved)
-                {
-                    swipeToHit = true; //only hit if player move finger to swipe
-                }
 
-            }
-        }
-
-        if (Input.touchCount == 2)
-        {
-            if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
-            {
-                ableToLift = false;
-                intoAir = true;
-                PlayerStates.imInSlowMotion = true;
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                //Lift(hitColliders); //RUN FROM ANIMATION EVENT
-                {
-                for (int i = 0; i < hitColliders.Length; i++)
-                {
-                    if (hitColliders[i].tag == "Destructable")
+                    else if (Input.GetTouch(i).phase == TouchPhase.Moved)
                     {
-                        tempColliders.Add(hitColliders[i]);
+                        swipeToHit = true; //only hit if player move finger to swipe
                     }
                 }
-                // SOUND AND ANIMATION FOR STOMP
-                GameManager.instance.playerStomp();
             }
         }
-
-        if (Input.touchCount == 0 || Input.touchCount > 2)
+        if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP)
         {
-            powerTime = 0;
-        }
+            if (Input.touchCount == 2)
+            {
+                if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
+                {
+                    ableToLift = false;
+                    intoAir = true;
+                    PlayerStates.imInSlowMotion = true;
+                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
+                    //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+                    {
+                        for (int i = 0; i < hitColliders.Length; i++)
+                        {
+                            if (hitColliders[i].tag == "Destructable")
+                            {
+                                tempColliders.Add(hitColliders[i]);
+                            }
+                        }
+                        // SOUND AND ANIMATION FOR STOMP
+                        GameManager.instance.playerStomp();
+                    }
+                }
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
+                if (Input.touchCount == 0 || Input.touchCount > 2)
+                {
+                    powerTime = 0;
+                }
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
+            }
+        }
     }
 
     IEnumerator SwipeTimer()
@@ -292,13 +298,14 @@ public class SwipeHalf : MonoBehaviour
                 {
                     rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce, ForceMode.Impulse);
                 }
-                tempColliders[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
+                if (ObjectManagerV2.instance.canDamage == true)
+                {
+                    tempColliders[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
+                }
             }
         }
 
     }
-
-    {
 
     public void Lift()
     {

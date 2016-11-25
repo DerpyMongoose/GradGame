@@ -173,8 +173,9 @@ public class PlayerStates : MonoBehaviour
                     }
                     else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == true)
                     {
-                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACk;
+                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                         GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
+                        GameManager.instance.player.GetComponent<Rigidbody>().Sleep();
                         timeLeftInLevel = 0;
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);

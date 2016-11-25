@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StampBar : MonoBehaviour
 {
 
-    private float fillBar;
+    public float fillBar;
     private bool ready;
     private Color initialColor;
     private float countSecond;

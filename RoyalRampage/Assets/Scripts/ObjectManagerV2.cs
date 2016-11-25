@@ -6,6 +6,9 @@ public class ObjectManagerV2 : MonoBehaviour
 {
     public static ObjectManagerV2 instance;
 
+    [HideInInspector]
+    public bool canDamage; //CAUTION: THIS IS MEANT FOR THE TUTORIAL ONLY
+
     [Header("Forces")]
     public float oneToAnother;
 
@@ -17,9 +20,6 @@ public class ObjectManagerV2 : MonoBehaviour
     public int swirlDamage;
     public int wallDamage;
     public int objDamage;
-
-    [Header("rubble after destruction")]
-    public GameObject rubblePrefab;
 
     [HideInInspector]
     public Vector3 direction;
@@ -77,6 +77,7 @@ public class ObjectManagerV2 : MonoBehaviour
 
     void Start()
     {
+        canDamage = true;
         objectList.AddRange(GameObject.FindGameObjectsWithTag("Destructable"));
     }
 }

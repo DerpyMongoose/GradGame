@@ -3,10 +3,8 @@ using System.Collections;
 
 public class ObjectBehavior : MonoBehaviour
 {
-    private GameObject rubblePrefab;
     [HideInInspector]
-    public int life, initialLife;
-    private int rubbleAmount;
+    public int life;
 
     public string soundSwitch; // FOR AUDIO
 
@@ -23,11 +21,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public bool lifted;
 
-    private bool readyToCheck;
-
     public bool hasLanded = true;
-
-    private float checkHeight, initialMass;
 
     public int score;
 
@@ -60,9 +54,8 @@ public class ObjectBehavior : MonoBehaviour
     //    GameManager.stampPower -= Lift;
     //}
 
-    void Start()
+    void Awake()
     {
-        rubblePrefab = ObjectManagerV2.instance.rubblePrefab;
         switch (objMaterial)
         {
             case DestructableMaterial.GLASS:
@@ -146,7 +139,6 @@ public class ObjectBehavior : MonoBehaviour
                 break;
 
         }
-        initialLife = life;
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         //particleSys = GetComponent<ParticleSystem>();
@@ -277,16 +269,23 @@ public class ObjectBehavior : MonoBehaviour
                 {
                     col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
-                life -= ObjectManagerV2.instance.objDamage;
-                col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                if (ObjectManagerV2.instance.canDamage == true)
+                {
+                    life -= ObjectManagerV2.instance.objDamage;
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                }
             }
 
             if (gameObject.tag != "UniqueObjs")
             {
-                if (col.collider.tag == "Wall")
+                if (ObjectManagerV2.instance.canDamage == true)
                 {
-                    //GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    life -= ObjectManagerV2.instance.wallDamage;
+                    if (col.collider.tag == "Wall")
+                    {
+
+                        //GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        life -= ObjectManagerV2.instance.wallDamage;
+                    }
                 }
 
                 //********** 4 AUDIO and ANIMATION
