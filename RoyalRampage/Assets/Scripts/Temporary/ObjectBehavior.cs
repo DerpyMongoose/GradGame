@@ -252,7 +252,7 @@ public class ObjectBehavior : MonoBehaviour
         //obj.transform.LookAt(Camera.main.transform);
         obj.SetActive(true);
 
-        obj.GetComponent<SetTextPoints>().SetText(score);
+        obj.GetComponent<SetTextPoints>().SetText(score*GameManager.instance.levelManager.multiplier);
     }
 
 
