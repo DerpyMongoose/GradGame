@@ -35,6 +35,7 @@ public class PointObjectPool : MonoBehaviour {
             GameObject obj = (GameObject)Instantiate(pointObject);
             obj.SetActive(false);
             points.Add(obj);
+
         }
 	}
 	
