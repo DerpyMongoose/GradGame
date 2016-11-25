@@ -18,8 +18,14 @@
 				<GameParameter Name="Star_Counter" ID="{378342F9-7034-431D-A851-3101BB02A0EE}">
 					<PropertyList>
 						<Property Name="InitialValue" Type="Real64" Value="1"/>
-						<Property Name="Max" Type="Real64" Value="8"/>
+						<Property Name="Max" Type="Real64" Value="5"/>
 						<Property Name="Min" Type="Real64" Value="1"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="Music_Volume_Slider" ID="{559E91B3-B779-44B9-8612-AF9D5192D196}"/>
+				<GameParameter Name="Sound_Effects_Volume_Slider" ID="{7E3D3E06-6090-483F-B791-4A86FDC4C3AC}">
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="75"/>
 					</PropertyList>
 				</GameParameter>
 			</ChildrenList>

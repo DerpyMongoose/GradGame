@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012329296142}
   m_LocalRotation: {x: -0, y: 0.0000006407499, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalPosition: {x: -3, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
   m_Children:
@@ -573,8 +573,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012329296142}
   serializedVersion: 2
-  m_Mass: 8
-  m_Drag: 1
+  m_Mass: 80
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
   RelativeVolume: 0.311769
   Volume: 1.1489713
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.81340885, g: 0.030620579, b: 0.8504391, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
@@ -878,7 +878,7 @@ MonoBehaviour:
   RelativeVolume: 0.15394562
   Volume: 0.56734025
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.821157, g: 0.27473143, b: 0.114675775, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
@@ -912,7 +912,7 @@ MonoBehaviour:
   RelativeVolume: 0.015626058
   Volume: 0.057587165
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.23388425, g: 0.97073686, b: 0.17100312, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
@@ -944,7 +944,7 @@ MonoBehaviour:
   RelativeVolume: 0.008580177
   Volume: 0.031620774
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.63971525, g: 0.4115761, b: 0.35748425, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   RelativeVolume: 0.12191377
   Volume: 0.44929233
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.3973164, g: 0.39842504, b: 0.24362293, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   RelativeVolume: 0.38816532
   Volume: 1.430517
   HasConcaveCollider: 0
-  PreviewDecompositionValue: 0.87
+  PreviewDecompositionValue: 0
   RandomMaterialColor: {r: 0.75245035, g: 0.57043225, b: 0.07960714, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
