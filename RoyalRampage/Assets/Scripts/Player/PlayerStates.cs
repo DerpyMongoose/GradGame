@@ -55,6 +55,8 @@ public class PlayerStates : MonoBehaviour
     PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
+    GameObject timerUI;
+
 
     void Start()
     {
@@ -68,6 +70,7 @@ public class PlayerStates : MonoBehaviour
         //DontDestroyOnLoad (gameObject);
         //update timer
         timerText = GameObject.Find("TimeLeftText").GetComponent<Text>();
+        timerUI = GameObject.Find("TimeLeftText");
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
         GameManager.instance.canPlayerMove = true;
@@ -130,19 +133,21 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.IDLE:
             case PlayerState.WALKING:
             case PlayerState.ATTACKING:
-                if (GameManager.instance.levelManager.multiplier > 1)
+                if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-                    timeLeftInLevel -= 0;
+                    if (GameManager.instance.levelManager.multiplier > 1)
+                    {
+                        timeLeftInLevel -= 0;
+                    }
+                    else if (!imInSlowMotion)
+                    {
+                        timeLeftInLevel -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        timeLeftInLevel -= 0.005f;
+                    }
                 }
-                else if (!imInSlowMotion)
-                {
-                    timeLeftInLevel -= Time.deltaTime;
-                }
-                else
-                {
-                    timeLeftInLevel -= 0.005f;
-                }
-
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
                 if (timeLeftInLevel <= timeTicker)
                 {
@@ -162,7 +167,6 @@ public class PlayerStates : MonoBehaviour
                     if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == false)
                     {
                         GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
-                        GameManager.instance.levelManager.guideText.text = "Try again";
                         timerText.text = "0";  // for the level timer
                         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                         SwipeHalf.startTutTimer = false;
@@ -172,7 +176,7 @@ public class PlayerStates : MonoBehaviour
                         GameManager.instance.tutorial = GameManager.Tutorial.ATTACk;
                         GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
                         timeLeftInLevel = 0;
-
+                        timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
                     }
                     else if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)

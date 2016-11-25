@@ -199,7 +199,14 @@ public class LevelManager : MonoBehaviour
                 switch (GameManager.instance.TutorialState())
                 {
                     case GameManager.Tutorial.MOVEMENT:
-                        
+                        if(SwipeHalf.startTutTimer == true)
+                        {
+                            guideText.text = "Reach the finish-line before the timer runs out!";
+                        }
+                        if(GameManager.instance.levelManager.targetReached == true)
+                        {
+                            guideText.text = "Great job!";
+                        }
                         break;
                     case GameManager.Tutorial.ATTACk:
 
