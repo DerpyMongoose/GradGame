@@ -13,6 +13,8 @@ public class SwipeHalf : MonoBehaviour
     private Rigidbody playerRig;
 
     [HideInInspector]
+    public bool swirlEnded;
+    [HideInInspector]
     public static bool ableToLift, intoAir;
     [HideInInspector]
     public List<Rigidbody> objRB = new List<Rigidbody>();
@@ -22,8 +24,11 @@ public class SwipeHalf : MonoBehaviour
     public static Vector3 attackDir;
     [HideInInspector]
     public IEnumerator coroutine;
+    [HideInInspector]
+	public List<Collider> tempColliders = new List<Collider>();
 
     private bool spinningAnim = false;
+	private bool swipeToHit = false;
 
     void Start()
     {
@@ -35,6 +40,8 @@ public class SwipeHalf : MonoBehaviour
         applyMove = false;
         //inAir = false;
         direction = -Vector3.forward;
+        swirlEnded = true;
+        PlayerStates.swiped = false;
     }
 
 
@@ -148,42 +155,54 @@ public class SwipeHalf : MonoBehaviour
             else if (Input.GetTouch(i).position.x > Screen.width / 2)
             {
                 //HERE ATTACKING////////////////////
-                if (isGestureDone())
+                if (swirlEnded)
                 {
-                    //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
-                    GameManager.instance.playerSwirl();
-                    spinningAnim = true;
-                    Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
-                    Swirling(hitColliders);
-                }
-
-                if (Input.GetTouch(i).phase == TouchPhase.Began)
-                {
-                    spinningAnim = false;
-                    leftOk = true;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    startPointAtt = new Vector3(temp.x, 0, temp.z);
-                }
-                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                {
-                    leftOk = false;
-                    temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
-                    dragPointAtt = new Vector3(temp.x, 0, temp.z);
-                    attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
-                    //print(attackDist);
-                    if (attackDist > 1f)
+                    if (isGestureDone())
                     {
-                        attackDir = dragPointAtt - startPointAtt;
-                        transform.rotation = Quaternion.LookRotation(attackDir);
-                        PlayerStates.swiped = true;
-                        StartCoroutine("SwipeTimer");
+                        swirlEnded = false;
+                        //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
+                        GameManager.instance.playerSwirl();
+                        spinningAnim = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+                        for (int k = 0; k < hitColliders.Length; k++)
+                        {
+                            if (hitColliders[k].tag == "Destructable")
+                            {
+                                tempColliders.Add(hitColliders[k]);
+                            }
+                        }
+                        //Swirling(hitColliders);
+                    }
+                }
 
-                        ///HIT ANIMATION
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					spinningAnim = false;
+					leftOk = true;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					startPointAtt = new Vector3 (temp.x, 0, temp.z);
+					swipeToHit = false; //cannot hit on click only!!!!
+				} else if (Input.GetTouch (i).phase == TouchPhase.Ended) {
+					leftOk = false;
+					temp = Camera.main.ScreenToWorldPoint (new Vector3 (Input.GetTouch (i).position.x, Input.GetTouch (i).position.y, Camera.main.farClipPlane));
+					dragPointAtt = new Vector3 (temp.x, 0, temp.z);
+					attackDist = Vector3.Distance (startPointAtt, dragPointAtt);
+					//print(attackDist);
+					if (attackDist > 1f) {
+						attackDir = dragPointAtt - startPointAtt;
                         if (spinningAnim == false)
                         {
-                            GameManager.instance.playerHitObject();
+                            transform.rotation = Quaternion.LookRotation(attackDir);
+                            PlayerStates.swiped = true;
+                            StartCoroutine("SwipeTimer");
                         }
-                    }
+
+						///HIT ANIMATION
+						if (spinningAnim == false && swipeToHit == true) {
+							GameManager.instance.playerHitObject ();
+						}
+					}
+				} else if (Input.GetTouch (i).phase == TouchPhase.Moved) {
+					swipeToHit = true; //only hit if player move finger to swipe
                 }
 
             }
@@ -197,7 +216,15 @@ public class SwipeHalf : MonoBehaviour
                 intoAir = true;
                 PlayerStates.imInSlowMotion = true;
                 Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                Lift(hitColliders);
+                //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+				for (int i = 0; i < hitColliders.Length; i++) {
+                    if (hitColliders[i].tag == "Destructable")
+                    {
+                        tempColliders.Add(hitColliders[i]);
+                    }
+				}
+				// SOUND AND ANIMATION FOR STOMP
+				GameManager.instance.playerStomp();
             }
         }
 
@@ -209,73 +236,72 @@ public class SwipeHalf : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
     }
 
-
     IEnumerator SwipeTimer()
     {
         yield return new WaitForSeconds(Time.deltaTime);
         PlayerStates.swiped = false;
     }
 
-    void Swirling(Collider[] col) // hit needs to become true here
+    public void Swirling() // hit needs to become true here
     {
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
             Reverse(objRB, initialMass);
         }
-        for (int i = 0; i < col.Length; i++)
+        for (int i = 0; i < tempColliders.Count; i++)
         {
-            if (col[i].tag == "Destructable")
+            if (tempColliders[i].tag == "Destructable" && tempColliders[i] != null)
             {
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
-                Rigidbody rig = col[i].GetComponent<Rigidbody>();
-                Vector3 dir = col[i].transform.position - transform.position;
-                col[i].GetComponent<ObjectBehavior>().hit = true;
+                Rigidbody rig = tempColliders[i].GetComponent<Rigidbody>();
+                Vector3 dir = tempColliders[i].transform.position - transform.position;
+                tempColliders[i].GetComponent<ObjectBehavior>().hit = true;
 
                 // SOUND OBJECT HIT
-                GameManager.instance.objectHit(col[i].gameObject);
+                GameManager.instance.objectHit(tempColliders[i].gameObject);
                 // ANIMATION OBJECT HIT
                 GameManager.instance.playerHitObject();
 
                 // PLAY DAMAGE PARTICLE
-                rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
                     var tempDir = new Vector3(dir.x, 0.0f, dir.z);
-                    rig.AddForce((tempDir.normalized) * GetComponent<PlayerStates>().swirlForce);
+                    rig.AddForce((tempDir.normalized) * GetComponent<PlayerStates>().swirlForce, ForceMode.Impulse);
                 }
                 else
                 {
-                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce);
+                    rig.AddForce(dir.normalized * GetComponent<PlayerStates>().swirlForce, ForceMode.Impulse);
                 }
-                col[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
+                tempColliders[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
             }
         }
 
     }
 
 
-    void Lift(Collider[] col)
+    public void Lift()
     {
         //inAir = true;
-        for (int i = 0; i < col.Length; i++)
+        for (int i = 0; i < tempColliders.Count; i++)
         {
-            if (col[i].tag == "Destructable")
+            if (tempColliders[i].tag == "Destructable" && tempColliders[i] != null)
             {
 
-                col[i].GetComponent<ObjectBehavior>().lifted = true;
+                tempColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
-                objRB.Add(col[i].GetComponent<Rigidbody>());
-                initialMass.Add(col[i].GetComponent<Rigidbody>().mass);
-                col[i].GetComponent<Rigidbody>().mass = 1f;
-                col[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                col[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
+                objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
+                initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
+                tempColliders[i].GetComponent<Rigidbody>().mass = 1f;
+                tempColliders[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
+                tempColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }
         }
 
-        // SOUND AND ANIMATION FOR STOMP
-        GameManager.instance.playerStomp();
+       
+        
         coroutine = ReturnGravity(objRB, initialMass);
         StartCoroutine(coroutine);
     }

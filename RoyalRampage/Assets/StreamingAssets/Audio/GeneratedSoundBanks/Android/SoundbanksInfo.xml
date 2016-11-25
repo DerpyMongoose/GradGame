@@ -27,9 +27,7 @@
 				<Event Id="4027780260" Name="Menu_Button_Play" ObjectPath="\Events\Default Work Unit\Menu_Button_Play"/>
 				<Event Id="350081739" Name="Music_System_Play" ObjectPath="\Events\Default Work Unit\Music_System_Play"/>
 				<Event Id="3509289057" Name="Music_System_Stop" ObjectPath="\Events\Default Work Unit\Music_System_Stop" MaxAttenuation="0.000000"/>
-				<Event Id="491891602" Name="Object_Action_Play" ObjectPath="\Events\Default Work Unit\Object_Action_Play"/>
-				<Event Id="453371149" Name="Objective_Announced_Play" ObjectPath="\Events\Default Work Unit\Objective_Announced_Play"/>
-				<Event Id="635791921" Name="Objective_Completed_Play" ObjectPath="\Events\Default Work Unit\Objective_Completed_Play"/>
+				<Event Id="491891602" Name="Object_Action_Play" ObjectPath="\Events\Default Work Unit\Object_Action_Play" MaxAttenuation="20.000000"/>
 				<Event Id="1311831249" Name="Points_Counting_Play" ObjectPath="\Events\Default Work Unit\Points_Counting_Play"/>
 				<Event Id="2563246215" Name="Points_Counting_Stop" ObjectPath="\Events\Default Work Unit\Points_Counting_Stop" MaxAttenuation="0.000000"/>
 				<Event Id="3286289918" Name="Points_Rewarded_Play" ObjectPath="\Events\Default Work Unit\Points_Rewarded_Play"/>
@@ -39,59 +37,60 @@
 				<Event Id="278413312" Name="Start_Game_Button_Play" ObjectPath="\Events\Default Work Unit\Start_Game_Button_Play"/>
 				<Event Id="3839850873" Name="Stomp_Play" ObjectPath="\Events\Default Work Unit\Stomp_Play"/>
 				<Event Id="3295885793" Name="Timer_Tick_Play" ObjectPath="\Events\Default Work Unit\Timer_Tick_Play"/>
+				<Event Id="886445783" Name="Tutorial_Check_Mark_Play" ObjectPath="\Events\Default Work Unit\Tutorial_Check_Mark_Play"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="21864923" Language="SFX">
 					<ShortName>Pots and Pans Destruction_3.wav</ShortName>
-					<Path>SFX\Pots and Pans Destruction_3_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Destruction_3_3ADACB5C.wem</Path>
 				</File>
 				<File Id="35893820" Language="SFX">
 					<ShortName>Glass Hit_1.wav</ShortName>
-					<Path>SFX\Glass Hit_1_9E69E797.wem</Path>
+					<Path>SFX\Glass Hit_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="39339163" Language="SFX">
 					<ShortName>Chair Destruction_2.wav</ShortName>
-					<Path>SFX\Chair Destruction_2_9E69E797.wem</Path>
+					<Path>SFX\Chair Destruction_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="74423905" Language="SFX">
 					<ShortName>Cutlery Landing_1.wav</ShortName>
-					<Path>SFX\Cutlery Landing_1_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Landing_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="76778889" Language="SFX">
 					<ShortName>Music_In_Finish_Screen.wav</ShortName>
-					<Path>SFX\Music_In_Finish_Screen_4B8CC0C5.wem</Path>
+					<Path>SFX\Music_In_Finish_Screen_4D7BABE6.wem</Path>
 				</File>
 				<File Id="106689559" Language="SFX">
 					<ShortName>Normal_Star.wav</ShortName>
-					<Path>SFX\Normal_Star_9E69E797.wem</Path>
+					<Path>SFX\Normal_Star_3ADACB5C.wem</Path>
 				</File>
 				<File Id="109557986" Language="SFX">
 					<ShortName>Cutlery Hit.wav</ShortName>
-					<Path>SFX\Cutlery Hit_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="114756508" Language="SFX">
 					<ShortName>Cutlery Hit_1.wav</ShortName>
-					<Path>SFX\Cutlery Hit_1_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Hit_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="152584317" Language="SFX">
 					<ShortName>Statue Destruction.wav</ShortName>
-					<Path>SFX\Statue Destruction_9E69E797.wem</Path>
+					<Path>SFX\Statue Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="159407325" Language="SFX">
 					<ShortName>Globe_Destruction.wav</ShortName>
-					<Path>SFX\Globe_Destruction_0FB227C5.wem</Path>
+					<Path>SFX\Globe_Destruction_231654CE.wem</Path>
 				</File>
 				<File Id="163258038" Language="SFX">
 					<ShortName>Trophy_Landing.wav</ShortName>
-					<Path>SFX\Trophy_Landing_6F798BF5.wem</Path>
+					<Path>SFX\Trophy_Landing_2711A9B6.wem</Path>
 				</File>
 				<File Id="164729892" Language="SFX">
 					<ShortName>Marble_Floor.wav</ShortName>
-					<Path>SFX\Marble_Floor_5B28E39B.wem</Path>
+					<Path>SFX\Marble_Floor_5853D358.wem</Path>
 				</File>
 				<File Id="171814285" Language="SFX">
 					<ShortName>Chair Landing.wav</ShortName>
-					<Path>SFX\Chair Landing_9E69E797.wem</Path>
+					<Path>SFX\Chair Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="174210290" Language="SFX">
 					<ShortName>Uplifting_Fanfare.wav</ShortName>
@@ -99,55 +98,51 @@
 				</File>
 				<File Id="179206133" Language="SFX">
 					<ShortName>Glass Destruction_2.wav</ShortName>
-					<Path>SFX\Glass Destruction_2_9E69E797.wem</Path>
+					<Path>SFX\Glass Destruction_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="208691767" Language="SFX">
 					<ShortName>Points_Rewarded.wav</ShortName>
-					<Path>SFX\Points_Rewarded_6D214BEC.wem</Path>
+					<Path>SFX\Points_Rewarded_CBACE393.wem</Path>
 				</File>
 				<File Id="228554250" Language="SFX">
 					<ShortName>Pots and Pans Landing_2.wav</ShortName>
-					<Path>SFX\Pots and Pans Landing_2_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Landing_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="229148291" Language="SFX">
 					<ShortName>Pots and Pans Destruction.wav</ShortName>
-					<Path>SFX\Pots and Pans Destruction_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="290826758" Language="SFX">
 					<ShortName>Food_Landing.wav</ShortName>
-					<Path>SFX\Food_Landing_D3EE697C.wem</Path>
+					<Path>SFX\Food_Landing_9881DA9F.wem</Path>
 				</File>
 				<File Id="326610899" Language="SFX">
 					<ShortName>Grand_Piano_Hit.wav</ShortName>
-					<Path>SFX\Grand_Piano_Hit_9E69E797.wem</Path>
+					<Path>SFX\Grand_Piano_Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="331008926" Language="SFX">
 					<ShortName>Cutlery Destruction_2.wav</ShortName>
-					<Path>SFX\Cutlery Destruction_2_9E69E797.wem</Path>
-				</File>
-				<File Id="339792523" Language="SFX">
-					<ShortName>Objective_Completed.wav</ShortName>
-					<Path>SFX\Objective_Completed_2A90E0F9.wem</Path>
+					<Path>SFX\Cutlery Destruction_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="351242880" Language="SFX">
 					<ShortName>Chair Hit.wav</ShortName>
-					<Path>SFX\Chair Hit_9E69E797.wem</Path>
+					<Path>SFX\Chair Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="406327685" Language="SFX">
 					<ShortName>Pots and Pans Hit_1.wav</ShortName>
-					<Path>SFX\Pots and Pans Hit_1_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Hit_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="407269525" Language="SFX">
 					<ShortName>Grandfather Clock Landing.wav</ShortName>
-					<Path>SFX\Grandfather Clock Landing_9E69E797.wem</Path>
+					<Path>SFX\Grandfather Clock Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="423065894" Language="SFX">
 					<ShortName>China Landing.wav</ShortName>
-					<Path>SFX\China Landing_9E69E797.wem</Path>
+					<Path>SFX\China Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="441943590" Language="SFX">
 					<ShortName>Cutlery Destruction_3.wav</ShortName>
-					<Path>SFX\Cutlery Destruction_3_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Destruction_3_3ADACB5C.wem</Path>
 				</File>
 				<File Id="451984601" Language="SFX">
 					<ShortName>Disappointing_Fanfare.wav</ShortName>
@@ -155,223 +150,215 @@
 				</File>
 				<File Id="463298421" Language="SFX">
 					<ShortName>Cutlery Landing_2.wav</ShortName>
-					<Path>SFX\Cutlery Landing_2_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Landing_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="464043292" Language="SFX">
 					<ShortName>Globe_Landing.wav</ShortName>
-					<Path>SFX\Globe_Landing_51E11B19.wem</Path>
+					<Path>SFX\Globe_Landing_D1A8C736.wem</Path>
 				</File>
 				<File Id="476294822" Language="SFX">
 					<ShortName>Score_Screen_Open.wav</ShortName>
-					<Path>SFX\Score_Screen_Open_C1D6B40E.wem</Path>
+					<Path>SFX\Score_Screen_Open_6C66AF91.wem</Path>
 				</File>
 				<File Id="482608613" Language="SFX">
 					<ShortName>Statue Destruction_1.wav</ShortName>
-					<Path>SFX\Statue Destruction_1_9E69E797.wem</Path>
-				</File>
-				<File Id="485878556" Language="SFX">
-					<ShortName>Objective_Announced.wav</ShortName>
-					<Path>SFX\Objective_Announced_1A6F43B3.wem</Path>
+					<Path>SFX\Statue Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="488188212" Language="SFX">
 					<ShortName>Table Hit.wav</ShortName>
-					<Path>SFX\Table Hit_9E69E797.wem</Path>
+					<Path>SFX\Table Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="533680703" Language="SFX">
 					<ShortName>Grand_Piano_Destruction.wav</ShortName>
-					<Path>SFX\Grand_Piano_Destruction_C3223625.wem</Path>
+					<Path>SFX\Grand_Piano_Destruction_FF6892AA.wem</Path>
 				</File>
 				<File Id="561603671" Language="SFX">
 					<ShortName>Music_In_Intro_Cutscene.wav</ShortName>
-					<Path>SFX\Music_In_Intro_Cutscene_4B8CC0C5.wem</Path>
+					<Path>SFX\Music_In_Intro_Cutscene_4D7BABE6.wem</Path>
 				</File>
 				<File Id="566524741" Language="SFX">
 					<ShortName>Chair Destruction.wav</ShortName>
-					<Path>SFX\Chair Destruction_9E69E797.wem</Path>
+					<Path>SFX\Chair Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="569287681" Language="SFX">
 					<ShortName>Food_Destruction.wav</ShortName>
-					<Path>SFX\Food_Destruction_4FFC38EF.wem</Path>
+					<Path>SFX\Food_Destruction_57E12ECC.wem</Path>
 				</File>
 				<File Id="573896467" Language="SFX">
 					<ShortName>Table Landing.wav</ShortName>
-					<Path>SFX\Table Landing_9E69E797.wem</Path>
+					<Path>SFX\Table Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="587012352" Language="SFX">
 					<ShortName>Glass Landing.wav</ShortName>
-					<Path>SFX\Glass Landing_9E69E797.wem</Path>
-				</File>
-				<File Id="621454349" Language="SFX">
-					<ShortName>Music_In_Level_Time_Running_Out.wav</ShortName>
-					<Path>SFX\Music_In_Level_Time_Running_Out_4B8CC0C5.wem</Path>
+					<Path>SFX\Glass Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="624517478" Language="SFX">
 					<ShortName>Pots and Pans Landing_1.wav</ShortName>
-					<Path>SFX\Pots and Pans Landing_1_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Landing_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="657417373" Language="SFX">
 					<ShortName>Wooden_Floor.wav</ShortName>
-					<Path>SFX\Wooden_Floor_9E69E797.wem</Path>
+					<Path>SFX\Wooden_Floor_3ADACB5C.wem</Path>
 				</File>
 				<File Id="668422612" Language="SFX">
 					<ShortName>Start_Game_Button.wav</ShortName>
-					<Path>SFX\Start_Game_Button_CEA55A42.wem</Path>
+					<Path>SFX\Start_Game_Button_EB57285D.wem</Path>
 				</File>
 				<File Id="671332153" Language="SFX">
 					<ShortName>Pots and Pans Destruction_1.wav</ShortName>
-					<Path>SFX\Pots and Pans Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="678912872" Language="SFX">
 					<ShortName>Food_Hit.wav</ShortName>
-					<Path>SFX\Food_Hit_9E69E797.wem</Path>
+					<Path>SFX\Food_Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="683283322" Language="SFX">
 					<ShortName>Cutlery Destruction_1.wav</ShortName>
-					<Path>SFX\Cutlery Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="703027072" Language="SFX">
 					<ShortName>Table Destruction.wav</ShortName>
-					<Path>SFX\Table Destruction_9E69E797.wem</Path>
+					<Path>SFX\Table Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="709335517" Language="SFX">
 					<ShortName>Glass Destruction_1.wav</ShortName>
-					<Path>SFX\Glass Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\Glass Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="736274932" Language="SFX">
 					<ShortName>Table Destruction_1.wav</ShortName>
-					<Path>SFX\Table Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\Table Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="738394096" Language="SFX">
 					<ShortName>Glass Destruction.wav</ShortName>
-					<Path>SFX\Glass Destruction_9E69E797.wem</Path>
+					<Path>SFX\Glass Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="753465261" Language="SFX">
 					<ShortName>Grandfather Clock Destruction.wav</ShortName>
-					<Path>SFX\Grandfather Clock Destruction_9E69E797.wem</Path>
+					<Path>SFX\Grandfather Clock Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="753920789" Language="SFX">
 					<ShortName>Trophy_Destruction.wav</ShortName>
-					<Path>SFX\Trophy_Destruction_9E69E797.wem</Path>
+					<Path>SFX\Trophy_Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="757916023" Language="SFX">
 					<ShortName>Chair Destruction_1.wav</ShortName>
-					<Path>SFX\Chair Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\Chair Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="763259197" Language="SFX">
 					<ShortName>China Hit_1.wav</ShortName>
-					<Path>SFX\China Hit_1_9E69E797.wem</Path>
+					<Path>SFX\China Hit_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="774015837" Language="SFX">
 					<ShortName>Glass Hit.wav</ShortName>
-					<Path>SFX\Glass Hit_9E69E797.wem</Path>
+					<Path>SFX\Glass Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="794253436" Language="SFX">
 					<ShortName>Statue Landing.wav</ShortName>
-					<Path>SFX\Statue Landing_9E69E797.wem</Path>
+					<Path>SFX\Statue Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="796927213" Language="SFX">
 					<ShortName>Grand_Piano_Landing.wav</ShortName>
-					<Path>SFX\Grand_Piano_Landing_CFF168AE.wem</Path>
+					<Path>SFX\Grand_Piano_Landing_475E4E5D.wem</Path>
 				</File>
 				<File Id="818434283" Language="SFX">
 					<ShortName>Ambience.wav</ShortName>
-					<Path>SFX\Ambience_9E69E797.wem</Path>
+					<Path>SFX\Ambience_3ADACB5C.wem</Path>
 				</File>
 				<File Id="832268687" Language="SFX">
 					<ShortName>Globe_Hit.wav</ShortName>
-					<Path>SFX\Globe_Hit_9E69E797.wem</Path>
+					<Path>SFX\Globe_Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="834291170" Language="SFX">
 					<ShortName>Music_In_Level_Times_Up.wav</ShortName>
-					<Path>SFX\Music_In_Level_Times_Up_4B8CC0C5.wem</Path>
+					<Path>SFX\Music_In_Level_Times_Up_4D7BABE6.wem</Path>
 				</File>
 				<File Id="837457110" Language="SFX">
 					<ShortName>China Destruction.wav</ShortName>
-					<Path>SFX\China Destruction_9E69E797.wem</Path>
+					<Path>SFX\China Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="841057972" Language="SFX">
 					<ShortName>Cutlery Landing.wav</ShortName>
-					<Path>SFX\Cutlery Landing_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="844216680" Language="SFX">
 					<ShortName>China Destruction_1.wav</ShortName>
-					<Path>SFX\China Destruction_1_9E69E797.wem</Path>
+					<Path>SFX\China Destruction_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="902516019" Language="SFX">
 					<ShortName>Pots and Pans Landing.wav</ShortName>
-					<Path>SFX\Pots and Pans Landing_9E69E797.wem</Path>
-				</File>
-				<File Id="908577113" Language="SFX">
-					<ShortName>Bonus_Star.wav</ShortName>
-					<Path>SFX\Bonus_Star_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Landing_3ADACB5C.wem</Path>
 				</File>
 				<File Id="919817392" Language="SFX">
 					<ShortName>Music_In_Main_Menu.wav</ShortName>
-					<Path>SFX\Music_In_Main_Menu_4B8CC0C5.wem</Path>
+					<Path>SFX\Music_In_Main_Menu_4D7BABE6.wem</Path>
 				</File>
 				<File Id="920729752" Language="SFX">
 					<ShortName>Pots and Pans Hit.wav</ShortName>
-					<Path>SFX\Pots and Pans Hit_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="922374243" Language="SFX">
 					<ShortName>Cutlery Landing_3.wav</ShortName>
-					<Path>SFX\Cutlery Landing_3_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Landing_3_3ADACB5C.wem</Path>
 				</File>
 				<File Id="929974987" Language="SFX">
 					<ShortName>Points.wav</ShortName>
-					<Path>SFX\Points_243121E7.wem</Path>
+					<Path>SFX\Points_C29956B0.wem</Path>
 				</File>
 				<File Id="945521889" Language="SFX">
 					<ShortName>China Hit.wav</ShortName>
-					<Path>SFX\China Hit_9E69E797.wem</Path>
+					<Path>SFX\China Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="959483164" Language="SFX">
 					<ShortName>Statue Hit.wav</ShortName>
-					<Path>SFX\Statue Hit_9E69E797.wem</Path>
+					<Path>SFX\Statue Hit_3ADACB5C.wem</Path>
+				</File>
+				<File Id="979778914" Language="SFX">
+					<ShortName>In Game Music.wav</ShortName>
+					<Path>SFX\In Game Music_4D7BABE6.wem</Path>
 				</File>
 				<File Id="992397364" Language="SFX">
 					<ShortName>Glass Destruction_3.wav</ShortName>
-					<Path>SFX\Glass Destruction_3_9E69E797.wem</Path>
+					<Path>SFX\Glass Destruction_3_3ADACB5C.wem</Path>
 				</File>
 				<File Id="992590863" Language="SFX">
 					<ShortName>Player Stomp.wav</ShortName>
-					<Path>SFX\Player Stomp_9E69E797.wem</Path>
-				</File>
-				<File Id="1008096263" Language="SFX">
-					<ShortName>Music_In_Level.wav</ShortName>
-					<Path>SFX\Music_In_Level_4B8CC0C5.wem</Path>
+					<Path>SFX\Player Stomp_3ADACB5C.wem</Path>
 				</File>
 				<File Id="1015517607" Language="SFX">
 					<ShortName>Timer_Tick.wav</ShortName>
-					<Path>SFX\Timer_Tick_33C1F592.wem</Path>
+					<Path>SFX\Timer_Tick_CE2B109D.wem</Path>
 				</File>
 				<File Id="1016137167" Language="SFX">
 					<ShortName>Cutlery Destruction.wav</ShortName>
-					<Path>SFX\Cutlery Destruction_9E69E797.wem</Path>
+					<Path>SFX\Cutlery Destruction_3ADACB5C.wem</Path>
 				</File>
 				<File Id="1031021062" Language="SFX">
 					<ShortName>Menu_Button.wav</ShortName>
-					<Path>SFX\Menu_Button_9999485B.wem</Path>
+					<Path>SFX\Menu_Button_D5990D80.wem</Path>
 				</File>
 				<File Id="1031478307" Language="SFX">
 					<ShortName>Pots and Pans Destruction_2.wav</ShortName>
-					<Path>SFX\Pots and Pans Destruction_2_9E69E797.wem</Path>
+					<Path>SFX\Pots and Pans Destruction_2_3ADACB5C.wem</Path>
 				</File>
 				<File Id="1042173638" Language="SFX">
 					<ShortName>Carpet_Floor.wav</ShortName>
-					<Path>SFX\Carpet_Floor_0511C724.wem</Path>
+					<Path>SFX\Carpet_Floor_584BA9FB.wem</Path>
 				</File>
 				<File Id="1046416003" Language="SFX">
 					<ShortName>Trophy_Hit.wav</ShortName>
-					<Path>SFX\Trophy_Hit_9E69E797.wem</Path>
+					<Path>SFX\Trophy_Hit_3ADACB5C.wem</Path>
 				</File>
 				<File Id="1054786337" Language="SFX">
 					<ShortName>Statue Hit_1.wav</ShortName>
-					<Path>SFX\Statue Hit_1_9E69E797.wem</Path>
+					<Path>SFX\Statue Hit_1_3ADACB5C.wem</Path>
 				</File>
 				<File Id="1055892793" Language="SFX">
 					<ShortName>China Destruction_2.wav</ShortName>
-					<Path>SFX\China Destruction_2_9E69E797.wem</Path>
+					<Path>SFX\China Destruction_2_3ADACB5C.wem</Path>
+				</File>
+				<File Id="1064324686" Language="SFX">
+					<ShortName>Tutorial_Check_Mark.wav</ShortName>
+					<Path>SFX\Tutorial_Check_Mark_3ADACB5C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

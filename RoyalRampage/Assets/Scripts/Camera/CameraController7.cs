@@ -36,7 +36,7 @@ public class CameraController7 : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         Physics.Linecast(player.transform.position, dummy.transform.position, out hit, 1 << 8);
         switch (state_)

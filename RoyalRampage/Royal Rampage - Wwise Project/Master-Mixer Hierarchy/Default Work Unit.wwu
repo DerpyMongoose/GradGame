@@ -10,27 +10,92 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<Bus Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}"/>
-						<Bus Name="Environmental" ID="{A836503F-F433-488A-8DFB-9EB2736916C8}">
+						<Bus Name="Music" ID="{488FAA0D-1A06-4210-8857-DE5D77D67F6A}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{98A94070-B7B2-4F84-861B-52535FB6C8DD}" ShortID="757097085">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Music_Volume_Slider" ID="{559E91B3-B779-44B9-8612-AF9D5192D196}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{37ECC8DA-52EC-4D07-8427-17F8DF0310E0}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="Sound Effects" ID="{E8E979E9-308F-46F7-9257-33B0A22DD559}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{EFBB9BA1-C6EF-417F-A5E7-AD203A8C39AC}" ShortID="367189781">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Sound_Effects_Volume_Slider" ID="{7E3D3E06-6090-483F-B791-4A86FDC4C3AC}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{AAB4BEC2-E7D9-439D-AF37-6C6378D20F35}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
 							<ChildrenList>
-								<Bus Name="SFX" ID="{648FA7A9-5E04-4482-99A2-128786929475}">
+								<Bus Name="Environmental" ID="{A836503F-F433-488A-8DFB-9EB2736916C8}">
 									<ChildrenList>
-										<Bus Name="Objects" ID="{D93184C9-5D75-4F74-8DA3-904F18E0DD3B}"/>
-										<Bus Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}"/>
+										<Bus Name="SFX" ID="{648FA7A9-5E04-4482-99A2-128786929475}">
+											<ChildrenList>
+												<Bus Name="Objects" ID="{D93184C9-5D75-4F74-8DA3-904F18E0DD3B}"/>
+												<Bus Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}"/>
+											</ChildrenList>
+										</Bus>
+										<Bus Name="Reverb" ID="{7BAB8465-41B7-4F3A-A67C-0F07FD286825}">
+											<ChildrenList>
+												<AuxBus Name="Hall" ID="{D4DD16F4-2B42-4096-A486-D15ED0A72EB1}"/>
+												<AuxBus Name="Room_Soft" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}"/>
+												<AuxBus Name="Corridor" ID="{15C40741-5726-4DF4-80F5-A5EF61EA3555}"/>
+												<AuxBus Name="Room_Hard" ID="{5175A9AC-8A00-4CD3-B409-2F708630B89B}"/>
+											</ChildrenList>
+										</Bus>
+										<Bus Name="Ambience" ID="{422DE071-45F7-4087-A867-A516363E7355}"/>
 									</ChildrenList>
 								</Bus>
-								<Bus Name="Reverb" ID="{7BAB8465-41B7-4F3A-A67C-0F07FD286825}">
-									<ChildrenList>
-										<AuxBus Name="Hall" ID="{D4DD16F4-2B42-4096-A486-D15ED0A72EB1}"/>
-										<AuxBus Name="Room_Soft" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}"/>
-										<AuxBus Name="Corridor" ID="{15C40741-5726-4DF4-80F5-A5EF61EA3555}"/>
-										<AuxBus Name="Room_Hard" ID="{5175A9AC-8A00-4CD3-B409-2F708630B89B}"/>
-									</ChildrenList>
-								</Bus>
-								<Bus Name="Ambience" ID="{422DE071-45F7-4087-A867-A516363E7355}"/>
+								<Bus Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}"/>
 							</ChildrenList>
 						</Bus>
-						<Bus Name="Music" ID="{488FAA0D-1A06-4210-8857-DE5D77D67F6A}"/>
 					</ChildrenList>
 				</Bus>
 				<Bus Name="Master Secondary Bus" ID="{D2E0BC7E-7B3F-4FFE-A670-FAE02761B631}"/>
