@@ -12,6 +12,9 @@
 					</ChildrenList>
 				</StateGroup>
 				<StateGroup Name="Game_States" ID="{B0744578-90B5-4E9C-B1E0-F3F6C0CC25D6}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.1"/>
+					</PropertyList>
 					<ChildrenList>
 						<State Name="None" ID="{B89C0F36-D833-4D2A-A175-78FC76075DA9}"/>
 						<State Name="In_Main_Menu" ID="{0D2E4AB5-3973-4CBF-B953-F0C059179198}"/>
@@ -20,6 +23,9 @@
 						<State Name="In_Score_Screen" ID="{15598C54-1094-43FD-8C52-16C77AE04D23}"/>
 						<State Name="In_Level_Time_Running_Out" ID="{3ABCF693-0160-4132-9B57-B5E22A1212AB}"/>
 						<State Name="In_Level_Times_Up" ID="{2C6DCFCA-76A1-4DF3-ABA6-9BBC0F19404F}"/>
+						<State Name="In_Game_Menu" ID="{4F9DC628-52C1-45BA-8D1D-E795E2DAF64D}"/>
+						<State Name="In_Loading_Screen" ID="{FE4B70AC-DC22-4B79-8C49-4EE87512AD32}"/>
+						<State Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 					</ChildrenList>
 				</StateGroup>
 			</ChildrenList>

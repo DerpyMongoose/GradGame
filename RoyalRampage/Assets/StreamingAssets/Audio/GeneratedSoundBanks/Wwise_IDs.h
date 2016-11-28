@@ -20,8 +20,6 @@ namespace AK
         static const AkUniqueID MUSIC_SYSTEM_PLAY = 350081739U;
         static const AkUniqueID MUSIC_SYSTEM_STOP = 3509289057U;
         static const AkUniqueID OBJECT_ACTION_PLAY = 491891602U;
-        static const AkUniqueID OBJECTIVE_ANNOUNCED_PLAY = 453371149U;
-        static const AkUniqueID OBJECTIVE_COMPLETED_PLAY = 635791921U;
         static const AkUniqueID POINTS_COUNTING_PLAY = 1311831249U;
         static const AkUniqueID POINTS_COUNTING_STOP = 2563246215U;
         static const AkUniqueID POINTS_REWARDED_PLAY = 3286289918U;
@@ -31,6 +29,7 @@ namespace AK
         static const AkUniqueID START_GAME_BUTTON_PLAY = 278413312U;
         static const AkUniqueID STOMP_PLAY = 3839850873U;
         static const AkUniqueID TIMER_TICK_PLAY = 3295885793U;
+        static const AkUniqueID TUTORIAL_CHECK_MARK_PLAY = 886445783U;
     } // namespace EVENTS
 
     namespace STATES
@@ -53,10 +52,13 @@ namespace AK
 
             namespace STATE
             {
+                static const AkUniqueID IN_GAME_MENU = 4261341665U;
+                static const AkUniqueID IN_GROUND_SLAM = 1105694430U;
                 static const AkUniqueID IN_INTRO_CUTSCENE = 2874168282U;
                 static const AkUniqueID IN_LEVEL = 1933493779U;
                 static const AkUniqueID IN_LEVEL_TIME_RUNNING_OUT = 3754610904U;
                 static const AkUniqueID IN_LEVEL_TIMES_UP = 3976417512U;
+                static const AkUniqueID IN_LOADING_SCREEN = 3834966784U;
                 static const AkUniqueID IN_MAIN_MENU = 1415091186U;
                 static const AkUniqueID IN_SCORE_SCREEN = 591173034U;
             } // namespace STATE
@@ -108,17 +110,6 @@ namespace AK
             } // namespace SWITCH
         } // namespace OBJECTS
 
-        namespace STARS
-        {
-            static const AkUniqueID GROUP = 1281810928U;
-
-            namespace SWITCH
-            {
-                static const AkUniqueID BONUS = 2356001030U;
-                static const AkUniqueID NORMAL = 1160234136U;
-            } // namespace SWITCH
-        } // namespace STARS
-
         namespace SURFACES
         {
             static const AkUniqueID GROUP = 3714303081U;
@@ -136,7 +127,9 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID LEVEL_TIME = 2699314947U;
+        static const AkUniqueID MUSIC_VOLUME_SLIDER = 2872980221U;
         static const AkUniqueID POINT_COUNTER = 5057028U;
+        static const AkUniqueID SOUND_EFFECTS_VOLUME_SLIDER = 1464642610U;
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
         static const AkUniqueID SS_AIR_FREEFALL = 3002758120U;
         static const AkUniqueID SS_AIR_FURY = 1029930033U;
@@ -173,6 +166,7 @@ namespace AK
         static const AkUniqueID OBJECTS = 1695690031U;
         static const AkUniqueID REVERB = 348963605U;
         static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID SOUND_EFFECTS = 978636652U;
         static const AkUniqueID SYSTEM = 3859886410U;
     } // namespace BUSSES
 
