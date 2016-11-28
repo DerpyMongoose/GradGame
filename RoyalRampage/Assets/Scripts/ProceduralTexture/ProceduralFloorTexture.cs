@@ -19,14 +19,9 @@ public class ProceduralFloorTexture : MonoBehaviour {
     public int yTile = 10;
 
     void OnEnable() {
-        Debug.Log(res);
-        GetComponent<Renderer>().material.shaderKeywords = new string[1] { "_NORMALMAP" };
         newTex = new Texture2D(res, res, TextureFormat.ARGB32, false);
 
-        //normalMap.filterMode = FilterMode.Trilinear;
-
         newTex.wrapMode = TextureWrapMode.Repeat;
-        // newTex.filterMode = FilterMode.Trilinear;
 
         GetComponent<Renderer>().material.mainTexture = newTex;
         GetComponent<Renderer>().material.mainTextureScale = new Vector2(xTile, yTile);
