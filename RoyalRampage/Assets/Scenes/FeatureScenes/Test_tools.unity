@@ -24795,48 +24795,6 @@ Transform:
   - {fileID: 1356548382}
   m_Father: {fileID: 373528068}
   m_RootOrder: 2
---- !u!1001 &628490419
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 647377833}
-    m_Modifications:
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 7.715
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.8860358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -14.434
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ab98565fd0552494abf4de6f36d01c7c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &628980314
 GameObject:
   m_ObjectHideFlags: 0
@@ -25171,7 +25129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &647377832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25206,7 +25164,6 @@ Transform:
   m_Children:
   - {fileID: 1793403802}
   - {fileID: 1340935172}
-  - {fileID: 1538205748}
   - {fileID: 797932613}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -35833,23 +35790,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1794115824}
   m_RootOrder: 0
---- !u!114 &980193144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902961c69f102f4409c29b9e54258701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go: {fileID: 1793403801}
-  thisPropertyPath: CheckFracturing.num_of_fractured_objects
-  compareToType: 0
-  other: {fileID: 0}
-  otherPropertyPath: 
-  compareType: 0
 --- !u!1 &985967719
 GameObject:
   m_ObjectHideFlags: 0
@@ -44667,11 +44607,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 851037041}
   m_RootOrder: 4
---- !u!4 &1538205748 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000011102447292, guid: ab98565fd0552494abf4de6f36d01c7c,
-    type: 2}
-  m_PrefabInternal: {fileID: 628490419}
 --- !u!1 &1542331663
 GameObject:
   m_ObjectHideFlags: 0
@@ -47814,7 +47749,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012343953376, guid: f37785b891fcf8d4996eebea33a7abc0, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f37785b891fcf8d4996eebea33a7abc0, type: 2}
@@ -52162,7 +52097,7 @@ MonoBehaviour:
   repeatEveryFrame: 1
   hasFailed: 0
   checkMethods: 1
-  m_ActionBase: {fileID: 980193144}
+  m_ActionBase: {fileID: 2127602005}
   checksPerformed: 0
 --- !u!114 &1793403807
 MonoBehaviour:
@@ -59129,6 +59064,23 @@ Transform:
   - {fileID: 1956550377}
   m_Father: {fileID: 1328336962}
   m_RootOrder: 1
+--- !u!114 &2127602005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 1793403801}
+  thisPropertyPath: CheckFracturing.enabled
+  compareToType: 1
+  other: {fileID: 0}
+  otherPropertyPath: 
+  constantValueGeneric: 1
 --- !u!1 &2132140214
 GameObject:
   m_ObjectHideFlags: 0
