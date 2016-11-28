@@ -43,8 +43,6 @@ public class LevelManager : MonoBehaviour
 	GameObject IntroTapPanel;
     private GameObject continueButton;
     public int multiplier;
-    private float countMultiTime;
-    private int countObjects;
 
     void OnEnable()
     {
@@ -62,9 +60,8 @@ public class LevelManager : MonoBehaviour
 
     void Start(){
         multiplier = 1;
-        countMultiTime = 0;
-        amountOfObjects = 5;
-        MultiplierTime = 5;
+        ObjectManagerV2.instance.countMultiTime = 0;
+        amountOfObjects = 1;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
 		scoreText.text = score.ToString(); // in game score
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -93,21 +90,19 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.canPlayerDestroy)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
-            countObjects++;
 			scoreText.text = score.ToString(); // in game score
-            countMultiTime = 0;
-            if(countObjects == amountOfObjects)
+            if(amountOfObjects == ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
                 multiplier++;
-                countObjects = 0;
+                amountOfObjects++;
             }
             score += points * multiplier;
 			scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
-            GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
+            //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
 
@@ -141,13 +136,14 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        countMultiTime += Time.deltaTime;
+        ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
         //print(countMultiTime);
-        if(countMultiTime > MultiplierTime)
+        if(ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer)
         {
            // print("I am in");
             multiplier = 1;
-            countObjects = 0;
+            amountOfObjects = 1;
+            ObjectManagerV2.instance.countObjects = 0;
         }
 
         if (score >= scoreToCompleteLevel)

@@ -6,11 +6,14 @@ public class StampBar : MonoBehaviour
 {
 
     private float fillBar;
-    private bool ready;
+    private bool ready, gradually;
     private Color initialColor;
     private float countSecond;
+    private ColorBlock sliderColors;
+    private float timer;
 
-    public GameObject slider;
+    public Slider slider;
+    public Image fillColor;
     public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
 
@@ -25,9 +28,9 @@ public class StampBar : MonoBehaviour
 
     void Start()
     {
-        slider.GetComponent<Image>().fillAmount = 0f;
+        slider.value = 0f;
         fillBar = 0f;
-        initialColor = slider.GetComponent<Image>().color;
+        initialColor = fillColor.color;
         increaseFill = true;
         countSecond = 0f;
     }
@@ -39,13 +42,13 @@ public class StampBar : MonoBehaviour
         if (increaseFill)
         {
             fillBar = ((tempScore / reachScore) * 10) / 10;
-            slider.GetComponent<Image>().fillAmount = fillBar;
+            slider.value = fillBar;
         }
 
         if (tempScore >= reachScore)
         {
             increaseFill = false;
-            timeToLowRage += Time.deltaTime;
+            //timeToLowRage += Time.deltaTime;
             tempScore = reachScore;
             if (!ready)
             {
@@ -53,39 +56,52 @@ public class StampBar : MonoBehaviour
                 SwipeHalf.ableToLift = true;
                 ready = true;
             }
-            slider.GetComponent<Image>().color = Color.red;
+            fillColor.color = Color.red;
             //if (PhysicalMovement.intoAir)
-            if(SwipeHalf.intoAir)
+            if (SwipeHalf.intoAir)
             {
                 tempScore = 0f;
                 fillBar = 0f;
-                slider.GetComponent<Image>().fillAmount = fillBar;
-                slider.GetComponent<Image>().color = initialColor;
-                increaseFill = false;
+                gradually = true;
+                //slider.GetComponent<Image>().fillAmount = fillBar;
+                fillColor.color = initialColor;
+                //increaseFill = false;
                 ready = false;
                 //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
             }
         }
 
-        if (timeToLowRage > looseRageAfter)
+        if (gradually)
         {
-            countSecond += 0.01f;
-            if (countSecond >= loosePerSecond)
+            timer += Time.deltaTime;
+            slider.value = Mathf.Lerp(1f, tempScore, timer * 2f);
+            if (slider.value == tempScore)
             {
-                slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
-                //PhysicalMovement.ableToLift = false;
-                SwipeHalf.ableToLift = false;
-                ready = false;
-                slider.GetComponent<Image>().color = initialColor;
-                tempScore -= reachScore * (percentLoose / 100);
-                countSecond = 0f;
-            }
-            if (slider.GetComponent<Image>().fillAmount == 0f)
-            {
-                timeToLowRage = 0f;
-                countSecond = 0f;
+                timer = 0;
+                gradually = false;
             }
         }
+
+
+        //if (timeToLowRage > looseRageAfter)
+        //{
+        //    countSecond += 0.01f;
+        //    if (countSecond >= loosePerSecond)
+        //    {
+        //        slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
+        //        //PhysicalMovement.ableToLift = false;
+        //        SwipeHalf.ableToLift = false;
+        //        ready = false;
+        //        slider.GetComponent<Image>().color = initialColor;
+        //        tempScore -= reachScore * (percentLoose / 100);
+        //        countSecond = 0f;
+        //    }
+        //    if (slider.GetComponent<Image>().fillAmount == 0f)
+        //    {
+        //        timeToLowRage = 0f;
+        //        countSecond = 0f;
+        //    }
+        //}
     }
 }
