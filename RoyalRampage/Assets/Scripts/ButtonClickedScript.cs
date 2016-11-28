@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ButtonClickedScript : MonoBehaviour {
 
-    Color pressed = new Color(0.97f, 0.76f,0.15f);
-    Color notPressed = new Color(0.79f, 0.75f, 0.63f);
+    Color pressed = new Color(1f, 1f,1f);
+    Color notPressed = new Color(0.39f, 0.39f, 0.39f);
     public int index;
 	// Use this for initialization
 	void Start () {
