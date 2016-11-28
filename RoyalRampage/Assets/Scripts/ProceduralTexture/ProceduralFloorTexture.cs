@@ -11,9 +11,9 @@ public class ProceduralFloorTexture : MonoBehaviour {
     public int amountOfSectionsX = 8;
     public int amountOfSectionsY = 3;
     private Color[] floorColor = new Color[] {
-        new Color(0.627f,0.322f,0.176f) * 0.33f,new Color(0.545f,0.271f,0.075f) * 0.5f,
-    new Color(0.627f,0.322f,0.176f) * 0.5f, new Color(0.627f,0.322f,0.176f) * 0.25f,
-    new Color(0.627f,0.322f,0.176f) * 0.78f,new Color(0.627f,0.322f,0.176f) * 0.17f};
+        new Color(0.38f,0.247f,0.141f),new Color(0.329f,0.196f,0.090f),
+    new Color(0.309f,0.196f,0.113f), new Color(0.301f,0.207f,0.113f),
+    new Color(0.360f,0.227f,0.117f) ,new Color(0.341f,0.211f,0.098f)};
     List<int> sectionListX;
     public int xTile = 10;
     public int yTile = 10;
