@@ -6,11 +6,14 @@ public class StampBar : MonoBehaviour
 {
 
     public float fillBar;
-    private bool ready;
+    private bool ready, gradually;
     private Color initialColor;
     private float countSecond;
+    private ColorBlock sliderColors;
+    private float timer;
 
-    public GameObject slider;
+    public Slider slider;
+    public Image fillColor;
     public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
 
@@ -23,10 +26,9 @@ public class StampBar : MonoBehaviour
 
     void Start()
     {
-        tempScore = 0;
-        slider.GetComponent<Image>().fillAmount = 0f;
+        slider.value = 0f;
         fillBar = 0f;
-        initialColor = slider.GetComponent<Image>().color;
+        initialColor = fillColor.color;
         increaseFill = true;
         countSecond = 0f;
     }
@@ -38,7 +40,7 @@ public class StampBar : MonoBehaviour
         if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
             fillBar = ((tempScore / reachScore) * 10) / 10;
-            slider.GetComponent<Image>().fillAmount = fillBar;
+            slider.value = fillBar;
         }
 
         if (tempScore >= reachScore)
@@ -46,29 +48,42 @@ public class StampBar : MonoBehaviour
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
             tempScore = reachScore;
-            if (ready == false)
+            if (ready ==           if (GameManager.instance.currentLevel == 0)
+            { false)
             {
                 //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
                 ready = true;
             }
-            slider.GetComponent<Image>().color = Color.red;
+            fillColor.color = Color.red;
             //if (PhysicalMovement.intoAir)
             if (SwipeHalf.intoAir)
             {
-                if (GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
+                if (GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
                 {
                     tempScore = 0f;
                     fillBar = 0f;
-                    slider.GetComponent<Image>().fillAmount = fillBar;
-                    slider.GetComponent<Image>().color = initialColor;
-                    increaseFill = false;
+                gradually = true;
+                //slider.GetComponent<Image>().fillAmount = fillBar;
+                fillColor.color = initialColor;
                 }
                 ready = false;
                 //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
             }
         }
+
+        if (gradually)
+        {
+            timer += Time.deltaTime;
+            slider.value = Mathf.Lerp(1f, tempScore, timer * 2f);
+            if (slider.value == tempScore)
+        //    {
+                timer = 0;
+                gradually = false;
+        //    }
+        //}
+
 
         //if (timeToLowRage > looseRageAfter)
         //{

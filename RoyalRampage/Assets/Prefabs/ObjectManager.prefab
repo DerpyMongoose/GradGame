@@ -54,50 +54,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneToAnother: 2000
   colImpact: 0.2
-  dashDamage: 1
-  swirlDamage: 6
-  wallDamage: 3
-  objDamage: 10
-  rubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
-    type: 2}
+  multiplierTimer: 5
+  dashDamage: 50
+  swirlDamage: 15
+  wallDamage: 80
+  objDamage: 200
   direction: {x: 0, y: 0, z: 0}
+  countObjects: 0
+  countMultiTime: 0
   objectList: []
-  smallGlassScore: 1
-  mediumGlassScore: 1
-  largeGlassScore: 1
-  smallGlassLife: 5
-  mediumGlassLife: 17
-  largeGlassLife: 23
-  smallGlassRubbleAmount: 0
-  mediumGlassRubbleAmount: 0
-  largeGlassRubbleAmount: 0
-  smallWoodScore: 1
-  mediumWoodScore: 1
-  largeWoodScore: 1
-  smallWoodLife: 8
-  mediumWoodLife: 22
-  largeWoodLife: 30
-  smallWoodRubbleAmount: 0
-  mediumWoodRubbleAmount: 0
-  largeWoodRubbleAmount: 0
-  smallStoneScore: 1
-  mediumStoneScore: 1
-  largeStoneScore: 1
-  smallStoneLife: 9
-  mediumStoneLife: 24
-  largeStoneLife: 33
-  smallStoneRubbleAmount: 0
-  mediumStoneRubbleAmount: 0
-  largeStoneRubbleAmount: 0
-  smallMetalScore: 1
-  mediumMetalScore: 1
-  largeMetalScore: 1
-  smallMetalLife: 10
-  mediumMetalLife: 25
-  largeMetalLife: 35
-  smallMetalRubbleAmount: 0
-  mediumMetalRubbleAmount: 0
-  largeMetalRubbleAmount: 0
+  smallGlassLife: 27
+  mediumGlassLife: 96
+  largeGlassLife: 167
+  smallWoodLife: 35
+  mediumWoodLife: 109
+  largeWoodLife: 187
+  smallStoneLife: 65
+  mediumStoneLife: 153
+  largeStoneLife: 252
+  smallMetalLife: 101
+  mediumMetalLife: 206
+  largeMetalLife: 330
 --- !u!114 &114000012927986588
 MonoBehaviour:
   m_ObjectHideFlags: 1

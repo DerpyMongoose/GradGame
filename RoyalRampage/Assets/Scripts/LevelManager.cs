@@ -12,8 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
-    public float MultiplierTime;
-    public int amountOfObjects;
+    private int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
@@ -48,8 +47,6 @@ public class LevelManager : MonoBehaviour
     private GameObject continueButton;
     [HideInInspector]
     public int multiplier;
-    private float countMultiTime;
-    private int countObjects;
     int tempMulti;
     [HideInInspector]
     //You'll regret using this boolean
@@ -93,10 +90,9 @@ public class LevelManager : MonoBehaviour
         timer2 = 0;
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
+        ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
-        countMultiTime = 0;
-        amountOfObjects = 5;
-        MultiplierTime = 5;
+        amountOfObjects = 1;
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
@@ -146,21 +142,20 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.canPlayerDestroy && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
-            countObjects++;
             scoreText.text = score.ToString(); // in game score
-            countMultiTime = 0;
-            if (countObjects == amountOfObjects)
+            while(amountOfObjects <= ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
+                ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects-ObjectManagerV2.instance.countObjects);
                 multiplier++;
-                countObjects = 0;
+                amountOfObjects++;
             }
             score += points * multiplier;
             scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
-            GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
+            //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
 
@@ -200,21 +195,22 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
 
-        print(GameManager.instance.CurrentScene());
+        ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
         print(GameManager.instance.TutorialState());
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                countMultiTime += Time.deltaTime;
                 //print(countMultiTime);
-                if (countMultiTime > MultiplierTime)
+        if(ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer){
                 {
                     // print("I am in");
                     MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
                     multiplier = 1;
-                    countObjects = 0;
+            amountOfObjects = 1;
+            ObjectManagerV2.instance.countObjects = 0;
                     tempMulti = 1;
                     t = 0f;
+            ObjectManagerV2.instance.countMultiTime = 0;
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -223,9 +219,8 @@ public class LevelManager : MonoBehaviour
                 }
                 else continueButton.SetActive(false);
 
-                if (countMultiTime < MultiplierTime)
-                {
-                    t += Time.deltaTime / MultiplierTime;
+        if (ObjectManagerV2.instance.countMultiTime < ObjectManagerV2.instance.multiplierTimer) {
+            t += Time.deltaTime / ObjectManagerV2.instance.multiplierTimer;
                     MultiplierText.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(0.5f, 0.5f, 0.5f), t);
                 }
                 else continueButton.SetActive(false);
