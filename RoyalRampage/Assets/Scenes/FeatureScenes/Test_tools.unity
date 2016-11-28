@@ -28303,6 +28303,25 @@ Transform:
   - {fileID: 1323941539}
   m_Father: {fileID: 1576614101}
   m_RootOrder: 0
+--- !u!114 &857095454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4928c6c2b973874c8d4e6c9a69bb5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 142500095}
+  thisPropertyPath: Transform.position.z
+  compareToType: 0
+  other: {fileID: 1235529719}
+  otherPropertyPath: Transform.position.z
+  constantValueGeneric: 0
+  compareTypes: 3
+  floatingPointError: 0.0001
 --- !u!1 &859749121
 GameObject:
   m_ObjectHideFlags: 0
@@ -38279,6 +38298,7 @@ GameObject:
   - 33: {fileID: 1123434965}
   - 65: {fileID: 1123434964}
   - 23: {fileID: 1123434963}
+  - 114: {fileID: 1123434966}
   m_Layer: 8
   m_Name: Wall
   m_TagString: Wall
@@ -38351,6 +38371,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1123434961}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1123434966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123434961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bafa54482a87ac4cbd7ff1bfd1ac93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkAfterTime: 1
+  repeatCheckTime: 1
+  repeatEveryTime: 1
+  checkAfterFrames: 1
+  repeatCheckFrame: 1
+  repeatEveryFrame: 1
+  hasFailed: 0
+  checkMethods: 65536
+  m_ActionBase: {fileID: 857095454}
+  checksPerformed: 0
 --- !u!1 &1124511259
 GameObject:
   m_ObjectHideFlags: 0
@@ -43236,7 +43277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1451694641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46944,7 +46985,6 @@ GameObject:
   - 65: {fileID: 1590784919}
   - 54: {fileID: 1590784918}
   - 114: {fileID: 1590784920}
-  - 114: {fileID: 1590784915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -46952,27 +46992,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1590784915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1590784914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bafa54482a87ac4cbd7ff1bfd1ac93a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkAfterTime: 1
-  repeatCheckTime: 1
-  repeatEveryTime: 1
-  checkAfterFrames: 1
-  repeatCheckFrame: 1
-  repeatEveryFrame: 1
-  hasFailed: 0
-  checkMethods: 65536
-  m_ActionBase: {fileID: 1728387932}
-  checksPerformed: 0
 --- !u!54 &1590784918
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50876,25 +50895,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1470615776}
   m_RootOrder: 2
---- !u!114 &1728387932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4928c6c2b973874c8d4e6c9a69bb5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go: {fileID: 142500095}
-  thisPropertyPath: Transform.position.z
-  compareToType: 0
-  other: {fileID: 1235529719}
-  otherPropertyPath: Transform.position.z
-  constantValueGeneric: 0
-  compareTypes: 3
-  floatingPointError: 0.0001
 --- !u!1 &1731837889
 GameObject:
   m_ObjectHideFlags: 0
