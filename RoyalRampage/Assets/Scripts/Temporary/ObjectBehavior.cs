@@ -29,7 +29,6 @@ public class ObjectBehavior : MonoBehaviour
 
     private float checkHeight, initialMass;
 
-    [HideInInspector]
     public int score;
 
     [Range(0.0f, 1.0f)]
@@ -70,19 +69,16 @@ public class ObjectBehavior : MonoBehaviour
                 switch (objSize)
                 {
                     case DestructableSize.SMALL:
-                        score = ObjectManagerV2.instance.smallGlassScore;
+                        //score = ObjectManagerV2.instance.smallGlassScore;
                         life = ObjectManagerV2.instance.smallGlassLife;
-                        rubbleAmount = ObjectManagerV2.instance.smallGlassRubbleAmount;
                         break;
                     case DestructableSize.MEDIUM:
-                        score = ObjectManagerV2.instance.mediumGlassScore;
+                        //score = ObjectManagerV2.instance.mediumGlassScore;
                         life = ObjectManagerV2.instance.mediumGlassLife;
-                        rubbleAmount = ObjectManagerV2.instance.mediumGlassRubbleAmount;
                         break;
                     case DestructableSize.LARGE:
-                        score = ObjectManagerV2.instance.largeGlassScore;
+                        //score = ObjectManagerV2.instance.largeGlassScore;
                         life = ObjectManagerV2.instance.largeGlassLife;
-                        rubbleAmount = ObjectManagerV2.instance.largeGlassRubbleAmount;
                         break;
                     default:
                         break;
@@ -92,19 +88,16 @@ public class ObjectBehavior : MonoBehaviour
                 switch (objSize)
                 {
                     case DestructableSize.SMALL:
-                        score = ObjectManagerV2.instance.smallWoodScore;
+                        //score = ObjectManagerV2.instance.smallWoodScore;
                         life = ObjectManagerV2.instance.smallWoodLife;
-                        rubbleAmount = ObjectManagerV2.instance.smallWoodRubbleAmount;
                         break;
                     case DestructableSize.MEDIUM:
-                        score = ObjectManagerV2.instance.mediumWoodScore;
+                        //score = ObjectManagerV2.instance.mediumWoodScore;
                         life = ObjectManagerV2.instance.mediumWoodLife;
-                        rubbleAmount = ObjectManagerV2.instance.mediumWoodRubbleAmount;
                         break;
                     case DestructableSize.LARGE:
-                        score = ObjectManagerV2.instance.largeWoodScore;
+                        //score = ObjectManagerV2.instance.largeWoodScore;
                         life = ObjectManagerV2.instance.largeWoodLife;
-                        rubbleAmount = ObjectManagerV2.instance.largeWoodRubbleAmount;
                         break;
                     default:
                         break;
@@ -114,19 +107,16 @@ public class ObjectBehavior : MonoBehaviour
                 switch (objSize)
                 {
                     case DestructableSize.SMALL:
-                        score = ObjectManagerV2.instance.smallStoneScore;
+                        //score = ObjectManagerV2.instance.smallStoneScore;
                         life = ObjectManagerV2.instance.smallStoneLife;
-                        rubbleAmount = ObjectManagerV2.instance.smallStoneRubbleAmount;
                         break;
                     case DestructableSize.MEDIUM:
-                        score = ObjectManagerV2.instance.mediumStoneScore;
+                        //score = ObjectManagerV2.instance.mediumStoneScore;
                         life = ObjectManagerV2.instance.mediumStoneLife;
-                        rubbleAmount = ObjectManagerV2.instance.mediumStoneRubbleAmount;
                         break;
                     case DestructableSize.LARGE:
-                        score = ObjectManagerV2.instance.largeStoneScore;
+                        //score = ObjectManagerV2.instance.largeStoneScore;
                         life = ObjectManagerV2.instance.largeStoneLife;
-                        rubbleAmount = ObjectManagerV2.instance.largeStoneRubbleAmount;
                         break;
                     default:
                         break;
@@ -136,19 +126,16 @@ public class ObjectBehavior : MonoBehaviour
                 switch (objSize)
                 {
                     case DestructableSize.SMALL:
-                        score = ObjectManagerV2.instance.smallMetalScore;
+                        //score = ObjectManagerV2.instance.smallMetalScore;
                         life = ObjectManagerV2.instance.smallMetalLife;
-                        rubbleAmount = ObjectManagerV2.instance.smallMetalRubbleAmount;
                         break;
                     case DestructableSize.MEDIUM:
-                        score = ObjectManagerV2.instance.mediumMetalScore;
+                        //score = ObjectManagerV2.instance.mediumMetalScore;
                         life = ObjectManagerV2.instance.mediumMetalLife;
-                        rubbleAmount = ObjectManagerV2.instance.mediumMetalRubbleAmount;
                         break;
                     case DestructableSize.LARGE:
-                        score = ObjectManagerV2.instance.largeMetalScore;
+                        //score = ObjectManagerV2.instance.largeMetalScore;
                         life = ObjectManagerV2.instance.largeMetalLife;
-                        rubbleAmount = ObjectManagerV2.instance.largeMetalRubbleAmount;
                         break;
                     default:
                         break;
@@ -165,6 +152,7 @@ public class ObjectBehavior : MonoBehaviour
         //particleSys = GetComponent<ParticleSystem>();
         slowed = false;
         lifted = false;
+        hit = false;
         //ObjectManagerV2.instance.maxScore += score;  
 
         //Disable all the children.
@@ -183,8 +171,11 @@ public class ObjectBehavior : MonoBehaviour
 
     void Update()
     {
-        CheckDamage();
-        CheckVelocity();
+        if (hit)
+        {
+            CheckDamage();
+            CheckVelocity();
+        }
 
         if (lifted)
         {
@@ -207,23 +198,12 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    void DestroyObj(GameObject obj)
-    {
-        for (int i = 0; i < obj.GetComponent<ObjectBehavior>().rubbleAmount; i++)
-        {
-            Instantiate(obj.GetComponent<ObjectBehavior>().rubblePrefab, obj.transform.position, Quaternion.identity);
-        }
-        GameManager.instance.objectDestructed(obj);
-        Destroy(obj);
-    }
-
-
 
     void CheckDamage()
     {
         if (life <= 0)
         {
-
+            SpawnPoints();
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
@@ -235,7 +215,8 @@ public class ObjectBehavior : MonoBehaviour
                     }
                 }
                 GetComponent<FracturedObject>().CollapseChunks();
-                DestroyObj(gameObject);
+                GameManager.instance.objectDestructed(gameObject);
+                Destroy(gameObject);
                 if (currencySpawnChance > 0.0f)
                 {
                     SpawnCurrency();
@@ -243,7 +224,8 @@ public class ObjectBehavior : MonoBehaviour
             }
             catch
             {
-                DestroyObj(gameObject);
+                GameManager.instance.objectDestructed(gameObject);
+                Destroy(gameObject);
                 if (currencySpawnChance > 0.0f)
                 {
                     SpawnCurrency();
@@ -254,12 +236,23 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if (Mathf.Round(objRB.velocity.magnitude) == 0)
+        if (objRB.velocity.magnitude <= 0.5f)
         {
             //print("Hit becomes false now");
             hit = false;
 
         }
+    }
+
+    void SpawnPoints () {
+        GameObject obj = PointObjectPool.instance.FindObjectInPool();
+
+        obj.transform.position = transform.position + Vector3.up;
+        obj.transform.rotation = Quaternion.LookRotation(obj.transform.position - Camera.main.transform.position);
+        //obj.transform.LookAt(Camera.main.transform);
+        obj.SetActive(true);
+
+        obj.GetComponent<SetTextPoints>().SetText(score*GameManager.instance.levelManager.multiplier);
     }
 
 
@@ -289,11 +282,11 @@ public class ObjectBehavior : MonoBehaviour
                 col.collider.GetComponent<ObjectBehavior>().hit = true;
                 // PLAY DAMAGE PARTICLE
                 //particleSys.Play();
-                col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
+                //col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
                 ObjectManagerV2.instance.direction = col.transform.position - transform.position;
                 if (col.gameObject.tag != "UniqueObjs")
                 {
-                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother);
+                    col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
                 life -= ObjectManagerV2.instance.objDamage;
                 col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;

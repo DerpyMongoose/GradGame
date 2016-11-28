@@ -5,33 +5,41 @@ State Group	ID	Name			Wwise Object Path	Notes
 State	ID	Name	State Group			Notes
 	591173034	In_Score_Screen	Game_States			
 	748895195	None	Game_States			
+	1105694430	In_Ground_Slam	Game_States			
 	1415091186	In_Main_Menu	Game_States			
 	1933493779	In_Level	Game_States			
 	2874168282	In_Intro_Cutscene	Game_States			
 	3754610904	In_Level_Time_Running_Out	Game_States			
+	3834966784	In_Loading_Screen	Game_States			
 	3976417512	In_Level_Times_Up	Game_States			
+	4261341665	In_Game_Menu	Game_States			
 	748895195	None	Environments			
 	1586158131	Kitchen	Environments			
 	3355232812	Living_Room	Environments			
 	3633416828	Hall	Environments			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1464642610	Sound_Effects_Volume_Slider			\Default Work Unit\Sound_Effects_Volume_Slider	
+	2872980221	Music_Volume_Slider			\Default Work Unit\Music_Volume_Slider	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
-	85412153	Ambience			\Default Work Unit\Master Audio Bus\Environmental\Ambience	
-	348963605	Reverb			\Default Work Unit\Master Audio Bus\Environmental\Reverb	
-	393239870	SFX			\Default Work Unit\Master Audio Bus\Environmental\SFX	
-	436743010	Character			\Default Work Unit\Master Audio Bus\Environmental\SFX\Character	
+	85412153	Ambience			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Ambience	
+	348963605	Reverb			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Reverb	
+	393239870	SFX			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\SFX	
+	436743010	Character			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\SFX\Character	
 	805203703	Master Secondary Bus			\Default Work Unit\Master Secondary Bus	
-	1695690031	Objects			\Default Work Unit\Master Audio Bus\Environmental\SFX\Objects	
-	1973600711	Environmental			\Default Work Unit\Master Audio Bus\Environmental	
+	978636652	Sound Effects			\Default Work Unit\Master Audio Bus\Sound Effects	
+	1695690031	Objects			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\SFX\Objects	
+	1973600711	Environmental			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
-	3859886410	System			\Default Work Unit\Master Audio Bus\System	
+	3859886410	System			\Default Work Unit\Master Audio Bus\Sound Effects\System	
 	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
-	2222662711	Room_Soft			\Default Work Unit\Master Audio Bus\Environmental\Reverb\Room_Soft	
-	2608754132	Room_Hard			\Default Work Unit\Master Audio Bus\Environmental\Reverb\Room_Hard	
-	3633416828	Hall			\Default Work Unit\Master Audio Bus\Environmental\Reverb\Hall	
-	4063189299	Corridor			\Default Work Unit\Master Audio Bus\Environmental\Reverb\Corridor	
+	2222662711	Room_Soft			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Reverb\Room_Soft	
+	2608754132	Room_Hard			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Reverb\Room_Hard	
+	3633416828	Hall			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Reverb\Hall	
+	4063189299	Corridor			\Default Work Unit\Master Audio Bus\Sound Effects\Environmental\Reverb\Corridor	
 
 Effect plug-ins	ID	Name	Type				Notes
 	1459522457	Brick_Wall_Minus_1dB_Peak_Fast_Release	Wwise Peak Limiter			
