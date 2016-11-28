@@ -64,7 +64,7 @@ public class CameraController7 : MonoBehaviour
                 dummy.transform.position = player.transform.position + dummyOffset;
                 if (hit.transform != null)
                 {
-                    print(hit.transform);
+                    //print(hit.transform);
                     if (hit.transform.gameObject == dummy)
                     {
                         state_ = state.FREE;

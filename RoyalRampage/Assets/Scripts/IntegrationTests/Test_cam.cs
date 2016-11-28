@@ -9,8 +9,8 @@ public class Test_cam : MonoBehaviour {
 		Player = GameManager.instance.player.transform;
 	}
 	void Update () {
-		if(Player.position.x >= -3.5){
-			Player.position += new Vector3(-0.3f*Time.deltaTime,0,0);
+		if(Player.position.x >= -5f){
+			Player.position += new Vector3(-0.8f*Time.deltaTime,0,0);
 		}
 	}
 }
