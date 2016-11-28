@@ -5944,7 +5944,7 @@ Prefab:
     - target: {fileID: 224000010293646900, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.33999997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000010293646900, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
@@ -5959,7 +5959,7 @@ Prefab:
     - target: {fileID: 224000010874861572, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.66
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000010874861572, guid: 75143ac6572fa884b8ae2362e3064a3b,
         type: 2}
@@ -7003,8 +7003,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreToCompleteLevel: 70
   timeToCompleteLevel: 30
-  MultiplierTime: 5
-  amountOfObjects: 5
   MultiplierText: {fileID: 2097504176}
   maxScore: 57
   currencyPerStar: 50

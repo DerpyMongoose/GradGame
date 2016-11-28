@@ -167,14 +167,19 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
         if (hit)
         {
             CheckDamage();
             CheckVelocity();
         }
+
+    }
+
+
+    void Update()
+    {
 
         if (lifted)
         {

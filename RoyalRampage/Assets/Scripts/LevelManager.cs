@@ -11,8 +11,7 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
-    public float MultiplierTime;
-    public int amountOfObjects;
+    private int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
@@ -90,9 +89,10 @@ public class LevelManager : MonoBehaviour {
         if (GameManager.instance.canPlayerDestroy) {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             scoreText.text = score.ToString(); // in game score
-            if(amountOfObjects == ObjectManagerV2.instance.countObjects)
+            while(amountOfObjects <= ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
+                ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects-ObjectManagerV2.instance.countObjects);
                 multiplier++;
                 amountOfObjects++;
             }
@@ -129,6 +129,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Update() {
+        print(ObjectManagerV2.instance.countObjects);
 
         ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
         //print(countMultiTime);
@@ -140,14 +141,15 @@ public class LevelManager : MonoBehaviour {
             ObjectManagerV2.instance.countObjects = 0;
             tempMulti = 1;
             t = 0f;
+            ObjectManagerV2.instance.countMultiTime = 0;
         }
 
         if (score >= scoreToCompleteLevel) {
             continueButton.SetActive(true);
         } else continueButton.SetActive(false);
 
-        if (countMultiTime < MultiplierTime) {
-            t += Time.deltaTime / MultiplierTime;
+        if (ObjectManagerV2.instance.countMultiTime < ObjectManagerV2.instance.multiplierTimer) {
+            t += Time.deltaTime / ObjectManagerV2.instance.multiplierTimer;
             MultiplierText.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(0.5f, 0.5f, 0.5f), t);
         }
 
