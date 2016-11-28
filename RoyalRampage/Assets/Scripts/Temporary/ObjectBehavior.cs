@@ -196,7 +196,7 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-
+            SpawnPoints();
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
@@ -235,6 +235,17 @@ public class ObjectBehavior : MonoBehaviour
             hit = false;
 
         }
+    }
+
+    void SpawnPoints () {
+        GameObject obj = PointObjectPool.instance.FindObjectInPool();
+
+        obj.transform.position = transform.position + Vector3.up;
+        obj.transform.rotation = Quaternion.LookRotation(obj.transform.position - Camera.main.transform.position);
+        //obj.transform.LookAt(Camera.main.transform);
+        obj.SetActive(true);
+
+        obj.GetComponent<SetTextPoints>().SetText(score*GameManager.instance.levelManager.multiplier);
     }
 
 

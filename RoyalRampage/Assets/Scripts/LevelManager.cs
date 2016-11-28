@@ -6,8 +6,7 @@ using UnityEngine.UI;
  level and score manager
  Used for public variables to be tweaked by level designer 
  */
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
 
     [SerializeField]
     int scoreToCompleteLevel = 10;
@@ -29,9 +28,9 @@ public class LevelManager : MonoBehaviour
     public float star5;
 
     public Vector3 playerPos;
+    float t;
     [HideInInspector]
     public bool targetReached = false;
-
     int stars = 0;
     int score = 0;
     Text starText;
@@ -50,6 +49,7 @@ public class LevelManager : MonoBehaviour
     public int multiplier;
     private float countMultiTime;
     private int countObjects;
+    int tempMulti;
     [HideInInspector]
     //You'll regret using this boolean
     public bool spawnedObject = false;
@@ -69,15 +69,13 @@ public class LevelManager : MonoBehaviour
     float timer, timer2;
     int initialHP;
 
-    void OnEnable()
-    {
+    void OnEnable() {
         GameManager.instance.OnObjectDestructed += IncreaseScore;
         GameManager.instance.OnLevelLoad += StartLevel;
         GameManager.instance.OnTimerOut += ShowEnding;
     }
 
-    void OnDisable()
-    {
+    void OnDisable() {
         GameManager.instance.OnObjectDestructed -= IncreaseScore;
         GameManager.instance.OnLevelLoad -= StartLevel;
         GameManager.instance.OnTimerOut -= ShowEnding;
@@ -92,6 +90,7 @@ public class LevelManager : MonoBehaviour
         timer2 = 0;
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
+        tempMulti = 1;
         countMultiTime = 0;
         amountOfObjects = 5;
         MultiplierTime = 5;
@@ -103,7 +102,10 @@ public class LevelManager : MonoBehaviour
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
                 minScoreText.text = "Reach " + scoreToCompleteLevel;
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                guideText.text = "Swipe and destroy objects";
+        SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel);
+        SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
+        guideText = GameObject.Find("GuideText").GetComponent<Text>();
+        guideText.text = "Swipe and destroy objects";
 
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
@@ -133,11 +135,10 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 break;
                 // GameManager.instance.levelLoad(); // FOR AUDIO
-        }
+        print("level set up");
     }
 
-    private void IncreaseScore(GameObject destructedObj)
-    {
+    private void IncreaseScore(GameObject destructedObj) {
         if (GameManager.instance.canPlayerDestroy && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
@@ -192,8 +193,8 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(ShowContinueScreen(guideText.text));
     }
 
-    void Update()
-    {
+    void Update() {
+
         print(GameManager.instance.CurrentScene());
         print(GameManager.instance.TutorialState());
         switch (GameManager.instance.CurrentScene())
@@ -204,17 +205,35 @@ public class LevelManager : MonoBehaviour
                 if (countMultiTime > MultiplierTime)
                 {
                     // print("I am in");
+            MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
                     multiplier = 1;
                     countObjects = 0;
+            tempMulti = 1;
+            t = 0f;
                 }
 
                 if (score >= scoreToCompleteLevel)
                 {
                     continueButton.SetActive(true);
+        } else continueButton.SetActive(false);
+
+        if (countMultiTime < MultiplierTime) {
+            t += Time.deltaTime / MultiplierTime;
+            MultiplierText.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(0.5f, 0.5f, 0.5f), t);
                 }
                 else continueButton.SetActive(false);
 
+        if (multiplier != tempMulti && multiplier != 1) {
+            MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
+            tempMulti = multiplier;
+            t = 0f;
+        }
+
+        if (multiplier == 1) {
+            MultiplierText.text = "";
+        } else {
                 MultiplierText.text = "x" + multiplier.ToString();
+        }
 
                 //print(GameManager.instance.allStars);
                 break;
@@ -437,14 +456,14 @@ public class LevelManager : MonoBehaviour
         obj.transform.rotation = Quaternion.identity;
     }
 
-    public void Continue()
-    {
+
+    public void Continue() {
         guideText.text = "Level completed!";
         guideText.gameObject.SetActive(true);
         StartCoroutine(ShowContinueScreen(guideText.text));
     }
-    public void Stars()
-    {
+    public void Stars() {
+        if (score / maxScore > star1 && score / maxScore < star2) {
         if (GameManager.instance.currentLevel == 0)
         {
             if (score / maxScore > star1 && score / maxScore < star2)
@@ -494,16 +513,13 @@ public class LevelManager : MonoBehaviour
 
         ReplayPanel.SetActive(true);
 
-        if (GameManager.instance.stars != null)
-        {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
-            {
+        if (GameManager.instance.stars != null) {
+            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1]) {
                 GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
                 GameManager.instance.allStars += stars;
             }
         }
-        switch (levelResult)
-        {
+        switch (levelResult) {
             case "Level completed!":
                 GameManager.instance.levelWon = true;
                 ReplayBtn.SetActive(false);
@@ -523,14 +539,14 @@ public class LevelManager : MonoBehaviour
                     levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
                 }
 
-                break;
+            break;
 
             case "Game over":
                 GameManager.instance.levelWon = false;
                 ReplayBtn.SetActive(true);
                 NewLevelBtn.SetActive(false);
                 starText.text = stars.ToString();
-                break;
+            break;
         }
 
         GameManager.instance.Save();

@@ -1,0 +1,338 @@
+fileFormatVersion: 2
+guid: d15ce09586d8156499be9961342a232c
+timeCreated: 1480069042
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ctrls
+    100002: jnt
+    100004: //RootNode
+    100006: scepter_expressions
+    100008: scepter_locator
+    100010: scepter_main
+    100012: scepterChain_01
+    100014: scepterChain_02
+    100016: scepterChain_03
+    100018: scepterChain_04
+    100020: scepterChain_05
+    100022: scepterChain_06
+    100024: scepterChain_07
+    100026: scepterChain_08
+    100028: scepterChain_09
+    400000: ctrls
+    400002: jnt
+    400004: //RootNode
+    400006: scepter_expressions
+    400008: scepter_locator
+    400010: scepter_main
+    400012: scepterChain_01
+    400014: scepterChain_02
+    400016: scepterChain_03
+    400018: scepterChain_04
+    400020: scepterChain_05
+    400022: scepterChain_06
+    400024: scepterChain_07
+    400026: scepterChain_08
+    400028: scepterChain_09
+    7400000: Idle
+    7400002: Dash
+    7400004: Stomp
+    7400006: Hit
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Dash
+      takeName: Take 001
+      firstFrame: 65
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Stomp
+      takeName: Take 001
+      firstFrame: 225
+      lastFrame: 251
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Hit
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 104
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrls
+        weight: 1
+      - path: ctrls/scepter_locator
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main
+        weight: 1
+      - path: ctrls/scepter_locator/scepter_main/scepter_expressions
+        weight: 1
+      - path: jnt
+        weight: 1
+      - path: jnt/scepterChain_01
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08
+        weight: 1
+      - path: jnt/scepterChain_01/scepterChain_02/scepterChain_03/scepterChain_04/scepterChain_05/scepterChain_06/scepterChain_07/scepterChain_08/scepterChain_09
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

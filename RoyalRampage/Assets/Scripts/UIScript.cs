@@ -26,7 +26,12 @@ public class UIScript : MonoBehaviour
     GameObject instr_Slides;
     GameObject back_Button;
     GameObject skip_Button;
+    Transform[] instr_SlidesChildren;
+    [HideInInspector]
+    public int slide = 5;
+
     GameObject help_menu;
+    GameObject[] slides;
     GameObject arrowL;
     GameObject arrowR;
     GameObject[] slides;
@@ -133,18 +138,18 @@ public class UIScript : MonoBehaviour
                 break;
 
             case GameManager.Scene.GAME:
-                instr_Menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                instr_Slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                back_Button = GameObject.FindGameObjectWithTag("help_left");
+            help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 skip_Button = GameObject.Find("skip");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
-
-                instr_SlidesChildren = instr_Slides.GetComponentsInChildren<Transform>();
-                instr_Menu.SetActive(false);
-
-
+            arrowL = GameObject.FindGameObjectWithTag("help_left");
+            arrowR = GameObject.FindGameObjectWithTag("help_right");
+            
+            slides = new GameObject[5];
+            help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
+            for (int i = 0; i < 5; i++) {
+                slides[i] = help_slides.transform.GetChild(i).gameObject;
                 pause_menu.SetActive(false);
                 settings_menu.SetActive(false);
                 levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
@@ -173,21 +178,15 @@ public class UIScript : MonoBehaviour
 
                 if (GameManager.instance.isInstructed == false)
                 {
-                    instr_Menu.SetActive(true);
-                }
-
-                if (slide == 4)
                 {
-                    back_Button.SetActive(false);
-                    skip_Button.SetActive(true);
                 }
 
+            help_menu.SetActive(false);
 
                 pause_menu.SetActive(false);
                 settings_menu.SetActive(false);
-                levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
-                levels_Panel.SetActive(false);
-                behindPanelButton.SetActive(false);
+            levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
+            behindPanelButton.SetActive(false);
                 break;
         }
 
@@ -223,41 +222,6 @@ public class UIScript : MonoBehaviour
                 }
 
                 break;
-
-                /*case GameManager.Scene.GAME:
-
-                if (pause_menu != null && settings_menu != null) {
-                    if ((settings_menu.activeInHierarchy || pause_menu.activeInHierarchy)) {
-                        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
-                            GraphicRaycaster ray = GetComponent<GraphicRaycaster>();
-                            PointerEventData ped = new PointerEventData(null);
-                            ped.position = Input.GetTouch(0).position;
-                            List<RaycastResult> results = new List<RaycastResult>();
-
-                            ray.Raycast(ped, results);
-
-                            foreach (RaycastResult var in results) {
-                                Debug.Log(var);
-                            }
-
-                            if ((results.Exists(x => x.gameObject.tag == inGamePanel.tag) &&
-                                !results.Exists(x => x.gameObject.tag == settings_menu.tag))) {
-                                //settings_menu.SetActive(false);
-
-                            }
-                            if ((results.Exists(x => x.gameObject.tag == inGamePanel.tag) &&
-                                !results.Exists(x => x.gameObject.tag == pause_menu.tag))) {
-                                //pause_menu.SetActive(false);
-                                //UnPauseGame();
-                                foreach (RaycastResult var in results) {
-                                    Debug.Log(var);
-                                }
-                            }
-
-                        }
-                    }
-                }
-                 break;*/
         }
     }
 
@@ -272,38 +236,17 @@ public class UIScript : MonoBehaviour
             settings_menu.SetActive(false);
             UnPauseGame();
         }
-    }
-
-    public void InstructionsNext()
+        if (help_menu.activeInHierarchy) {
+            help_menu.SetActive(false);
+            UnPauseGame();
+        }
+        {
     {
-        if (slide < 5)
         {
-            back_Button.SetActive(true);
-            skip_Button.SetActive(false);
-        }
-        instr_SlidesChildren[slide].gameObject.SetActive(false);
-        slide -= 1;
-        if (slide == 0)
-        {
-            instr_Menu.SetActive(false);
-            //GameManager.instance.isInstructed = true;
-        }
-    }
-
-    public void InstructionBack()
-    {
-        slide += 1;
-        if (slide == 4)
-        {
-            back_Button.SetActive(false);
-            skip_Button.SetActive(true);
-        }
-        instr_SlidesChildren[slide].gameObject.SetActive(true);
     }
 
     public void InstructionsSkip()
-    {
-        instr_Menu.SetActive(false);
+        help_menu.SetActive(false);
         //GameManager.instance.isInstructed = true;
     }
 
@@ -594,26 +537,6 @@ public class UIScript : MonoBehaviour
     {
         GameManager.instance.LoadGame();
     }
-
-    /*private IEnumerator SplashScreen(){
-		GameObject dadiu = GameObject.FindGameObjectWithTag ("DadiuSplash");
-		GameObject unity = GameObject.FindGameObjectWithTag ("UnitySplash");
-		GameObject game = GameObject.FindGameObjectWithTag ("GameSplash");
-
-		unity.SetActive (false);
-		game.SetActive (false);
-
-		yield return new WaitForSeconds (1.5f);
-		unity.SetActive (true);
-		dadiu.SetActive (false);
-
-		yield return new WaitForSeconds (1.5f);
-		game.SetActive (true);
-		unity.SetActive (false);
-
-		yield return new WaitForSeconds (2f);
-		GameManager.instance.LoadGame ();
-	}*/
 
     public void Continue()
     {
