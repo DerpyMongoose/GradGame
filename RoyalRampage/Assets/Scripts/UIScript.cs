@@ -151,7 +151,7 @@ public class UIScript : MonoBehaviour
                 levels_Panel.SetActive(false);
                 behindPanelButton.SetActive(false);
                 break;
-            case GameManager.Scene.TUTORIAL:
+            case GameManager.Scene.TUTORIAL:               
                 gui_Time = GameObject.Find("InGameGUI/TimeLeftText");
                 gui_Slider = GameObject.Find("InGameGUI/Slider");
                 gui_ScorePanel = GameObject.Find("InGameGUI/ScorePanel");

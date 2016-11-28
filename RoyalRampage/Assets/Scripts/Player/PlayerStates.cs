@@ -62,7 +62,6 @@ public class PlayerStates : MonoBehaviour
     {
         hitObject = false;
         state = PlayerState.READY;
-
     }
 
     void Awake()
@@ -93,12 +92,6 @@ public class PlayerStates : MonoBehaviour
                 {
                     GameManager.instance.levelLoad();
                     print("LoadLevelStart");
-                }
-
-                if (hitObject == true)
-                {
-                    Startlevel();
-                    print("hit");
                 }
                 if (SwipeHalf.startTutTimer == true)
                 {
@@ -164,21 +157,21 @@ public class PlayerStates : MonoBehaviour
                 //when timer runs out:
                 if (timeLeftInLevel <= 0f)
                 { //Move stuff to events
-                    if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == false)
+                    if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == false)
                     {
                         GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
                         timerText.text = "0";  // for the level timer
                         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                         SwipeHalf.startTutTimer = false;
                     }
-                    else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.levelManager.targetReached == true)
+                    else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == true)
                     {
-                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                         GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
                         GameManager.instance.player.GetComponent<Rigidbody>().Sleep();
                         timeLeftInLevel = 0;
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
+                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                     }
                     else if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                     {

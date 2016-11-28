@@ -21,10 +21,9 @@ public class StampBar : MonoBehaviour
     [HideInInspector]
     public float timeToLowRage;
 
-
-
     void Start()
     {
+        tempScore = 0;
         slider.GetComponent<Image>().fillAmount = 0f;
         fillBar = 0f;
         initialColor = slider.GetComponent<Image>().color;
@@ -36,7 +35,7 @@ public class StampBar : MonoBehaviour
     void Update()
     {
 
-        if (increaseFill)
+        if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
             fillBar = ((tempScore / reachScore) * 10) / 10;
             slider.GetComponent<Image>().fillAmount = fillBar;
@@ -45,9 +44,9 @@ public class StampBar : MonoBehaviour
         if (tempScore >= reachScore)
         {
             increaseFill = false;
-            timeToLowRage += Time.deltaTime;
+            //timeToLowRage += Time.deltaTime;
             tempScore = reachScore;
-            if (!ready)
+            if (ready == false)
             {
                 //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
@@ -55,37 +54,40 @@ public class StampBar : MonoBehaviour
             }
             slider.GetComponent<Image>().color = Color.red;
             //if (PhysicalMovement.intoAir)
-            if(SwipeHalf.intoAir)
+            if (SwipeHalf.intoAir)
             {
-                tempScore = 0f;
-                fillBar = 0f;
-                slider.GetComponent<Image>().fillAmount = fillBar;
-                slider.GetComponent<Image>().color = initialColor;
-                increaseFill = false;
+                if (GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
+                {
+                    tempScore = 0f;
+                    fillBar = 0f;
+                    slider.GetComponent<Image>().fillAmount = fillBar;
+                    slider.GetComponent<Image>().color = initialColor;
+                    increaseFill = false;
+                }
                 ready = false;
                 //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
             }
         }
 
-        if (timeToLowRage > looseRageAfter)
-        {
-            countSecond += 0.01f;
-            if (countSecond >= loosePerSecond)
-            {
-                slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
-                //PhysicalMovement.ableToLift = false;
-                SwipeHalf.ableToLift = false;
-                ready = false;
-                slider.GetComponent<Image>().color = initialColor;
-                tempScore -= reachScore * (percentLoose / 100);
-                countSecond = 0f;
-            }
-            if (slider.GetComponent<Image>().fillAmount == 0f)
-            {
-                timeToLowRage = 0f;
-                countSecond = 0f;
-            }
-        }
+        //if (timeToLowRage > looseRageAfter)
+        //{
+        //    countSecond += 0.01f;
+        //    if (countSecond >= loosePerSecond)
+        //    {
+        //        slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
+        //        //PhysicalMovement.ableToLift = false;
+        //        SwipeHalf.ableToLift = false;
+        //        ready = false;
+        //        slider.GetComponent<Image>().color = initialColor;
+        //        tempScore -= reachScore * (percentLoose / 100);
+        //        countSecond = 0f;
+        //    }
+        //    if (slider.GetComponent<Image>().fillAmount == 0f)
+        //    {
+        //        timeToLowRage = 0f;
+        //        countSecond = 0f;
+        //    }
+        //}
     }
 }

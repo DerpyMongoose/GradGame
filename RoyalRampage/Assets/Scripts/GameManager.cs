@@ -134,6 +134,7 @@ public class GameManager
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
             Time.timeScale = 1;
             currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
         }
         else
         {

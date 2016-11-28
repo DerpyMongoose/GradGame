@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SwipeHalf : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class SwipeHalf : MonoBehaviour
     [HideInInspector]
     public List<Collider> tempColliders = new List<Collider>();
     [HideInInspector]
-    public bool swirlTut;
+    public bool swirlTut, stompTut;
 
     private bool spinningAnim = false;
     private bool swipeToHit = false;
@@ -88,6 +89,7 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
+        //print(powerTime);
         //print(rightOk);
         //print(leftOk);
         moveTimer += Time.deltaTime;
@@ -106,6 +108,10 @@ public class SwipeHalf : MonoBehaviour
 
             if (Input.GetTouch(i).position.x <= Screen.width / 2)
             {
+                if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
+                {
+                    rightOk = true;
+                }
                 //HERE MOVING////////////////////////
                 if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
                 {
@@ -229,10 +235,20 @@ public class SwipeHalf : MonoBehaviour
         {
             if (Input.touchCount == 2)
             {
+                print("Same touch");
+                print("RightOk:" + rightOk + " " + "LeftOk:" + leftOk + " " + "ableToLift:" + ableToLift);
+                //print(powerTime);
+
                 if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
                 {
                     ableToLift = false;
                     intoAir = true;
+                    stompTut = true;
+                    if(GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP)
+                    {
+                        GetComponent<StampBar>().reachScore = 50;
+                        GetComponent<StampBar>().slider.GetComponent<Image>().fillAmount = 0f;
+                    }
                     PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
                     //Lift(hitColliders); //RUN FROM ANIMATION EVENT
@@ -248,15 +264,15 @@ public class SwipeHalf : MonoBehaviour
                         GameManager.instance.playerStomp();
                     }
                 }
-
-                if (Input.touchCount == 0 || Input.touchCount > 2)
-                {
-                    powerTime = 0;
-                }
-
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
             }
         }
+
+        if (Input.touchCount == 0 || Input.touchCount > 2)
+        {
+            powerTime = 0;
+        }
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
     }
 
     IEnumerator SwipeTimer()
