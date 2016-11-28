@@ -61,6 +61,7 @@ public class PlayerStates : MonoBehaviour
     void Start()
     {
         state = PlayerState.READY;
+        SwipeHalf.startTutTimer = false;
     }
 
     void Awake()
