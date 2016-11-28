@@ -34,7 +34,7 @@ public class GameManager
     private Scene previousScene = Scene.PLAY_MENU;
     public enum Tutorial
     {
-        MOVEMENT, ATTACK, CHAIN, SWIRL, STOMP
+        MOVEMENT, ATTACK, CHAIN, SWIRL, STOMP, DEFAULT
     }
     public Tutorial tutorial = Tutorial.MOVEMENT;
     public bool levelWon;

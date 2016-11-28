@@ -370,7 +370,7 @@ public class LevelManager : MonoBehaviour
                                 ObjectManagerV2.instance.canDamage = true;
                                 guideText.text = "OHHHH YEAH YOU WIN - TUTORIAL IS OVER";
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
-                                GameManager.instance.tutorial = 0;
+                                GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
                                 print("Am actually running");
                                 GameManager.instance.isInstructed = true;
                                 GameManager.instance.currentScene = GameManager.Scene.GAME;
@@ -421,9 +421,6 @@ public class LevelManager : MonoBehaviour
                                 startTimer = false;
                             }
                         }
-                        break;
-                    default:
-                        GameManager.instance.player.GetComponent<StampBar>().slider.SetActive(false);
                         break;
                 }
                 break;
