@@ -91,10 +91,11 @@ public class PlayerStates : MonoBehaviour
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
-                    print("LoadLevelStart");
+                    print("LoadLevelStart");                
                 }
-                if (SwipeHalf.startTutTimer == true)
+                if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
                 {
+                    print("YO");
                     Startlevel();
                 }
                 if (Input.GetKey(KeyCode.R))
