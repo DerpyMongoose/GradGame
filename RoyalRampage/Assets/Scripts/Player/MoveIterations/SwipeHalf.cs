@@ -321,15 +321,30 @@ public class SwipeHalf : MonoBehaviour
         {
             if (rig[i] != null)
             {
-                rig[i].mass = mass[i];
+                //[i].mass = mass[i];    //This needs to happen after a short period of time.
                 rig[i].isKinematic = false;
                 rig[i].GetComponent<ObjectBehavior>().slowed = false;
                 rig[i].GetComponent<ObjectBehavior>().lifted = false;
             }
         }
+        //objRB.Clear();
+        //initialMass.Clear();   We need to clear the lists after we changed the mass back to normal and that happens after a short period of time.
+        StartCoroutine(InitializeMass(rig, mass));
+        coroutine = null;
+    }
+
+    IEnumerator InitializeMass(List<Rigidbody> rig, List<float> mass)
+    {
+        yield return new WaitForSeconds(GetComponent<PlayerStates>().resetMassTimer);
+        for (int i = 0; i < rig.Count; i++)
+        {
+            if (rig[i] != null)
+            {
+                rig[i].mass = mass[i];
+            }
+        }
         objRB.Clear();
         initialMass.Clear();
-        coroutine = null;
     }
 
     float CubicBezier(float t)
