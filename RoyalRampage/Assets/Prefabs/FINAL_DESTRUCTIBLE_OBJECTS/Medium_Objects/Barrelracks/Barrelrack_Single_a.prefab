@@ -141,6 +141,7 @@ GameObject:
   - 4: {fileID: 4000010574165934}
   - 33: {fileID: 33000011661299352}
   - 23: {fileID: 23000011554239628}
+  - 65: {fileID: 65000012904010854}
   m_Layer: 0
   m_Name: '@Barrelrack_Single_a (single mesh)'
   m_TagString: Untagged
@@ -177,9 +178,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012310553738}
   - 114: {fileID: 114000010696085534}
-  - 65: {fileID: 65000011400180800}
   - 54: {fileID: 54000012386932158}
   - 114: {fileID: 114000013081838686}
+  - 65: {fileID: 65000011400180800}
   m_Layer: 0
   m_Name: Barrelrack_Single_a
   m_TagString: Destructable
@@ -214,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012879051490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26441145, y: 0.17084603, z: -0.22396627}
+  m_LocalPosition: {x: 0, y: 0.065887414, z: 0.32418904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -227,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011266473766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.36635214, y: 0.16638947, z: 0.08730941}
+  m_LocalPosition: {x: 0.3661903, y: 0.23600647, z: -0.23859538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -253,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011191830550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3663839, y: 0.16449717, z: 0.027640741}
+  m_LocalPosition: {x: 0, y: 0.065887414, z: -0.32418904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -266,7 +267,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011148668668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.37149057, y: 0.17107384, z: -0.26509622}
+  m_LocalPosition: {x: 0.36619037, y: 0.23600438, z: 0.1919552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -301,7 +302,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013463515358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16843969, y: 0.17107396, z: 0.19012453}
+  m_LocalPosition: {x: -0.3673862, y: 0.2362329, z: -0.1776838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -314,7 +315,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012135698988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07596657, y: 0.065887414, z: -0.32418907}
+  m_LocalPosition: {x: 0.36629242, y: 0.23396918, z: 0.4210357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -327,7 +328,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010303221692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3986134, y: 0.1708461, z: 0.27995154}
+  m_LocalPosition: {x: -0.3673695, y: 0.23634233, z: 0.36958426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -340,7 +341,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013555869748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2516741, y: 0.14724126, z: 0.37412718}
+  m_LocalPosition: {x: -0.36739194, y: 0.2255739, z: 0.23820552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -419,7 +420,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 8b9b25aa335059d49b23c2a3720dfb39, type: 2}
-  - {fileID: 2100000, guid: 4787d4123c8ff4b4486ca51ad45506b8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -479,7 +479,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 8b9b25aa335059d49b23c2a3720dfb39, type: 2}
-  - {fileID: 2100000, guid: 4787d4123c8ff4b4486ca51ad45506b8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -621,63 +620,63 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011266473766}
-  m_Mesh: {fileID: 43000011789966500, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000013074026794, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000011363471490
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013555869748}
-  m_Mesh: {fileID: 43000012510254164, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000012178211116, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000011612755598
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012135698988}
-  m_Mesh: {fileID: 43000011264328370, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000011800919780, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000011661299352
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013334686196}
-  m_Mesh: {fileID: 43000011481665006, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000010839823648, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000011790133718
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010303221692}
-  m_Mesh: {fileID: 4300000, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 4300000, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000012131062340
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013463515358}
-  m_Mesh: {fileID: 43000011287823542, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000013714552148, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000012611876600
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011148668668}
-  m_Mesh: {fileID: 43000013749926866, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000010763887074, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000013389392608
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012879051490}
-  m_Mesh: {fileID: 43000010005613372, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000012585816912, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!33 &33000013887929236
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011191830550}
-  m_Mesh: {fileID: 43000013366686226, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000011763496840, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!54 &54000010469495266
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -685,7 +684,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013555869748}
   serializedVersion: 2
-  m_Mass: 1.384975
+  m_Mass: 3.3559844
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -700,7 +699,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011266473766}
   serializedVersion: 2
-  m_Mass: 0.061775107
+  m_Mass: 4.731355
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -715,7 +714,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010303221692}
   serializedVersion: 2
-  m_Mass: 2.586927
+  m_Mass: 1.9264348
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -730,7 +729,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012135698988}
   serializedVersion: 2
-  m_Mass: 0.41302785
+  m_Mass: 0.8919354
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -760,7 +759,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011191830550}
   serializedVersion: 2
-  m_Mass: 0.09651944
+  m_Mass: 4.300973
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -775,7 +774,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012879051490}
   serializedVersion: 2
-  m_Mass: 8.346998
+  m_Mass: 4.300973
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -790,7 +789,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011148668668}
   serializedVersion: 2
-  m_Mass: 3.7338169
+  m_Mass: 4.6188436
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -805,7 +804,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013463515358}
   serializedVersion: 2
-  m_Mass: 13.37596
+  m_Mass: 5.8735
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -824,7 +823,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000011264328370, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000011800919780, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000010350496298
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -836,7 +835,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 4300000, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000010836443792
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -848,7 +847,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000010005613372, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000012585816912, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000011430144696
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -860,7 +859,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000013366686226, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000011763496840, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000012151799708
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -872,7 +871,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000013749926866, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000010763887074, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000012531880330
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -884,7 +883,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000011789966500, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000013074026794, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000013097433374
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -896,7 +895,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000011287823542, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000013714552148, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!64 &64000013673558306
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -908,7 +907,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 43000012510254164, guid: ae898ac02c264194bb31d543a7bf7532, type: 2}
+  m_Mesh: {fileID: 43000012178211116, guid: a0d7c8833e74f9247938a7cfc4c272f8, type: 2}
 --- !u!65 &65000011400180800
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -919,8 +918,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99689794, y: 0.21196362, z: 0.9294611}
-  m_Center: {x: 0, y: 0.10598181, z: -0.000033557415}
+  m_Size: {x: 0.99689794, y: 0.22537288, z: 0.9294611}
+  m_Center: {x: 0, y: 0.11268644, z: -0.000033557415}
+--- !u!65 &65000012904010854
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013334686196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99689794, y: 0.22537288, z: 0.9294611}
+  m_Center: {x: 0, y: 0.11268644, z: -0.000033557415}
 --- !u!114 &114000010647601160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -938,18 +949,18 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.0020591703
-  Volume: 0.0005700541
+  RelativeVolume: 0.15771183
+  Volume: 0.011743479
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.9510733, g: 0.20955804, b: 0.053078778, a: 0.7}
+  RandomMaterialColor: {r: 0.2415531, g: 0.53257126, b: 0.7588905, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
-  - chunk: {fileID: 114000010734407032}
-    fArea: 0.014767424
   - chunk: {fileID: 114000011084253202}
-    fArea: 0.013822845
-  m_v3InitialLocalPosition: {x: 0.36635214, y: 0.16638947, z: 0.08730941}
+    fArea: 0.2022514
+  - chunk: {fileID: 114000010979448776}
+    fArea: 0.011654768
+  m_v3InitialLocalPosition: {x: 0.3661903, y: 0.23600647, z: -0.23859538}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -966,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUIExpandMain: 1
   SourceObject: {fileID: 0}
-  GenerateIslands: 0
+  GenerateIslands: 1
   GenerateChunkConnectionInfo: 1
   StartStatic: 0
   ChunkConnectionMinArea: 0
@@ -1031,7 +1042,7 @@ MonoBehaviour:
   EventDetachedAnyCallMethod: 
   EventDetachedAnyCallGameObject: {fileID: 0}
   GUIExpandSupportPlanes: 0
-  RandomSeed: 924006
+  RandomSeed: 951197
   DecomposePreview: 0
   AlwaysComputeColliders: 1
   ShowChunkConnectionLines: 0
@@ -1075,18 +1086,16 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.0862309
-  Volume: 0.023871886
+  RelativeVolume: 0.06421449
+  Volume: 0.0047815153
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.62968427, g: 0.49220735, b: 0.123557106, a: 0.7}
+  RandomMaterialColor: {r: 0.552175, g: 0.3450921, b: 0.3966921, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
-  - chunk: {fileID: 114000010647601160}
-    fArea: 0.014767424
   - chunk: {fileID: 114000010874960246}
-    fArea: 0.050884794
-  m_v3InitialLocalPosition: {x: 0.3986134, y: 0.1708461, z: 0.27995154}
+    fArea: 0.05202267
+  m_v3InitialLocalPosition: {x: -0.3673695, y: 0.23634233, z: 0.36958426}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1107,18 +1116,20 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.04616583
-  Volume: 0.012780402
+  RelativeVolume: 0.11186615
+  Volume: 0.008329735
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.8464967, g: 0.16744174, b: 0.36369124, a: 0.7}
+  RandomMaterialColor: {r: 0.123119846, g: 0.7423926, b: 0.98856425, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
   - chunk: {fileID: 114000010734407032}
-    fArea: 0.050884794
+    fArea: 0.05202267
+  - chunk: {fileID: 114000012890121648}
+    fArea: 0.15336189
   - chunk: {fileID: 114000013703091630}
-    fArea: 0.021808282
-  m_v3InitialLocalPosition: {x: 0.2516741, y: 0.14724126, z: 0.37412718}
+    fArea: 0.0149011295
+  m_v3InitialLocalPosition: {x: -0.36739194, y: 0.2255739, z: 0.23820552}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1139,18 +1150,20 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.12446056
-  Volume: 0.034455266
+  RelativeVolume: 0.15396145
+  Volume: 0.01146422
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.76107407, g: 0.25388327, b: 0.5196802, a: 0.7}
+  RandomMaterialColor: {r: 0.31084386, g: 0.6002644, b: 0.391586, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
-  - chunk: {fileID: 114000013703091630}
-    fArea: 0.013922131
+  - chunk: {fileID: 114000010647601160}
+    fArea: 0.011654768
+  - chunk: {fileID: 114000012890121648}
+    fArea: 0.14838651
   - chunk: {fileID: 114000013325860180}
-    fArea: 0.0213363
-  m_v3InitialLocalPosition: {x: -0.37149057, y: 0.17107384, z: -0.26509622}
+    fArea: 0.048088092
+  m_v3InitialLocalPosition: {x: 0.36619037, y: 0.23600438, z: 0.1919552}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1166,23 +1179,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FracturedObjectSource: {fileID: 114000010696085534}
-  SplitSubMeshIndex: 1
+  SplitSubMeshIndex: -1
   DontDeleteAfterBroken: 0
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.0032173146
-  Volume: 0.0008906711
+  RelativeVolume: 0.14336577
+  Volume: 0.010675248
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.56122226, g: 0.91637444, b: 0.43696994, a: 0.7}
+  RandomMaterialColor: {r: 0.12927128, g: 0.6373283, b: 0.863111, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
   - chunk: {fileID: 114000010647601160}
-    fArea: 0.013822845
-  - chunk: {fileID: 114000012890121648}
-    fArea: 0.012815237
-  m_v3InitialLocalPosition: {x: 0.3663839, y: 0.16449717, z: 0.027640741}
+    fArea: 0.20225137
+  - chunk: {fileID: 114000013703091630}
+    fArea: 0.2036677
+  m_v3InitialLocalPosition: {x: 0, y: 0.065887414, z: -0.32418904}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1198,23 +1211,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FracturedObjectSource: {fileID: 114000010696085534}
-  SplitSubMeshIndex: 1
+  SplitSubMeshIndex: -1
   DontDeleteAfterBroken: 0
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.2782333
-  Volume: 0.07702522
+  RelativeVolume: 0.14336577
+  Volume: 0.010675248
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.77452826, g: 0.73903257, b: 0.058432467, a: 0.7}
+  RandomMaterialColor: {r: 0.5796537, g: 0.2684826, b: 0.5451514, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
-  - chunk: {fileID: 114000011084253202}
-    fArea: 0.012815237
-  - chunk: {fileID: 114000013325860180}
-    fArea: 0.023994403
-  m_v3InitialLocalPosition: {x: 0.26441145, y: 0.17084603, z: -0.22396627}
+  - chunk: {fileID: 114000010874960246}
+    fArea: 0.15336193
+  - chunk: {fileID: 114000010979448776}
+    fArea: 0.14838648
+  m_v3InitialLocalPosition: {x: 0, y: 0.065887414, z: 0.32418904}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1258,18 +1271,16 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.013767595
-  Volume: 0.0038113773
+  RelativeVolume: 0.02973118
+  Volume: 0.002213832
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.84063995, g: 0.9989687, b: 0.67266876, a: 0.7}
+  RandomMaterialColor: {r: 0.0028462412, g: 0.23467293, b: 0.6484069, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
-  - chunk: {fileID: 114000012890121648}
-    fArea: 0.023994403
   - chunk: {fileID: 114000010979448776}
-    fArea: 0.0213363
-  m_v3InitialLocalPosition: {x: -0.07596657, y: 0.065887414, z: -0.32418907}
+    fArea: 0.048088092
+  m_v3InitialLocalPosition: {x: 0.36629242, y: 0.23396918, z: 0.4210357}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
@@ -1290,18 +1301,18 @@ MonoBehaviour:
   IsSupportChunk: 0
   IsNonSupportedChunk: 1
   IsDetachedChunk: 0
-  RelativeVolume: 0.44586533
-  Volume: 0.123431936
+  RelativeVolume: 0.19578333
+  Volume: 0.014578345
   HasConcaveCollider: 0
   PreviewDecompositionValue: 0
-  RandomMaterialColor: {r: 0.75073624, g: 0.38259238, b: 0.8917793, a: 0.7}
+  RandomMaterialColor: {r: 0.9694787, g: 0.4765274, b: 0.05366517, a: 0.7}
   Visited: 1
   ListAdjacentChunks:
+  - chunk: {fileID: 114000011084253202}
+    fArea: 0.2036677
   - chunk: {fileID: 114000010874960246}
-    fArea: 0.021808282
-  - chunk: {fileID: 114000010979448776}
-    fArea: 0.013922131
-  m_v3InitialLocalPosition: {x: -0.16843969, y: 0.17107396, z: 0.19012453}
+    fArea: 0.0149011295
+  m_v3InitialLocalPosition: {x: -0.3673862, y: 0.2362329, z: -0.1776838}
   m_qInitialLocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_v3InitialLocalScale: {x: 1, y: 1, z: 1}
   m_bInitialLocalRotScaleInitialized: 1
