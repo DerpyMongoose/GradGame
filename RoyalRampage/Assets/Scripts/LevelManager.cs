@@ -11,8 +11,7 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
-    public float MultiplierTime;
-    public int amountOfObjects;
+    private int amountOfObjects;
     public Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
@@ -42,8 +41,6 @@ public class LevelManager : MonoBehaviour {
     GameObject IntroTapPanel;
     private GameObject continueButton;
     public int multiplier;
-    private float countMultiTime;
-    private int countObjects;
     int tempMulti;
 
     void OnEnable() {
@@ -60,10 +57,9 @@ public class LevelManager : MonoBehaviour {
 
     void Start() {
         multiplier = 1;
+        ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
-        countMultiTime = 0;
-        amountOfObjects = 5;
-        MultiplierTime = 5;
+        amountOfObjects = 1;
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
         scoreText.text = score.ToString(); // in game score
         minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -92,20 +88,20 @@ public class LevelManager : MonoBehaviour {
     private void IncreaseScore(GameObject destructedObj) {
         if (GameManager.instance.canPlayerDestroy) {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
-            countObjects++;
             scoreText.text = score.ToString(); // in game score
-            countMultiTime = 0;
-            if (countObjects == amountOfObjects) {
+            while(amountOfObjects <= ObjectManagerV2.instance.countObjects)
+            {
                 //Timer shouldn't change during combo.
+                ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects-ObjectManagerV2.instance.countObjects);
                 multiplier++;
-                countObjects = 0;
+                amountOfObjects++;
             }
             score += points * multiplier;
             scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
             GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
-            GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
+            //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
 
@@ -133,24 +129,27 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Update() {
+        print(ObjectManagerV2.instance.countObjects);
 
-        countMultiTime += Time.deltaTime;
+        ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
         //print(countMultiTime);
-        if (countMultiTime > MultiplierTime) {
+        if(ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer){
             // print("I am in");
             MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
             multiplier = 1;
-            countObjects = 0;
+            amountOfObjects = 1;
+            ObjectManagerV2.instance.countObjects = 0;
             tempMulti = 1;
             t = 0f;
+            ObjectManagerV2.instance.countMultiTime = 0;
         }
 
         if (score >= scoreToCompleteLevel) {
             continueButton.SetActive(true);
         } else continueButton.SetActive(false);
 
-        if (countMultiTime < MultiplierTime) {
-            t += Time.deltaTime / MultiplierTime;
+        if (ObjectManagerV2.instance.countMultiTime < ObjectManagerV2.instance.multiplierTimer) {
+            t += Time.deltaTime / ObjectManagerV2.instance.multiplierTimer;
             MultiplierText.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(0.5f, 0.5f, 0.5f), t);
         }
 

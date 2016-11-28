@@ -62,7 +62,6 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        rubblePrefab = ObjectManagerV2.instance.rubblePrefab;
         switch (objMaterial)
         {
             case DestructableMaterial.GLASS:
@@ -168,14 +167,19 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
         if (hit)
         {
             CheckDamage();
             CheckVelocity();
         }
+
+    }
+
+
+    void Update()
+    {
 
         if (lifted)
         {
@@ -288,8 +292,20 @@ public class ObjectBehavior : MonoBehaviour
                 {
                     col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
+
+                ///////////////////////////////////////////////////////////////BOTH OBJECTS ARE TAKING DAMAGE///////////////////////////////////////////
                 life -= ObjectManagerV2.instance.objDamage;
                 col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                if(life <= 0)
+                {
+                    ObjectManagerV2.instance.countObjects++;
+                    ObjectManagerV2.instance.countMultiTime = 0;
+                }
+                if(col.gameObject.GetComponent<ObjectBehavior>().life <= 0)
+                {
+                    ObjectManagerV2.instance.countObjects++;
+                    ObjectManagerV2.instance.countMultiTime = 0;
+                }
             }
 
             if (gameObject.tag != "UniqueObjs")

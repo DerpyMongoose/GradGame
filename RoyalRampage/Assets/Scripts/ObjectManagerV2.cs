@@ -11,6 +11,7 @@ public class ObjectManagerV2 : MonoBehaviour
 
     [Header("Mixed")]
     public float colImpact;
+    public float multiplierTimer;
 
     [Header("Damages")]
     public int dashDamage;
@@ -18,17 +19,19 @@ public class ObjectManagerV2 : MonoBehaviour
     public int wallDamage;
     public int objDamage;
 
-    [Header("rubble after destruction")]
-    public GameObject rubblePrefab;
-
     [HideInInspector]
     public Vector3 direction;
+    [HideInInspector]
+    public int countObjects;
+    [HideInInspector]
+    public float countMultiTime;
     //[HideInInspector]
     //public int maxScore = 0;
 
     void Awake()
     {
         instance = this;
+        countObjects = 0;
     }
 
     [HideInInspector]
