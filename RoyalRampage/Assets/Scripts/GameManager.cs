@@ -42,6 +42,9 @@ public class GameManager
     public bool isPaused = false;
     public bool isInstructed = false;
 
+	public float music_volume = 0.5f;
+	public float sfx_volume = 0.75f;
+
     //getters:
     public static GameManager instance
     {
@@ -225,8 +228,6 @@ public class GameManager
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
-    public event GameAction OnObjectiveAnnounced;
-    public event GameAction OnObjectiveCompleted;
     public event GameAction OnPointsCountingStart;
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
@@ -281,16 +282,6 @@ public class GameManager
     {
         if (OnScoreScreenOpen != null)
             OnScoreScreenOpen();
-    }
-    public void announcedObjective()
-    {
-        if (OnObjectiveAnnounced != null)
-            OnObjectiveAnnounced();
-    }
-    public void completedObjective()
-    {
-        if (OnObjectiveCompleted != null)
-            OnObjectiveCompleted();
     }
     public void startCountingPoints()
     {

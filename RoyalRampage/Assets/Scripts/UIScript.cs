@@ -55,7 +55,9 @@ public class UIScript : MonoBehaviour {
             GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
             break;
 
-            case GameManager.Scene.PLAY_MENU:
+		case GameManager.Scene.PLAY_MENU:
+			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
+			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
             //update level on play icon
@@ -86,7 +88,8 @@ public class UIScript : MonoBehaviour {
             break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
-
+			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
+			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
             //update level on play icon
@@ -120,7 +123,10 @@ public class UIScript : MonoBehaviour {
             GameManager.instance.Loading();
             break;
 
-            case GameManager.Scene.GAME:
+		case GameManager.Scene.GAME:
+			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
+			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
+
             help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
             skip_Button = GameObject.Find("skip");
             pause_menu = GameObject.FindGameObjectWithTag("PausePanel");

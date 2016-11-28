@@ -1,5 +1,6 @@
 ﻿ using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
 
@@ -44,9 +45,8 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string timerTick;
 	[SerializeField]
-	private string pointsRewarded, 
-		objectiveAnnounced,
-		objectiveCompleted;
+	private string pointsRewarded,
+		tutorialCheckMark;
 
 	// extra
 	private bool ambPlaying = false;
@@ -193,20 +193,20 @@ public class AudioManager : MonoBehaviour {
 
     }
 
-	void AnnouncingObjective(){
-		PlaySound(objectiveAnnounced, gameObject);
-	}
-
-	void CompletedObjective(){
-		PlaySound(objectiveCompleted, gameObject);
+	void TutorialCheckMark(){
+		PlaySound(tutorialCheckMark, gameObject);
 	}
 
 	//**********volume ********
 	void UpdateMusicVolume(float volume){
 		print ("music " + volume);
+		AkSoundEngine.SetRTPCValue ("Music_Volume_Slider", volume*100f);
+		GameManager.instance.music_volume = volume;
 	}
 	void UpdateSFXVolume(float volume){
 		print ("sfx " + volume);
+		AkSoundEngine.SetRTPCValue ("Sound_Effects_Volume_Slider", volume*100f);
+		GameManager.instance.sfx_volume = volume;
 	}
 
 	//****** play sound ****************
@@ -222,6 +222,7 @@ public class AudioManager : MonoBehaviour {
 	//Subscribing
 
 	void OnEnable(){
+
 		//player sound
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
@@ -244,8 +245,6 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen += ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed += RewardingPoints;
         GameManager.instance.OnTimerUpdate += UpdateTickingTimer;
-		GameManager.instance.OnObjectiveAnnounced += AnnouncingObjective;
-		GameManager.instance.OnObjectiveCompleted += CompletedObjective;
 		GameManager.instance.OnPointsCountingStart += CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange += UpdateMusicVolume;
@@ -276,8 +275,6 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen -= ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed -= RewardingPoints;
         GameManager.instance.OnTimerUpdate -= UpdateTickingTimer;
-		GameManager.instance.OnObjectiveAnnounced -= AnnouncingObjective;
-		GameManager.instance.OnObjectiveCompleted -= CompletedObjective;
 		GameManager.instance.OnPointsCountingStart -= CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange -= UpdateMusicVolume;
