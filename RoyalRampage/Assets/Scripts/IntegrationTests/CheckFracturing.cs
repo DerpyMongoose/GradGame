@@ -9,7 +9,7 @@ public class CheckFracturing : MonoBehaviour {
 	void Start () {
 		fractured = GameObject.FindObjectsOfType<FracturedObject>();
 		num_of_fractured_objects = fractured.Length;
-		Debug.Log (fractured.Length);
+		print("number of small fractured objects: " + fractured.Length);
 
 		if(num_of_fractured_objects > 0)
 			GetComponent<CheckFracturing> ().enabled = false;
