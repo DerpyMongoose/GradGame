@@ -9,7 +9,7 @@ public class PlayerStates : MonoBehaviour
 {
 
     [HideInInspector]
-    public static bool imInSlowMotion, hitObject, swiped;
+    public static bool imInSlowMotion, swiped;
     [Header("Forces")]
     public float moveForce;
     public float torgueForce;
@@ -60,7 +60,6 @@ public class PlayerStates : MonoBehaviour
 
     void Start()
     {
-        hitObject = false;
         state = PlayerState.READY;
     }
 
@@ -88,6 +87,7 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
+                    print("YO");
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
@@ -95,8 +95,7 @@ public class PlayerStates : MonoBehaviour
                 }
                 if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
                 {
-                    print("YO");
-                    Startlevel();
+                    Startlevel();                   
                 }
                 if (Input.GetKey(KeyCode.R))
                 {
@@ -197,18 +196,6 @@ public class PlayerStates : MonoBehaviour
         state = PlayerState.ENDING;
         GameManager.instance.canPlayerDestroy = false;
         GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIMES_UP);  // FOR AUDIO
-    }
-
-    void OnCollisionEnter(Collision hit)
-    {
-        if (hit.transform.tag == "Destructable")
-        {
-            if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
-            {
-                SwipeHalf.startTutTimer = true;
-            }
-            else hitObject = true;
-        }
     }
 
     void OnEnable()
