@@ -22,6 +22,7 @@ public class PlayerStates : MonoBehaviour
     public float timeForCircle;
     public float SameTapTime;
     public float gravityTimer;
+    public float resetMassTimer;
     [Header("Radius")]
     //public float dashRadius;
     public float swirlRadius;
@@ -67,7 +68,7 @@ public class PlayerStates : MonoBehaviour
     {
         //DontDestroyOnLoad (gameObject);
         //update timer
-        timerText = GameObject.Find("TimeLeftText").GetComponent<Text>();
+        timerText = GameObject.FindGameObjectWithTag("TimeLeftText").GetComponent<Text>();
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
         GameManager.instance.canPlayerMove = true;
