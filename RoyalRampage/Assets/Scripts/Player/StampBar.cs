@@ -26,8 +26,8 @@ public class StampBar : MonoBehaviour
 
 
 	void Awake(){
-		slider = GameObject.Find ("RageSlider").GetComponent<Slider>();
-		fillColor = GameObject.Find ("Fill").GetComponent<Image>();
+		slider = GameObject.FindGameObjectWithTag ("rage_slider").GetComponent<Slider>();
+		fillColor = GameObject.FindGameObjectWithTag ("rage_fill").GetComponent<Image>();
 	}
 
     void Start()
