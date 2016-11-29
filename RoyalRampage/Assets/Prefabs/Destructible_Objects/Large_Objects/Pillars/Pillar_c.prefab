@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 1000010837842954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.006, y: 0.006, z: 0.006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010486204530}
@@ -352,8 +352,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
