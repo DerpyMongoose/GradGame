@@ -4,15 +4,16 @@ using UnityEngine.UI;
 
 public class StampBar : MonoBehaviour
 {
-
-    private float fillBar;
+    [HideInInspector]
+    public float fillBar;
     private bool ready, gradually;
     private Color initialColor;
     private float countSecond;
     private ColorBlock sliderColors;
     private float timer;
 
-    private Slider slider;
+    [HideInInspector]
+    public Slider slider;
     private Image fillColor;
     //public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
@@ -24,26 +25,27 @@ public class StampBar : MonoBehaviour
     [HideInInspector]
     public float timeToLowRage;
 
-
 	void Awake(){
 		slider = GameObject.FindGameObjectWithTag ("rage_slider").GetComponent<Slider>();
 		fillColor = GameObject.FindGameObjectWithTag ("rage_fill").GetComponent<Image>();
 	}
-
     void Start()
     {
-		slider.value = 0f;
-        fillBar = 0f;
-        initialColor = fillColor.color;
-        increaseFill = true;
-        countSecond = 0f;
+        if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+        {
+            slider.value = 0f;
+            fillBar = 0f;
+            initialColor = fillColor.color;
+            increaseFill = true;
+            countSecond = 0f;
+        }
     }
 
 
     void Update()
     {
 
-        if (increaseFill)
+        if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
             fillBar = ((tempScore / GetComponent<PlayerStates>().rageScore) * 10) / 10;
             slider.value = fillBar;
@@ -54,7 +56,7 @@ public class StampBar : MonoBehaviour
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
             tempScore = GetComponent<PlayerStates>().rageScore;
-            if (!ready)
+            if (ready == false)
             {
                 //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
@@ -64,12 +66,14 @@ public class StampBar : MonoBehaviour
             //if (PhysicalMovement.intoAir)
             if (SwipeHalf.intoAir)
             {
-                tempScore = 0f;
-                fillBar = 0f;
-                gradually = true;
-                //slider.GetComponent<Image>().fillAmount = fillBar;
-                fillColor.color = initialColor;
-                //increaseFill = false;
+                if (GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
+                {
+                    tempScore = 0f;
+                    fillBar = 0f;
+                    gradually = true;
+                    //slider.GetComponent<Image>().fillAmount = fillBar;
+                    fillColor.color = initialColor;
+                }
                 ready = false;
                 //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
@@ -109,3 +113,4 @@ public class StampBar : MonoBehaviour
         //}
     }
 }
+

@@ -52,11 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9320393c3889a094f9c1e7792bd79037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneToAnother: 2000
+  canDamage: 0
+  isGrounded: 0
+  oneToAnother: 4000
   colImpact: 0.2
   multiplierTimer: 5
   dashDamage: 50
-  swirlDamage: 15
+  swirlDamage: 16
   wallDamage: 80
   objDamage: 200
   direction: {x: 0, y: 0, z: 0}

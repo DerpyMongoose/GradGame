@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ObjectBehavior : MonoBehaviour
 {
-    private GameObject rubblePrefab;
     [HideInInspector]
-    public int life, initialLife;
-    private int rubbleAmount;
+    public int life;
 
     public string soundSwitch; // FOR AUDIO
 
@@ -23,11 +22,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public bool lifted;
 
-    private bool readyToCheck;
-
     public bool hasLanded = true;
-
-    private float checkHeight, initialMass;
 
     public int score;
 
@@ -145,7 +140,6 @@ public class ObjectBehavior : MonoBehaviour
                 break;
 
         }
-        initialLife = life;
         objRB = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         //particleSys = GetComponent<ParticleSystem>();
@@ -169,11 +163,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (hit)
-        {
             CheckDamage();
             CheckVelocity();
-        }
 
     }
 
@@ -207,7 +198,10 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-            SpawnPoints();
+            if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+            {
+                SpawnPoints();
+            }
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
@@ -221,7 +215,7 @@ public class ObjectBehavior : MonoBehaviour
                 GetComponent<FracturedObject>().CollapseChunks();
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
-                if (currencySpawnChance > 0.0f)
+                if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
                 }
@@ -230,7 +224,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
-                if (currencySpawnChance > 0.0f)
+                if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
                 }
@@ -248,7 +242,8 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    void SpawnPoints () {
+    void SpawnPoints ()
+    {
         GameObject obj = PointObjectPool.instance.FindObjectInPool();
 
         obj.transform.position = transform.position + Vector3.up;
@@ -292,10 +287,12 @@ public class ObjectBehavior : MonoBehaviour
                 {
                     col.gameObject.GetComponent<Rigidbody>().AddForce(ObjectManagerV2.instance.direction.normalized * ObjectManagerV2.instance.oneToAnother, ForceMode.Impulse);
                 }
+                if (ObjectManagerV2.instance.canDamage == true)
+                {
 
                 ///////////////////////////////////////////////////////////////BOTH OBJECTS ARE TAKING DAMAGE///////////////////////////////////////////
-                life -= ObjectManagerV2.instance.objDamage;
-                col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                    life -= ObjectManagerV2.instance.objDamage;
+                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
                 if(life <= 0)
                 {
                     ObjectManagerV2.instance.countObjects++;
@@ -306,22 +303,32 @@ public class ObjectBehavior : MonoBehaviour
                     ObjectManagerV2.instance.countObjects++;
                     ObjectManagerV2.instance.countMultiTime = 0;
                 }
+                }
             }
 
             if (gameObject.tag != "UniqueObjs")
             {
-                if (col.collider.tag == "Wall")
+                if (ObjectManagerV2.instance.canDamage == true)
                 {
-                    //GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    life -= ObjectManagerV2.instance.wallDamage;
+                    if (col.collider.tag == "Wall")
+                    {
+
+                        //GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        life -= ObjectManagerV2.instance.wallDamage;
+                    }
                 }
 
                 //********** 4 AUDIO and ANIMATION
 
                 if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
+
                     if (hasLanded == false)
                     {
+                        if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
+                        {
+                            ObjectManagerV2.instance.isGrounded = true;
+                        }
                         GameManager.instance.objectLanding(gameObject);
                     }
                     hasLanded = true;

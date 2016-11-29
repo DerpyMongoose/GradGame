@@ -13,9 +13,9 @@ public class GameManager
     private GameObject _player;
     private LevelManager _levelManager;
     private AudioManager _audioManager;
-	private AnimationManager _animationManager;
+    private AnimationManager _animationManager;
 
-	private static string[] GAME_SCENES = {"GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
+    private static string[] GAME_SCENES = { "Tutorial", "GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -28,10 +28,15 @@ public class GameManager
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene
     {
-        SPLASH, ANIMATIC, LOADING, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
+        SPLASH, ANIMATIC, LOADING, TUTORIAL, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
     }
-    private Scene currentScene = Scene.SPLASH;
+    public Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.PLAY_MENU;
+    public enum Tutorial
+    {
+        MOVEMENT, ATTACK, CHAIN, SWIRL, STOMP, DEFAULT
+    }
+    public Tutorial tutorial = Tutorial.MOVEMENT;
     public bool levelWon;
 
     public Sprite menu_bg_sprite;
@@ -90,21 +95,25 @@ public class GameManager
 
     }
 
-	public AnimationManager animationManager
-	{
-		get
-		{
-			if (_animationManager == null)
-				_animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
-			return _animationManager;
-		}
+    public AnimationManager animationManager
+    {
+        get
+        {
+            if (_animationManager == null)
+                _animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
+            return _animationManager;
+        }
 
-	}
+    }
 
     //scene management
     public Scene CurrentScene()
     {
         return currentScene;
+    }
+    public Tutorial TutorialState()
+    {
+        return tutorial;
     }
 
     private void SetPreviousScene()
@@ -125,18 +134,34 @@ public class GameManager
 
     public void Loading()
     {
-        SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
-        Time.timeScale = 1;
-        currentScene = Scene.GAME;
+        if (currentLevel == 1)
+        {
+            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
+            Time.timeScale = 1;
+            currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
+            Time.timeScale = 1;
+            currentScene = Scene.GAME;
+        }
     }
 
     public void Loading(int level)
     {
-        SceneManager.LoadSceneAsync(GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
-        Time.timeScale = 1;
+        Debug.Log(currentLevel);
         currentScene = Scene.GAME;
+        if (currentLevel == 1)
+        {
+            currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
+        }
+        SceneManager.LoadSceneAsync(GAME_SCENES[level]); //UPDATE FOR MORE LEVELS
+        Time.timeScale = 1;        
     }
-    
+
     public void StartLevel(int level)
     {
         SceneManager.LoadScene("Loading"); //UPDATE FOR MORE LEVELS
@@ -178,7 +203,7 @@ public class GameManager
 
     public void BackToGame()
     {
-        SceneManager.LoadScene("Loading"); 
+        SceneManager.LoadScene("Loading");
         Time.timeScale = 1;
         currentScene = Scene.LOADING;
     }
