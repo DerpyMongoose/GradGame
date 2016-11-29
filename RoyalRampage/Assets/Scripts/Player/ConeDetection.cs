@@ -9,9 +9,9 @@ public class ConeDetection : MonoBehaviour
     {
         if (col.tag == "Destructable")
         {
-            var decreaseHp = true;
             if (PlayerStates.swiped)
             {
+                var decreaseHp = true;
                 var script = GetComponentInParent<SwipeHalf>();
                 if (script.coroutine != null)
                 {

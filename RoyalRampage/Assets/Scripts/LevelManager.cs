@@ -57,6 +57,8 @@ public class LevelManager : MonoBehaviour
     public bool spawnedObject = false;
     [Header("Tutorial Object")]
     public GameObject tutorialPrefab;
+    public GameObject tutorialPrefab2;
+    public GameObject tutorialPrefab3;
     private ObjectBehavior objBehavior;
 
     GameObject tutorialBarrel;
@@ -66,7 +68,6 @@ public class LevelManager : MonoBehaviour
     GameObject tutorialBarrel5;
     GameObject tutorialBarrel6;
     bool smashed;
-    bool smashed2;
     bool completed;
     bool startTimer;
     float timer, timer2, timer3;
@@ -93,7 +94,6 @@ public class LevelManager : MonoBehaviour
         completed = false;
         tutorialState = 0;
         smashed = false;
-        smashed2 = false;
         startTimer = false;
         timer = 0;
         timer2 = 0;
@@ -283,11 +283,13 @@ public class LevelManager : MonoBehaviour
                             guideText.text = "Swipe the right side of the screen to hit the barrel";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
+                            smashed = false;
                         }
                         if (tutorialBarrel != null && (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true))
                         {
                             //COLORED PANEL FOR COMMUNICATING ATTACK
                             //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
+                            print(tutorialBarrel.GetComponent<ObjectBehavior>().life);
                             smashed = true;
                             guideText.text = "You're amazing!!!";
                             //timer += Time.deltaTime;
@@ -296,7 +298,6 @@ public class LevelManager : MonoBehaviour
                         if (tutorialBarrel == null)
                         {
                             timer += Time.deltaTime;
-                            print(timer);
                             smashed = false;
                             if (timer > 1f)
                             {
@@ -309,17 +310,17 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == true)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 5)), Quaternion.identity);
-                            initialHP = tutorialBarrel.GetComponent<ObjectBehavior>().life;
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 5)), Quaternion.identity);
                             guideText.text = "Hit the barrel with the barrel";
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
-
+                            completed = false;
                             spawnedObject = false;
                         }
 
                         if (tutorialBarrel2 == null)
                         {
                             guideText.text = "Bullseye!";
+                            completed = true;
                             timer += Time.deltaTime;
                             if (timer > 1f)
                             {
@@ -329,7 +330,7 @@ public class LevelManager : MonoBehaviour
                                 timer = 0;
                             }
                         }
-                        else if (tutorialBarrel == null)
+                        else if (tutorialBarrel == null && completed == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                         }
@@ -337,13 +338,12 @@ public class LevelManager : MonoBehaviour
                     case GameManager.Tutorial.SWIRL:
                         if (spawnedObject == false)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
-                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
-
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
+                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
+                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = "Draw a circle rapidly on the right side to spin attack";
@@ -394,10 +394,11 @@ public class LevelManager : MonoBehaviour
                             tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
                             tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
                             tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            completed = false;
                             ObjectManagerV2.instance.canDamage = false;
 
                             rageMeter.SetActive(true);
-                            GameManager.instance.player.GetComponent<StampBar>().reachScore = 0;
+                            GameManager.instance.player.GetComponent<PlayerStates>().rageScore = 0;
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
@@ -419,7 +420,7 @@ public class LevelManager : MonoBehaviour
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
                                 guideText.text = "Try Again. Tap on both sides at the same time to stomp";
-                                GameManager.instance.player.GetComponent<StampBar>().reachScore = 0;
+                                GameManager.instance.player.GetComponent<PlayerStates>().rageScore = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
                                 ObjectManagerV2.instance.isGrounded = false;

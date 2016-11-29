@@ -163,11 +163,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (hit)
-        {
             CheckDamage();
             CheckVelocity();
-        }
 
     }
 

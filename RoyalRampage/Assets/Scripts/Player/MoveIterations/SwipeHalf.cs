@@ -246,7 +246,7 @@ public class SwipeHalf : MonoBehaviour
                     stompTut = true;
                     if(GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP)
                     {
-                        GetComponent<StampBar>().reachScore = 50;
+                        GetComponent<PlayerStates>().rageScore = 50;
                         GetComponent<StampBar>().slider.value = 0f;
                     }
                     PlayerStates.imInSlowMotion = true;

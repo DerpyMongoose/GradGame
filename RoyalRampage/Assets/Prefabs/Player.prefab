@@ -28670,6 +28670,8 @@ MonoBehaviour:
   objRB: []
   initialMass: []
   tempColliders: []
+  swirlTut: 0
+  stompTut: 0
 --- !u!114 &114000010355984574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28715,6 +28717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0114e592fc91a7f43821a1a4312cb1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fillBar: 0
+  slider: {fileID: 0}
   tempScore: 0
   timeToLowRage: 0
 --- !u!114 &114000011797275670
@@ -28765,8 +28769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 125
   torgueForce: 1
-  hitForce: 1000
-  swirlForce: 700
+  hitForce: 2000
+  swirlForce: 1500
   liftForce: 2500
   maxVelocity: 10
   timeForSwipe: 0.2
@@ -28774,8 +28778,8 @@ MonoBehaviour:
   SameTapTime: 0.1
   gravityTimer: 3
   resetMassTimer: 0.5
-  swirlRadius: 1
-  liftRadius: 3
+  swirlRadius: 2
+  liftRadius: 2
   distSwipe: 1
   maxDistSwipe: 10
   rotationSpeed: 4

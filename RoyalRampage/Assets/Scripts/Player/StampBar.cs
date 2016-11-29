@@ -12,7 +12,8 @@ public class StampBar : MonoBehaviour
     private ColorBlock sliderColors;
     private float timer;
 
-    private Slider slider;
+    [HideInInspector]
+    public Slider slider;
     private Image fillColor;
     //public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
