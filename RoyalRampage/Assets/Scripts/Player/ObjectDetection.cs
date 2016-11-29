@@ -11,16 +11,16 @@ public class ObjectDetection : MonoBehaviour {
             var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
             if (obj)
             {
-                GetComponent<Rigidbody>().Sleep();               
-                //StartCoroutine(TweakRigibody());
+                //GetComponent<Rigidbody>().Sleep();               
+                StartCoroutine(TweakRigibody());
             }
         }
     }
 
-    //IEnumerator TweakRigibody()
-    //{
-    //    GetComponent<Rigidbody>().isKinematic = true;
-    //    yield return new WaitForSeconds(Time.deltaTime);
-    //    GetComponent<Rigidbody>().isKinematic = false;
-    //}
+    IEnumerator TweakRigibody()
+    {
+        GetComponent<Rigidbody>().isKinematic = true;
+        yield return new WaitForSeconds(Time.deltaTime);
+        GetComponent<Rigidbody>().isKinematic = false;
+    }
 }
