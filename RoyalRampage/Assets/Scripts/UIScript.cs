@@ -55,6 +55,10 @@ public class UIScript : MonoBehaviour {
             GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
             break;
 
+		case GameManager.Scene.ANIMATIC:
+			GameManager.instance.changeMusicState(AudioManager.IN_INTRO_CUTSCENE);
+			break;
+
 		case GameManager.Scene.PLAY_MENU:
 			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
 			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
@@ -121,11 +125,13 @@ public class UIScript : MonoBehaviour {
 
             case GameManager.Scene.LOADING:
             GameManager.instance.Loading();
+			GameManager.instance.changeMusicState(AudioManager.IN_LOADINGSCREEN);
             break;
 
 		case GameManager.Scene.GAME:
 			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
 			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
+			GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
 
             help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
             skip_Button = GameObject.Find("skip");
@@ -292,6 +298,7 @@ public class UIScript : MonoBehaviour {
         PlayMenuButtonSound();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
         print("pausing");
+		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
         pause_menu.SetActive(true);
         behindPanelButton.SetActive(true);
@@ -307,6 +314,7 @@ public class UIScript : MonoBehaviour {
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
         print("unpausing");
+		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
 
     public void RestartGame() {

@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
     private int amountOfObjects;
-    public Text MultiplierText;
+    private Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
     [Range(0, 1)]
@@ -56,6 +56,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Start() {
+		MultiplierText = GameObject.Find ("Multiplier").GetComponent<Text> ();
         multiplier = 1;
         ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
@@ -82,7 +83,7 @@ public class LevelManager : MonoBehaviour {
         continueButton.SetActive(false);
         InGamePanel.SetActive(false);
         // GameManager.instance.levelLoad(); // FOR AUDIO
-        print("level set up");
+        //print("level set up");
     }
 
     private void IncreaseScore(GameObject destructedObj) {
@@ -129,7 +130,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Update() {
-        print(ObjectManagerV2.instance.countObjects);
+        //print(ObjectManagerV2.instance.countObjects);
 
         ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
         //print(countMultiTime);

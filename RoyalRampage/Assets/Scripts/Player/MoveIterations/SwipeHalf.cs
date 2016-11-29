@@ -225,6 +225,7 @@ public class SwipeHalf : MonoBehaviour
 				}
 				// SOUND AND ANIMATION FOR STOMP
 				GameManager.instance.playerStomp();
+				GameManager.instance.changeMusicState(AudioManager.IN_STOMP);  // FOR AUDIO
             }
         }
 
@@ -331,6 +332,7 @@ public class SwipeHalf : MonoBehaviour
         //initialMass.Clear();   We need to clear the lists after we changed the mass back to normal and that happens after a short period of time.
         StartCoroutine(InitializeMass(rig, mass));
         coroutine = null;
+		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO, reverse from stomp
     }
 
     IEnumerator InitializeMass(List<Rigidbody> rig, List<float> mass)

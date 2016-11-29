@@ -12,8 +12,8 @@ public class StampBar : MonoBehaviour
     private ColorBlock sliderColors;
     private float timer;
 
-    public Slider slider;
-    public Image fillColor;
+    private Slider slider;
+    private Image fillColor;
     public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
 
@@ -25,10 +25,14 @@ public class StampBar : MonoBehaviour
     public float timeToLowRage;
 
 
+	void Awake(){
+		slider = GameObject.Find ("RageSlider").GetComponent<Slider>();
+		fillColor = GameObject.Find ("Fill").GetComponent<Image>();
+	}
 
     void Start()
     {
-        slider.value = 0f;
+		slider.value = 0f;
         fillBar = 0f;
         initialColor = fillColor.color;
         increaseFill = true;
