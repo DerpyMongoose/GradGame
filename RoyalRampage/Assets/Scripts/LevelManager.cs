@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
     private int amountOfObjects;
-    public Text MultiplierText;
+    private Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
     [Range(0, 1)]
@@ -89,6 +89,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+		MultiplierText = GameObject.Find ("Multiplier").GetComponent<Text> ();
         completed = false;
         tutorialState = 0;
         smashed = false;

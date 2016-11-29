@@ -12,9 +12,9 @@ public class StampBar : MonoBehaviour
     private ColorBlock sliderColors;
     private float timer;
 
-    public Slider slider;
-    public Image fillColor;
-    public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
+    private Slider slider;
+    private Image fillColor;
+    //public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
 
     [HideInInspector]
@@ -24,6 +24,10 @@ public class StampBar : MonoBehaviour
     [HideInInspector]
     public float timeToLowRage;
 
+	void Awake(){
+		slider = GameObject.FindGameObjectWithTag ("rage_slider").GetComponent<Slider>();
+		fillColor = GameObject.FindGameObjectWithTag ("rage_fill").GetComponent<Image>();
+	}
     void Start()
     {
         if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
@@ -42,15 +46,15 @@ public class StampBar : MonoBehaviour
 
         if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
-            fillBar = ((tempScore / reachScore) * 10) / 10;
+            fillBar = ((tempScore / GetComponent<PlayerStates>().rageScore) * 10) / 10;
             slider.value = fillBar;
         }
 
-        if (tempScore >= reachScore)
+        if (tempScore >= GetComponent<PlayerStates>().rageScore)
         {
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
-            tempScore = reachScore;
+            tempScore = GetComponent<PlayerStates>().rageScore;
             if (ready == false)
             {
                 //PhysicalMovement.ableToLift = true;

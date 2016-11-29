@@ -95,10 +95,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014246396602}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.15, z: 1.15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012136787250}
   - {fileID: 4000012587856522}
@@ -201,8 +201,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4099274, y: 0.8303131, z: 0.8895295}
-  m_Center: {x: 0, y: 0.41706085, z: 0.022226334}
+  m_Size: {x: 0.40992737, y: 0.6428267, z: 0.8232146}
+  m_Center: {x: 0, y: 0.32331684, z: -0.010931479}
 --- !u!114 &114000011872724846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,8 +218,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: 
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
