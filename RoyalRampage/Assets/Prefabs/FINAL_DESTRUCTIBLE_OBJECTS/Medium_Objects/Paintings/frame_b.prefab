@@ -238,10 +238,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014160061124}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071063, z: -0, w: -0.7071073}
+  m_LocalPosition: {x: 5.994, y: 3, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
   m_Children:
   - {fileID: 4000013988867504}
   - {fileID: 4000012487523032}
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   slowed: 0
   lifted: 0
   hasLanded: 1
-  score: 0
-  currencySpawnChance: 0.1
+  score: 100
+  currencySpawnChance: 0.05
   objMaterial: 1
   objSize: 1
