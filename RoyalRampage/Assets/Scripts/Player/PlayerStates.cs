@@ -58,6 +58,9 @@ public class PlayerStates : MonoBehaviour
     PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
+	Slider timeSliderLeft;
+	Slider timeSliderRight;
+	float totalTime;
 
     void Start()
     {
@@ -72,7 +75,12 @@ public class PlayerStates : MonoBehaviour
         //update timer
         timerText = GameObject.FindGameObjectWithTag("TimeLeftText").GetComponent<Text>();
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
+		totalTime = timeLeftInLevel;
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
+		timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
+		timeSliderLeft.value = 1f;
+		timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
+		timeSliderRight.value = 1f;
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
     }
@@ -91,13 +99,13 @@ public class PlayerStates : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
-                print("LoadLevelStart");
+                //print("LoadLevelStart");
                 }
 
             if(hitObject == true)
             {
                 Startlevel();
-                print("hit");
+               // print("hit");
             }
 
             if (Input.GetKey(KeyCode.R))
@@ -126,41 +134,37 @@ public class PlayerStates : MonoBehaviour
     {
         switch (state)
         {
-            case PlayerState.IDLE:
-            case PlayerState.WALKING:
-            case PlayerState.ATTACKING:
-            if (GameManager.instance.levelManager.multiplier > 1)
-            {
-                timeLeftInLevel -= 0;
-            }
-            else if (!imInSlowMotion)
-            {
-                timeLeftInLevel -= Time.deltaTime;
-            }
-            else
-            {
-                timeLeftInLevel -= 0.005f;
-            }
-            timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-            if (timeLeftInLevel <= timeTicker)
-            {
-                timeTicker -= 1;
-                GameManager.instance.timerUpdate(timeTicker);
-            }
+		case PlayerState.IDLE:
+		case PlayerState.WALKING:
+		case PlayerState.ATTACKING:
+			if (GameManager.instance.levelManager.multiplier > 1) {
+				timeLeftInLevel -= 0;
+			} else if (!imInSlowMotion) {
+				timeLeftInLevel -= Time.deltaTime;
+			} else {
+				timeLeftInLevel -= 0.005f;
+			}
+			timerText.text = timeLeftInLevel.ToString ("F1"); // for the level timer
+			if (timeLeftInLevel <= timeTicker) {
+				GameManager.instance.timerUpdate (timeTicker);
+				timeTicker -= 1;
+			}
 
-            if (timeLeftInLevel <= timeRunningOut)
-            {
-                timeRunningOut = -1;
-                GameManager.instance.changeMusicState(AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
-            }
+			if (timeLeftInLevel <= timeRunningOut) {
+				timeRunningOut = -1;
+				GameManager.instance.changeMusicState (AudioManager.IN_LEVEL_TIME_RUNNING_OUT);  // FOR AUDIO
+			}
 
             //when timer runs out:
-            if (timeLeftInLevel <= 0f)
-            {
-                timerText.text = "0";  // for the level timer
-                timerText.color = Color.red;
-				GameManager.instance.timerOut();
-            }
+			if (timeLeftInLevel <= 0f) {
+				timerText.text = "0";  // for the level timer
+				timerText.color = Color.red;
+				GameManager.instance.timerOut ();
+			}
+
+			timeSliderLeft.value = timeLeftInLevel / totalTime;
+			timeSliderRight.value = timeLeftInLevel / totalTime;
+
             break;
         }
     }
