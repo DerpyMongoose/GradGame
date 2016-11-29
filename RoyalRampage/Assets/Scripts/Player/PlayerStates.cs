@@ -60,6 +60,9 @@ public class PlayerStates : MonoBehaviour
     Text timerText;
     GameObject timerUI;
 
+	Slider timeSliderLeft;
+	Slider timeSliderRight;
+	float totalTime;
 
     void Start()
     {
@@ -74,7 +77,12 @@ public class PlayerStates : MonoBehaviour
         timerText = GameObject.FindGameObjectWithTag("TimeLeftText").GetComponent<Text>();
         timerUI = GameObject.Find("TimeLeftText");
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
+		totalTime = timeLeftInLevel;
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
+		timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
+		timeSliderLeft.value = 1f;
+		timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
+		timeSliderRight.value = 1f;
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
     }
@@ -98,7 +106,6 @@ public class PlayerStates : MonoBehaviour
                     {
                         Startlevel();
                     }
-                    print("LoadLevelStart");                
                 }
                 else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
                 {
@@ -130,9 +137,9 @@ public class PlayerStates : MonoBehaviour
     {
         switch (state)
         {
-            case PlayerState.IDLE:
-            case PlayerState.WALKING:
-            case PlayerState.ATTACKING:
+		case PlayerState.IDLE:
+		case PlayerState.WALKING:
+		case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
                     if (GameManager.instance.levelManager.multiplier > 1)
@@ -187,6 +194,9 @@ public class PlayerStates : MonoBehaviour
                         GameManager.instance.timerOut();
                     }
                 }
+			timeSliderLeft.value = timeLeftInLevel / totalTime;
+			timeSliderRight.value = timeLeftInLevel / totalTime;
+
                 break;
         }
     }

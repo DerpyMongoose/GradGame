@@ -195,7 +195,7 @@ public class LevelManager : MonoBehaviour
     private void ShowEnding()
     {
         // print("ended");
-        GameManager.instance.levelUnLoad(); // FOR AUDIO
+       // GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel)
         {
@@ -598,7 +598,7 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             GameManager.instance.startCountingPoints();
             int start = 0;
-            float duration = 2f; //(float)new_score * (1f / 100f); //show with speed of 100 points per second
+			float duration = Mathf.Clamp((float)new_score * (1f / 1f),0f,2f); //show with speed of 100 points per second, max duration 2 seconds
             for (float timer = 0; timer < duration; timer += Time.deltaTime)
             {
                 float progress = timer / duration;
@@ -607,9 +607,10 @@ public class LevelManager : MonoBehaviour
                 GameManager.instance.audioManager.UpdatePointCounter(temp_score);
                 yield return null;
             }
+			GameManager.instance.audioManager.UpdatePointCounter(new_score);
+			GameManager.instance.finishedCountingPoints();
         }
         replayScoreText.text = "Score: " + new_score;
-        GameManager.instance.audioManager.UpdatePointCounter(new_score);
-        GameManager.instance.finishedCountingPoints();
+        
     }
 }
