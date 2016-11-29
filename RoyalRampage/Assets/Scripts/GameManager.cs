@@ -15,7 +15,7 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "Tutorial", "GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "GameSceneD" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
