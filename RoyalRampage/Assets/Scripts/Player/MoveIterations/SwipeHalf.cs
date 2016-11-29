@@ -125,14 +125,14 @@ public class SwipeHalf : MonoBehaviour
                     temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                     dragPoint = new Vector3(temp.x, 0, temp.z);
                     distance = Vector3.Distance(dragPoint, startPoint);
-                    //print(distance);
+                    print(distance);
                     direction = dragPoint - startPoint;
                     //speed = distance / moveTimer;
                     speed = distance;
                     //acc = speed / moveTimer;
                     //force = playerRig.mass * acc;
                     force = playerRig.mass * (speed * GetComponent<PlayerStates>().moveForce);
-                    if (distance > GetComponent<PlayerStates>().distSwipe)
+                    if (distance > GetComponent<PlayerStates>().distSwipe && distance <= GetComponent<PlayerStates>().maxDistSwipe)
                     {
                         //if (Mathf.Round(playerRig.velocity.magnitude) == 0)
                         //{
@@ -295,7 +295,7 @@ public class SwipeHalf : MonoBehaviour
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
                 initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
-                tempColliders[i].GetComponent<Rigidbody>().mass = 1f;
+                tempColliders[i].GetComponent<Rigidbody>().mass = 10f;
                 tempColliders[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
                 tempColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
             }

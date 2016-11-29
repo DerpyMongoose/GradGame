@@ -29,8 +29,10 @@ public class PlayerStates : MonoBehaviour
     public float liftRadius;
     [Header("Mixed")]
     public float distSwipe;
+    public float maxDistSwipe;
     public float rotationSpeed;
     public float degreesInAir;
+    public float rageScore;
     public float smoothPick;
     public int numOfCircleToShow;
     [Header("Cubic Bezier")]
