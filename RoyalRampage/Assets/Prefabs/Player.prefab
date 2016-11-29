@@ -28715,10 +28715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0114e592fc91a7f43821a1a4312cb1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachScore: 10
-  looseRageAfter: 5
-  percentLoose: 10
-  loosePerSecond: 1
   tempScore: 0
   timeToLowRage: 0
 --- !u!114 &114000011797275670
@@ -28784,6 +28780,7 @@ MonoBehaviour:
   maxDistSwipe: 10
   rotationSpeed: 4
   degreesInAir: 45
+  rageScore: 15
   smoothPick: 1.5
   numOfCircleToShow: 1
   p0: 0.25
