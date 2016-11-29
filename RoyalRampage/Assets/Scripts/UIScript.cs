@@ -148,40 +148,31 @@ public class UIScript : MonoBehaviour
                     slides[i] = help_slides.transform.GetChild(i).gameObject;
                 }
                 pause_menu.SetActive(false);
-                settings_menu.SetActive(false);
-                levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
-                levels_Panel.SetActive(false);
+                settings_menu.SetActive(false);              
+                help_menu.SetActive(false);
                 behindPanelButton.SetActive(false);
 
                 break;
             case GameManager.Scene.TUTORIAL:
-                gui_Time = GameObject.Find("InGameGUI/TimeLeftText");
-                gui_Slider = GameObject.Find("InGameGUI/RageMeter/RageSlider");
-                gui_ScorePanel = GameObject.Find("InGameGUI/ScorePanel");
-                gui_Panel = GameObject.Find("InGameGUI/Panel");
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                back_Button = GameObject.FindGameObjectWithTag("help_left");
                 skip_Button = GameObject.Find("skip");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
+                arrowL = GameObject.FindGameObjectWithTag("help_left");
+                arrowR = GameObject.FindGameObjectWithTag("help_right");
+
                 slides = new GameObject[5];
+                help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
                 for (int i = 0; i < 5; i++)
                 {
                     slides[i] = help_slides.transform.GetChild(i).gameObject;
                 }
-
-                gui_Slider.SetActive(false);
-                gui_ScorePanel.SetActive(false);
-                gui_Panel.SetActive(false);
-
-                help_menu.SetActive(false);
-
                 pause_menu.SetActive(false);
                 settings_menu.SetActive(false);
-                levels_Panel = GameObject.FindGameObjectWithTag("levelsPanel");
+                help_menu.SetActive(false);
                 behindPanelButton.SetActive(false);
+
                 break;
         }
     }

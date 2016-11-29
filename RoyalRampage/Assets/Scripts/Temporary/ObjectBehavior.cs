@@ -55,7 +55,7 @@ public class ObjectBehavior : MonoBehaviour
     //    GameManager.stampPower -= Lift;
     //}
 
-    void Awake()
+    void Start()
     {
         switch (objMaterial)
         {
@@ -201,7 +201,10 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (life <= 0)
         {
-            SpawnPoints();
+            if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+            {
+                SpawnPoints();
+            }
             try
             {
                 for (int p = 0; p < transform.childCount; p++)
@@ -215,7 +218,7 @@ public class ObjectBehavior : MonoBehaviour
                 GetComponent<FracturedObject>().CollapseChunks();
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
-                if (currencySpawnChance > 0.0f)
+                if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
                 }
@@ -224,7 +227,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
-                if (currencySpawnChance > 0.0f)
+                if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
                 }
@@ -242,7 +245,8 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    void SpawnPoints () {
+    void SpawnPoints ()
+    {
         GameObject obj = PointObjectPool.instance.FindObjectInPool();
 
         obj.transform.position = transform.position + Vector3.up;

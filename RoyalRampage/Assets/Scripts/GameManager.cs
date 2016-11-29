@@ -15,7 +15,7 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = {"Tutorial", "GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
+    private static string[] GAME_SCENES = { "Tutorial", "GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -129,7 +129,7 @@ public class GameManager
 
     public void Loading()
     {
-        if (isInstructed == false)
+        if (currentLevel == 1)
         {
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
             Time.timeScale = 1;
@@ -138,7 +138,7 @@ public class GameManager
         }
         else
         {
-            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel]); //UPDATE FOR MORE LEVELS
+            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
             Time.timeScale = 1;
             currentScene = Scene.GAME;
         }
@@ -146,9 +146,15 @@ public class GameManager
 
     public void Loading(int level)
     {
-        SceneManager.LoadSceneAsync(GAME_SCENES[level]); //UPDATE FOR MORE LEVELS
-        Time.timeScale = 1;
+        Debug.Log(currentLevel);
         currentScene = Scene.GAME;
+        if (currentLevel == 1)
+        {
+            currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
+        }
+        SceneManager.LoadSceneAsync(GAME_SCENES[level]); //UPDATE FOR MORE LEVELS
+        Time.timeScale = 1;        
     }
 
     public void StartLevel(int level)

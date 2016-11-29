@@ -247,7 +247,7 @@ public class SwipeHalf : MonoBehaviour
                     if(GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP)
                     {
                         GetComponent<StampBar>().reachScore = 50;
-                        GetComponent<StampBar>().slider.GetComponent<Image>().fillAmount = 0f;
+                        GetComponent<StampBar>().slider.value = 0f;
                     }
                     PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);

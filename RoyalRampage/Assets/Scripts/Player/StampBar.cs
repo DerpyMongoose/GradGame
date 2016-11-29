@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class StampBar : MonoBehaviour
 {
-
+    [HideInInspector]
     public float fillBar;
     private bool ready, gradually;
     private Color initialColor;
@@ -26,11 +26,14 @@ public class StampBar : MonoBehaviour
 
     void Start()
     {
-        slider.value = 0f;
-        fillBar = 0f;
-        initialColor = fillColor.color;
-        increaseFill = true;
-        countSecond = 0f;
+        if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+        {
+            slider.value = 0f;
+            fillBar = 0f;
+            initialColor = fillColor.color;
+            increaseFill = true;
+            countSecond = 0f;
+        }
     }
 
 
@@ -48,8 +51,7 @@ public class StampBar : MonoBehaviour
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
             tempScore = reachScore;
-            if (ready ==           if (GameManager.instance.currentLevel == 0)
-            { false)
+            if (ready == false)
             {
                 //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
@@ -63,9 +65,9 @@ public class StampBar : MonoBehaviour
                 {
                     tempScore = 0f;
                     fillBar = 0f;
-                gradually = true;
-                //slider.GetComponent<Image>().fillAmount = fillBar;
-                fillColor.color = initialColor;
+                    gradually = true;
+                    //slider.GetComponent<Image>().fillAmount = fillBar;
+                    fillColor.color = initialColor;
                 }
                 ready = false;
                 //PhysicalMovement.intoAir = false;
@@ -78,11 +80,11 @@ public class StampBar : MonoBehaviour
             timer += Time.deltaTime;
             slider.value = Mathf.Lerp(1f, tempScore, timer * 2f);
             if (slider.value == tempScore)
-        //    {
+            {
                 timer = 0;
                 gradually = false;
-        //    }
-        //}
+            }
+        }
 
 
         //if (timeToLowRage > looseRageAfter)
@@ -106,3 +108,4 @@ public class StampBar : MonoBehaviour
         //}
     }
 }
+

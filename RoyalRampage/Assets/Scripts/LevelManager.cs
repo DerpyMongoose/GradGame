@@ -44,6 +44,10 @@ public class LevelManager : MonoBehaviour
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
+    GameObject goalPanel;
+    GameObject scorePanel;
+    GameObject rageMeter;
+    GameObject panel;
     private GameObject continueButton;
     [HideInInspector]
     public int multiplier;
@@ -63,9 +67,11 @@ public class LevelManager : MonoBehaviour
     GameObject tutorialBarrel6;
     bool smashed;
     bool smashed2;
+    bool completed;
     bool startTimer;
-    float timer, timer2;
+    float timer, timer2, timer3;
     int initialHP;
+    int tutorialState;
 
     void OnEnable()
     {
@@ -83,6 +89,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        completed = false;
+        tutorialState = 0;
         smashed = false;
         smashed2 = false;
         startTimer = false;
@@ -119,6 +127,7 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
+                print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
@@ -129,6 +138,14 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                goalPanel = GameObject.Find("InGameGUI/GoalPanel");
+                scorePanel = GameObject.Find("InGameGUI/ScorePanel");
+                rageMeter = GameObject.Find("InGameGUI/RageMeter");
+                panel = GameObject.Find("InGameGUI/Panel");
+                goalPanel.SetActive(false);
+                scorePanel.SetActive(false);
+                rageMeter.SetActive(false);
+                panel.SetActive(false);
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
@@ -143,10 +160,10 @@ public class LevelManager : MonoBehaviour
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
             scoreText.text = score.ToString(); // in game score
-            while(amountOfObjects <= ObjectManagerV2.instance.countObjects)
+            while (amountOfObjects <= ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
-                ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects-ObjectManagerV2.instance.countObjects);
+                ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects - ObjectManagerV2.instance.countObjects);
                 multiplier++;
                 amountOfObjects++;
             }
@@ -201,16 +218,16 @@ public class LevelManager : MonoBehaviour
         {
             case GameManager.Scene.GAME:
                 //print(countMultiTime);
-        if(ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer){
+                if (ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer)
                 {
                     // print("I am in");
                     MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
                     multiplier = 1;
-            amountOfObjects = 1;
-            ObjectManagerV2.instance.countObjects = 0;
+                    amountOfObjects = 1;
+                    ObjectManagerV2.instance.countObjects = 0;
                     tempMulti = 1;
                     t = 0f;
-            ObjectManagerV2.instance.countMultiTime = 0;
+                    ObjectManagerV2.instance.countMultiTime = 0;
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -219,11 +236,11 @@ public class LevelManager : MonoBehaviour
                 }
                 else continueButton.SetActive(false);
 
-        if (ObjectManagerV2.instance.countMultiTime < ObjectManagerV2.instance.multiplierTimer) {
-            t += Time.deltaTime / ObjectManagerV2.instance.multiplierTimer;
+                if (ObjectManagerV2.instance.countMultiTime < ObjectManagerV2.instance.multiplierTimer)
+                {
+                    t += Time.deltaTime / ObjectManagerV2.instance.multiplierTimer;
                     MultiplierText.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(0.5f, 0.5f, 0.5f), t);
                 }
-                else continueButton.SetActive(false);
 
                 if (multiplier != tempMulti && multiplier != 1)
                 {
@@ -244,13 +261,14 @@ public class LevelManager : MonoBehaviour
                 //print(GameManager.instance.allStars);
                 break;
             case GameManager.Scene.TUTORIAL:
-                switch (GameManager.instance.TutorialState())
+                switch (GameManager.instance.tutorial)
                 {
                     case GameManager.Tutorial.MOVEMENT:
                         if (SwipeHalf.startTutTimer == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
                             guideText.text = "Reach the finish-line before the timer runs out!";
+                            //print((int)GameManager.instance.tutorial);
                         }
                         if (GameManager.instance.levelManager.targetReached == true)
                         {
@@ -258,7 +276,6 @@ public class LevelManager : MonoBehaviour
                         }
                         break;
                     case GameManager.Tutorial.ATTACK:
-
                         if (spawnedObject == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
@@ -266,54 +283,55 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
                         }
-                        if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true)
+                        if (tutorialBarrel != null && (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true))
                         {
                             //COLORED PANEL FOR COMMUNICATING ATTACK
                             //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
                             smashed = true;
                             guideText.text = "You're amazing!!!";
-                            if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == false)
+                            //timer += Time.deltaTime;
+                        }
+
+                        if (tutorialBarrel == null)
+                        {
+                            timer += Time.deltaTime;
+                            print(timer);
+                            smashed = false;
+                            if (timer > 1f)
                             {
-                                smashed = false;
+                                timer = 0;
                                 GameManager.instance.tutorial = GameManager.Tutorial.CHAIN;
                             }
                         }
-
                         break;
                     case GameManager.Tutorial.CHAIN:
                         if (spawnedObject == true)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3)), Quaternion.identity);
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 5)), Quaternion.identity);
                             initialHP = tutorialBarrel.GetComponent<ObjectBehavior>().life;
                             guideText.text = "Hit the barrel with the barrel";
+                            //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
 
                             spawnedObject = false;
                         }
-                        if ((tutorialBarrel.GetComponent<ObjectBehavior>().hit == true && tutorialBarrel2.GetComponent<ObjectBehavior>().hit == false) || smashed2 == true)
-                        {
-                            smashed2 = true;
-                            if (tutorialBarrel.GetComponent<ObjectBehavior>().hit == false)
-                            {
-                                tutorialBarrel.transform.position = (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1));
-                                tutorialBarrel.transform.rotation = Quaternion.identity;
-                                tutorialBarrel.GetComponent<ObjectBehavior>().life = initialHP;
-                            }
-                        }
 
-                        if (tutorialBarrel2.GetComponent<ObjectBehavior>().hit == true || smashed == true)
+                        if (tutorialBarrel2 == null)
                         {
-                            //COLORED PANEL FOR COMMUNICATING ATTACK
-                            //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
-                            smashed = true;
-                            smashed2 = false;
-                            if (tutorialBarrel2.GetComponent<ObjectBehavior>().hit == false)
-                            {
-                                GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
-                            }
                             guideText.text = "Bullseye!";
+                            timer += Time.deltaTime;
+                            if (timer > 1f)
+                            {
+                                //COLORED PANEL FOR COMMUNICATING ATTACK
+                                //WE NEED TO DESTROY THE OBJECT (CHUNKS)
+                                GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
+                                timer = 0;
+                            }
                         }
-
+                        else if (tutorialBarrel == null)
+                        {
+                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                        }
                         break;
                     case GameManager.Tutorial.SWIRL:
                         if (spawnedObject == false)
@@ -327,13 +345,13 @@ public class LevelManager : MonoBehaviour
 
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
-                            guideText.text = "Make a circle on the right side to spin attack";
+                            guideText.text = "Draw a circle rapidly on the right side to spin attack";
 
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
                         {
-                            guideText.text = "Make a circle on the right side to spin attack, baka";
+                            guideText.text = "Please draw a circle rapidly on the right side to spin attack";
                             startTimer = true;
                         }
 
@@ -354,7 +372,7 @@ public class LevelManager : MonoBehaviour
                         }
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                         {
-                            guideText.text = "You're my hero!";
+                            guideText.text = "Great job!";
                             ObjectManagerV2.instance.canDamage = true;
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
@@ -377,9 +395,9 @@ public class LevelManager : MonoBehaviour
                             tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
                             ObjectManagerV2.instance.canDamage = false;
 
-                            GameManager.instance.player.GetComponent<StampBar>().slider.SetActive(true);
+                            rageMeter.SetActive(true);
                             GameManager.instance.player.GetComponent<StampBar>().reachScore = 0;
-                            GameManager.instance.player.GetComponent<StampBar>().slider.GetComponent<Image>().fillAmount = 1f;
+                            GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
                             guideText.text = "You're enraged! Tap on both sides at the same time to stomp";
@@ -387,34 +405,30 @@ public class LevelManager : MonoBehaviour
                             spawnedObject = false;
                         }
 
-                        if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true)
+                        if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = "You're a beast! BEAST QUEEN!";
+                            guideText.text = "Attack the barrels in the air";
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
                                 guideText.text = "OHHHH YEAH YOU WIN - TUTORIAL IS OVER";
-                                GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
-                                GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
-                                print("Am actually running");
-                                GameManager.instance.isInstructed = true;
-                                GameManager.instance.currentScene = GameManager.Scene.GAME;
+                                completed = true;
+                                StartCoroutine(Delay());
                             }
-                            else if (ObjectManagerV2.instance.isGrounded == true)
+                            else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
-                                guideText.text = "Try Again";
+                                guideText.text = "Try Again. Tap on both sides at the same time to stomp";
                                 GameManager.instance.player.GetComponent<StampBar>().reachScore = 0;
-                                GameManager.instance.player.GetComponent<StampBar>().slider.GetComponent<Image>().fillAmount = 1f;
+                                GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
                                 ObjectManagerV2.instance.isGrounded = false;
-
                             }
                         }
-                        else if (PlayerStates.swiped == true)
+                        else if (PlayerStates.swiped == true && completed == false)
                         {
                             startTimer = true;
                         }
-                        else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
+                        else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true && completed == false)
                         {
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
@@ -430,10 +444,10 @@ public class LevelManager : MonoBehaviour
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                             }
                         }
-                        if (startTimer == true)
+                        if (startTimer == true && completed == false)
                         {
-                            timer += Time.deltaTime;
-                            if (timer > 1f)
+                            timer3 += Time.deltaTime;
+                            if (timer3 > 1f)
                             {
                                 TutObj(tutorialBarrel, new Vector3(0.5f, 0, 1));
                                 TutObj(tutorialBarrel2, new Vector3(-0.5f, 0, 1));
@@ -442,7 +456,7 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialBarrel5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialBarrel6, new Vector3(-0.5f, 0, -1));
 
-                                timer = 0;
+                                timer3 = 0;
                                 startTimer = false;
                             }
                         }
@@ -453,6 +467,16 @@ public class LevelManager : MonoBehaviour
 
 
 
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
+        GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
+        GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
+        GameManager.instance.isInstructed = true;
+        GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
     public void TutObj(GameObject obj, Vector3 place)

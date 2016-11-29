@@ -93,9 +93,13 @@ public class PlayerStates : MonoBehaviour
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
+                    if (GameManager.instance.CurrentScene() != GameManager.Scene.TUTORIAL)
+                    {
+                        Startlevel();
+                    }
                     print("LoadLevelStart");                
                 }
-                if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
+                else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
                 {
                     Startlevel();                   
                 }
