@@ -176,9 +176,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010045027270}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010414393556}
@@ -486,8 +486,9 @@ MonoBehaviour:
   initialLife: 0
   soundSwitch: Table
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
