@@ -89,13 +89,13 @@ public class PlayerStates : MonoBehaviour
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
-                print("LoadLevelStart");
+                //print("LoadLevelStart");
                 }
 
             if(hitObject == true)
             {
                 Startlevel();
-                print("hit");
+               // print("hit");
             }
 
             if (Input.GetKey(KeyCode.R))
@@ -142,8 +142,8 @@ public class PlayerStates : MonoBehaviour
             timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
             if (timeLeftInLevel <= timeTicker)
             {
-                timeTicker -= 1;
                 GameManager.instance.timerUpdate(timeTicker);
+				timeTicker -= 1;
             }
 
             if (timeLeftInLevel <= timeRunningOut)

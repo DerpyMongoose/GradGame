@@ -226,7 +226,7 @@ public class GameManager
     public event GameAction OnPlayerSwirl;
     public event GameAction OnPlayerStomp;
     public event GameAction OnLevelLoad;
-    public event GameAction OnLevelUnLoad;
+    //public event GameAction OnLevelUnLoad;
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
@@ -265,11 +265,11 @@ public class GameManager
         if (OnLevelLoad != null)
             OnLevelLoad();
     }
-    public void levelUnLoad()
+   /* public void levelUnLoad()
     {
         if (OnLevelUnLoad != null)
             OnLevelUnLoad();
-    }
+    }*/
 
     public void menuButtonClicked()
     {
