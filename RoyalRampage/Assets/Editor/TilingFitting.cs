@@ -18,7 +18,7 @@ namespace Assets.Editor
 
 			Material GOMat = selectedGO.GetComponent<Renderer>().material;
 
-			GOMat.mainTextureScale = new Vector2(selectedGO.transform.localScale.x, -1);
+			GOMat.mainTextureScale = new Vector2(selectedGO.transform.localScale.x, 1);
 
 
 		}

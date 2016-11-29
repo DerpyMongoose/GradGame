@@ -28,7 +28,7 @@ public class GameManager
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene
     {
-        SPLASH, LOADING, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
+        SPLASH, ANIMATIC, LOADING, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
     }
     private Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.PLAY_MENU;
@@ -41,6 +41,10 @@ public class GameManager
     public bool canPlayerDestroy = false;
     public bool isPaused = false;
     public bool isInstructed = false;
+
+	public float music_volume = 0.5f;
+	public float sfx_volume = 0.75f;
+	public bool music_started = false;
 
     //getters:
     public static GameManager instance
@@ -116,6 +120,7 @@ public class GameManager
     {
         SceneManager.LoadScene("Animatic");
         Time.timeScale = 1;
+		currentScene = Scene.ANIMATIC;
     }
 
     public void Loading()
@@ -225,11 +230,10 @@ public class GameManager
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
-    public event GameAction OnObjectiveAnnounced;
-    public event GameAction OnObjectiveCompleted;
     public event GameAction OnPointsCountingStart;
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
+	public event GameAction OnTutorialTaskCompleted;
 
     public void timerStart()
     {
@@ -282,16 +286,6 @@ public class GameManager
         if (OnScoreScreenOpen != null)
             OnScoreScreenOpen();
     }
-    public void announcedObjective()
-    {
-        if (OnObjectiveAnnounced != null)
-            OnObjectiveAnnounced();
-    }
-    public void completedObjective()
-    {
-        if (OnObjectiveCompleted != null)
-            OnObjectiveCompleted();
-    }
     public void startCountingPoints()
     {
         if (OnPointsCountingStart != null)
@@ -307,6 +301,10 @@ public class GameManager
         if (OnPlayerHit != null)
             OnPlayerHit();
     }
+	public void tutorialTaskCompleted(){
+		if(OnTutorialTaskCompleted != null)
+			OnTutorialTaskCompleted();
+	}
 
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;

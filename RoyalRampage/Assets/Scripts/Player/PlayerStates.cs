@@ -74,7 +74,6 @@ public class PlayerStates : MonoBehaviour
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
-        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
 
     void Update()
