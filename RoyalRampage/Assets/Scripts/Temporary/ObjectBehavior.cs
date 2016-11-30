@@ -225,6 +225,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
+                GameManager.instance.player.GetComponent<StampBar>().tempScore++;
                 if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
