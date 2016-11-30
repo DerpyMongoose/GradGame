@@ -13,9 +13,9 @@ public class GameManager
     private GameObject _player;
     private LevelManager _levelManager;
     private AudioManager _audioManager;
-	private AnimationManager _animationManager;
+    private AnimationManager _animationManager;
 
-	private static string[] GAME_SCENES = {"GameSceneD", "FracturedLevel", "GameScene1", "GameScene2", "GameScene3" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "GameSceneD" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -28,10 +28,15 @@ public class GameManager
     public int NUM_OF_LEVELS_IN_GAME = GAME_SCENES.Length;
     public enum Scene
     {
-        SPLASH, LOADING, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
+        SPLASH, ANIMATIC, LOADING, TUTORIAL, GAME, LEVELS_OVERVIEW, STORE, PLAY_MENU
     }
-    private Scene currentScene = Scene.SPLASH;
+    public Scene currentScene = Scene.SPLASH;
     private Scene previousScene = Scene.PLAY_MENU;
+    public enum Tutorial
+    {
+        MOVEMENT, ATTACK, CHAIN, SWIRL, STOMP, DEFAULT
+    }
+    public Tutorial tutorial = Tutorial.MOVEMENT;
     public bool levelWon;
 
     public Sprite menu_bg_sprite;
@@ -41,6 +46,10 @@ public class GameManager
     public bool canPlayerDestroy = false;
     public bool isPaused = false;
     public bool isInstructed = false;
+
+	public float music_volume = 0.5f;
+	public float sfx_volume = 0.75f;
+	public bool music_started = false;
 
     //getters:
     public static GameManager instance
@@ -86,21 +95,25 @@ public class GameManager
 
     }
 
-	public AnimationManager animationManager
-	{
-		get
-		{
-			if (_animationManager == null)
-				_animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
-			return _animationManager;
-		}
+    public AnimationManager animationManager
+    {
+        get
+        {
+            if (_animationManager == null)
+                _animationManager = GameObject.FindObjectOfType(typeof(AnimationManager)) as AnimationManager;
+            return _animationManager;
+        }
 
-	}
+    }
 
     //scene management
     public Scene CurrentScene()
     {
         return currentScene;
+    }
+    public Tutorial TutorialState()
+    {
+        return tutorial;
     }
 
     private void SetPreviousScene()
@@ -116,22 +129,39 @@ public class GameManager
     {
         SceneManager.LoadScene("Animatic");
         Time.timeScale = 1;
+		currentScene = Scene.ANIMATIC;
     }
 
     public void Loading()
     {
-        SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
-        Time.timeScale = 1;
-        currentScene = Scene.GAME;
+        if (currentLevel == 1)
+        {
+            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
+            Time.timeScale = 1;
+            currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
+            Time.timeScale = 1;
+            currentScene = Scene.GAME;
+        }
     }
 
     public void Loading(int level)
     {
-        SceneManager.LoadSceneAsync(GAME_SCENES[level - 1]); //UPDATE FOR MORE LEVELS
-        Time.timeScale = 1;
+        Debug.Log(currentLevel);
         currentScene = Scene.GAME;
+        if (currentLevel == 1)
+        {
+            currentScene = Scene.TUTORIAL;
+            tutorial = Tutorial.MOVEMENT;
+        }
+        SceneManager.LoadSceneAsync(GAME_SCENES[level]); //UPDATE FOR MORE LEVELS
+        Time.timeScale = 1;        
     }
-    
+
     public void StartLevel(int level)
     {
         SceneManager.LoadScene("Loading"); //UPDATE FOR MORE LEVELS
@@ -173,7 +203,7 @@ public class GameManager
 
     public void BackToGame()
     {
-        SceneManager.LoadScene("Loading"); 
+        SceneManager.LoadScene("Loading");
         Time.timeScale = 1;
         currentScene = Scene.LOADING;
     }
@@ -221,15 +251,14 @@ public class GameManager
     public event GameAction OnPlayerSwirl;
     public event GameAction OnPlayerStomp;
     public event GameAction OnLevelLoad;
-    public event GameAction OnLevelUnLoad;
+    //public event GameAction OnLevelUnLoad;
     public event GameAction OnMenuButtonClicked;
     public event GameAction OnStartButtonClicked;
     public event GameAction OnScoreScreenOpen;
-    public event GameAction OnObjectiveAnnounced;
-    public event GameAction OnObjectiveCompleted;
     public event GameAction OnPointsCountingStart;
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
+	public event GameAction OnTutorialTaskCompleted;
 
     public void timerStart()
     {
@@ -261,11 +290,11 @@ public class GameManager
         if (OnLevelLoad != null)
             OnLevelLoad();
     }
-    public void levelUnLoad()
+   /* public void levelUnLoad()
     {
         if (OnLevelUnLoad != null)
             OnLevelUnLoad();
-    }
+    }*/
 
     public void menuButtonClicked()
     {
@@ -282,16 +311,6 @@ public class GameManager
         if (OnScoreScreenOpen != null)
             OnScoreScreenOpen();
     }
-    public void announcedObjective()
-    {
-        if (OnObjectiveAnnounced != null)
-            OnObjectiveAnnounced();
-    }
-    public void completedObjective()
-    {
-        if (OnObjectiveCompleted != null)
-            OnObjectiveCompleted();
-    }
     public void startCountingPoints()
     {
         if (OnPointsCountingStart != null)
@@ -307,6 +326,10 @@ public class GameManager
         if (OnPlayerHit != null)
             OnPlayerHit();
     }
+	public void tutorialTaskCompleted(){
+		if(OnTutorialTaskCompleted != null)
+			OnTutorialTaskCompleted();
+	}
 
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;

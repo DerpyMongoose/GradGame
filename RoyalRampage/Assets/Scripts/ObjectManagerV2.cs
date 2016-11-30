@@ -6,11 +6,15 @@ public class ObjectManagerV2 : MonoBehaviour
 {
     public static ObjectManagerV2 instance;
 
+    [HideInInspector]
+    public bool canDamage, isGrounded; //CAUTION: THIS IS MEANT FOR THE TUTORIAL ONLY
+
     [Header("Forces")]
     public float oneToAnother;
 
     [Header("Mixed")]
     public float colImpact;
+    public float multiplierTimer;
 
     [Header("Damages")]
     public int dashDamage;
@@ -18,17 +22,19 @@ public class ObjectManagerV2 : MonoBehaviour
     public int wallDamage;
     public int objDamage;
 
-    [Header("rubble after destruction")]
-    public GameObject rubblePrefab;
-
     [HideInInspector]
     public Vector3 direction;
+    [HideInInspector]
+    public int countObjects;
+    [HideInInspector]
+    public float countMultiTime;
     //[HideInInspector]
     //public int maxScore = 0;
 
     void Awake()
     {
         instance = this;
+        countObjects = 0;
     }
 
     [HideInInspector]
@@ -77,6 +83,7 @@ public class ObjectManagerV2 : MonoBehaviour
 
     void Start()
     {
+        canDamage = true;
         objectList.AddRange(GameObject.FindGameObjectsWithTag("Destructable"));
     }
 }
