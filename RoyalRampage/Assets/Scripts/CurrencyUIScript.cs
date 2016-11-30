@@ -8,7 +8,7 @@ public class CurrencyUIScript : MonoBehaviour {
 
     void OnEnable() {
         LanguageManager.instance.ChangeText += changeText;
-        GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + GameManager.instance.currency;
+		GetComponentInChildren<Text>().text = GameManager.instance.currency.ToString();
     }
 
     void OnDisable() {
@@ -16,6 +16,6 @@ public class CurrencyUIScript : MonoBehaviour {
     }
 
     public void changeText() {
-        GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + GameManager.instance.currency;
+		GetComponentInChildren<Text>().text = GameManager.instance.currency.ToString();
     }
 }
