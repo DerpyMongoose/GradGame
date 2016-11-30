@@ -322,7 +322,7 @@ public class ObjectBehavior : MonoBehaviour
 
                 if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
-
+                    lifted = false;
                     if (hasLanded == false)
                     {
                         if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)

@@ -366,7 +366,7 @@ public class SwipeHalf : MonoBehaviour
                 //[i].mass = mass[i];    //This needs to happen after a short period of time.
                 rig[i].isKinematic = false;
                 rig[i].GetComponent<ObjectBehavior>().slowed = false;
-                rig[i].GetComponent<ObjectBehavior>().lifted = false;
+                //rig[i].GetComponent<ObjectBehavior>().lifted = false;
             }
         }
         //objRB.Clear();
