@@ -90,7 +90,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-		MultiplierText = GameObject.Find ("Multiplier").GetComponent<Text> ();
+        MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
         tutorialState = 0;
         smashed = false;
@@ -195,7 +195,7 @@ public class LevelManager : MonoBehaviour
     private void ShowEnding()
     {
         // print("ended");
-       // GameManager.instance.levelUnLoad(); // FOR AUDIO
+        // GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel)
         {
@@ -280,7 +280,7 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            guideText.text = "Swipe the right side of the screen to hit the barrel";
+                            guideText.text = "Swipe the right side of the screen to hit the crate";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
                             smashed = false;
@@ -310,8 +310,8 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == true)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 5)), Quaternion.identity);
-                            guideText.text = "Hit the barrel with the barrel";
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3.5f)), Quaternion.identity);
+                            guideText.text = "Hit the service cart with the crate";
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
@@ -329,10 +329,27 @@ public class LevelManager : MonoBehaviour
                                 GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
                                 timer = 0;
                             }
-                        }
+                        }                       
                         else if (tutorialBarrel == null && completed == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                        }
+                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
+                        {
+                            if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
+                            {
+                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                                {
+                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    {
+                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                    }
+                                }
+                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                                GameManager.instance.objectDestructed(tutorialBarrel);
+                                Destroy(tutorialBarrel);
+                            }
                         }
                         break;
                     case GameManager.Tutorial.SWIRL:
@@ -409,7 +426,7 @@ public class LevelManager : MonoBehaviour
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = "Attack the barrels in the air";
+                            guideText.text = "Attack the crates in the air";
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
@@ -497,28 +514,25 @@ public class LevelManager : MonoBehaviour
     }
     public void Stars()
     {
-        if (GameManager.instance.currentLevel == 0)
+        if (score / maxScore > star1 && score / maxScore < star2)
         {
-            if (score / maxScore > star1 && score / maxScore < star2)
-            {
-                stars = 1;
-            }
-            if (score / maxScore >= star2 && score / maxScore < star3)
-            {
-                stars = 2;
-            }
-            if (score / maxScore >= star3 && score / maxScore < star4)
-            {
-                stars = 3;
-            }
-            if (score / maxScore >= star4 && score / maxScore < star5)
-            {
-                stars = 4;
-            }
-            if (score / maxScore >= star5)
-            {
-                stars = 5;
-            }
+            stars = 1;
+        }
+        if (score / maxScore >= star2 && score / maxScore < star3)
+        {
+            stars = 2;
+        }
+        if (score / maxScore >= star3 && score / maxScore < star4)
+        {
+            stars = 3;
+        }
+        if (score / maxScore >= star4 && score / maxScore < star5)
+        {
+            stars = 4;
+        }
+        if (score / maxScore >= star5)
+        {
+            stars = 5;
         }
     }
 
@@ -537,14 +551,17 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        Stars();
-        CalculateCurrency();
+        if (GameManager.instance.currentLevel == 0)
+        {
+            Stars();
+            CalculateCurrency();
 
+            
+            replayScoreText.text = "Score: " + "0"; //will be updated in counting loop
+
+            starText.text = stars.ToString();
+        }
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + "0"; //will be updated in counting loop
-
-        starText.text = stars.ToString();
-
         ReplayPanel.SetActive(true);
 
         if (GameManager.instance.stars != null)
@@ -598,7 +615,7 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             GameManager.instance.startCountingPoints();
             int start = 0;
-			float duration = Mathf.Clamp((float)new_score * (1f / 1f),0f,2f); //show with speed of 100 points per second, max duration 2 seconds
+            float duration = Mathf.Clamp((float)new_score * (1f / 1f), 0f, 2f); //show with speed of 100 points per second, max duration 2 seconds
             for (float timer = 0; timer < duration; timer += Time.deltaTime)
             {
                 float progress = timer / duration;
@@ -607,10 +624,10 @@ public class LevelManager : MonoBehaviour
                 GameManager.instance.audioManager.UpdatePointCounter(temp_score);
                 yield return null;
             }
-			GameManager.instance.audioManager.UpdatePointCounter(new_score);
-			GameManager.instance.finishedCountingPoints();
+            GameManager.instance.audioManager.UpdatePointCounter(new_score);
+            GameManager.instance.finishedCountingPoints();
         }
         replayScoreText.text = "Score: " + new_score;
-        
+
     }
 }
