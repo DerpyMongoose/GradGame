@@ -38,6 +38,7 @@ public class StampBar : MonoBehaviour
             initialColor = fillColor.color;
             increaseFill = true;
             countSecond = 0f;
+            tempScore = 0f;
         }
     }
 
@@ -47,15 +48,15 @@ public class StampBar : MonoBehaviour
 
         if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
-            fillBar = ((tempScore / GetComponent<PlayerStates>().rageScore) * 10) / 10;
+            fillBar = ((tempScore / GetComponent<PlayerStates>().rageObjects) * 10) / 10;
             slider.value = fillBar;
         }
 
-        if (tempScore >= GetComponent<PlayerStates>().rageScore)
+        if (tempScore >= GetComponent<PlayerStates>().rageObjects)
         {
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
-            tempScore = GetComponent<PlayerStates>().rageScore;
+            tempScore = GetComponent<PlayerStates>().rageObjects;
             if (ready == false)
             {
                 //PhysicalMovement.ableToLift = true;
