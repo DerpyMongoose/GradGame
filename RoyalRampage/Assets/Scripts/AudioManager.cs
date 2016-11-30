@@ -202,7 +202,7 @@ public class AudioManager : MonoBehaviour {
 		float p = Mathf.Clamp((float)show_points * 100f,0f,15000f);
 		AkSoundEngine.SetRTPCValue ("Point_Counter", p);
 		//print ("update points" + p);
-		PlaySound(pointsCountingPlay, gameObject);
+		//PlaySound(pointsCountingPlay, gameObject);
 	}
 
 	//************** In Game **************
