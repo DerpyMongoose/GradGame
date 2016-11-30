@@ -15,18 +15,23 @@ namespace AK
     {
         static const AkUniqueID AMBIENCE_PLAY = 1496310610U;
         static const AkUniqueID AMBIENCE_STOP = 3166394572U;
+        static const AkUniqueID BUTTON_PAPER_PLAY = 2578207079U;
+        static const AkUniqueID BUTTON_STAMP_PLAY = 3806627230U;
         static const AkUniqueID DASH_PLAY = 2174485018U;
+        static const AkUniqueID GEM_REWARDED_PLAY = 2771173984U;
         static const AkUniqueID MENU_BUTTON_PLAY = 4027780260U;
+        static const AkUniqueID MENU_BUTTON_STAMP_PLAY = 13372868U;
+        static const AkUniqueID MENU_LETTER_CLOSE_PLAY = 212956031U;
+        static const AkUniqueID MENU_LETTER_OPEN_PLAY = 3229908515U;
+        static const AkUniqueID MENU_PARCHMENT_ROLLIN_PLAY = 3763470425U;
+        static const AkUniqueID MENU_PARCHMENT_ROLLOUT_PLAY = 1844428912U;
         static const AkUniqueID MUSIC_SYSTEM_PLAY = 350081739U;
         static const AkUniqueID MUSIC_SYSTEM_STOP = 3509289057U;
         static const AkUniqueID OBJECT_ACTION_PLAY = 491891602U;
         static const AkUniqueID POINTS_COUNTING_PLAY = 1311831249U;
         static const AkUniqueID POINTS_COUNTING_STOP = 2563246215U;
         static const AkUniqueID POINTS_REWARDED_PLAY = 3286289918U;
-        static const AkUniqueID SCORE_SCREEN_OPEN_PLAY = 2664777132U;
         static const AkUniqueID SPIN_PLAY = 2848266490U;
-        static const AkUniqueID STAR_REWARDED_PLAY = 2485028023U;
-        static const AkUniqueID START_GAME_BUTTON_PLAY = 278413312U;
         static const AkUniqueID STOMP_PLAY = 3839850873U;
         static const AkUniqueID TIMER_TICK_PLAY = 3295885793U;
         static const AkUniqueID TUTORIAL_CHECK_MARK_PLAY = 886445783U;
