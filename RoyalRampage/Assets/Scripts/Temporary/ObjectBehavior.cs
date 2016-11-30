@@ -215,6 +215,7 @@ public class ObjectBehavior : MonoBehaviour
                 GetComponent<FracturedObject>().CollapseChunks();
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
+                GameManager.instance.player.GetComponent<StampBar>().tempScore++;
                 if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
@@ -224,6 +225,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 GameManager.instance.objectDestructed(gameObject);
                 Destroy(gameObject);
+                GameManager.instance.player.GetComponent<StampBar>().tempScore++;
                 if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
@@ -322,7 +324,7 @@ public class ObjectBehavior : MonoBehaviour
 
                 if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
-
+                    lifted = false;
                     if (hasLanded == false)
                     {
                         if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
