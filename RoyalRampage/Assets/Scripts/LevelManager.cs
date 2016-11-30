@@ -67,7 +67,6 @@ public class LevelManager : MonoBehaviour
     bool completed;
     bool startTimer;
     float timer, timer2, timer3;
-    int initialHP;
     int tutorialState;
 
     void OnEnable()
@@ -313,6 +312,11 @@ public class LevelManager : MonoBehaviour
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
+                            startTimer = false;
+                        }
+                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
+                        {
+                            startTimer = true;
                         }
 
                         if (tutorialBarrel2 == null)
@@ -328,13 +332,10 @@ public class LevelManager : MonoBehaviour
                                 timer = 0;
                             }
                         }
-                        else if (tutorialBarrel == null && completed == false)
+                        else if (startTimer == true)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                        }
-                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
-                        {
-                            if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 1f && tutorialBarrel != null)
                             {
                                 for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
                                 {
@@ -347,6 +348,14 @@ public class LevelManager : MonoBehaviour
                                 tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
                                 GameManager.instance.objectDestructed(tutorialBarrel);
                                 Destroy(tutorialBarrel);
+                                startTimer = false;
+                                timer2 = 0;
+                                tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            }
+                            else if (tutorialBarrel == null && completed == false)
+                            {
+                                tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                                startTimer = false;
                             }
                         }
                         break;
@@ -363,6 +372,7 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = "Draw a circle rapidly on the right side to spin attack";
 
+                            startTimer = false;
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
@@ -552,28 +562,29 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.currentLevel != 0)
         {
             Stars();
-            CalculateCurrency();
-
-
+            
+            if (GameManager.instance.stars != null)
+            {
+                if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
+                {
+                    CalculateCurrency();
+                    GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
+                }
+            }
             replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
-
-            //starText.text = stars.ToString();
-        }      
-        for (int i = gems.Length - 1; i >= stars; i--)
+        }
+        for(int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
+        }
+        for (int i = 0; i < stars; i++)
+        {
+            gems[i].SetActive(true);
         }
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);
-        if (GameManager.instance.stars != null)
-        {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
-            {
-                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
-                GameManager.instance.allStars += stars;
-            }
-        }
+
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
         if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
