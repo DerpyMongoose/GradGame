@@ -1097,6 +1097,7 @@ GameObject:
   - 114: {fileID: 114000013503495560}
   - 114: {fileID: 114000011127634340}
   - 114: {fileID: 114000010228056426}
+  - 114: {fileID: 114000010746357848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -28539,8 +28540,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.51, y: 2.0272756, z: 1.235561}
-  m_Center: {x: 0, y: 1.1686378, z: 0.18221849}
+  m_Size: {x: 1.51, y: 2.17654, z: 1.235561}
+  m_Center: {x: 0, y: 1.0940056, z: 0.18221849}
 --- !u!65 &65000012900280288
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -28669,6 +28670,8 @@ MonoBehaviour:
   objRB: []
   initialMass: []
   tempColliders: []
+  swirlTut: 0
+  stompTut: 0
 --- !u!114 &114000010355984574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28692,6 +28695,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466208f75f0c75b469819e5ead8f6895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010746357848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010315909554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e1caec4e144e45bf2c9180a1a2efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011127634340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28703,11 +28717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0114e592fc91a7f43821a1a4312cb1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fillBar: 0
   slider: {fileID: 0}
-  reachScore: 5
-  looseRageAfter: 5
-  percentLoose: 10
-  loosePerSecond: 1
   tempScore: 0
   timeToLowRage: 0
 --- !u!114 &114000011797275670
@@ -28756,21 +28767,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a29ac400152f7e4093a8c01bd4ced8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 150
+  moveForce: 125
   torgueForce: 1
-  hitForce: 1000
-  swirlForce: 700
-  liftForce: 250
+  hitForce: 2000
+  swirlForce: 1500
+  liftForce: 2200
   maxVelocity: 10
   timeForSwipe: 0.2
   timeForCircle: 0.5
   SameTapTime: 0.1
   gravityTimer: 3
-  swirlRadius: 1
-  liftRadius: 3
+  resetMassTimer: 0.5
+  swirlRadius: 2
+  liftRadius: 2
   distSwipe: 1
+  maxDistSwipe: 10
   rotationSpeed: 4
-  degreesInAir: 45
+  degreesInAir: 30
+  rageObjects: 15
   smoothPick: 1.5
   numOfCircleToShow: 1
   p0: 0.25
@@ -28882,7 +28896,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 666af3d0bcdbde64f909934c03874169, type: 2}
+  - {fileID: 2100000, guid: cc0af34a353d6a94bae8a0e984b0347c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -28966,7 +28980,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 80f8f6eb56c6b3d419c7cf1e608ce055, type: 2}
+  - {fileID: 2100000, guid: bcc44790a1c528a48a54cfc9a16b15a3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29064,7 +29078,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a0d3edb3e6dc63147ac602cf8503dc7d, type: 2}
+  - {fileID: 2100000, guid: b3b945932aaa6304bb80080007240b1a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29148,7 +29162,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: eedc75452f7791446839ec5ec70e46fd, type: 2}
+  - {fileID: 2100000, guid: 83c88cd38d31167429bb0591670d8b6c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29236,7 +29250,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: eb01f2ba6cea122439bddddd07a55bbd, type: 2}
+  - {fileID: 2100000, guid: 16bda4e81e194794e9ea19eef9826504, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29278,7 +29292,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 666af3d0bcdbde64f909934c03874169, type: 2}
+  - {fileID: 2100000, guid: cc0af34a353d6a94bae8a0e984b0347c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29320,7 +29334,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: eedc75452f7791446839ec5ec70e46fd, type: 2}
+  - {fileID: 2100000, guid: 83c88cd38d31167429bb0591670d8b6c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29493,7 +29507,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 80f8f6eb56c6b3d419c7cf1e608ce055, type: 2}
+  - {fileID: 2100000, guid: bcc44790a1c528a48a54cfc9a16b15a3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29535,7 +29549,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4609597ba05964e4098a0046bfeb89a0, type: 2}
+  - {fileID: 2100000, guid: 142f57f847296fd48b51a0aa7c58c34f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29712,7 +29726,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: eb01f2ba6cea122439bddddd07a55bbd, type: 2}
+  - {fileID: 2100000, guid: e06327807d48d654e9434cbe700e8b74, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29754,7 +29768,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 80f8f6eb56c6b3d419c7cf1e608ce055, type: 2}
+  - {fileID: 2100000, guid: bcc44790a1c528a48a54cfc9a16b15a3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29841,7 +29855,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bfe76db60f4954c4abd2eb09434fd57b, type: 2}
+  - {fileID: 2100000, guid: ef6bcadf302dc8045b70ee5cd9e6e1e6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -29975,7 +29989,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: eedc75452f7791446839ec5ec70e46fd, type: 2}
+  - {fileID: 2100000, guid: 83c88cd38d31167429bb0591670d8b6c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -30068,7 +30082,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 80f8f6eb56c6b3d419c7cf1e608ce055, type: 2}
+  - {fileID: 2100000, guid: bcc44790a1c528a48a54cfc9a16b15a3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -30116,7 +30130,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bfe76db60f4954c4abd2eb09434fd57b, type: 2}
+  - {fileID: 2100000, guid: ef6bcadf302dc8045b70ee5cd9e6e1e6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -30242,7 +30256,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5e504b480e778064795e58cd306a3c37, type: 2}
+  - {fileID: 2100000, guid: 77f31e8ef061cfc4d83396d5e4f5fa8d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -30446,7 +30460,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a0d3edb3e6dc63147ac602cf8503dc7d, type: 2}
+  - {fileID: 2100000, guid: b3b945932aaa6304bb80080007240b1a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

@@ -1,5 +1,6 @@
 ﻿ using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
 
@@ -44,9 +45,8 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string timerTick;
 	[SerializeField]
-	private string pointsRewarded, 
-		objectiveAnnounced,
-		objectiveCompleted;
+	private string pointsRewarded,
+		tutorialCheckMark;
 
 	// extra
 	private bool ambPlaying = false;
@@ -56,6 +56,9 @@ public class AudioManager : MonoBehaviour {
     public const float IN_LEVEL_TIMES_UP = 4f;
     public const float IN_SCORE_SCREEN = 5f;
     public const float IN_INTRO_CUTSCENE = 6f;
+	public const float IN_STOMP = 7f;
+	public const float IN_LOADINGSCREEN = 8f;
+	public const float IN_GAME_MENU = 9f;
 
     //************* Player *************
 
@@ -110,12 +113,12 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	void BackgroundMusic(float state){
-		print ("music start");
+		//print ("music state event");
         switch ((int)state)
         {
             case (int)IN_MAIN_MENU:
             AkSoundEngine.SetState("Game_States", "In_Main_Menu");
-            print("in main");
+            //print("in main");
             break;
             case (int)IN_INTRO_CUTSCENE:
             AkSoundEngine.SetState("Game_States", "In_Intro_Cutscene");
@@ -123,28 +126,47 @@ public class AudioManager : MonoBehaviour {
             break;
             case (int)IN_LEVEL:
             AkSoundEngine.SetState("Game_States", "In_Level");
-            print("in level");
+           // print("MS in level");
             break;
             case (int)IN_LEVEL_TIME_RUNNING_OUT:
             AkSoundEngine.SetState("Game_States", "In_Level_Time_Running_Out");
-            print("in level time running");
+            //print("MS in level time running");
             break;
             case (int)IN_LEVEL_TIMES_UP:
             AkSoundEngine.SetState("Game_States", "In_Level_Times_Up");
-            print("in level timesup");
+            //print("MS in level timesup");
             break;
 
             case (int)IN_SCORE_SCREEN:
             AkSoundEngine.SetState("Game_States", "In_Score_Screen");
-            print("in score screen");
+            //print("MS in score screen");
             break;
+
+			case (int)IN_STOMP:
+			AkSoundEngine.SetState("Game_States", "In_Ground_Slam");
+			//print("MS In_Ground_Slam");
+			break;
+
+			case (int)IN_LOADINGSCREEN:
+			AkSoundEngine.SetState("Game_States", "In_Loading_Screen");
+			//print("MS In_Loading_Screen");
+			break;
+
+			case (int)IN_GAME_MENU:
+			AkSoundEngine.SetState("Game_States", "In_Game_Menu");
+			//print("MS In_Game_Menu");
+			break;
 
 
             }
-
+		if (GameManager.instance.music_started == false) {
+			PlaySound (musicSystem, gameObject);
+			GameManager.instance.music_started = true;
+			//print ("music starting");
+		}
         //AkSoundEngine.SetState("Game_States", "In_Level");
        // AkSoundEngine.PostEvent(musicSystem, );
-        PlaySound(musicSystem, gameObject);
+        
         // GameManager.instance.OnApplicationOpen -= BackgroundMusic;
     }
 
@@ -168,16 +190,19 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	void CountingPointsPlay(){
-		AkSoundEngine.SetRTPCValue ("Point_Counter", 0);
-		PlaySound(pointsCountingPlay, gameObject);
+		PlaySound(pointsCountingPlay, GameManager.instance.player);
+		//print ("play points");
 	}
+
 	void CountingPointsStop(){
-		PlaySound(pointsCountingStop, gameObject);
-		print ("stop points");
+		PlaySound(pointsCountingStop, GameManager.instance.player);
+		//print ("stop points");
 	}
 	public void UpdatePointCounter(int show_points){
-		AkSoundEngine.SetRTPCValue ("Point_Counter", (float)show_points);
-		PlaySound(pointsCountingPlay, gameObject);
+		float p = (float)show_points;
+		AkSoundEngine.SetRTPCValue ("Point_Counter", p);
+		//print ("update points" + p);
+		//PlaySound(pointsCountingPlay, gameObject);
 	}
 
 	//************** In Game **************
@@ -193,20 +218,18 @@ public class AudioManager : MonoBehaviour {
 
     }
 
-	void AnnouncingObjective(){
-		PlaySound(objectiveAnnounced, gameObject);
-	}
-
-	void CompletedObjective(){
-		PlaySound(objectiveCompleted, gameObject);
+	void TutorialCheckMark(){
+		PlaySound(tutorialCheckMark, gameObject);
 	}
 
 	//**********volume ********
 	void UpdateMusicVolume(float volume){
-		print ("music " + volume);
+		AkSoundEngine.SetRTPCValue ("Music_Volume_Slider", volume*100f);
+		GameManager.instance.music_volume = volume;
 	}
 	void UpdateSFXVolume(float volume){
-		print ("sfx " + volume);
+		AkSoundEngine.SetRTPCValue ("Sound_Effects_Volume_Slider", volume*100f);
+		GameManager.instance.sfx_volume = volume;
 	}
 
 	//****** play sound ****************
@@ -222,6 +245,7 @@ public class AudioManager : MonoBehaviour {
 	//Subscribing
 
 	void OnEnable(){
+
 		//player sound
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
@@ -234,9 +258,10 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
 
 		//Background sounds
-		GameManager.instance.OnLevelLoad += BackgroundAmbStart;
-		GameManager.instance.OnLevelUnLoad += BackgroundAmbStop;
+		//GameManager.instance.OnLevelLoad += BackgroundAmbStart;
+		//GameManager.instance.OnLevelUnLoad += BackgroundAmbStop;
 		GameManager.instance.OnMusicStateChange += BackgroundMusic;
+		GameManager.instance.OnTutorialTaskCompleted += TutorialCheckMark;
 
         //UI
         GameManager.instance.OnMenuButtonClicked += MenuButtons;
@@ -244,8 +269,6 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen += ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed += RewardingPoints;
         GameManager.instance.OnTimerUpdate += UpdateTickingTimer;
-		GameManager.instance.OnObjectiveAnnounced += AnnouncingObjective;
-		GameManager.instance.OnObjectiveCompleted += CompletedObjective;
 		GameManager.instance.OnPointsCountingStart += CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange += UpdateMusicVolume;
@@ -266,9 +289,10 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
 
 		//Background sounds
-		GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
-		GameManager.instance.OnLevelUnLoad -= BackgroundAmbStop;
+		//GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
+		//GameManager.instance.OnLevelUnLoad -= BackgroundAmbStop;
 		GameManager.instance.OnMusicStateChange -= BackgroundMusic;
+		GameManager.instance.OnTutorialTaskCompleted -= TutorialCheckMark;
 
         //UI
         GameManager.instance.OnMenuButtonClicked -= MenuButtons;
@@ -276,8 +300,6 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnScoreScreenOpen -= ScoreScreenOpen;
         GameManager.instance.OnObjectDestructed -= RewardingPoints;
         GameManager.instance.OnTimerUpdate -= UpdateTickingTimer;
-		GameManager.instance.OnObjectiveAnnounced -= AnnouncingObjective;
-		GameManager.instance.OnObjectiveCompleted -= CompletedObjective;
 		GameManager.instance.OnPointsCountingStart -= CountingPointsPlay;
 		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange -= UpdateMusicVolume;

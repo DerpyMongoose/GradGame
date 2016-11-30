@@ -74,7 +74,7 @@
 						<Action Name="Play" ID="{9AB0EA82-D4D1-45C8-B19D-68423FD118ED}" ShortID="648916116" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{BA773AAE-1301-4F31-A0B7-3395AB84BE13}" Global="false">
-									<ObjectRef Name="Points_Rewarded" ID="{8482558C-A033-4C71-A500-6F6F08DA069D}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Point" ID="{7EBE779F-24E6-4E01-898E-B8910B99E8E3}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -96,7 +96,7 @@
 						<Action Name="Play" ID="{AF76BA43-6626-4CCD-B951-DD7AE5D60986}" ShortID="1043836488" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{F2F20760-74D7-4FA5-9D41-FA76F7EA7CDA}" Global="false">
-									<ObjectRef Name="Points_Counting" ID="{D63E7D7F-C5C6-4A17-A314-8658A528558F}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Points_Counting" ID="{F48C5B8C-0B98-4DBD-802F-A02840FA0C71}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -105,31 +105,34 @@
 				<Event Name="Points_Counting_Stop" ID="{466E5957-975E-4AF6-875F-9F2E92451097}">
 					<ChildrenList>
 						<Action Name="Stop" ID="{1E6777D1-B138-44A0-98F4-313BD09F7AD0}" ShortID="432739732" Type="Stop" Scope="One" Global="false">
+							<PropertyList>
+								<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+							</PropertyList>
 							<ElementList>
 								<Element ID="{B14F6156-8C07-4BBC-A7D7-A5469F35084F}" Global="false">
-									<ObjectRef Name="Points_Counting" ID="{D63E7D7F-C5C6-4A17-A314-8658A528558F}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Points_Counting" ID="{F48C5B8C-0B98-4DBD-802F-A02840FA0C71}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Star_Rewarded_Play" ID="{6C1549F8-E1B2-4BF0-ABEF-BD77C19577FF}">
+				<Event Name="Gem_Rewarded_Play" ID="{6C1549F8-E1B2-4BF0-ABEF-BD77C19577FF}">
 					<ChildrenList>
 						<Action Name="Play" ID="{938E82E0-D1DD-4218-9E7E-8722A207E799}" ShortID="987046007" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{7364C889-5C15-4775-A2DB-08072C1E8294}" Global="false">
-									<ObjectRef Name="Normal_Star" ID="{510F7B9F-CD6D-4B8E-9959-EE28A1B82D83}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Gem" ID="{EC6C37E7-7192-41EA-9954-6BDE5D9635BD}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Score_Screen_Open_Play" ID="{B3D18CA6-FA28-4651-87C9-507B471C725A}">
+				<Event Name="Menu_Parchment_Rollout_Play" ID="{B3D18CA6-FA28-4651-87C9-507B471C725A}">
 					<ChildrenList>
 						<Action Name="Play" ID="{BDFF57B8-ACE2-4C5F-8AFA-3E81C0B78E4D}" ShortID="69617701" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{6CEC38AF-FF19-49B3-83EF-2D5ECCC985C4}" Global="false">
-									<ObjectRef Name="Score_Screen_Open" ID="{B2E2D7C2-7C40-4B49-9B5D-AC33FFE085C8}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Menu Parchment Roll-Out" ID="{975115BD-5D5D-4E65-9E70-D3775783E9FF}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -140,18 +143,18 @@
 						<Action Name="Play" ID="{98655334-A96B-4BA1-9F3F-F52BD397D4DF}" ShortID="177706057" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{534176D4-AB33-4DBC-91F7-6117990B5DA4}" Global="false">
-									<ObjectRef Name="Menu_Button" ID="{A9EB671A-368A-4769-9C2D-3C1B4BD02CBF}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Button Paper" ID="{5C0777AA-115D-4DB5-B1D3-2AFE31A45625}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Start_Game_Button_Play" ID="{FB2311F7-A398-4ADA-BEBB-FD762C5D53D4}">
+				<Event Name="Menu_Button_Stamp_Play" ID="{FB2311F7-A398-4ADA-BEBB-FD762C5D53D4}">
 					<ChildrenList>
 						<Action Name="Play" ID="{0ACB2561-DECA-4CCC-8C5A-A1F5CF0F259C}" ShortID="607792649" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{7382BE74-C0E1-400B-A68B-A2C4A44E01DC}" Global="false">
-									<ObjectRef Name="Start_Game_Button" ID="{27BFFF1D-A021-4BF6-AB29-4E3657CD8177}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Button Stamp" ID="{43F1B3D1-843E-499E-B1E2-AD2AAF66AE36}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -185,6 +188,61 @@
 							<ElementList>
 								<Element ID="{48A066AB-5B5E-4F52-B8F0-E1043FB05378}" Global="false">
 									<ObjectRef Name="Tutorial_Check_Mark" ID="{7ED13A8A-D5BD-414C-915C-1636729105DC}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Menu_Parchment_Rollin_Play" ID="{647232AF-4AEA-49AC-A146-1F1F5AEEC9B8}">
+					<ChildrenList>
+						<Action Name="Play" ID="{6C3DEB88-BE24-4D14-A3C2-2BA5B31C1769}" ShortID="79020538" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{20601B8F-E387-433B-9976-A7F8D941CBA8}" Global="false">
+									<ObjectRef Name="Menu Parchment Roll-In" ID="{2A60E6CA-3F53-4989-9E87-24AEA7701460}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Button_Paper_Play" ID="{44B4B802-5008-4AEC-A561-1209F1832D84}">
+					<ChildrenList>
+						<Action Name="Play" ID="{7DF7763F-0039-47E1-BE97-ED61AA0A9ACD}" ShortID="332040445" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{ED89E857-6964-49FE-AD42-B84EB02F61D1}" Global="false">
+									<ObjectRef Name="Button Paper" ID="{5C0777AA-115D-4DB5-B1D3-2AFE31A45625}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Button_Stamp_Play" ID="{AC552DA2-D3BF-40D5-9F19-02EF23D41A57}">
+					<ChildrenList>
+						<Action Name="Play" ID="{DD434E99-576C-43BC-ABF4-39D3A78E0DC5}" ShortID="321422000" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{8E7A2D92-CC37-42DD-A1AB-8A718FB8A39C}" Global="false">
+									<ObjectRef Name="Button Stamp" ID="{43F1B3D1-843E-499E-B1E2-AD2AAF66AE36}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Menu_Letter_Close_Play" ID="{E2AF916A-7836-4DF0-A7DF-78357FD983BE}">
+					<ChildrenList>
+						<Action Name="Play" ID="{C78894E1-450D-4951-8C80-3CC991D99323}" ShortID="200527179" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{62C3E00A-8739-4C94-833C-4A29036D6A0D}" Global="false">
+									<ObjectRef Name="Menu Letter Close" ID="{622830E6-C329-4117-91C2-091C676D8954}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Menu_Letter_Open_Play" ID="{3E666C79-A87D-4185-BB28-1A3D38EE4D0A}">
+					<ChildrenList>
+						<Action Name="Play" ID="{BA45E608-18EB-4B68-A18C-C529C019207E}" ShortID="279598365" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{076BC6BB-5906-4A72-B736-B3BFB441B41A}" Global="false">
+									<ObjectRef Name="Menu Letter Open" ID="{C9EECFDB-D0CA-458E-8CF5-810C5DA436AE}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>

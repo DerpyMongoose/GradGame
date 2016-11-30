@@ -5,7 +5,7 @@ public class SetResolution : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Screen.SetResolution(Screen.width / 2, Screen.height / 2, true);
+        Screen.SetResolution((int)(Screen.width/1.5f), (int)(Screen.height/1.5f), true);
     }
 	
 }
