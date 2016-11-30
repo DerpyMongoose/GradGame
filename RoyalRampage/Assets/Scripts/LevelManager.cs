@@ -16,16 +16,11 @@ public class LevelManager : MonoBehaviour
     private Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
-    [Range(0, 1)]
-    public float star1;
-    [Range(0, 1)]
-    public float star2;
-    [Range(0, 1)]
-    public float star3;
-    [Range(0, 1)]
-    public float star4;
-    [Range(0, 1)]
-    public float star5;
+    public int star1;
+    public int star2;
+    public int star3;
+    public int star4;
+    public int star5;
 
     public Vector3 playerPos;
     float t;
@@ -48,6 +43,7 @@ public class LevelManager : MonoBehaviour
     GameObject scorePanel;
     GameObject rageMeter;
     GameObject panel;
+    GameObject[] gems;
     private GameObject continueButton;
     [HideInInspector]
     public int multiplier;
@@ -90,7 +86,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-		MultiplierText = GameObject.Find ("Multiplier").GetComponent<Text> ();
+        MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
         tutorialState = 0;
         smashed = false;
@@ -105,15 +101,16 @@ public class LevelManager : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
+                gems = GameObject.FindGameObjectsWithTag("Gem");
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-                scoreText.text = score.ToString(); // in game score
+                scoreText.text = score.ToString() + " $"; // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-                minScoreText.text = "Reach " + scoreToCompleteLevel;
+                minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
                 guideText = GameObject.Find("GuideText").GetComponent<Text>();
-                guideText.text = "Swipe and destroy objects";
+                guideText.text = "";
 
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
@@ -121,14 +118,15 @@ public class LevelManager : MonoBehaviour
                 ReplayBtn = GameObject.Find("ReplayButton");
                 NewLevelBtn = GameObject.Find("NewLevelButton");
                 continueButton = GameObject.Find("ContinueButton");
-                starText = GameObject.Find("stars").GetComponent<Text>();
+                //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
-                print("Tut");
+                gems = GameObject.FindGameObjectsWithTag("Gem");
+                // print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
@@ -137,7 +135,7 @@ public class LevelManager : MonoBehaviour
                 ReplayBtn = GameObject.Find("ReplayButton");
                 NewLevelBtn = GameObject.Find("NewLevelButton");
                 continueButton = GameObject.Find("ContinueButton");
-                starText = GameObject.Find("stars").GetComponent<Text>();
+                //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
@@ -160,7 +158,7 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.canPlayerDestroy && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
-            scoreText.text = score.ToString(); // in game score
+            scoreText.text = score.ToString() + " $"; // in game score
             while (amountOfObjects <= ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
@@ -169,7 +167,7 @@ public class LevelManager : MonoBehaviour
                 amountOfObjects++;
             }
             score += points * multiplier;
-            scoreText.text = score.ToString(); // in game score
+            scoreText.text = score.ToString() + " $"; // in game score
             GameManager.instance.score = score;
             //GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
@@ -195,7 +193,7 @@ public class LevelManager : MonoBehaviour
     private void ShowEnding()
     {
         // print("ended");
-       // GameManager.instance.levelUnLoad(); // FOR AUDIO
+        // GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel)
         {
@@ -280,7 +278,7 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            guideText.text = "Swipe the right side of the screen to hit the barrel";
+                            guideText.text = "Swipe the right side of the screen to hit the crate";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
                             smashed = false;
@@ -310,8 +308,8 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == true)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 5)), Quaternion.identity);
-                            guideText.text = "Hit the barrel with the barrel";
+                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3.5f)), Quaternion.identity);
+                            guideText.text = "Hit the service cart with the crate";
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
@@ -333,6 +331,23 @@ public class LevelManager : MonoBehaviour
                         else if (tutorialBarrel == null && completed == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                        }
+                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
+                        {
+                            if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
+                            {
+                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                                {
+                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    {
+                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                    }
+                                }
+                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                                GameManager.instance.objectDestructed(tutorialBarrel);
+                                Destroy(tutorialBarrel);
+                            }
                         }
                         break;
                     case GameManager.Tutorial.SWIRL:
@@ -409,7 +424,7 @@ public class LevelManager : MonoBehaviour
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = "Attack the barrels in the air";
+                            guideText.text = "Attack the crates in the air";
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
@@ -497,28 +512,25 @@ public class LevelManager : MonoBehaviour
     }
     public void Stars()
     {
-        if (GameManager.instance.currentLevel == 0)
+        if (score >= star1 && score < star2)
         {
-            if (score / maxScore > star1 && score / maxScore < star2)
-            {
-                stars = 1;
-            }
-            if (score / maxScore >= star2 && score / maxScore < star3)
-            {
-                stars = 2;
-            }
-            if (score / maxScore >= star3 && score / maxScore < star4)
-            {
-                stars = 3;
-            }
-            if (score / maxScore >= star4 && score / maxScore < star5)
-            {
-                stars = 4;
-            }
-            if (score / maxScore >= star5)
-            {
-                stars = 5;
-            }
+            stars = 1;
+        }
+        if (score >= star2 && score < star3)
+        {
+            stars = 2;
+        }
+        if (score >= star3 && score < star4)
+        {
+            stars = 3;
+        }
+        if (score >= star4 && score < star5)
+        {
+            stars = 4;
+        }
+        if (score >= star5)
+        {
+            stars = 5;
         }
     }
 
@@ -537,16 +549,23 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        Stars();
-        CalculateCurrency();
+        if (GameManager.instance.currentLevel != 0)
+        {
+            Stars();
+            CalculateCurrency();
 
+
+            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
+
+            //starText.text = stars.ToString();
+        }      
+        for (int i = gems.Length - 1; i >= stars; i--)
+        {
+            gems[i].SetActive(false);
+        }
         InGamePanel.SetActive(false);
-        replayScoreText.text = "Score: " + "0"; //will be updated in counting loop
-
-        starText.text = stars.ToString();
-
         ReplayPanel.SetActive(true);
-
+        // NewLevelBtn.SetActive(true);
         if (GameManager.instance.stars != null)
         {
             if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
@@ -555,34 +574,37 @@ public class LevelManager : MonoBehaviour
                 GameManager.instance.allStars += stars;
             }
         }
+
+        Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
+        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+        {
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+        }
+        else
+        {
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
+        }
+
         switch (levelResult)
         {
             case "Level completed!":
                 GameManager.instance.levelWon = true;
-                ReplayBtn.SetActive(false);
-                NewLevelBtn.SetActive(true);
-                Text levelNum = NewLevelBtn.GetComponentInChildren<Text>();
+                //ReplayBtn.SetActive(true);
+                //NewLevelBtn.SetActive(true);
+
                 if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
                 {
                     GameManager.instance.levelsUnlocked++;
 
-                }
-                if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
-                {
-                    levelNum.text = (GameManager.instance.currentLevel + 1).ToString();
-                }
-                else
-                {
-                    levelNum.text = GameManager.instance.currentLevel.ToString() + "*";
                 }
 
                 break;
 
             case "Game over":
                 GameManager.instance.levelWon = false;
-                ReplayBtn.SetActive(true);
+                //ReplayBtn.SetActive(true);
                 NewLevelBtn.SetActive(false);
-                starText.text = stars.ToString();
+                //starText.text = stars.ToString();
                 break;
         }
 
@@ -598,19 +620,19 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             GameManager.instance.startCountingPoints();
             int start = 0;
-			float duration = Mathf.Clamp((float)new_score * (1f / 1f),0f,2f); //show with speed of 100 points per second, max duration 2 seconds
+            float duration = Mathf.Clamp((float)new_score * (1f / 1f), 0f, 2f); //show with speed of 100 points per second, max duration 2 seconds
             for (float timer = 0; timer < duration; timer += Time.deltaTime)
             {
                 float progress = timer / duration;
                 int temp_score = (int)Mathf.Lerp(start, new_score, progress);
-                replayScoreText.text = "Score: " + temp_score;
+                replayScoreText.text = "Score:\n" + temp_score + " $";
                 GameManager.instance.audioManager.UpdatePointCounter(temp_score);
                 yield return null;
             }
-			GameManager.instance.audioManager.UpdatePointCounter(new_score);
-			GameManager.instance.finishedCountingPoints();
+            GameManager.instance.audioManager.UpdatePointCounter(new_score);
+            GameManager.instance.finishedCountingPoints();
         }
-        replayScoreText.text = "Score: " + new_score;
-        
+        replayScoreText.text = "Score:\n" + new_score + " $";
+
     }
 }

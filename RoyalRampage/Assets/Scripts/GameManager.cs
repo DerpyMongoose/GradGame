@@ -151,7 +151,6 @@ public class GameManager
 
     public void Loading(int level)
     {
-        Debug.Log(currentLevel);
         currentScene = Scene.GAME;
         if (currentLevel == 1)
         {
