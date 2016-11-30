@@ -20,7 +20,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public bool slowed;
     [HideInInspector]
-    public bool lifted;
+    public bool lifted, flying;
 
     public bool hasLanded = true;
 
@@ -145,6 +145,7 @@ public class ObjectBehavior : MonoBehaviour
         //particleSys = GetComponent<ParticleSystem>();
         slowed = false;
         lifted = false;
+        flying = false;
         hit = false;
         //ObjectManagerV2.instance.maxScore += score;  
 
@@ -172,7 +173,7 @@ public class ObjectBehavior : MonoBehaviour
     void Update()
     {
 
-        if (lifted)
+        if (flying)
         {
             //APPLY TRANSFORM ROTATION
             transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
