@@ -342,6 +342,7 @@ public class SwipeHalf : MonoBehaviour
             {
 
                 tempColliders[i].GetComponent<ObjectBehavior>().lifted = true;
+                tempColliders[i].GetComponent<ObjectBehavior>().flying = true;
                 //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
                 initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
@@ -375,7 +376,7 @@ public class SwipeHalf : MonoBehaviour
                 //[i].mass = mass[i];    //This needs to happen after a short period of time.
                 rig[i].isKinematic = false;
                 rig[i].GetComponent<ObjectBehavior>().slowed = false;
-                //rig[i].GetComponent<ObjectBehavior>().lifted = false;
+                rig[i].GetComponent<ObjectBehavior>().flying = false;
             }
         }
         //objRB.Clear();
