@@ -332,23 +332,24 @@ public class LevelManager : MonoBehaviour
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                         }
-                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
-                        {
-                            if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
-                            {
-                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
-                                {
-                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
-                                    {
-                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
-                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
-                                    }
-                                }
-                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
-                                GameManager.instance.objectDestructed(tutorialBarrel);
-                                Destroy(tutorialBarrel);
-                            }
-                        }
+
+                        //if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
+                        //{
+                        //    if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
+                        //    {
+                        //        for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                        //        {
+                        //            if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                        //            {
+                        //                tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                        //                tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                        //            }
+                        //        }
+                        //        tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                        //        GameManager.instance.objectDestructed(tutorialBarrel);
+                        //        Destroy(tutorialBarrel);
+                        //    }
+                        //}
                         break;
                     case GameManager.Tutorial.SWIRL:
                         if (spawnedObject == false)
