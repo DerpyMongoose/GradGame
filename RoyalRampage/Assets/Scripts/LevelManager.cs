@@ -85,6 +85,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        gems = new GameObject[5];
         MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
         tutorialState = 0;
@@ -100,7 +101,10 @@ public class LevelManager : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
+                for(int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i-1] = GameObject.Find("Gem" + i.ToString());
+                }
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString() + " $"; // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -124,7 +128,10 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
+                for (int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i - 1] = GameObject.Find("Gem" + i.ToString());
+                }
                 // print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
@@ -547,7 +554,7 @@ public class LevelManager : MonoBehaviour
 
     public void CalculateCurrency()
     {
-        GameManager.instance.currency = stars * currencyPerStar;
+        GameManager.instance.currency += stars * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -559,7 +566,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        if (GameManager.instance.currentLevel != 0)
+        if (GameManager.instance.currentLevel != 1)
         {
             Stars();
             
