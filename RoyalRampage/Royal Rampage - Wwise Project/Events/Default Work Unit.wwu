@@ -85,7 +85,7 @@
 						<Action Name="Play" ID="{1C9FBE09-912D-4DE2-A9D1-66D8F98DF123}" ShortID="803463160" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{2F2BD4D9-2DD2-4A4B-BADC-B5B5F91B9CB9}" Global="false">
-									<ObjectRef Name="Timer_Tick" ID="{4D30336A-BC20-4F55-90D0-8D1DE932FEA0}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Timer Bell" ID="{3F9F8B3F-D00F-4002-B070-D6D09DEC7601}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -243,6 +243,28 @@
 							<ElementList>
 								<Element ID="{076BC6BB-5906-4A72-B736-B3BFB441B41A}" Global="false">
 									<ObjectRef Name="Menu Letter Open" ID="{C9EECFDB-D0CA-458E-8CF5-810C5DA436AE}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Gem_Spawn_Play" ID="{E5BA15DB-44E5-4737-ACE4-B379AB4024B8}">
+					<ChildrenList>
+						<Action Name="Play" ID="{36067985-2F27-4F6E-8D03-AC764D40FC00}" ShortID="890471690" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{CE97DF06-6684-444A-98F3-E5863CB99C79}" Global="false">
+									<ObjectRef Name="Gem" ID="{50C79F20-67C7-4568-A694-FADC8198FAA8}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Swing_Play" ID="{637EBFE3-BC7E-40F8-AA73-6F1BBFE56B64}">
+					<ChildrenList>
+						<Action Name="Play" ID="{F53D4FFF-6AF1-4D18-A1D6-45FA2D18FE65}" ShortID="813625399" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{DC679475-88B8-4566-928A-C4CAD49E130F}" Global="false">
+									<ObjectRef Name="Player Swing" ID="{98B3A75C-A21A-4FC1-AB68-46EED02DA4F9}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>

@@ -19,6 +19,7 @@ namespace AK
         static const AkUniqueID BUTTON_STAMP_PLAY = 3806627230U;
         static const AkUniqueID DASH_PLAY = 2174485018U;
         static const AkUniqueID GEM_REWARDED_PLAY = 2771173984U;
+        static const AkUniqueID GEM_SPAWN_PLAY = 3618317195U;
         static const AkUniqueID MENU_BUTTON_PLAY = 4027780260U;
         static const AkUniqueID MENU_BUTTON_STAMP_PLAY = 13372868U;
         static const AkUniqueID MENU_LETTER_CLOSE_PLAY = 212956031U;
@@ -28,6 +29,7 @@ namespace AK
         static const AkUniqueID MUSIC_SYSTEM_PLAY = 350081739U;
         static const AkUniqueID MUSIC_SYSTEM_STOP = 3509289057U;
         static const AkUniqueID OBJECT_ACTION_PLAY = 491891602U;
+        static const AkUniqueID PLAYER_SWING_PLAY = 3260876866U;
         static const AkUniqueID POINTS_COUNTING_PLAY = 1311831249U;
         static const AkUniqueID POINTS_COUNTING_STOP = 2563246215U;
         static const AkUniqueID POINTS_REWARDED_PLAY = 3286289918U;
