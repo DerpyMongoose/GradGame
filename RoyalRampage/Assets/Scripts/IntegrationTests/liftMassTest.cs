@@ -8,7 +8,7 @@ public class liftMassTest : MonoBehaviour {
 
 	void Update () {
 		if (hasStomped != true){
-			StompTest ();
+			//StompTest ();
 			hasStomped = true;
 		}
 	}
