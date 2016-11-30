@@ -105,7 +105,7 @@ public class LevelManager : MonoBehaviour
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString() + " $"; // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-                minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " "+ scoreToCompleteLevel + " $";
+                minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
-                 gems = GameObject.FindGameObjectsWithTag("Gem");
+                gems = GameObject.FindGameObjectsWithTag("Gem");
                 // print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
@@ -327,7 +327,7 @@ public class LevelManager : MonoBehaviour
                                 GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
                                 timer = 0;
                             }
-                        }                       
+                        }
                         else if (tutorialBarrel == null && completed == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
@@ -512,44 +512,27 @@ public class LevelManager : MonoBehaviour
     }
     public void Stars()
     {
-        if (score / maxScore > star1 && score / maxScore < star2)
+        if (score >= star1 && score < star2)
         {
             stars = 1;
         }
-        if (score / maxScore >= star2 && score / maxScore < star3)
+        if (score >= star2 && score < star3)
         {
             stars = 2;
         }
-        if (score / maxScore >= star3 && score / maxScore < star4)
+        if (score >= star3 && score < star4)
         {
             stars = 3;
         }
-        if (score / maxScore >= star4 && score / maxScore < star5)
+        if (score >= star4 && score < star5)
         {
             stars = 4;
         }
-        if (score / maxScore >= star5)
+        if (score >= star5)
         {
             stars = 5;
         }
     }
-        if(GameManager.instance.currentLevel != 0){
-            if (score >= star1 && score < star2) {
-                stars = 1;
-            }
-            if (score >= star2 && score < star3) {
-                stars = 2;
-            }
-            if (score >= star3 && score < star4) {
-                stars = 3;
-            }
-            if (score >= star4 && score  < star5) {
-                stars = 4;
-            }
-            if (score  >= star5) {
-                stars = 5;
-            }
-        }
 
 
     public void CalculateCurrency()
@@ -566,22 +549,23 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        if (GameManager.instance.currentLevel == 0)
+        if (GameManager.instance.currentLevel != 0)
         {
             Stars();
             CalculateCurrency();
 
-            
-        replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
 
-        //starText.text = stars.ToString();
-        }
-        InGamePanel.SetActive(false);
-        for(int i = gems.Length-1; i >= stars; i--) {
+            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
+
+            //starText.text = stars.ToString();
+        }      
+        for (int i = gems.Length - 1; i >= stars; i--)
+        {
             gems[i].SetActive(false);
         }
+        InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
-       // NewLevelBtn.SetActive(true);
+        // NewLevelBtn.SetActive(true);
         if (GameManager.instance.stars != null)
         {
             if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
@@ -592,9 +576,12 @@ public class LevelManager : MonoBehaviour
         }
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
-        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+        {
             levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
-        } else {
+        }
+        else
+        {
             levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
         }
 
@@ -604,13 +591,13 @@ public class LevelManager : MonoBehaviour
                 GameManager.instance.levelWon = true;
                 //ReplayBtn.SetActive(true);
                 //NewLevelBtn.SetActive(true);
-                
+
                 if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
                 {
                     GameManager.instance.levelsUnlocked++;
 
                 }
-        
+
                 break;
 
             case "Game over":
