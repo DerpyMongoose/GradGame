@@ -163,8 +163,8 @@ public class ObjectBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-            CheckDamage();
-            CheckVelocity();
+        CheckDamage();
+        CheckVelocity();
 
     }
 
@@ -234,7 +234,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void CheckVelocity()
     {
-        if (objRB.velocity.magnitude <= 0.5f)
+        if (objRB.velocity.magnitude <= 0.1f)
         {
             //print("Hit becomes false now");
             hit = false;
@@ -242,7 +242,7 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    void SpawnPoints ()
+    void SpawnPoints()
     {
         GameObject obj = PointObjectPool.instance.FindObjectInPool();
 
@@ -251,7 +251,7 @@ public class ObjectBehavior : MonoBehaviour
         //obj.transform.LookAt(Camera.main.transform);
         obj.SetActive(true);
 
-        obj.GetComponent<SetTextPoints>().SetText(score*GameManager.instance.levelManager.multiplier);
+        obj.GetComponent<SetTextPoints>().SetText(score * GameManager.instance.levelManager.multiplier);
     }
 
 
@@ -290,19 +290,19 @@ public class ObjectBehavior : MonoBehaviour
                 if (ObjectManagerV2.instance.canDamage == true)
                 {
 
-                ///////////////////////////////////////////////////////////////BOTH OBJECTS ARE TAKING DAMAGE///////////////////////////////////////////
+                    ///////////////////////////////////////////////////////////////BOTH OBJECTS ARE TAKING DAMAGE///////////////////////////////////////////
                     life -= ObjectManagerV2.instance.objDamage;
                     col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
-                if(life <= 0)
-                {
-                    ObjectManagerV2.instance.countObjects++;
-                    ObjectManagerV2.instance.countMultiTime = 0;
-                }
-                if(col.gameObject.GetComponent<ObjectBehavior>().life <= 0)
-                {
-                    ObjectManagerV2.instance.countObjects++;
-                    ObjectManagerV2.instance.countMultiTime = 0;
-                }
+                    if (life <= 0)
+                    {
+                        ObjectManagerV2.instance.countObjects++;
+                        ObjectManagerV2.instance.countMultiTime = 0;
+                    }
+                    if (col.gameObject.GetComponent<ObjectBehavior>().life <= 0)
+                    {
+                        ObjectManagerV2.instance.countObjects++;
+                        ObjectManagerV2.instance.countMultiTime = 0;
+                    }
                 }
             }
 
