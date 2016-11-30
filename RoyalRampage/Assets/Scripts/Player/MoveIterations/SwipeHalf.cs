@@ -179,14 +179,14 @@ public class SwipeHalf : MonoBehaviour
                             //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
                             GameManager.instance.playerSwirl();
                             spinningAnim = true;
-                            Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
-                            for (int k = 0; k < hitColliders.Length; k++)
-                            {
-                                if (hitColliders[k].tag == "Destructable")
-                                {
-                                    tempColliders.Add(hitColliders[k]);
-                                }
-                            }
+                            //Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+                            //for (int k = 0; k < hitColliders.Length; k++)
+                            //{
+                            //    if (hitColliders[k].tag == "Destructable")
+                            //    {
+                            //        tempColliders.Add(hitColliders[k]);
+                            //    }
+                            //}
                             //Swirling(hitColliders);
                         }
                     }
@@ -284,6 +284,15 @@ public class SwipeHalf : MonoBehaviour
 
     public void Swirling() // hit needs to become true here
     {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
+        for (int k = 0; k < hitColliders.Length; k++)
+        {
+            if (hitColliders[k].tag == "Destructable")
+            {
+                tempColliders.Add(hitColliders[k]);
+            }
+        }
+
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
