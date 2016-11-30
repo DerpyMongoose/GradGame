@@ -37,6 +37,7 @@ public class UIScript : MonoBehaviour
 
 
     Text starTotal;
+    Text levelNum;
 
     int current_slide = 0;
 
@@ -75,8 +76,8 @@ public class UIScript : MonoBehaviour
                 GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
                 //update level on play icon
-                Text levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -99,7 +100,7 @@ public class UIScript : MonoBehaviour
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 help_menu.SetActive(false);
 
-                UpdateMenuBG();
+                //UpdateMenuBG();
                 break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
@@ -109,7 +110,7 @@ public class UIScript : MonoBehaviour
 
                 //update level on play icon
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = "Level " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
 
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 settings_menu.SetActive(false);
@@ -194,7 +195,8 @@ public class UIScript : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.PLAY_MENU:
-                if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
                 {
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                     {
@@ -219,6 +221,9 @@ public class UIScript : MonoBehaviour
                 }
 
                 break;
+            case GameManager.Scene.LEVELS_OVERVIEW:
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            break;
         }
     }
 
@@ -231,12 +236,10 @@ public class UIScript : MonoBehaviour
         if (settings_menu.activeInHierarchy)
         {
             settings_menu.SetActive(false);
-            UnPauseGame();
         }
         if (help_menu.activeInHierarchy)
         {
             help_menu.SetActive(false);
-            UnPauseGame();
         }
     }
 
@@ -390,6 +393,10 @@ public class UIScript : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void QuitGame () {
+        Application.Quit();
+    }
+
     public void UpdateMusicVolume(Slider slider)
     {
         GameManager.instance.changeMusicVolume(slider.value);
@@ -475,14 +482,14 @@ public class UIScript : MonoBehaviour
         GameManager.instance.startButtonClicked();
     }
 
-    private void UpdateMenuBG()
+   /* private void UpdateMenuBG()
     {
         if (GameManager.instance.menu_bg_sprite != null)
         {
             Image bg = GameObject.FindGameObjectWithTag("menuBG").GetComponent<Image>();
             bg.sprite = GameManager.instance.menu_bg_sprite;
         }
-    }
+    }*/
 
     private void UpdateLevelOverview()
     {
