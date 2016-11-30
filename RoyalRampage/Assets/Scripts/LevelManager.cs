@@ -171,7 +171,7 @@ public class LevelManager : MonoBehaviour
             score += points * multiplier;
             scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
-            GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
+            //GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             StampBar.increaseFill = true;
             //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
@@ -398,7 +398,7 @@ public class LevelManager : MonoBehaviour
                             ObjectManagerV2.instance.canDamage = false;
 
                             rageMeter.SetActive(true);
-                            GameManager.instance.player.GetComponent<PlayerStates>().rageScore = 0;
+                            GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
@@ -420,7 +420,7 @@ public class LevelManager : MonoBehaviour
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
                                 guideText.text = "Try Again. Tap on both sides at the same time to stomp";
-                                GameManager.instance.player.GetComponent<PlayerStates>().rageScore = 0;
+                                GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
                                 ObjectManagerV2.instance.isGrounded = false;
