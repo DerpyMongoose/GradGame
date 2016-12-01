@@ -60,9 +60,9 @@ public class PlayerStates : MonoBehaviour
     Text timerText;
     GameObject timerUI;
 
-	Slider timeSliderLeft;
-	Slider timeSliderRight;
-	float totalTime;
+    Slider timeSliderLeft;
+    Slider timeSliderRight;
+    float totalTime;
 
     void Start()
     {
@@ -77,12 +77,12 @@ public class PlayerStates : MonoBehaviour
         timerText = GameObject.FindGameObjectWithTag("TimeLeftText").GetComponent<Text>();
         timerUI = GameObject.Find("TimeLeftText");
         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
-		totalTime = timeLeftInLevel;
+        totalTime = timeLeftInLevel;
         timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-		timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
-		timeSliderLeft.value = 1f;
-		timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
-		timeSliderRight.value = 1f;
+        timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
+        timeSliderLeft.value = 1f;
+        timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
+        timeSliderRight.value = 1f;
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
     }
@@ -98,7 +98,6 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-                    print("YO");
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     GameManager.instance.levelLoad();
@@ -107,9 +106,9 @@ public class PlayerStates : MonoBehaviour
                         Startlevel();
                     }
                 }
-                else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() ==  GameManager.Scene.TUTORIAL)
+                else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                 {
-                    Startlevel();                   
+                    Startlevel();
                 }
                 if (Input.GetKey(KeyCode.R))
                 {
@@ -137,9 +136,9 @@ public class PlayerStates : MonoBehaviour
     {
         switch (state)
         {
-		case PlayerState.IDLE:
-		case PlayerState.WALKING:
-		case PlayerState.ATTACKING:
+            case PlayerState.IDLE:
+            case PlayerState.WALKING:
+            case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
                     if (GameManager.instance.levelManager.multiplier > 1)
@@ -173,18 +172,21 @@ public class PlayerStates : MonoBehaviour
                 { //Move stuff to events
                     if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == false)
                     {
-                        GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
+                        transform.position = GameManager.instance.levelManager.playerPos;
+                        transform.rotation = Quaternion.LookRotation(Vector3.forward); // This doesn't work look at it tomorrow
                         timerText.text = "0";  // for the level timer
                         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                         SwipeHalf.startTutTimer = false;
                     }
                     else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == true)
                     {
-                        GameManager.instance.player.transform.position = GameManager.instance.levelManager.playerPos;
-                        GameManager.instance.player.GetComponent<Rigidbody>().Sleep();
+                        transform.position = GameManager.instance.levelManager.playerPos;
+                        transform.rotation = Quaternion.LookRotation(Vector3.forward); // This doesn't work look at it tomorrow
+                        GetComponent<Rigidbody>().Sleep();
                         timeLeftInLevel = 0;
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
+                        GameManager.instance.tutorialTaskCompleted();
                         GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                     }
                     else if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
@@ -194,8 +196,8 @@ public class PlayerStates : MonoBehaviour
                         GameManager.instance.timerOut();
                     }
                 }
-			timeSliderLeft.value = timeLeftInLevel / totalTime;
-			timeSliderRight.value = timeLeftInLevel / totalTime;
+                timeSliderLeft.value = timeLeftInLevel / totalTime;
+                timeSliderRight.value = timeLeftInLevel / totalTime;
 
                 break;
         }
