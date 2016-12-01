@@ -6,13 +6,16 @@ public class ObjectDetection : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.GetComponent<ObjectBehavior>() != null)
+        if (GameManager.instance.currentScene == GameManager.Scene.GAME)
         {
-            var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
-            if (obj)
+            if (col.gameObject.GetComponent<ObjectBehavior>() != null)
             {
-                GetComponent<Rigidbody>().Sleep();               
-                //StartCoroutine(TweakRigibody());
+                var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
+                if (obj)
+                {
+                    GetComponent<Rigidbody>().Sleep();
+                    //StartCoroutine(TweakRigibody());
+                }
             }
         }
     }
