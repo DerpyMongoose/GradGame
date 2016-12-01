@@ -251,7 +251,8 @@ public class UIScript : MonoBehaviour
 
     public void BackToGame()
     {
-        PlayStartButtonSound();
+		GameManager.instance.finishedCountingPoints();
+		PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
     }
 
@@ -268,6 +269,7 @@ public class UIScript : MonoBehaviour
     {
 
         //***** FOR AUDIO
+		GameManager.instance.finishedCountingPoints();
         PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "ToNextLevel"));
 
@@ -355,6 +357,7 @@ public class UIScript : MonoBehaviour
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
+		GameManager.instance.menuRolledOut ();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
         print("pausing");
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
@@ -374,6 +377,7 @@ public class UIScript : MonoBehaviour
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
         print("unpausing");
+		GameManager.instance.menuRolledIn ();
 		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
 
@@ -447,17 +451,19 @@ public class UIScript : MonoBehaviour
                 GameManager.instance.GoToStore();
                 break;
 
-            case "GoToLevelOverview":
-                play_menu.SetActive(false);
-                levels_menu.SetActive(true);
-                UpdateLevelOverview();
-                GameManager.instance.GoToLevelOverview();
+		case "GoToLevelOverview":
+				play_menu.SetActive (false);
+				levels_menu.SetActive (true);
+				UpdateLevelOverview ();
+				GameManager.instance.GoToLevelOverview ();
+				GameManager.instance.letterOpen ();
                 break;
 
-            case "CloseLevelOverview":
-                levels_menu.SetActive(false);
-                play_menu.SetActive(true);
-                GameManager.instance.CloseLevelOverview();
+		case "CloseLevelOverview":
+				levels_menu.SetActive (false);
+				play_menu.SetActive (true);
+				GameManager.instance.CloseLevelOverview ();
+				GameManager.instance.letterClose ();
                 break;
 
             case "UnPauseGame":

@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string dashPlayer;
 	[SerializeField]
-	private string spinPlay, 
+	private string spinPlay,
+		swingPlay,
 		stompPlay;
 
 	[Header ("-- Objects --")]
@@ -31,7 +32,9 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string menuButton;
 	[SerializeField]
-	private string stampButton;
+	private string stampButton,
+		letterOpen,
+		letterClose;
 
 	[Header ("-- Score Screen --")]
 	[SerializeField]
@@ -47,7 +50,9 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string pointsRewarded,
 		gemSpawn,
-		tutorialCheckMark;
+		tutorialCheckMark,
+		menuRollOut, 
+		menuRollIn;
 		
 
 	// extra
@@ -73,6 +78,10 @@ public class AudioManager : MonoBehaviour {
 	}
 	void PlayerStomp(){
 		PlaySound (stompPlay, GameManager.instance.player);
+	}
+
+	void PlayerSwing(){
+		PlaySound (swingPlay, GameManager.instance.player);
 	}
 
 	//************** Objects **************
@@ -181,14 +190,20 @@ public class AudioManager : MonoBehaviour {
 	void StartButton(){
         PlaySound(stampButton, gameObject);
     }
+	void LetterOpen(){
+		PlaySound(letterOpen, gameObject);
+	}
+	void LetterClose(){
+		PlaySound(letterClose, gameObject);
+	}
 
 	//************** Score screen **************
 	void ScoreScreenOpen(){
         PlaySound(scoreScreenOpen, gameObject);
     }
 
-	void CountingStars(){
-
+	void CountingGems(){
+		PlaySound (gemReward, gameObject);
 	}
 
 	void CountingPointsPlay(){
@@ -228,6 +243,13 @@ public class AudioManager : MonoBehaviour {
 		PlaySound(tutorialCheckMark, gameObject);
 	}
 
+	void MenuRollOut(){
+		PlaySound (menuRollOut, gameObject);
+	}
+	void MenuRollIn(){
+		PlaySound (menuRollIn, gameObject);
+	}
+
 	//**********volume ********
 	void UpdateMusicVolume(float volume){
 		AkSoundEngine.SetRTPCValue ("Music_Volume_Slider", volume*100f);
@@ -256,6 +278,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
 		GameManager.instance.OnPlayerStomp += PlayerStomp;
+		GameManager.instance.OnPlayerHit += PlayerSwing;
        
 
         //object sounds
@@ -280,6 +303,8 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange += UpdateMusicVolume;
 		GameManager.instance.OnSFXVolumeChange += UpdateSFXVolume;
+		GameManager.instance.OnMenuRollOut += MenuRollOut;
+		GameManager.instance.OnMenuRollIn += MenuRollIn;
     }
 
 	void OnDisable(){
@@ -288,6 +313,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+		GameManager.instance.OnPlayerHit -= PlayerSwing;
 
 
 		//object sounds
@@ -312,5 +338,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange -= UpdateMusicVolume;
 		GameManager.instance.OnSFXVolumeChange -= UpdateSFXVolume;
+		GameManager.instance.OnMenuRollOut -= MenuRollOut;
+		GameManager.instance.OnMenuRollIn -= MenuRollIn;
     }
 }

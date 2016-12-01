@@ -634,6 +634,8 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(true);
         }
+		GameManager.instance.gemScoreDisplay (); //AUDIO FOR ONE GEM
+
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);

@@ -265,6 +265,11 @@ public class GameManager
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
 	public event GameAction OnTutorialTaskCompleted;
+	public event GameAction OnGemScoreDisplay;
+	public event GameAction OnMenuRollOut;
+	public event GameAction OnMenuRollIn;
+	public event GameAction OnLetterOpen;
+	public event GameAction OnLetterClose;
 
     public void timerStart()
     {
@@ -335,6 +340,26 @@ public class GameManager
 	public void tutorialTaskCompleted(){
 		if(OnTutorialTaskCompleted != null)
 			OnTutorialTaskCompleted();
+	}
+	public void gemScoreDisplay(){
+		if (OnGemScoreDisplay != null)
+			OnGemScoreDisplay ();
+	}
+	public void menuRolledOut(){
+		if (OnMenuRollOut != null)
+			OnMenuRollOut ();
+	}
+	public void menuRolledIn(){
+		if (OnMenuRollIn != null)
+			OnMenuRollIn ();
+	}
+	public void letterOpen(){
+		if (OnLetterOpen != null)
+			OnLetterOpen ();
+	}
+	public void letterClose(){
+		if (OnLetterClose != null)
+			OnLetterClose ();
 	}
 
     public delegate void LevelAction(float val);
