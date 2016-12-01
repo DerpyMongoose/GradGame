@@ -77,7 +77,7 @@ public class UIScript : MonoBehaviour
 
                 //update level on play icon
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -110,7 +110,7 @@ public class UIScript : MonoBehaviour
 
                 //update level on play icon
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
 
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 settings_menu.SetActive(false);
@@ -195,7 +195,7 @@ public class UIScript : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.PLAY_MENU:
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
             if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
                 {
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -222,7 +222,7 @@ public class UIScript : MonoBehaviour
 
                 break;
             case GameManager.Scene.LEVELS_OVERVIEW:
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
             break;
         }
     }
