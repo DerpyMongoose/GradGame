@@ -67,7 +67,6 @@ public class LevelManager : MonoBehaviour
     bool completed;
     bool startTimer;
     float timer, timer2, timer3;
-    int initialHP;
     int tutorialState;
 
     void OnEnable()
@@ -86,6 +85,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        gems = new GameObject[5];
         MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
         tutorialState = 0;
@@ -101,7 +101,10 @@ public class LevelManager : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
+                for(int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i-1] = GameObject.Find("Gem" + i.ToString());
+                }
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString() + " $"; // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -125,7 +128,10 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
+                for (int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i - 1] = GameObject.Find("Gem" + i.ToString());
+                }
                 // print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
@@ -313,6 +319,11 @@ public class LevelManager : MonoBehaviour
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
+                            startTimer = false;
+                        }
+                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
+                        {
+                            startTimer = true;
                         }
 
                         if (tutorialBarrel2 == null)
@@ -328,28 +339,32 @@ public class LevelManager : MonoBehaviour
                                 timer = 0;
                             }
                         }
-                        else if (tutorialBarrel == null && completed == false)
+                        else if (startTimer == true)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 1f && tutorialBarrel != null)
+                            {
+                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                                {
+                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    {
+                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                    }
+                                }
+                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                                GameManager.instance.objectDestructed(tutorialBarrel);
+                                Destroy(tutorialBarrel);
+                                startTimer = false;
+                                timer2 = 0;
+                                tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            }
+                            else if (tutorialBarrel == null && completed == false)
+                            {
+                                tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                                startTimer = false;
+                            }
                         }
-
-                        //if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
-                        //{
-                        //    if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
-                        //    {
-                        //        for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
-                        //        {
-                        //            if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
-                        //            {
-                        //                tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
-                        //                tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
-                        //            }
-                        //        }
-                        //        tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
-                        //        GameManager.instance.objectDestructed(tutorialBarrel);
-                        //        Destroy(tutorialBarrel);
-                        //    }
-                        //}
                         break;
                     case GameManager.Tutorial.SWIRL:
                         if (spawnedObject == false)
@@ -364,6 +379,7 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = "Draw a circle rapidly on the right side to spin attack";
 
+                            startTimer = false;
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
@@ -538,7 +554,7 @@ public class LevelManager : MonoBehaviour
 
     public void CalculateCurrency()
     {
-        GameManager.instance.currency = stars * currencyPerStar;
+        GameManager.instance.currency += stars * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -550,31 +566,32 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        if (GameManager.instance.currentLevel != 0)
+        if (GameManager.instance.currentLevel != 1)
         {
             Stars();
-            CalculateCurrency();
-
-
+            
+            if (GameManager.instance.stars != null)
+            {
+                if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
+                {
+                    CalculateCurrency();
+                    GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
+                }
+            }
             replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
-
-            //starText.text = stars.ToString();
-        }      
-        for (int i = gems.Length - 1; i >= stars; i--)
+        }
+        for(int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
+        }
+        for (int i = 0; i < stars; i++)
+        {
+            gems[i].SetActive(true);
         }
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);
-        if (GameManager.instance.stars != null)
-        {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
-            {
-                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
-                GameManager.instance.allStars += stars;
-            }
-        }
+
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
         if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
