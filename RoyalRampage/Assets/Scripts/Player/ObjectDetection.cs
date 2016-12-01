@@ -39,6 +39,7 @@ public class ObjectDetection : MonoBehaviour {
         {
             //StartCoroutine(TweakRigibody());
             GetComponent<Rigidbody>().Sleep();
+            prevent = false;
         }
     }
 
