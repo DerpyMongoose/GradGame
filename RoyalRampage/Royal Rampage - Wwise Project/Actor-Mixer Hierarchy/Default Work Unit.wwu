@@ -6561,6 +6561,11 @@
 												<Value>-40</Value>
 											</ValueList>
 										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -13121,7 +13126,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>-8</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -13236,9 +13241,14 @@
 						</Sound>
 						<Sound Name="Player Stomp" ID="{CFE81CC4-7F07-4307-94A3-C1AC1755B3E4}" ShortID="897373611" Type="SoundFX">
 							<PropertyList>
+								<Property Name="InitialDelay" Type="Real64">
+									<ValueList>
+										<Value>0.2</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>2</Value>
+										<Value>3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -13611,6 +13621,124 @@
 								<ItemRef Name="Player Spin 4" ID="{4D08171A-96AE-4364-ABD8-9252ECC4F0C0}"/>
 							</Playlist>
 						</RandomSequenceContainer>
+						<Sound Name="Player Swing" ID="{98B3A75C-A21A-4FC1-AB68-46EED02DA4F9}" ShortID="572866821" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<SourcePlugin Name="Dash" ID="{74105A60-8AF7-4E0C-A6CF-6B9CB15761B7}" ShortID="1022175615" PluginName="SoundSeed Air/SoundSeed Woosh" CompanyID="0" PluginID="120">
+									<PropertyList>
+										<Property Name="FrequencyScale" Type="Real32" Value="1.01"/>
+										<Property Name="Speed" Type="Real32" Value="9"/>
+										<Property Name="SpeedAutomate" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<PluginData>
+	<WooshData>
+		<CurveList Version="1">
+			<CurveInfo Name="Speed">
+				<Curve Name="" ID="{A9335EB8-8730-4E32-A495-A48ACFA3DE96}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.07411</XPos>
+							<YPos>22.23872</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.12862</XPos>
+							<YPos>50.214</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.16</XPos>
+							<YPos>78.232</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.18343</XPos>
+							<YPos>53.12846</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.23146</XPos>
+							<YPos>30.37445</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.33174</XPos>
+							<YPos>11.97964</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.5</XPos>
+							<YPos>0</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+		</CurveList>
+		<Path Version="1">
+			<Path2D Name="" ID="{957B7395-2F27-44DA-9D42-46E1115427A4}">
+				<PropertyList>
+					<Property Name="LinearTime" Type="bool" Value="False"/>
+				</PropertyList>
+				<PointList>
+					<Point>
+						<XPos>0</XPos>
+						<YPos>0</YPos>
+						<Flags>12</Flags>
+						<Time>0</Time>
+					</Point>
+				</PointList>
+			</Path2D>
+		</Path>
+	</WooshData>
+</PluginData>
+									<PluginInnerObjectList>
+										<List Name="Deflectors">
+											<PluginInnerObject Name="" ID="{D94B7B4D-66AA-4F81-A626-8FF549A7BC89}" PluginName="Deflector" CompanyID="0" PluginID="122">
+												<PropertyList>
+													<Property Name="Frequency" Type="Real32" Value="203"/>
+													<Property Name="Gain" Type="Real32" Value="3"/>
+													<Property Name="QFactor" Type="Real32" Value="2.73"/>
+												</PropertyList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{40CBBE0E-04BF-44F3-A38F-5320C402B73E}" PluginName="Deflector" CompanyID="0" PluginID="122">
+												<PropertyList>
+													<Property Name="Frequency" Type="Real32" Value="433"/>
+													<Property Name="Gain" Type="Real32" Value="-4"/>
+													<Property Name="QFactor" Type="Real32" Value="6.67"/>
+												</PropertyList>
+											</PluginInnerObject>
+										</List>
+									</PluginInnerObjectList>
+								</SourcePlugin>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Dash" ID="{74105A60-8AF7-4E0C-A6CF-6B9CB15761B7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<StateInfo>
 						<StateGroupList>
@@ -13659,94 +13787,6 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Timer_Tick" ID="{4D30336A-BC20-4F55-90D0-8D1DE932FEA0}" ShortID="849280287" Type="SoundFX">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<RTPCList>
-												<RTPC Name="" ID="{237EC0E7-30E0-4134-8B93-741682D85948}" ShortID="728180013">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Level_Time" ID="{67774297-3FF2-4549-9FDC-76BC0B59AA8E}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{F71631B6-B052-4670-90FA-5D1EEB221EF3}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>1000</YPos>
-																<Flags>5</Flags>
-																<SegmentShape>Constant</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>1</XPos>
-																<YPos>800</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>Constant</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>2</XPos>
-																<YPos>600</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>Constant</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>3</XPos>
-																<YPos>400</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>Constant</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>4</XPos>
-																<YPos>200</YPos>
-																<Flags>0</Flags>
-																<SegmentShape>Constant</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>5</XPos>
-																<YPos>0</YPos>
-																<Flags>0</Flags>
-															</Point>
-															<Point>
-																<XPos>120</XPos>
-																<YPos>0</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-96</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Timer_Tick" ID="{608ED234-7B44-4306-9050-9F256C048C14}" ShortID="1015517607">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="1.12946428571429E-02"/>
-												<Property Name="TrimBegin" Type="Real64" Value="0.170892857142857"/>
-											</PropertyList>
-											<Language>SFX</Language>
-											<AudioFile>Timer_Tick.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Timer_Tick" ID="{608ED234-7B44-4306-9050-9F256C048C14}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="Tutorial_Check_Mark" ID="{7ED13A8A-D5BD-414C-915C-1636729105DC}" ShortID="253312847" Type="SoundFX">
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
@@ -13774,6 +13814,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="Point" ID="{7EBE779F-24E6-4E01-898E-B8910B99E8E3}" ShortID="854725715" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -13795,6 +13838,181 @@
 									</ChildrenList>
 									<ActiveSourceList>
 										<ActiveSource Name="Point" ID="{6BA56681-2E80-46DA-83D2-9B1B80B2E25C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<RandomSequenceContainer Name="Timer Bell" ID="{3F9F8B3F-D00F-4002-B070-D6D09DEC7601}" ShortID="646713321">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{9F15B330-E4AE-4A58-AD6C-0F30921C5079}" ShortID="683675847">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Level_Time" ID="{67774297-3FF2-4549-9FDC-76BC0B59AA8E}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{A06871A0-E4FD-4F3E-B893-4EBE8E872809}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>500</YPos>
+																<Flags>5</Flags>
+																<SegmentShape>Constant</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>400</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Constant</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>2</XPos>
+																<YPos>300</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Constant</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>3</XPos>
+																<YPos>200</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Constant</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>4</XPos>
+																<YPos>100</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Constant</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>5</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+															</Point>
+															<Point>
+																<XPos>120</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-15</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Timer Bell" ID="{74E596B1-3EA0-487D-945D-A73E9ECE1D58}" ShortID="432070780" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Timer Bell" ID="{1E3A9878-16A0-4E19-A96E-4904E5B5950D}" ShortID="45260281">
+													<Language>SFX</Language>
+													<AudioFile>Timer Bell.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Timer Bell" ID="{1E3A9878-16A0-4E19-A96E-4904E5B5950D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Timer Bell_1" ID="{0EFD794D-F44A-41C0-BFD4-92DC820A2E9C}" ShortID="551971644" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Timer Bell_1" ID="{B5178986-4F81-4EFF-9E58-0B784FE4F6DF}" ShortID="969058172">
+													<Language>SFX</Language>
+													<AudioFile>Timer Bell_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Timer Bell_1" ID="{B5178986-4F81-4EFF-9E58-0B784FE4F6DF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Timer Bell_2" ID="{E863BC61-13CD-479C-A606-C9D025D22C80}" ShortID="628032209" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Timer Bell_2" ID="{238C190E-EE1A-4F84-BC36-F6D974076929}" ShortID="832027739">
+													<Language>SFX</Language>
+													<AudioFile>Timer Bell_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Timer Bell_2" ID="{238C190E-EE1A-4F84-BC36-F6D974076929}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Timer Bell_3" ID="{24630CFE-86C5-4617-BB7C-81CE7FF82334}" ShortID="474938370" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Timer Bell_3" ID="{6B0EE432-909E-40C8-9DAD-5A3C6E06A36B}" ShortID="33372952">
+													<Language>SFX</Language>
+													<AudioFile>Timer Bell_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Timer Bell_3" ID="{6B0EE432-909E-40C8-9DAD-5A3C6E06A36B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<Sound Name="Gem" ID="{50C79F20-67C7-4568-A694-FADC8198FAA8}" ShortID="482371141" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="System" ID="{39392811-51D5-4B61-9EB1-D5B8D8062519}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Gem" ID="{5D777CF4-09BD-4B52-9CE1-90BCE58BDE6D}" ShortID="483681585">
+											<Language>SFX</Language>
+											<AudioFile>Gem.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="674067543"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Gem" ID="{5D777CF4-09BD-4B52-9CE1-90BCE58BDE6D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -13839,7 +14057,7 @@
 																<SegmentShape>Log3</SegmentShape>
 															</Point>
 															<Point>
-																<XPos>15000</XPos>
+																<XPos>50000</XPos>
 																<YPos>700</YPos>
 																<Flags>37</Flags>
 															</Point>
@@ -13855,6 +14073,9 @@
 										<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-1</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{DEFD1D29-0218-47A7-8858-0DE977A622EF}" ShortID="264891130">
 													<ReferenceList>
@@ -13874,7 +14095,7 @@
 																<SegmentShape>Log3</SegmentShape>
 															</Point>
 															<Point>
-																<XPos>15000</XPos>
+																<XPos>50000</XPos>
 																<YPos>-6</YPos>
 																<Flags>37</Flags>
 															</Point>
@@ -13973,6 +14194,9 @@
 											</RTPCList>
 										</Property>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>6</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{0B24D0D1-B7D6-4AA2-AFD5-779B56EB97ED}" ShortID="800357232">
 													<ReferenceList>
