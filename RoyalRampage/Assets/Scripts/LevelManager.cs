@@ -36,13 +36,18 @@ public class LevelManager : MonoBehaviour
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    GameObject replayScore;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
     GameObject goalPanel;
     GameObject scorePanel;
     GameObject rageMeter;
+    GameObject starPoints;
     GameObject panel;
+    GameObject highscore;
+    GameObject levelNr;
+    GameObject lvlNr;
     GameObject[] gems;
     private GameObject continueButton;
     [HideInInspector]
@@ -141,12 +146,17 @@ public class LevelManager : MonoBehaviour
                 ReplayBtn = GameObject.Find("ReplayButton");
                 NewLevelBtn = GameObject.Find("NewLevelButton");
                 continueButton = GameObject.Find("ContinueButton");
-                //starText = GameObject.Find("stars").GetComponent<Text>();
+                replayScore = GameObject.FindGameObjectWithTag("GOscore");
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
+                highscore = GameObject.Find("replayPanelv2/Highscore");
                 rageMeter = GameObject.Find("InGameGUI/RageMeter");
                 panel = GameObject.Find("InGameGUI/Panel");
+                starPoints = GameObject.Find("replayPanelv2/Points");
+                levelNr = GameObject.Find("replayPanelv2/levelnumber");
+                lvlNr = GameObject.Find("IntroTapPanel/TitlePanelBG/BackgroundFrame/LevelNumber");
+
                 goalPanel.SetActive(false);
                 scorePanel.SetActive(false);
                 rageMeter.SetActive(false);
@@ -326,6 +336,7 @@ public class LevelManager : MonoBehaviour
                             if (timer > 1f)
                             {
                                 timer = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.CHAIN;
                             }
                         }
@@ -356,6 +367,7 @@ public class LevelManager : MonoBehaviour
                             {
                                 //COLORED PANEL FOR COMMUNICATING ATTACK
                                 //WE NEED TO DESTROY THE OBJECT (CHUNKS)
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
                                 timer = 0;
                             }
@@ -436,6 +448,7 @@ public class LevelManager : MonoBehaviour
                             {
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                                 timer2 = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.STOMP;
                             }
                         }
@@ -536,6 +549,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
         GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.instance.isInstructed = true;
+        GameManager.instance.tutorialTaskCompleted();
         GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
@@ -606,6 +620,12 @@ public class LevelManager : MonoBehaviour
             }
             replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
         }
+        if(GameManager.instance.currentLevel == 1)
+        {
+            starPoints.SetActive(false);
+            replayScore.SetActive(false);
+            highscore.SetActive(false);         
+        }
         for (int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
@@ -620,14 +640,18 @@ public class LevelManager : MonoBehaviour
 
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
-        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+        if (GameManager.instance.currentLevel != 1)
         {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            }
+            else
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
+            }
         }
-        else
-        {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
-        }
+        else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
         switch (levelResult)
         {
