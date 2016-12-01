@@ -89,6 +89,7 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, -transform.right * 1f, Color.red, 2f);
         //print(powerTime);
         //print(rightOk);
         //print(leftOk);
@@ -209,15 +210,26 @@ public class SwipeHalf : MonoBehaviour
                         if (attackDist > 1f)
                         {
                             attackDir = dragPointAtt - startPointAtt;
-                            if (spinningAnim == false)
+                            var localDir = -transform.InverseTransformDirection(attackDir.normalized);
+                            var angle = Vector3.Angle(-Vector3.right, localDir);
+                            var cross = Vector3.Cross(-Vector3.right, localDir).normalized;
+                            if(cross.y < 0)
                             {
-                                transform.rotation = Quaternion.LookRotation(attackDir);
+                                angle = -angle;
+                            }
+                            //print(360 - Vector3.Angle(transform.forward, localDir));
+                            print(angle);
+                            Debug.DrawRay(transform.position, attackDir * 1f, Color.blue, 5f);
+                            Debug.DrawRay(transform.position, cross * 5f, Color.green, 5f);
+                            if (spinningAnim == false && angle < 0)
+                            {
+                                //transform.rotation = Quaternion.LookRotation(attackDir);
                                 PlayerStates.swiped = true;
                                 StartCoroutine("SwipeTimer");
                             }
 
                             ///HIT ANIMATION
-                            if (spinningAnim == false && swipeToHit == true)
+                            if (spinningAnim == false && swipeToHit == true && angle < 0)
                             {
                                 GameManager.instance.playerHitObject();
                             }

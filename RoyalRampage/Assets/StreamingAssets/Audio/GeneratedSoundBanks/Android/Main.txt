@@ -9,16 +9,16 @@ Event	ID	Name			Wwise Object Path	Notes
 	1844428912	Menu_Parchment_Rollout_Play			\Default Work Unit\Menu_Parchment_Rollout_Play	
 	2174485018	Dash_Play			\Default Work Unit\Dash_Play	
 	2563246215	Points_Counting_Stop			\Default Work Unit\Points_Counting_Stop	
-	2578207079	Button_Paper_Play			\Default Work Unit\Button_Paper_Play	
 	2771173984	Gem_Rewarded_Play			\Default Work Unit\Gem_Rewarded_Play	
 	2848266490	Spin_Play			\Default Work Unit\Spin_Play	
 	3166394572	Ambience_Stop			\Default Work Unit\Ambience_Stop	
 	3229908515	Menu_Letter_Open_Play			\Default Work Unit\Menu_Letter_Open_Play	
+	3260876866	Player_Swing_Play			\Default Work Unit\Player_Swing_Play	
 	3286289918	Points_Rewarded_Play			\Default Work Unit\Points_Rewarded_Play	
 	3295885793	Timer_Tick_Play			\Default Work Unit\Timer_Tick_Play	
 	3509289057	Music_System_Stop			\Default Work Unit\Music_System_Stop	
+	3618317195	Gem_Spawn_Play			\Default Work Unit\Gem_Spawn_Play	
 	3763470425	Menu_Parchment_Rollin_Play			\Default Work Unit\Menu_Parchment_Rollin_Play	
-	3806627230	Button_Stamp_Play			\Default Work Unit\Button_Stamp_Play	
 	3839850873	Stomp_Play			\Default Work Unit\Stomp_Play	
 	4027780260	Menu_Button_Play			\Default Work Unit\Menu_Button_Play	
 
@@ -91,13 +91,19 @@ Trigger	ID	Name			Wwise Object Path	Notes
 	724164523	Star_Progress_Fanfare			\Default Work Unit\Star_Progress_Fanfare	
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	120619997	Spin	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Spin\Player Spin 4\Spin	
 	283953301	Spin	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Spin\Player Spin 1\Spin	
+	299900749	Spin	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Spin\Player Spin 2\Spin	
 	355259177	Dash	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Dash\Dash	
+	883445196	Spin	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Spin\Player Spin 3\Spin	
+	1022175615	Dash	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Swing\Dash	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	21864923	Pots and Pans Destruction_3	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Pots and Pans Destruction_3_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Destruction\Marble\Pots and Pans Destruction_3		15473
+	33372952	Timer Bell_3	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Timer Bell_3_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer Bell\Timer Bell_3		67814
 	35893820	Glass Hit_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Glass Hit_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Bottle\Glass Hit\Glass Hit_1		14980
 	39339163	Chair Destruction_2	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Chair Destruction_2_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Basket\Landing\Wood\Chair Destruction_2		12959
+	45260281	Timer Bell	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Timer Bell_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer Bell\Timer Bell		62802
 	74423905	Cutlery Landing_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Landing_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Landing\Marble\Cutlery Landing_1		11145
 	76778889	Music_In_Finish_Screen	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Music_In_Finish_Screen_4D7BABE6.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Finish_Screen\Music_In_Finish_Screen\Music_In_Finish_Screen		10935
 	109557986	Cutlery Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Cutlery Hit\Cutlery Hit		7438
@@ -116,10 +122,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	326610899	Grand_Piano_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Grand_Piano_Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grand Piano\Grand_Piano_Hit		9322
 	331008926	Cutlery Destruction_2	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Destruction_2_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Destruction\Carpet\Cutlery Destruction_2		3680
 	351242880	Chair Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Chair Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Chair\Chair Hit		3822
-	376053870	Point	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Point_FA9AB714.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Point		10545
 	406327685	Pots and Pans Hit_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Pots and Pans Hit_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Pots and Pans Hit\Pots and Pans Hit_1		17824
 	407269525	Grandfather Clock Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Grandfather Clock Landing_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grandfather Clock\Landing\Marble\Grandfather Clock Landing		14409
-	408393990	Point	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Point_8912036A.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Points_Counting\Point		2825
+	408393990	Point	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Point_6DF8D27D.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Points_Counting\Point		2825
 	423065894	Wood	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\China Landing_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\Landing\Wood		13943
 	441943590	Cutlery Destruction_3	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Destruction_3_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Destruction\Carpet\Cutlery Destruction_3		2988
 	451984601	Disappointing_Fanfare	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Disappointing_Fanfare_4B8CC0C5.wem		\Interactive Music Hierarchy\Default Work Unit\Disappointing_Fanfare\Disappointing_Fanfare		52704
@@ -138,7 +143,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	624517478	Pots and Pans Landing_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Pots and Pans Landing_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Landing\Marble\Pots and Pans Landing_1		12632
 	657417373	Wooden_Floor	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Wooden_Floor_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Landing\Wood\Wooden_Floor		4027
 	671332153	Pots and Pans Destruction_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Pots and Pans Destruction_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Destruction\Marble\Pots and Pans Destruction_1		12469
-	674067543	Gem	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Gem_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Score Screen\Gem		25648
+	674067543	Gem	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Gem_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Gem		25648
 	678912872	Food_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Food_Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Food_Hit		5845
 	683283322	Cutlery Destruction_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Destruction_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Destruction\Carpet\Cutlery Destruction_1		2671
 	703027072	Table Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Table Destruction_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Barrel\Destruction\Carpet\Table Destruction		22404
@@ -154,6 +159,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	796927213	Grand_Piano_Landing	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Grand_Piano_Landing_475E4E5D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Grand Piano\Landing\Carpet\Grand_Piano_Landing		8998
 	818154129	Menu Parchment Roll-Out	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Menu Parchment Roll-Out_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Menus\Menu Parchment Roll-Out		29102
 	818434283	Ambience	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Ambience_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Ambience\Ambience		5319
+	832027739	Timer Bell_2	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Timer Bell_2_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer Bell\Timer Bell_2		67893
 	832268687	Globe_Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Globe_Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Globe\Globe_Hit		5255
 	834291170	Music_In_Level_Times_Up	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Music_In_Level_Times_Up_4D7BABE6.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Level_Times_Up\Music_In_Level_Times_Up\Music_In_Level_Times_Up		11664
 	837457110	China Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\China Destruction_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\Destruction\Marble\China Destruction		16297
@@ -166,11 +172,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	922374243	Cutlery Landing_3	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Landing_3_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Landing\Marble\Cutlery Landing_3		8581
 	945521889	China Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\China Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\China\China Hit\China Hit		14075
 	959483164	Statue Hit	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Statue Hit_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Statue\Statue Hit\Statue Hit		4009
+	969058172	Timer Bell_1	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Timer Bell_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer Bell\Timer Bell_1		66539
 	979778914	In Game Music	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\In Game Music_4D7BABE6.wem		\Interactive Music Hierarchy\Default Work Unit\Music System\Music_In_Level\In Game Music\In Game Music		2250912
 	992397364	Glass Destruction_3	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Glass Destruction_3_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Bottle\Destruction\Marble\Glass Destruction_3		12629
 	992590863	Player Stomp	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Player Stomp_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Character\Player Stomp		9419
 	1008316456	Menu Letter Open	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Menu Letter Open_1_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\Menus\Menu Letter Open		23511
-	1015517607	Timer_Tick	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Timer_Tick_CE2B109D.wem		\Actor-Mixer Hierarchy\Default Work Unit\System\In Game\Timer_Tick		2858
 	1016137167	Cutlery Destruction	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Cutlery Destruction_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Cutlery\Destruction\Carpet\Cutlery Destruction		4353
 	1031478307	Pots and Pans Destruction_2	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Pots and Pans Destruction_2_3ADACB5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Lamp\Destruction\Marble\Pots and Pans Destruction_2		10970
 	1042173638	Carpet_Floor	C:\Users\GradGame\RoyalRampage\Royal Rampage - Wwise Project\.cache\Android\SFX\Carpet_Floor_584BA9FB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\Object\Food\Landing\Carpet\Carpet_Floor		4027
