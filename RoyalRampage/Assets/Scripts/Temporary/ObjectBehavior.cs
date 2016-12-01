@@ -313,7 +313,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 if (ObjectManagerV2.instance.canDamage == true)
                 {
-                    if (col.collider.tag == "Wall")
+                    if (col.collider.tag == "Wall" && hit)
                     {
 
                         //GetComponent<Rigidbody>().velocity = Vector3.zero;

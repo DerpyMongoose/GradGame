@@ -89,6 +89,7 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward * 1f, Color.red, 2f);
         //print(powerTime);
         //print(rightOk);
         //print(leftOk);
@@ -209,15 +210,19 @@ public class SwipeHalf : MonoBehaviour
                         if (attackDist > 1f)
                         {
                             attackDir = dragPointAtt - startPointAtt;
-                            if (spinningAnim == false)
+                            var localDir = -transform.InverseTransformDirection(attackDir.normalized);
+                            //print(360 - Vector3.Angle(transform.forward, localDir));
+                            print(Vector3.Angle(transform.forward, localDir));
+                            Debug.DrawRay(transform.position, localDir * 1f, Color.blue, 2f);
+                            if (spinningAnim == false && Vector3.Angle(transform.forward, localDir) < 90)
                             {
-                                transform.rotation = Quaternion.LookRotation(attackDir);
+                                //transform.rotation = Quaternion.LookRotation(attackDir);
                                 PlayerStates.swiped = true;
                                 StartCoroutine("SwipeTimer");
                             }
 
                             ///HIT ANIMATION
-                            if (spinningAnim == false && swipeToHit == true)
+                            if (spinningAnim == false && swipeToHit == true && Vector3.Angle(transform.forward, localDir) < 90)
                             {
                                 GameManager.instance.playerHitObject();
                             }
