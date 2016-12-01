@@ -331,8 +331,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011425812374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.118945, y: -2.1448744e-17, z: -18.06807}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011636015862}
@@ -1163,14 +1163,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Barrel
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
   hasLanded: 1
-  score: 0
+  score: 20
   currencySpawnChance: 0.1
   objMaterial: 1
   objSize: 1
