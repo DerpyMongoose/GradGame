@@ -15,8 +15,6 @@ namespace AK
     {
         static const AkUniqueID AMBIENCE_PLAY = 1496310610U;
         static const AkUniqueID AMBIENCE_STOP = 3166394572U;
-        static const AkUniqueID BUTTON_PAPER_PLAY = 2578207079U;
-        static const AkUniqueID BUTTON_STAMP_PLAY = 3806627230U;
         static const AkUniqueID DASH_PLAY = 2174485018U;
         static const AkUniqueID GEM_REWARDED_PLAY = 2771173984U;
         static const AkUniqueID GEM_SPAWN_PLAY = 3618317195U;

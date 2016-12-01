@@ -41,7 +41,7 @@
 						<Action Name="Play" ID="{447EC8E6-3458-40AE-BE19-8DBAD655005B}" ShortID="975765235" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{D9B15F7C-7974-4416-90BE-9DFBE3AE5B7E}" Global="false">
-									<ObjectRef Name="Player Spin 1" ID="{EA12FBC2-1E65-4DF5-8C0E-3214F71DA3DE}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+									<ObjectRef Name="Player Spin" ID="{F621CDD2-0D89-4A55-BAFE-4CABD4E06CCF}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -199,28 +199,6 @@
 							<ElementList>
 								<Element ID="{20601B8F-E387-433B-9976-A7F8D941CBA8}" Global="false">
 									<ObjectRef Name="Menu Parchment Roll-In" ID="{2A60E6CA-3F53-4989-9E87-24AEA7701460}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="Button_Paper_Play" ID="{44B4B802-5008-4AEC-A561-1209F1832D84}">
-					<ChildrenList>
-						<Action Name="Play" ID="{7DF7763F-0039-47E1-BE97-ED61AA0A9ACD}" ShortID="332040445" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{ED89E857-6964-49FE-AD42-B84EB02F61D1}" Global="false">
-									<ObjectRef Name="Button Paper" ID="{5C0777AA-115D-4DB5-B1D3-2AFE31A45625}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
-								</Element>
-							</ElementList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="Button_Stamp_Play" ID="{AC552DA2-D3BF-40D5-9F19-02EF23D41A57}">
-					<ChildrenList>
-						<Action Name="Play" ID="{DD434E99-576C-43BC-ABF4-39D3A78E0DC5}" ShortID="321422000" Type="Play" Scope="One" Global="false">
-							<ElementList>
-								<Element ID="{8E7A2D92-CC37-42DD-A1AB-8A718FB8A39C}" Global="false">
-									<ObjectRef Name="Button Stamp" ID="{43F1B3D1-843E-499E-B1E2-AD2AAF66AE36}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
