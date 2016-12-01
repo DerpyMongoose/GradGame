@@ -4,19 +4,20 @@ using UnityEngine.UI;
 
 public class ObjectBehavior : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public int life;
 
     public string soundSwitch; // FOR AUDIO
 
     private Rigidbody objRB;
     private GameObject player;
+    ObjectBehavior script;
     private IEnumerator coroutine;
 
     [HideInInspector]
     public ParticleSystem particleSys;
     [HideInInspector]
-    public bool hit = false;
+    public bool hit;
     [HideInInspector]
     public bool slowed;
     [HideInInspector]
@@ -165,14 +166,14 @@ public class ObjectBehavior : MonoBehaviour
     void FixedUpdate()
     {
         CheckDamage();
-        CheckVelocity();
+        //CheckVelocity();
 
     }
 
 
     void Update()
     {
-
+        
         if (flying)
         {
             //APPLY TRANSFORM ROTATION
@@ -235,15 +236,15 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    void CheckVelocity()
-    {
-        if (objRB.velocity.magnitude <= 0.1f)
-        {
-            //print("Hit becomes false now");
-            hit = false;
+    //void CheckVelocity()
+    //{
+    //    if (objRB.velocity.magnitude <= 0.1f)
+    //    {
+    //        //print("Hit becomes false now");
+    //        hit = false;
 
-        }
-    }
+    //    }
+    //}
 
     void SpawnPoints()
     {
@@ -271,9 +272,14 @@ public class ObjectBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.GetComponent<ObjectBehavior>() != null)
+        {
+            script = col.gameObject.GetComponent<ObjectBehavior>();
+        }
         //print(col.relativeVelocity.magnitude);
         if (col.relativeVelocity.magnitude > ObjectManagerV2.instance.colImpact)
         {
+            //print("Hit the object");
             if (col.collider.gameObject == player)
             {
                 GameManager.instance.objectHit(gameObject);
@@ -281,7 +287,13 @@ public class ObjectBehavior : MonoBehaviour
 
             if ((col.collider.tag == "Destructable" || col.collider.tag == "UniqueObjs") && hit == true)
             {
-                col.collider.GetComponent<ObjectBehavior>().hit = true;
+                if (script.hit == false)
+                {
+                    hit = false;
+                }
+                script.hit = true;
+                //sprint(gameObject.name + " " + hit);
+                print("I " + gameObject.name + "hit the " + col.gameObject.name);
                 // PLAY DAMAGE PARTICLE
                 //particleSys.Play();
                 //col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
@@ -295,13 +307,13 @@ public class ObjectBehavior : MonoBehaviour
 
                     ///////////////////////////////////////////////////////////////BOTH OBJECTS ARE TAKING DAMAGE///////////////////////////////////////////
                     life -= ObjectManagerV2.instance.objDamage;
-                    col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.objDamage;
+                    script.life -= ObjectManagerV2.instance.objDamage;
                     if (life <= 0)
                     {
                         ObjectManagerV2.instance.countObjects++;
                         ObjectManagerV2.instance.countMultiTime = 0;
                     }
-                    if (col.gameObject.GetComponent<ObjectBehavior>().life <= 0)
+                    if (script.life <= 0)
                     {
                         ObjectManagerV2.instance.countObjects++;
                         ObjectManagerV2.instance.countMultiTime = 0;
@@ -313,6 +325,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 if (ObjectManagerV2.instance.canDamage == true)
                 {
+
                     if (col.collider.tag == "Wall" && hit)
                     {
 
@@ -337,6 +350,11 @@ public class ObjectBehavior : MonoBehaviour
                     hasLanded = true;
                 }
             }
+        }
+
+        if (col.gameObject.GetComponent<ObjectBehavior>() == null && col.gameObject.GetComponent<FracturedChunk>() == null)
+        {
+            hit = false;
         }
     }
 }
