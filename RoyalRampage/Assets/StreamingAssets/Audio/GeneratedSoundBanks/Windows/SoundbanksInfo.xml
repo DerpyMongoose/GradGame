@@ -23,10 +23,9 @@
 			<IncludedEvents>
 				<Event Id="1496310610" Name="Ambience_Play" ObjectPath="\Events\Default Work Unit\Ambience_Play"/>
 				<Event Id="3166394572" Name="Ambience_Stop" ObjectPath="\Events\Default Work Unit\Ambience_Stop" MaxAttenuation="0.000000"/>
-				<Event Id="2578207079" Name="Button_Paper_Play" ObjectPath="\Events\Default Work Unit\Button_Paper_Play"/>
-				<Event Id="3806627230" Name="Button_Stamp_Play" ObjectPath="\Events\Default Work Unit\Button_Stamp_Play"/>
 				<Event Id="2174485018" Name="Dash_Play" ObjectPath="\Events\Default Work Unit\Dash_Play"/>
 				<Event Id="2771173984" Name="Gem_Rewarded_Play" ObjectPath="\Events\Default Work Unit\Gem_Rewarded_Play"/>
+				<Event Id="3618317195" Name="Gem_Spawn_Play" ObjectPath="\Events\Default Work Unit\Gem_Spawn_Play"/>
 				<Event Id="4027780260" Name="Menu_Button_Play" ObjectPath="\Events\Default Work Unit\Menu_Button_Play"/>
 				<Event Id="13372868" Name="Menu_Button_Stamp_Play" ObjectPath="\Events\Default Work Unit\Menu_Button_Stamp_Play"/>
 				<Event Id="212956031" Name="Menu_Letter_Close_Play" ObjectPath="\Events\Default Work Unit\Menu_Letter_Close_Play"/>
@@ -36,6 +35,7 @@
 				<Event Id="350081739" Name="Music_System_Play" ObjectPath="\Events\Default Work Unit\Music_System_Play"/>
 				<Event Id="3509289057" Name="Music_System_Stop" ObjectPath="\Events\Default Work Unit\Music_System_Stop" MaxAttenuation="0.000000"/>
 				<Event Id="491891602" Name="Object_Action_Play" ObjectPath="\Events\Default Work Unit\Object_Action_Play" MaxAttenuation="20.000000"/>
+				<Event Id="3260876866" Name="Player_Swing_Play" ObjectPath="\Events\Default Work Unit\Player_Swing_Play"/>
 				<Event Id="1311831249" Name="Points_Counting_Play" ObjectPath="\Events\Default Work Unit\Points_Counting_Play"/>
 				<Event Id="2563246215" Name="Points_Counting_Stop" ObjectPath="\Events\Default Work Unit\Points_Counting_Stop" MaxAttenuation="0.000000"/>
 				<Event Id="3286289918" Name="Points_Rewarded_Play" ObjectPath="\Events\Default Work Unit\Points_Rewarded_Play"/>
@@ -49,6 +49,10 @@
 					<ShortName>Pots and Pans Destruction_3.wav</ShortName>
 					<Path>SFX\Pots and Pans Destruction_3_3ADACB5C.wem</Path>
 				</File>
+				<File Id="33372952" Language="SFX">
+					<ShortName>Timer Bell_3.wav</ShortName>
+					<Path>SFX\Timer Bell_3_3ADACB5C.wem</Path>
+				</File>
 				<File Id="35893820" Language="SFX">
 					<ShortName>Glass Hit_1.wav</ShortName>
 					<Path>SFX\Glass Hit_1_3ADACB5C.wem</Path>
@@ -56,6 +60,10 @@
 				<File Id="39339163" Language="SFX">
 					<ShortName>Chair Destruction_2.wav</ShortName>
 					<Path>SFX\Chair Destruction_2_3ADACB5C.wem</Path>
+				</File>
+				<File Id="45260281" Language="SFX">
+					<ShortName>Timer Bell.wav</ShortName>
+					<Path>SFX\Timer Bell_3ADACB5C.wem</Path>
 				</File>
 				<File Id="74423905" Language="SFX">
 					<ShortName>Cutlery Landing_1.wav</ShortName>
@@ -131,7 +139,7 @@
 				</File>
 				<File Id="376053870" Language="SFX">
 					<ShortName>Point.wav</ShortName>
-					<Path>SFX\Point_FA9AB714.wem</Path>
+					<Path>SFX\Point_4F62233D.wem</Path>
 				</File>
 				<File Id="406327685" Language="SFX">
 					<ShortName>Pots and Pans Hit_1.wav</ShortName>
@@ -143,7 +151,7 @@
 				</File>
 				<File Id="408393990" Language="SFX">
 					<ShortName>Point.wav</ShortName>
-					<Path>SFX\Point_8912036A.wem</Path>
+					<Path>SFX\Point_6DF8D27D.wem</Path>
 				</File>
 				<File Id="423065894" Language="SFX">
 					<ShortName>China Landing.wav</ShortName>
@@ -281,6 +289,10 @@
 					<ShortName>Ambience.wav</ShortName>
 					<Path>SFX\Ambience_3ADACB5C.wem</Path>
 				</File>
+				<File Id="832027739" Language="SFX">
+					<ShortName>Timer Bell_2.wav</ShortName>
+					<Path>SFX\Timer Bell_2_3ADACB5C.wem</Path>
+				</File>
 				<File Id="832268687" Language="SFX">
 					<ShortName>Globe_Hit.wav</ShortName>
 					<Path>SFX\Globe_Hit_3ADACB5C.wem</Path>
@@ -329,6 +341,10 @@
 					<ShortName>Statue Hit.wav</ShortName>
 					<Path>SFX\Statue Hit_3ADACB5C.wem</Path>
 				</File>
+				<File Id="969058172" Language="SFX">
+					<ShortName>Timer Bell_1.wav</ShortName>
+					<Path>SFX\Timer Bell_1_3ADACB5C.wem</Path>
+				</File>
 				<File Id="979778914" Language="SFX">
 					<ShortName>In Game Music.wav</ShortName>
 					<Path>SFX\In Game Music_4D7BABE6.wem</Path>
@@ -344,10 +360,6 @@
 				<File Id="1008316456" Language="SFX">
 					<ShortName>Menu Letter Open_1.wav</ShortName>
 					<Path>SFX\Menu Letter Open_1_3ADACB5C.wem</Path>
-				</File>
-				<File Id="1015517607" Language="SFX">
-					<ShortName>Timer_Tick.wav</ShortName>
-					<Path>SFX\Timer_Tick_CE2B109D.wem</Path>
 				</File>
 				<File Id="1016137167" Language="SFX">
 					<ShortName>Cutlery Destruction.wav</ShortName>

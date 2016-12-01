@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour {
 
+    bool prevent;
 
     void OnCollisionEnter(Collision col)
     {
@@ -11,10 +12,40 @@ public class ObjectDetection : MonoBehaviour {
             var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
             if (obj)
             {
-                GetComponent<Rigidbody>().Sleep();               
+                //GetComponent<Rigidbody>().Sleep();               
                 //StartCoroutine(TweakRigibody());
+                prevent = true;
             }
         }
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.GetComponent<ObjectBehavior>() != null)
+        {
+            var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
+            if (obj)
+            {
+                //GetComponent<Rigidbody>().Sleep();               
+                //StartCoroutine(TweakRigibody());
+                prevent = true;
+            }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if(prevent)
+        {
+            //StartCoroutine(TweakRigibody());
+            GetComponent<Rigidbody>().Sleep();
+            prevent = false;
+        }
+    }
+
+    void Start()
+    {
+        prevent = false;
     }
 
     //IEnumerator TweakRigibody()
@@ -22,5 +53,6 @@ public class ObjectDetection : MonoBehaviour {
     //    GetComponent<Rigidbody>().isKinematic = true;
     //    yield return new WaitForSeconds(Time.deltaTime);
     //    GetComponent<Rigidbody>().isKinematic = false;
+    //    prevent = false;
     //}
 }
