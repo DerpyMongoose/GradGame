@@ -89,7 +89,7 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * 1f, Color.red, 2f);
+        Debug.DrawRay(transform.position, -transform.right * 1f, Color.red, 2f);
         //print(powerTime);
         //print(rightOk);
         //print(leftOk);
@@ -211,10 +211,17 @@ public class SwipeHalf : MonoBehaviour
                         {
                             attackDir = dragPointAtt - startPointAtt;
                             var localDir = -transform.InverseTransformDirection(attackDir.normalized);
+                            var angle = Vector3.Angle(-Vector3.right, localDir);
+                            var cross = Vector3.Cross(-Vector3.right, localDir).normalized;
+                            if(cross.y < 0)
+                            {
+                                angle = -angle;
+                            }
                             //print(360 - Vector3.Angle(transform.forward, localDir));
-                            print(Vector3.Angle(transform.forward, localDir));
-                            Debug.DrawRay(transform.position, localDir * 1f, Color.blue, 2f);
-                            if (spinningAnim == false && Vector3.Angle(transform.forward, localDir) < 90)
+                            print(angle);
+                            Debug.DrawRay(transform.position, attackDir * 1f, Color.blue, 5f);
+                            Debug.DrawRay(transform.position, cross * 5f, Color.green, 5f);
+                            if (spinningAnim == false && angle < 0)
                             {
                                 //transform.rotation = Quaternion.LookRotation(attackDir);
                                 PlayerStates.swiped = true;
@@ -222,7 +229,7 @@ public class SwipeHalf : MonoBehaviour
                             }
 
                             ///HIT ANIMATION
-                            if (spinningAnim == false && swipeToHit == true && Vector3.Angle(transform.forward, localDir) < 90)
+                            if (spinningAnim == false && swipeToHit == true && angle < 0)
                             {
                                 GameManager.instance.playerHitObject();
                             }
