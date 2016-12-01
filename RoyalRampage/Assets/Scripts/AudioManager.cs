@@ -31,13 +31,13 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string menuButton;
 	[SerializeField]
-	private string startButton;
+	private string stampButton;
 
 	[Header ("-- Score Screen --")]
 	[SerializeField]
 	private string scoreScreenOpen;
 	[SerializeField]
-	private string starReward, 
+	private string gemReward, 
         pointsCountingPlay, 
         pointsCountingStop;
 
@@ -46,7 +46,9 @@ public class AudioManager : MonoBehaviour {
 	private string timerTick;
 	[SerializeField]
 	private string pointsRewarded,
+		gemSpawn,
 		tutorialCheckMark;
+		
 
 	// extra
 	private bool ambPlaying = false;
@@ -177,7 +179,7 @@ public class AudioManager : MonoBehaviour {
     }
 
 	void StartButton(){
-        PlaySound(startButton, gameObject);
+        PlaySound(stampButton, gameObject);
     }
 
 	//************** Score screen **************
@@ -218,6 +220,10 @@ public class AudioManager : MonoBehaviour {
 
     }
 
+	void GemSpawnPlay(GameObject gem){
+		PlaySound (gemSpawn, gem);
+	}
+
 	void TutorialCheckMark(){
 		PlaySound(tutorialCheckMark, gameObject);
 	}
@@ -256,6 +262,7 @@ public class AudioManager : MonoBehaviour {
         GameManager.instance.OnObjectHit += ObjectActionHit;
 		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
+		GameManager.instance.OnGemSpawned += GemSpawnPlay;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad += BackgroundAmbStart;
@@ -287,6 +294,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectHit -= ObjectActionHit;
 		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
+		GameManager.instance.OnGemSpawned -= GemSpawnPlay;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad -= BackgroundAmbStart;

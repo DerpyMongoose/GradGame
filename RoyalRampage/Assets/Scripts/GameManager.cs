@@ -226,6 +226,7 @@ public class GameManager
     public event DestructionAction OnObjectDestructed;
     public event DestructionAction OnObjectHit;
     public event DestructionAction OnObjectLanding;
+	public event DestructionAction OnGemSpawned;
 
     public void objectDestructed(GameObject obj)
     {
@@ -242,6 +243,12 @@ public class GameManager
         if (OnObjectLanding != null)
             OnObjectLanding(obj);
     }
+	public void gemSpawned(GameObject gem)
+	{
+		if (OnGemSpawned != null)
+			OnGemSpawned(gem);
+	}
+
 
     public delegate void GameAction();
     public event GameAction OnTimerStart;
