@@ -2826,12 +2826,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &803790971 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000011109410652, guid: 75143ac6572fa884b8ae2362e3064a3b,
-    type: 2}
-  m_PrefabInternal: {fileID: 803790969}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &811295725
 Prefab:
   m_ObjectHideFlags: 0
@@ -2934,9 +2928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreToCompleteLevel: 66
   timeToCompleteLevel: 30
-  MultiplierTime: 5
-  amountOfObjects: 5
-  MultiplierText: {fileID: 803790971}
   maxScore: 57
   currencyPerStar: 50
   star1: 0
@@ -2944,7 +2935,14 @@ MonoBehaviour:
   star3: 0
   star4: 0
   star5: 0
+  playerPos: {x: 0, y: 0, z: 0}
+  targetReached: 0
+  guideText: {fileID: 0}
   multiplier: 0
+  spawnedObject: 0
+  tutorialPrefab: {fileID: 0}
+  tutorialPrefab2: {fileID: 0}
+  tutorialPrefab3: {fileID: 0}
 --- !u!114 &848426170
 MonoBehaviour:
   m_ObjectHideFlags: 0
