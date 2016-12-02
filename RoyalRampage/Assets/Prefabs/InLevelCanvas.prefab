@@ -3177,7 +3177,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x30
+  m_Text: '
+
+'
 --- !u!114 &114000011115583342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5251,7 +5253,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 360571572629c93418a47d44e55d683e, type: 3}
     m_FontSize: 100
     m_FontStyle: 2
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 200
     m_Alignment: 4
@@ -5300,7 +5302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012894417998}
+      - m_Target: {fileID: 0}
         m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
@@ -6081,7 +6083,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Destroy for X $$$$$
+  m_Text: 
 --- !u!114 &114000014138356562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9117,7 +9119,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -447}
-  m_SizeDelta: {x: 1035, y: 297}
+  m_SizeDelta: {x: 1035, y: 517.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014138935054
 RectTransform:
