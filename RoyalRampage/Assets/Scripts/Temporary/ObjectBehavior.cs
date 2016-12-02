@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ObjectBehavior : MonoBehaviour
 {
-    //[HideInInspector]
+    [HideInInspector]
     public int life;
 
     public string soundSwitch; // FOR AUDIO
@@ -12,7 +12,6 @@ public class ObjectBehavior : MonoBehaviour
     private Rigidbody objRB;
     private GameObject player;
     ObjectBehavior script;
-    private IEnumerator coroutine;
 
     [HideInInspector]
     public ParticleSystem particleSys;
@@ -157,6 +156,7 @@ public class ObjectBehavior : MonoBehaviour
             {
                 if (transform.GetChild(i).GetComponent<FracturedChunk>() != null)
                 {
+                    transform.GetChild(i).gameObject.GetComponent<Rigidbody>().mass = 0.1f;
                     transform.GetChild(i).gameObject.SetActive(false);
                 }
             }

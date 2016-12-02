@@ -7,7 +7,7 @@ public class ConeDetection : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (col.tag == "Destructable")
+        if (col.tag == "Destructable" || col.tag == "UniqueObjs")
         {
             if (PlayerStates.swiped)
             {

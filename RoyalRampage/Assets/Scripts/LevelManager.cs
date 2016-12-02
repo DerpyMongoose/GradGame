@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /*
  level and score manager
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
     float t;
     [HideInInspector]
     public bool targetReached = false;
+    int[] starValue;
+    int starIndex;
     int stars = 0;
     int score = 0;
     Text starText;
@@ -36,6 +39,7 @@ public class LevelManager : MonoBehaviour
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    Text highScoreText;
     GameObject replayScore;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
@@ -53,6 +57,8 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int multiplier;
     int tempMulti;
+    int tempScore;
+    bool updateGoal;
     [HideInInspector]
     //You'll regret using this boolean
     public bool spawnedObject = false;
@@ -72,7 +78,9 @@ public class LevelManager : MonoBehaviour
     bool completed;
     bool startTimer;
     float timer, timer2, timer3;
-    int tutorialState;
+
+    List<LevelAndObjects> highScoreList;
+    List<LevelAndStars> starsList;
 
     void OnEnable()
     {
@@ -90,18 +98,23 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        highScoreList = new List<LevelAndObjects>();
+        starsList = new List<LevelAndStars>();
         gems = new GameObject[5];
         MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
-        tutorialState = 0;
+        updateGoal = false;
         smashed = false;
         startTimer = false;
         timer = 0;
         timer2 = 0;
+        starIndex = 0;
+        starValue = new int[5] { star1, star2, star3, star4, star5 };
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
         ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
+        tempScore = scoreToCompleteLevel;
         amountOfObjects = 1;
         switch (GameManager.instance.CurrentScene())
         {
@@ -128,6 +141,7 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
@@ -137,7 +151,6 @@ public class LevelManager : MonoBehaviour
                 {
                     gems[i - 1] = GameObject.Find("Gem" + i.ToString());
                 }
-                // print("Tut");
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 guideText.text = "Swipe the left side of the screen to move";
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
@@ -148,6 +161,7 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 replayScore = GameObject.FindGameObjectWithTag("GOscore");
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
                 highscore = GameObject.Find("replayPanelv2/Highscore");
@@ -193,7 +207,6 @@ public class LevelManager : MonoBehaviour
 
     private void StartLevel()
     {
-        //print ("started");
         //guideText.gameObject.SetActive(false);
 
         IntroTapPanel.SetActive(false);
@@ -208,7 +221,6 @@ public class LevelManager : MonoBehaviour
     //after the timer is out (wait for animation?)
     private void ShowEnding()
     {
-        // print("ended");
         // GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel)
@@ -228,14 +240,11 @@ public class LevelManager : MonoBehaviour
     {
 
         ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
-        print(GameManager.instance.TutorialState());
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                //print(countMultiTime);
                 if (ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer)
                 {
-                    // print("I am in");
                     MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
                     multiplier = 1;
                     amountOfObjects = 1;
@@ -243,6 +252,19 @@ public class LevelManager : MonoBehaviour
                     tempMulti = 1;
                     t = 0f;
                     ObjectManagerV2.instance.countMultiTime = 0;
+                }
+
+                if (score >= tempScore && score != 0 && starIndex <= 4)
+                {
+                    updateGoal = true;
+                    starIndex += 1;
+                }
+
+                if (updateGoal == true)
+                {
+                    tempScore = starValue[starIndex];
+                    minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore + " $";
+                    updateGoal = false;
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -272,8 +294,6 @@ public class LevelManager : MonoBehaviour
                 {
                     MultiplierText.text = "x" + multiplier.ToString();
                 }
-
-                //print(GameManager.instance.allStars);
                 break;
             case GameManager.Scene.TUTORIAL:
                 switch (GameManager.instance.tutorial)
@@ -283,7 +303,6 @@ public class LevelManager : MonoBehaviour
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
                             guideText.text = "Reach the finish-line before the timer runs out!";
-                            //print((int)GameManager.instance.tutorial);
                         }
                         if (GameManager.instance.levelManager.targetReached == true)
                         {
@@ -294,6 +313,7 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            GameManager.instance.player.transform.LookAt(tutorialBarrel.transform.position);
                             guideText.text = "Swipe the right side of the screen to hit the crate";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
@@ -312,7 +332,7 @@ public class LevelManager : MonoBehaviour
                         if (startTimer == true)
                         {
                             timer += Time.deltaTime;
-                            if(timer > 2f && tutorialBarrel != null)
+                            if (timer > 2f && tutorialBarrel != null)
                             {
                                 for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
                                 {
@@ -351,7 +371,8 @@ public class LevelManager : MonoBehaviour
                             completed = false;
                             spawnedObject = false;
                             startTimer = false;
-
+                            panel.SetActive(true);
+                            MultiplierText.text = "x1";
                         }
                         if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
                         {
@@ -361,6 +382,7 @@ public class LevelManager : MonoBehaviour
                         if (tutorialBarrel2 == null)
                         {
                             guideText.text = "Bullseye!";
+                            MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
                             if (timer > 1f)
@@ -411,6 +433,7 @@ public class LevelManager : MonoBehaviour
                             tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
                             tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
                             tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            panel.SetActive(false);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = "Draw a circle rapidly on the right side to spin attack";
@@ -488,7 +511,6 @@ public class LevelManager : MonoBehaviour
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
-                                print("broken");
                                 guideText.text = "Try Again. Tap on both sides at the same time to stomp";
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
@@ -592,9 +614,9 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public void CalculateCurrency()
+    public void CalculateCurrency(int starsVal)
     {
-        GameManager.instance.currency += stars * currencyPerStar;
+        GameManager.instance.currency += starsVal * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -609,22 +631,32 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.currentLevel != 1)
         {
             Stars();
+            highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+            starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+           
 
             if (GameManager.instance.stars != null)
-            {
-                if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
+            {                
+                if (stars > starsList[0].Stars)
                 {
-                    CalculateCurrency();
+                    CalculateCurrency(stars- starsList[0].Stars);
                     GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
-                }
+                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);                  
+                }              
             }
-            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
+            
+            highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
+            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
+            if (score >= highScoreList[0].HighScore)
+            {
+                SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
+            }
         }
-        if(GameManager.instance.currentLevel == 1)
+        if (GameManager.instance.currentLevel == 1)
         {
             starPoints.SetActive(false);
             replayScore.SetActive(false);
-            highscore.SetActive(false);         
+            highscore.SetActive(false);
         }
         for (int i = 0; i < gems.Length; i++)
         {
@@ -632,8 +664,11 @@ public class LevelManager : MonoBehaviour
         }
         for (int i = 0; i < stars; i++)
         {
+            //Play Sound here (Add delay with coroutine)
             gems[i].SetActive(true);
         }
+        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);
@@ -683,12 +718,13 @@ public class LevelManager : MonoBehaviour
     //counting score "animation"
     IEnumerator CountPointsTo(int new_score)
     {
+        highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
         if (new_score > 0)
         {
             yield return new WaitForSeconds(1f);
             GameManager.instance.startCountingPoints();
             int start = 0;
-            float duration = Mathf.Clamp((float)new_score * (1f / 1f), 0f, 2f); //show with speed of 100 points per second, max duration 2 seconds
+            float duration = Mathf.Clamp((float)new_score * (1f / 100f), 0f, 1.5f); //show with speed of 100 points per second, max duration 1.5 seconds
             for (float timer = 0; timer < duration; timer += Time.deltaTime)
             {
                 float progress = timer / duration;
@@ -701,6 +737,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.finishedCountingPoints();
         }
         replayScoreText.text = "Score:\n" + new_score + " $";
+        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
     }
 }

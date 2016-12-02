@@ -30,6 +30,7 @@ public class CurrencyPickup : MonoBehaviour
     void PickupCoin()
     {
         //Play Sound here
+		GameManager.instance.gemSpawned(GameManager.instance.player);
         GameManager.instance.currency += coinValue;
         //Optimise: Dont use destroy
         Destroy(gameObject);
