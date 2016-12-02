@@ -38,6 +38,9 @@ public class UIScript : MonoBehaviour
 
     Text starTotal;
     Text levelNum;
+    Text highScoreMenu;
+
+    List<LevelAndObjects> highScoreList;
 
     int current_slide = 0;
 
@@ -75,9 +78,13 @@ public class UIScript : MonoBehaviour
 			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
                 GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
-                //update level on play icon
+            //update level on play icon
+                highScoreList = new List<LevelAndObjects>();
+                highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.levelsUnlocked-1).ToString());
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
+                highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
                 levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
+                highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -229,7 +236,7 @@ public class UIScript : MonoBehaviour
 
     public void BehindPanel()
     {
-        if (pause_menu.activeInHierarchy)
+        if (pause_menu.activeInHierarchy && !settings_menu.activeInHierarchy && !help_menu.activeInHierarchy)
         {
             UnPauseGame();
         }
