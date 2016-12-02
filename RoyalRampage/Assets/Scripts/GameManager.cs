@@ -15,12 +15,12 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "GameSceneD" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2", "Level_3", "Level_4" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
     public int[] stars = new int[6];
-
+    public int[] highScore = new int[6] {0,0,0,0,0,0};
     public int allStars = 0;
     public int currentLevel = 1;
     public int levelsUnlocked = 1;
@@ -226,6 +226,7 @@ public class GameManager
     public event DestructionAction OnObjectDestructed;
     public event DestructionAction OnObjectHit;
     public event DestructionAction OnObjectLanding;
+	public event DestructionAction OnGemSpawned;
 
     public void objectDestructed(GameObject obj)
     {
@@ -242,6 +243,12 @@ public class GameManager
         if (OnObjectLanding != null)
             OnObjectLanding(obj);
     }
+	public void gemSpawned(GameObject gem)
+	{
+		if (OnGemSpawned != null)
+			OnGemSpawned(gem);
+	}
+
 
     public delegate void GameAction();
     public event GameAction OnTimerStart;
@@ -258,6 +265,11 @@ public class GameManager
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
 	public event GameAction OnTutorialTaskCompleted;
+	public event GameAction OnGemScoreDisplay;
+	public event GameAction OnMenuRollOut;
+	public event GameAction OnMenuRollIn;
+	public event GameAction OnLetterOpen;
+	public event GameAction OnLetterClose;
 
     public void timerStart()
     {
@@ -329,6 +341,26 @@ public class GameManager
 		if(OnTutorialTaskCompleted != null)
 			OnTutorialTaskCompleted();
 	}
+	public void gemScoreDisplay(){
+		if (OnGemScoreDisplay != null)
+			OnGemScoreDisplay ();
+	}
+	public void menuRolledOut(){
+		if (OnMenuRollOut != null)
+			OnMenuRollOut ();
+	}
+	public void menuRolledIn(){
+		if (OnMenuRollIn != null)
+			OnMenuRollIn ();
+	}
+	public void letterOpen(){
+		if (OnLetterOpen != null)
+			OnLetterOpen ();
+	}
+	public void letterClose(){
+		if (OnLetterClose != null)
+			OnLetterClose ();
+	}
 
     public delegate void LevelAction(float val);
     public event LevelAction OnTimerUpdate;
@@ -370,6 +402,7 @@ public class GameManager
         data.stars = stars;
         data.currency = currency;
         data.isInstructed = isInstructed;
+        data.highScore = highScore;
 
 
         bf.Serialize(file, data);
@@ -392,6 +425,7 @@ public class GameManager
             stars = data.stars;
             currency = data.currency;
             isInstructed = data.isInstructed;
+            highScore = data.highScore;
         }
 
     }
@@ -406,4 +440,5 @@ class PlayerData
     public int allStars;
     public int[] stars;
     public bool isInstructed;
+    public int[] highScore;
 }

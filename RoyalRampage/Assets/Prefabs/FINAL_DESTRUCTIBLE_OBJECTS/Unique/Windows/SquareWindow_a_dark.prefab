@@ -297,7 +297,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 66f8f13faa757374c94b72a9b32f07f8, type: 2}
+  - {fileID: 2100000, guid: 0a772a14f7c4a3a468c6ea262f94d2bc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -416,11 +416,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: 
   particleSys: {fileID: 0}
-  isGrounded: 1
   hit: 0
+  slowed: 0
+  lifted: 0
+  flying: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1

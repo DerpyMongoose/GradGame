@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /*
  level and score manager
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
     float t;
     [HideInInspector]
     public bool targetReached = false;
+    int[] starValue;
+    int starIndex;
     int stars = 0;
     int score = 0;
     Text starText;
@@ -36,39 +39,54 @@ public class LevelManager : MonoBehaviour
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    Text highScoreText;
+    GameObject replayScore;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
     GameObject goalPanel;
     GameObject scorePanel;
     GameObject rageMeter;
+    GameObject starPoints;
     GameObject panel;
+    GameObject highscore;
+    GameObject levelNr;
+    GameObject lvlNr;
     GameObject[] gems;
     private GameObject continueButton;
     [HideInInspector]
     public int multiplier;
     int tempMulti;
+    int tempScore;
+    bool updateGoal;
     [HideInInspector]
     //You'll regret using this boolean
     public bool spawnedObject = false;
-    [Header("Tutorial Object")]
-    public GameObject tutorialPrefab;
-    public GameObject tutorialPrefab2;
-    public GameObject tutorialPrefab3;
+    //
+    [Header("Tutorial Objects")]
+    public GameObject tutorial_candlestand;
+    public GameObject tutorial_chair;
+    public GameObject tutorial_cabinet;
+    public GameObject tutorial_vaseb;
+    public GameObject tutorial_vasec;
+
+    public GameObject tutorial_frame;
+
     private ObjectBehavior objBehavior;
 
-    GameObject tutorialBarrel;
-    GameObject tutorialBarrel2;
-    GameObject tutorialBarrel3;
-    GameObject tutorialBarrel4;
-    GameObject tutorialBarrel5;
-    GameObject tutorialBarrel6;
+    GameObject tutorialObj1;
+    GameObject tutorialObj2;
+    GameObject tutorialObj3;
+    GameObject tutorialObj4;
+    GameObject tutorialObj5;
+    GameObject tutorialObj6;
     bool smashed;
     bool completed;
     bool startTimer;
-    float timer, timer2, timer3;
-    int initialHP;
-    int tutorialState;
+    float timer, timer2;
+
+    List<LevelAndObjects> highScoreList;
+    List<LevelAndStars> starsList;
 
     void OnEnable()
     {
@@ -86,22 +104,31 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        highScoreList = new List<LevelAndObjects>();
+        starsList = new List<LevelAndStars>();
+        gems = new GameObject[5];
         MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
-        tutorialState = 0;
+        updateGoal = false;
         smashed = false;
         startTimer = false;
         timer = 0;
         timer2 = 0;
+        starIndex = 0;
+        starValue = new int[5] { star1, star2, star3, star4, star5 };
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
         ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
+        tempScore = scoreToCompleteLevel;
         amountOfObjects = 1;
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
+                for (int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i - 1] = GameObject.Find("Gem" + i.ToString());
+                }
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString() + " $"; // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
@@ -120,27 +147,36 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
-                gems = GameObject.FindGameObjectsWithTag("Gem");
-                // print("Tut");
+                for (int i = 1; i <= gems.Length; i++)
+                {
+                    gems[i - 1] = GameObject.Find("Gem" + i.ToString());
+                }
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                guideText.text = "Swipe the left side of the screen to move";
+                guideText.text = LanguageManager.instance.ReturnWord("Tut1.1");
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
                 IntroTapPanel = GameObject.FindGameObjectWithTag("IntroTapPanel");
                 ReplayBtn = GameObject.Find("ReplayButton");
                 NewLevelBtn = GameObject.Find("NewLevelButton");
                 continueButton = GameObject.Find("ContinueButton");
-                //starText = GameObject.Find("stars").GetComponent<Text>();
+                replayScore = GameObject.FindGameObjectWithTag("GOscore");
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
+                highscore = GameObject.Find("replayPanelv2/Highscore");
                 rageMeter = GameObject.Find("InGameGUI/RageMeter");
                 panel = GameObject.Find("InGameGUI/Panel");
+                starPoints = GameObject.Find("replayPanelv2/Points");
+                levelNr = GameObject.Find("replayPanelv2/levelnumber");
+                lvlNr = GameObject.Find("IntroTapPanel/TitlePanelBG/BackgroundFrame/LevelNumber");
+
                 goalPanel.SetActive(false);
                 scorePanel.SetActive(false);
                 rageMeter.SetActive(false);
@@ -164,7 +200,7 @@ public class LevelManager : MonoBehaviour
                 //Timer shouldn't change during combo.
                 ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects - ObjectManagerV2.instance.countObjects);
                 multiplier++;
-                amountOfObjects++;
+                amountOfObjects += amountOfObjects;
             }
             score += points * multiplier;
             scoreText.text = score.ToString() + " $"; // in game score
@@ -177,7 +213,6 @@ public class LevelManager : MonoBehaviour
 
     private void StartLevel()
     {
-        //print ("started");
         //guideText.gameObject.SetActive(false);
 
         IntroTapPanel.SetActive(false);
@@ -192,12 +227,15 @@ public class LevelManager : MonoBehaviour
     //after the timer is out (wait for animation?)
     private void ShowEnding()
     {
-        // print("ended");
         // GameManager.instance.levelUnLoad(); // FOR AUDIO
 
         if (score >= scoreToCompleteLevel)
         {
-            guideText.text = "Level completed!";
+            if (GameManager.instance.currentLevel != 1)
+            {
+                guideText.text = "Level completed!";
+            }
+            else guideText.text = LanguageManager.instance.ReturnWord("TutEnd");
         }
         else
         {
@@ -212,14 +250,11 @@ public class LevelManager : MonoBehaviour
     {
 
         ObjectManagerV2.instance.countMultiTime += Time.deltaTime;
-        print(GameManager.instance.TutorialState());
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                //print(countMultiTime);
                 if (ObjectManagerV2.instance.countMultiTime > ObjectManagerV2.instance.multiplierTimer)
                 {
-                    // print("I am in");
                     MultiplierText.transform.localScale = new Vector3(1f, 1f, 1f);
                     multiplier = 1;
                     amountOfObjects = 1;
@@ -227,6 +262,19 @@ public class LevelManager : MonoBehaviour
                     tempMulti = 1;
                     t = 0f;
                     ObjectManagerV2.instance.countMultiTime = 0;
+                }
+
+                if (score >= tempScore && score != 0 && starIndex <= 4)
+                {
+                    updateGoal = true;
+                    starIndex += 1;
+                }
+
+                if (updateGoal == true)
+                {
+                    tempScore = starValue[starIndex];
+                    minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore + " $";
+                    updateGoal = false;
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -256,50 +304,69 @@ public class LevelManager : MonoBehaviour
                 {
                     MultiplierText.text = "x" + multiplier.ToString();
                 }
-
-                //print(GameManager.instance.allStars);
                 break;
             case GameManager.Scene.TUTORIAL:
                 switch (GameManager.instance.tutorial)
                 {
-                    case GameManager.Tutorial.MOVEMENT:
+                    case GameManager.Tutorial.MOVEMENT:                      
                         if (SwipeHalf.startTutTimer == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
-                            guideText.text = "Reach the finish-line before the timer runs out!";
-                            //print((int)GameManager.instance.tutorial);
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
                         }
                         if (GameManager.instance.levelManager.targetReached == true)
                         {
-                            guideText.text = "Great job!!!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut1.3");
                         }
                         break;
                     case GameManager.Tutorial.ATTACK:
                         if (spawnedObject == false)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            guideText.text = "Swipe the right side of the screen to hit the crate";
+                            tutorialObj1 = (GameObject)Instantiate(tutorial_candlestand, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 0.5f)), Quaternion.identity);
+                            GameManager.instance.player.transform.LookAt(tutorialObj1.transform);
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut2.0");
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
-                            smashed = false;
+                            GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = true;
+                            startTimer = false;
                         }
-                        if (tutorialBarrel != null && (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true))
+                        if (tutorialObj1 != null && tutorialObj1.GetComponent<ObjectBehavior>().hit == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING ATTACK
                             //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
-                            print(tutorialBarrel.GetComponent<ObjectBehavior>().life);
-                            smashed = true;
-                            guideText.text = "You're amazing!!!";
-                            //timer += Time.deltaTime;
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut2.1");
+                            startTimer = true;
+
                         }
 
-                        if (tutorialBarrel == null)
+                        if (startTimer == true)
                         {
                             timer += Time.deltaTime;
-                            smashed = false;
+                            if (timer > 2f && tutorialObj1 != null)
+                            {
+                                for (int p = 0; p < tutorialObj1.transform.childCount; p++)
+                                {
+                                    if (tutorialObj1.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    {
+                                        tutorialObj1.transform.GetChild(p).gameObject.SetActive(true);
+                                        tutorialObj1.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                    }
+                                }
+                                tutorialObj1.GetComponent<FracturedObject>().CollapseChunks();
+                                GameManager.instance.objectDestructed(tutorialObj1);
+                                Destroy(tutorialObj1);
+                                timer = 0;
+                                startTimer = false;
+                            }
+                        }
+
+                        if (tutorialObj1 == null)
+                        {
+                            timer += Time.deltaTime;
                             if (timer > 1f)
                             {
                                 timer = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.CHAIN;
                             }
                         }
@@ -307,68 +374,87 @@ public class LevelManager : MonoBehaviour
                     case GameManager.Tutorial.CHAIN:
                         if (spawnedObject == true)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3.5f)), Quaternion.identity);
-                            guideText.text = "Hit the service cart with the crate";
+                            tutorialObj1 = (GameObject)Instantiate(tutorial_chair, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj2 = (GameObject)Instantiate(tutorial_cabinet, (GameManager.instance.player.transform.position - new Vector3(0.5f, -1, 4)), Quaternion.identity);
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.0");
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
+                            startTimer = false;
+                            panel.SetActive(true);
+                            MultiplierText.text = "x1";
+                        }
+                        if (tutorialObj1 != null && tutorialObj1.GetComponent<ObjectBehavior>().hit == true)
+                        {
+                            startTimer = true;
                         }
 
-                        if (tutorialBarrel2 == null)
+                        if (tutorialObj2 == null)
                         {
-                            guideText.text = "Bullseye!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.2");
+                            MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
                             if (timer > 1f)
                             {
                                 //COLORED PANEL FOR COMMUNICATING ATTACK
                                 //WE NEED TO DESTROY THE OBJECT (CHUNKS)
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
                                 timer = 0;
                             }
                         }
-                        else if (tutorialBarrel == null && completed == false)
+                        else if (startTimer == true)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 3f)
+                            {
+                                if (tutorialObj1 != null)
+                                {
+                                    for (int p = 0; p < tutorialObj1.transform.childCount; p++)
+                                    {
+                                        if (tutorialObj1.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                        {
+                                            tutorialObj1.transform.GetChild(p).gameObject.SetActive(true);
+                                            tutorialObj1.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                        }
+                                    }
+                                    tutorialObj1.GetComponent<FracturedObject>().CollapseChunks();
+                                    GameManager.instance.objectDestructed(tutorialObj1);
+                                    Destroy(tutorialObj1);
+                                }
+                                startTimer = false;
+                                timer2 = 0;
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut3.1");
+                                tutorialObj1 = (GameObject)Instantiate(tutorial_chair, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            }
+                            //else if (tutorialBarrel == null && completed == false && tutorialBarrel2 != null)
+                            //{
+                            //    tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            //    startTimer = false;
+                            //}
                         }
-
-                        //if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
-                        //{
-                        //    if (tutorialBarrel.GetComponent<Rigidbody>().velocity.magnitude <= 0.2f)
-                        //    {
-                        //        for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
-                        //        {
-                        //            if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
-                        //            {
-                        //                tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
-                        //                tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
-                        //            }
-                        //        }
-                        //        tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
-                        //        GameManager.instance.objectDestructed(tutorialBarrel);
-                        //        Destroy(tutorialBarrel);
-                        //    }
-                        //}
                         break;
                     case GameManager.Tutorial.SWIRL:
                         if (spawnedObject == false)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
-                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            tutorialObj1 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj2 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj3 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialObj4 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialObj5 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
+                            tutorialObj6 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            panel.SetActive(false);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
-                            guideText.text = "Draw a circle rapidly on the right side to spin attack";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
 
+                            startTimer = false;
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
                         {
-                            guideText.text = "Please draw a circle rapidly on the right side to spin attack";
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer"); // FAIL MESSAGE
                             startTimer = true;
                         }
 
@@ -377,25 +463,26 @@ public class LevelManager : MonoBehaviour
                             timer += Time.deltaTime;
                             if (timer > 1f)
                             {
-                                TutObj(tutorialBarrel, new Vector3(0.5f, 0, 1));
-                                TutObj(tutorialBarrel2, new Vector3(-0.5f, 0, 1));
-                                TutObj(tutorialBarrel3, new Vector3(1f, 0, 0));
-                                TutObj(tutorialBarrel4, new Vector3(-1f, 0, 0));
-                                TutObj(tutorialBarrel5, new Vector3(0.5f, 0, -1));
-                                TutObj(tutorialBarrel6, new Vector3(-0.5f, 0, -1));
+                                TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
+                                TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
+                                TutObj(tutorialObj3, new Vector3(1f, 0, 0));
+                                TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
+                                TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
+                                TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
                                 timer = 0;
                                 startTimer = false;
                             }
                         }
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                         {
-                            guideText.text = "Great job!";
                             ObjectManagerV2.instance.canDamage = true;
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
                             {
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                                 timer2 = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.STOMP;
                             }
                         }
@@ -404,12 +491,12 @@ public class LevelManager : MonoBehaviour
                         //Show the bar with animation
                         if (spawnedObject == true)
                         {
-                            tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
-                            tutorialBarrel3 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
-                            tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
-                            tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            tutorialObj1 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj2 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj3 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialObj4 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialObj5 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
+                            tutorialObj6 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
                             completed = false;
                             ObjectManagerV2.instance.canDamage = false;
 
@@ -418,24 +505,24 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
-                            guideText.text = "You're enraged! Tap on both sides at the same time to stomp";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
 
                             spawnedObject = false;
                         }
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = "Attack the crates in the air";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.2");
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
-                                guideText.text = "OHHHH YEAH YOU WIN - TUTORIAL IS OVER";
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
                                 completed = true;
                                 StartCoroutine(Delay());
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
-                                guideText.text = "Try Again. Tap on both sides at the same time to stomp";
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.1");
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
@@ -444,37 +531,39 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (PlayerStates.swiped == true && completed == false)
                         {
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
                             startTimer = true;
                         }
                         else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true && completed == false)
                         {
-                            timer2 += Time.deltaTime;
-                            if (timer2 > 1f)
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
+                            timer += Time.deltaTime;
+                            if (timer > 1f)
                             {
-                                TutObj(tutorialBarrel, new Vector3(0.5f, 0, 1));
-                                TutObj(tutorialBarrel2, new Vector3(-0.5f, 0, 1));
-                                TutObj(tutorialBarrel3, new Vector3(1f, 0, 0));
-                                TutObj(tutorialBarrel4, new Vector3(-1f, 0, 0));
-                                TutObj(tutorialBarrel5, new Vector3(0.5f, 0, -1));
-                                TutObj(tutorialBarrel6, new Vector3(-0.5f, 0, -1));
+                                TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
+                                TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
+                                TutObj(tutorialObj3, new Vector3(1f, 0, 0));
+                                TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
+                                TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
+                                TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
-                                timer2 = 0;
+                                timer = 0;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                             }
                         }
                         if (startTimer == true && completed == false)
                         {
-                            timer3 += Time.deltaTime;
-                            if (timer3 > 1f)
+                            timer2 += Time.deltaTime;
+                            if (timer2 > 1f)
                             {
-                                TutObj(tutorialBarrel, new Vector3(0.5f, 0, 1));
-                                TutObj(tutorialBarrel2, new Vector3(-0.5f, 0, 1));
-                                TutObj(tutorialBarrel3, new Vector3(1f, 0, 0));
-                                TutObj(tutorialBarrel4, new Vector3(-1f, 0, 0));
-                                TutObj(tutorialBarrel5, new Vector3(0.5f, 0, -1));
-                                TutObj(tutorialBarrel6, new Vector3(-0.5f, 0, -1));
+                                TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
+                                TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
+                                TutObj(tutorialObj3, new Vector3(1f, 0, 0));
+                                TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
+                                TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
+                                TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
-                                timer3 = 0;
+                                timer2 = 0;
                                 startTimer = false;
                             }
                         }
@@ -493,7 +582,9 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
         GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
         GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
+        GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.instance.isInstructed = true;
+        GameManager.instance.tutorialTaskCompleted();
         GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
@@ -536,9 +627,9 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public void CalculateCurrency()
+    public void CalculateCurrency(int starsVal)
     {
-        GameManager.instance.currency = stars * currencyPerStar;
+        GameManager.instance.currency += starsVal * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -550,41 +641,65 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        if (GameManager.instance.currentLevel != 0)
+        if (GameManager.instance.currentLevel != 1)
         {
             Stars();
-            CalculateCurrency();
+            highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+            starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+           
 
-
-            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
-
-            //starText.text = stars.ToString();
-        }      
-        for (int i = gems.Length - 1; i >= stars; i--)
+            if (GameManager.instance.stars != null)
+            {                
+                if (stars > starsList[0].Stars)
+                {
+                    CalculateCurrency(stars- starsList[0].Stars);
+                    GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
+                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);                  
+                }              
+            }
+            
+            highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
+            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
+            if (score >= highScoreList[0].HighScore)
+            {
+                SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
+            }
+        }
+        if (GameManager.instance.currentLevel == 1)
+        {
+            starPoints.SetActive(false);
+            replayScore.SetActive(false);
+            highscore.SetActive(false);
+        }
+        for (int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
         }
+        for (int i = 0; i < stars; i++)
+        {
+            //Play Sound here (Add delay with coroutine)
+            gems[i].SetActive(true);
+        }
+        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);
-        if (GameManager.instance.stars != null)
-        {
-            if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
-            {
-                GameManager.instance.allStars -= GameManager.instance.stars[GameManager.instance.currentLevel - 1];
-                GameManager.instance.allStars += stars;
-            }
-        }
+
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
-        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+        if (GameManager.instance.currentLevel != 1)
         {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            }
+            else
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
+            }
         }
-        else
-        {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
-        }
+        else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
         switch (levelResult)
         {
@@ -616,12 +731,13 @@ public class LevelManager : MonoBehaviour
     //counting score "animation"
     IEnumerator CountPointsTo(int new_score)
     {
+        highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
         if (new_score > 0)
         {
             yield return new WaitForSeconds(1f);
             GameManager.instance.startCountingPoints();
             int start = 0;
-            float duration = Mathf.Clamp((float)new_score * (1f / 1f), 0f, 2f); //show with speed of 100 points per second, max duration 2 seconds
+            float duration = Mathf.Clamp((float)new_score * (1f / 100f), 0f, 1.5f); //show with speed of 100 points per second, max duration 1.5 seconds
             for (float timer = 0; timer < duration; timer += Time.deltaTime)
             {
                 float progress = timer / duration;
@@ -634,6 +750,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.finishedCountingPoints();
         }
         replayScoreText.text = "Score:\n" + new_score + " $";
+        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
     }
 }

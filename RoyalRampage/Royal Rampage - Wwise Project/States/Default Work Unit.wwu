@@ -27,6 +27,14 @@
 						<State Name="In_Loading_Screen" ID="{FE4B70AC-DC22-4B79-8C49-4EE87512AD32}"/>
 						<State Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="In_Level" ID="{D1F78839-58A9-4765-BEEE-D6BF1B260967}"/>
+							<EndState Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
+							<Time>0.5</Time>
+							<IsShared>true</IsShared>
+						</Transition>
+					</TransitionList>
 				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>

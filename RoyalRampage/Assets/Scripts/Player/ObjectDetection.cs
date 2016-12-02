@@ -3,24 +3,43 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour {
 
+    Rigidbody playerRig;
+    float initialMass;
+
+    void Start()
+    {
+        playerRig = GetComponent<Rigidbody>();
+        initialMass = playerRig.mass;
+    }
 
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.GetComponent<ObjectBehavior>() != null)
         {
-            var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
-            if (obj)
+            if (col.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5f)
             {
-                GetComponent<Rigidbody>().Sleep();               
-                //StartCoroutine(TweakRigibody());
+                playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
+                StartCoroutine(ReverseMass());
             }
         }
     }
 
-    //IEnumerator TweakRigibody()
-    //{
-    //    GetComponent<Rigidbody>().isKinematic = true;
-    //    yield return new WaitForSeconds(Time.deltaTime);
-    //    GetComponent<Rigidbody>().isKinematic = false;
-    //}
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.GetComponent<ObjectBehavior>() != null)
+        {
+            if (col.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5f)
+            {
+                playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
+                StartCoroutine(ReverseMass());
+            }
+        }
+    }
+
+    IEnumerator ReverseMass()
+    {
+        yield return new WaitForSeconds(Time.deltaTime);
+        playerRig.mass = initialMass;
+    }
+
 }
