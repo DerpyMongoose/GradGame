@@ -36,13 +36,18 @@ public class LevelManager : MonoBehaviour
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    GameObject replayScore;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
     GameObject goalPanel;
     GameObject scorePanel;
     GameObject rageMeter;
+    GameObject starPoints;
     GameObject panel;
+    GameObject highscore;
+    GameObject levelNr;
+    GameObject lvlNr;
     GameObject[] gems;
     private GameObject continueButton;
     [HideInInspector]
@@ -101,9 +106,9 @@ public class LevelManager : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
-                for(int i = 1; i <= gems.Length; i++)
+                for (int i = 1; i <= gems.Length; i++)
                 {
-                    gems[i-1] = GameObject.Find("Gem" + i.ToString());
+                    gems[i - 1] = GameObject.Find("Gem" + i.ToString());
                 }
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString() + " $"; // in game score
@@ -141,12 +146,17 @@ public class LevelManager : MonoBehaviour
                 ReplayBtn = GameObject.Find("ReplayButton");
                 NewLevelBtn = GameObject.Find("NewLevelButton");
                 continueButton = GameObject.Find("ContinueButton");
-                //starText = GameObject.Find("stars").GetComponent<Text>();
+                replayScore = GameObject.FindGameObjectWithTag("GOscore");
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
+                highscore = GameObject.Find("replayPanelv2/Highscore");
                 rageMeter = GameObject.Find("InGameGUI/RageMeter");
                 panel = GameObject.Find("InGameGUI/Panel");
+                starPoints = GameObject.Find("replayPanelv2/Points");
+                levelNr = GameObject.Find("replayPanelv2/levelnumber");
+                lvlNr = GameObject.Find("IntroTapPanel/TitlePanelBG/BackgroundFrame/LevelNumber");
+
                 goalPanel.SetActive(false);
                 scorePanel.SetActive(false);
                 rageMeter.SetActive(false);
@@ -287,25 +297,46 @@ public class LevelManager : MonoBehaviour
                             guideText.text = "Swipe the right side of the screen to hit the crate";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
-                            smashed = false;
+                            GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = true;
+                            startTimer = false;
                         }
-                        if (tutorialBarrel != null && (tutorialBarrel.GetComponent<ObjectBehavior>().hit == true || smashed == true))
+                        if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING ATTACK
                             //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
-                            print(tutorialBarrel.GetComponent<ObjectBehavior>().life);
-                            smashed = true;
                             guideText.text = "You're amazing!!!";
-                            //timer += Time.deltaTime;
+                            startTimer = true;
+
+                        }
+
+                        if (startTimer == true)
+                        {
+                            timer += Time.deltaTime;
+                            if(timer > 2f && tutorialBarrel != null)
+                            {
+                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                                {
+                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    {
+                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                    }
+                                }
+                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                                GameManager.instance.objectDestructed(tutorialBarrel);
+                                Destroy(tutorialBarrel);
+                                timer = 0;
+                                startTimer = false;
+                            }
                         }
 
                         if (tutorialBarrel == null)
                         {
                             timer += Time.deltaTime;
-                            smashed = false;
                             if (timer > 1f)
                             {
                                 timer = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.CHAIN;
                             }
                         }
@@ -320,6 +351,7 @@ public class LevelManager : MonoBehaviour
                             completed = false;
                             spawnedObject = false;
                             startTimer = false;
+
                         }
                         if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
                         {
@@ -335,6 +367,7 @@ public class LevelManager : MonoBehaviour
                             {
                                 //COLORED PANEL FOR COMMUNICATING ATTACK
                                 //WE NEED TO DESTROY THE OBJECT (CHUNKS)
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.SWIRL;
                                 timer = 0;
                             }
@@ -342,28 +375,31 @@ public class LevelManager : MonoBehaviour
                         else if (startTimer == true)
                         {
                             timer2 += Time.deltaTime;
-                            if (timer2 > 1f && tutorialBarrel != null)
+                            if (timer2 > 3f)
                             {
-                                for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
+                                if (tutorialBarrel != null)
                                 {
-                                    if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                    for (int p = 0; p < tutorialBarrel.transform.childCount; p++)
                                     {
-                                        tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
-                                        tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                        if (tutorialBarrel.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
+                                        {
+                                            tutorialBarrel.transform.GetChild(p).gameObject.SetActive(true);
+                                            tutorialBarrel.transform.GetChild(p).GetComponent<MeshCollider>().enabled = true;
+                                        }
                                     }
+                                    tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
+                                    GameManager.instance.objectDestructed(tutorialBarrel);
+                                    Destroy(tutorialBarrel);
                                 }
-                                tutorialBarrel.GetComponent<FracturedObject>().CollapseChunks();
-                                GameManager.instance.objectDestructed(tutorialBarrel);
-                                Destroy(tutorialBarrel);
                                 startTimer = false;
                                 timer2 = 0;
                                 tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             }
-                            else if (tutorialBarrel == null && completed == false)
-                            {
-                                tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                                startTimer = false;
-                            }
+                            //else if (tutorialBarrel == null && completed == false && tutorialBarrel2 != null)
+                            //{
+                            //    tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            //    startTimer = false;
+                            //}
                         }
                         break;
                     case GameManager.Tutorial.SWIRL:
@@ -405,13 +441,14 @@ public class LevelManager : MonoBehaviour
                         }
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                         {
-                            guideText.text = "Great job!";
                             ObjectManagerV2.instance.canDamage = true;
+                            guideText.text = "Great job!";
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
                             {
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                                 timer2 = 0;
+                                GameManager.instance.tutorialTaskCompleted();
                                 GameManager.instance.tutorial = GameManager.Tutorial.STOMP;
                             }
                         }
@@ -451,6 +488,7 @@ public class LevelManager : MonoBehaviour
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
+                                print("broken");
                                 guideText.text = "Try Again. Tap on both sides at the same time to stomp";
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
@@ -509,7 +547,9 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
         GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
         GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
+        GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.instance.isInstructed = true;
+        GameManager.instance.tutorialTaskCompleted();
         GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
@@ -569,7 +609,7 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.currentLevel != 1)
         {
             Stars();
-            
+
             if (GameManager.instance.stars != null)
             {
                 if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
@@ -580,7 +620,13 @@ public class LevelManager : MonoBehaviour
             }
             replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
         }
-        for(int i = 0; i < gems.Length; i++)
+        if(GameManager.instance.currentLevel == 1)
+        {
+            starPoints.SetActive(false);
+            replayScore.SetActive(false);
+            highscore.SetActive(false);         
+        }
+        for (int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
         }
@@ -588,20 +634,26 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(true);
         }
+		GameManager.instance.gemScoreDisplay (); //AUDIO FOR ONE GEM
+
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
         // NewLevelBtn.SetActive(true);
 
 
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
-        if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+        if (GameManager.instance.currentLevel != 1)
         {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
+            }
+            else
+            {
+                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
+            }
         }
-        else
-        {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
-        }
+        else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
         switch (levelResult)
         {
