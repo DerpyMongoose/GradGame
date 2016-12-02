@@ -144,7 +144,7 @@ public class LevelManager : MonoBehaviour
                     gems[i - 1] = GameObject.Find("Gem" + i.ToString());
                 }
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                guideText.text = "Swipe the left side of the screen to move";
+                guideText.text = LanguageManager.instance.ReturnWord("Tut1.1");
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
                 IntroTapPanel = GameObject.FindGameObjectWithTag("IntroTapPanel");

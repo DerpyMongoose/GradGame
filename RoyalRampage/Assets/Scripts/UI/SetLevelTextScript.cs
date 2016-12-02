@@ -22,7 +22,7 @@ public class SetLevelTextScript : MonoBehaviour
         LanguageManager.instance.ChangeText += changeText;
         if (GameManager.instance.currentLevel == 1)
         {
-            key = "Tutorial";
+            key = "";
             GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key);
         }
         else
