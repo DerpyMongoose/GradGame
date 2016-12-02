@@ -90,8 +90,8 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
-        print(playerRig.mass);
-        Debug.DrawRay(transform.position, -transform.right * 1f, Color.red, 2f);
+        //print(playerRig.mass);
+        //Debug.DrawRay(transform.position, -transform.right * 1f, Color.red, 2f);
         //print(powerTime);
         //print(rightOk);
         //print(leftOk);
@@ -221,8 +221,8 @@ public class SwipeHalf : MonoBehaviour
                             }
                             //print(360 - Vector3.Angle(transform.forward, localDir));
                             //print(angle);
-                            Debug.DrawRay(transform.position, attackDir * 1f, Color.blue, 5f);
-                            Debug.DrawRay(transform.position, cross * 5f, Color.green, 5f);
+                            //Debug.DrawRay(transform.position, attackDir * 1f, Color.blue, 5f);
+                            //Debug.DrawRay(transform.position, cross * 5f, Color.green, 5f);
                             if (spinningAnim == false && angle < 0)
                             {
                                 //transform.rotation = Quaternion.LookRotation(attackDir);
