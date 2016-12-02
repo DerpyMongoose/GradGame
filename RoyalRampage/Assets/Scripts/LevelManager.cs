@@ -312,6 +312,7 @@ public class LevelManager : MonoBehaviour
                     case GameManager.Tutorial.ATTACK:
                         if (spawnedObject == false)
                         {
+                            GameManager.instance.player.transform.rotation = Quaternion.LookRotation(Vector3.forward);
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             guideText.text = "Swipe the right side of the screen to hit the crate";
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
