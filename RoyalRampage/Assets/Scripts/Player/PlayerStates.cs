@@ -175,15 +175,13 @@ public class PlayerStates : MonoBehaviour
                     if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == false)
                     {
                         transform.position = GameManager.instance.levelManager.playerPos;
-                        transform.rotation = Quaternion.LookRotation(Vector3.forward); // This doesn't work look at it tomorrow
                         timerText.text = "0";  // for the level timer
                         timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                         SwipeHalf.startTutTimer = false;
                     }
                     else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == true)
                     {
-                        transform.position = GameManager.instance.levelManager.playerPos;
-                        transform.rotation = Quaternion.LookRotation(Vector3.forward); // This doesn't work look at it tomorrow
+                        transform.position = GameManager.instance.levelManager.playerPos;                       
                         GetComponent<Rigidbody>().Sleep();
                         timeLeftInLevel = 0;
                         timerUI.SetActive(false);

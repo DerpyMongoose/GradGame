@@ -161,7 +161,7 @@ GameObject:
   - 54: {fileID: 54000012046724194}
   - 114: {fileID: 114000011078652428}
   m_Layer: 0
-  m_Name: Vase_c
+  m_Name: Vase_c_TUT
   m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,12 +1117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Porcelain
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
