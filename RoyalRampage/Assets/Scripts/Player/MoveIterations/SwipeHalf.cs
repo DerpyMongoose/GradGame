@@ -8,7 +8,7 @@ public class SwipeHalf : MonoBehaviour
     public static bool startTutTimer = false;
 
     private int touches, countTaps;
-    private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time;
+    private float distance, attackDist, moveTimer, circleTimer, speed, acc, force, powerTime, tapsTimer, time, startingMass;
     private bool newSwipe, applyMove, startTimer, doingCircle, rotationTime, rightOk, leftOk;
     private bool newDash = false;   // for dashsound
     private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction, firstTouch, secondTouch;
@@ -38,6 +38,7 @@ public class SwipeHalf : MonoBehaviour
     {
         swirlTut = false;
         playerRig = GetComponent<Rigidbody>();
+        startingMass = playerRig.mass;
         touches = 0;
         moveTimer = 0;
         newSwipe = false;
@@ -89,6 +90,7 @@ public class SwipeHalf : MonoBehaviour
 
     void Update()
     {
+        print(playerRig.mass);
         Debug.DrawRay(transform.position, -transform.right * 1f, Color.red, 2f);
         //print(powerTime);
         //print(rightOk);
@@ -145,7 +147,7 @@ public class SwipeHalf : MonoBehaviour
                         //acc = speed / moveTimer;
                         //force = playerRig.mass * acc;
                         force = playerRig.mass * (speed * GetComponent<PlayerStates>().moveForce);
-                    if (distance > GetComponent<PlayerStates>().distSwipe && distance <= GetComponent<PlayerStates>().maxDistSwipe)
+                    if (distance > GetComponent<PlayerStates>().distSwipe && distance <= GetComponent<PlayerStates>().maxDistSwipe && playerRig.mass <= startingMass)
                         {
                             //if (Mathf.Round(playerRig.velocity.magnitude) == 0)
                             //{
@@ -218,7 +220,7 @@ public class SwipeHalf : MonoBehaviour
                                 angle = -angle;
                             }
                             //print(360 - Vector3.Angle(transform.forward, localDir));
-                            print(angle);
+                            //print(angle);
                             Debug.DrawRay(transform.position, attackDir * 1f, Color.blue, 5f);
                             Debug.DrawRay(transform.position, cross * 5f, Color.green, 5f);
                             if (spinningAnim == false && angle < 0)

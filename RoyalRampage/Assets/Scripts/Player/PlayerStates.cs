@@ -28,6 +28,7 @@ public class PlayerStates : MonoBehaviour
     public float swirlRadius;
     public float liftRadius;
     [Header("Mixed")]
+    public float becomeHeavy;
     public float distSwipe;
     public float maxDistSwipe;
     public float rotationSpeed;
