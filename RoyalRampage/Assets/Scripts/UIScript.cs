@@ -77,7 +77,7 @@ public class UIScript : MonoBehaviour
 
                 //update level on play icon
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -110,7 +110,7 @@ public class UIScript : MonoBehaviour
 
                 //update level on play icon
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
 
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 settings_menu.SetActive(false);
@@ -195,7 +195,7 @@ public class UIScript : MonoBehaviour
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.PLAY_MENU:
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
             if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
                 {
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -222,7 +222,7 @@ public class UIScript : MonoBehaviour
 
                 break;
             case GameManager.Scene.LEVELS_OVERVIEW:
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
+            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
             break;
         }
     }
@@ -251,7 +251,8 @@ public class UIScript : MonoBehaviour
 
     public void BackToGame()
     {
-        PlayStartButtonSound();
+		GameManager.instance.finishedCountingPoints();
+		PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
     }
 
@@ -268,6 +269,7 @@ public class UIScript : MonoBehaviour
     {
 
         //***** FOR AUDIO
+		GameManager.instance.finishedCountingPoints();
         PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "ToNextLevel"));
 
@@ -355,6 +357,7 @@ public class UIScript : MonoBehaviour
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
+		GameManager.instance.menuRolledOut ();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
         print("pausing");
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
@@ -374,6 +377,7 @@ public class UIScript : MonoBehaviour
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
         print("unpausing");
+		GameManager.instance.menuRolledIn ();
 		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
 
@@ -388,7 +392,8 @@ public class UIScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        PlayMenuButtonSound();
+		GameManager.instance.finishedCountingPoints();
+		PlayMenuButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
         Time.timeScale = 1;
     }
@@ -447,17 +452,19 @@ public class UIScript : MonoBehaviour
                 GameManager.instance.GoToStore();
                 break;
 
-            case "GoToLevelOverview":
-                play_menu.SetActive(false);
-                levels_menu.SetActive(true);
-                UpdateLevelOverview();
-                GameManager.instance.GoToLevelOverview();
+		case "GoToLevelOverview":
+				play_menu.SetActive (false);
+				levels_menu.SetActive (true);
+				UpdateLevelOverview ();
+				GameManager.instance.GoToLevelOverview ();
+				GameManager.instance.letterOpen ();
                 break;
 
-            case "CloseLevelOverview":
-                levels_menu.SetActive(false);
-                play_menu.SetActive(true);
-                GameManager.instance.CloseLevelOverview();
+		case "CloseLevelOverview":
+				levels_menu.SetActive (false);
+				play_menu.SetActive (true);
+				GameManager.instance.CloseLevelOverview ();
+				GameManager.instance.letterClose ();
                 break;
 
             case "UnPauseGame":

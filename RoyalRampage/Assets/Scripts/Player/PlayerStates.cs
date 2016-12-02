@@ -158,8 +158,9 @@ public class PlayerStates : MonoBehaviour
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
                 if (timeLeftInLevel <= timeTicker)
                 {
-                    timeTicker -= 1;
+                    
                     GameManager.instance.timerUpdate(timeTicker);
+					timeTicker -= 1;
                 }
 
                 if (timeLeftInLevel <= timeRunningOut)

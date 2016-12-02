@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012672214794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.6666837, y: 0.8157869, z: -9.556307}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -105,8 +105,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200.0133, y: 182.98795, z: 200.0133}
-  m_Center: {x: 0, y: 91.49393, z: 0}
+  m_Size: {x: 20.001328, y: 1.881218, z: 20.001328}
+  m_Center: {x: 0, y: 0.940609, z: 0}
 --- !u!114 &114000012268380650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,14 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Porcelain
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
-  score: 0
-  currencySpawnChance: 0.1
+  score: 5
+  currencySpawnChance: 0
   objMaterial: 0
   objSize: 0

@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string dashPlayer;
 	[SerializeField]
-	private string spinPlay, 
+	private string spinPlay,
+		swingPlay,
 		stompPlay;
 
 	[Header ("-- Objects --")]
@@ -31,13 +32,15 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	private string menuButton;
 	[SerializeField]
-	private string startButton;
+	private string stampButton,
+		letterOpen,
+		letterClose;
 
 	[Header ("-- Score Screen --")]
 	[SerializeField]
 	private string scoreScreenOpen;
 	[SerializeField]
-	private string starReward, 
+	private string gemReward, 
         pointsCountingPlay, 
         pointsCountingStop;
 
@@ -46,7 +49,11 @@ public class AudioManager : MonoBehaviour {
 	private string timerTick;
 	[SerializeField]
 	private string pointsRewarded,
-		tutorialCheckMark;
+		gemSpawn,
+		tutorialCheckMark,
+		menuRollOut, 
+		menuRollIn;
+		
 
 	// extra
 	private bool ambPlaying = false;
@@ -71,6 +78,10 @@ public class AudioManager : MonoBehaviour {
 	}
 	void PlayerStomp(){
 		PlaySound (stompPlay, GameManager.instance.player);
+	}
+
+	void PlayerSwing(){
+		PlaySound (swingPlay, GameManager.instance.player);
 	}
 
 	//************** Objects **************
@@ -177,16 +188,22 @@ public class AudioManager : MonoBehaviour {
     }
 
 	void StartButton(){
-        PlaySound(startButton, gameObject);
+        PlaySound(stampButton, gameObject);
     }
+	void LetterOpen(){
+		PlaySound(letterOpen, gameObject);
+	}
+	void LetterClose(){
+		PlaySound(letterClose, gameObject);
+	}
 
 	//************** Score screen **************
 	void ScoreScreenOpen(){
         PlaySound(scoreScreenOpen, gameObject);
     }
 
-	void CountingStars(){
-
+	void CountingGems(){
+		PlaySound (gemReward, gameObject);
 	}
 
 	void CountingPointsPlay(){
@@ -218,8 +235,19 @@ public class AudioManager : MonoBehaviour {
 
     }
 
+	void GemSpawnPlay(GameObject gem){
+		PlaySound (gemSpawn, gem);
+	}
+
 	void TutorialCheckMark(){
 		PlaySound(tutorialCheckMark, gameObject);
+	}
+
+	void MenuRollOut(){
+		PlaySound (menuRollOut, gameObject);
+	}
+	void MenuRollIn(){
+		PlaySound (menuRollIn, gameObject);
 	}
 
 	//**********volume ********
@@ -250,12 +278,14 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
 		GameManager.instance.OnPlayerStomp += PlayerStomp;
+		GameManager.instance.OnPlayerHit += PlayerSwing;
        
 
         //object sounds
         GameManager.instance.OnObjectHit += ObjectActionHit;
 		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
+		GameManager.instance.OnGemSpawned += GemSpawnPlay;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad += BackgroundAmbStart;
@@ -273,6 +303,8 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPointsCountingFinished += CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange += UpdateMusicVolume;
 		GameManager.instance.OnSFXVolumeChange += UpdateSFXVolume;
+		GameManager.instance.OnMenuRollOut += MenuRollOut;
+		GameManager.instance.OnMenuRollIn += MenuRollIn;
     }
 
 	void OnDisable(){
@@ -281,12 +313,14 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
+		GameManager.instance.OnPlayerHit -= PlayerSwing;
 
 
 		//object sounds
 		GameManager.instance.OnObjectHit -= ObjectActionHit;
 		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
+		GameManager.instance.OnGemSpawned -= GemSpawnPlay;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
@@ -304,5 +338,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnPointsCountingFinished -= CountingPointsStop;
 		GameManager.instance.OnMusicVolumeChange -= UpdateMusicVolume;
 		GameManager.instance.OnSFXVolumeChange -= UpdateSFXVolume;
+		GameManager.instance.OnMenuRollOut -= MenuRollOut;
+		GameManager.instance.OnMenuRollIn -= MenuRollIn;
     }
 }
