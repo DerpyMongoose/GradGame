@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012176157836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 4.713, y: 0.8157869, z: -9.881}
+  m_LocalScale: {x: 0.013, y: 0.013, z: 0.013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,8 +124,9 @@ MonoBehaviour:
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
-  score: 5
-  currencySpawnChance: 0.1
+  score: 1
+  currencySpawnChance: 0
   objMaterial: 0
   objSize: 0
