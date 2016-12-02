@@ -231,7 +231,11 @@ public class LevelManager : MonoBehaviour
 
         if (score >= scoreToCompleteLevel)
         {
-            guideText.text = "Level completed!";
+            if (GameManager.instance.currentLevel != 1)
+            {
+                guideText.text = "Level completed!";
+            }
+            else guideText.text = LanguageManager.instance.ReturnWord("TutEnd");
         }
         else
         {
