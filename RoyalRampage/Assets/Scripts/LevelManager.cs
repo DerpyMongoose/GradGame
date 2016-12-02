@@ -83,7 +83,7 @@ public class LevelManager : MonoBehaviour
     bool smashed;
     bool completed;
     bool startTimer;
-    float timer, timer2, timer3;
+    float timer, timer2;
 
     List<LevelAndObjects> highScoreList;
     List<LevelAndStars> starsList;
@@ -318,7 +318,7 @@ public class LevelManager : MonoBehaviour
                     case GameManager.Tutorial.ATTACK:
                         if (spawnedObject == false)
                         {
-                            tutorialObj1 = (GameObject)Instantiate(tutorial_candlestand, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                            tutorialObj1 = (GameObject)Instantiate(tutorial_candlestand, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 0.5f)), Quaternion.identity);
                             GameManager.instance.player.transform.LookAt(tutorialObj1.transform);
                             guideText.text = LanguageManager.instance.ReturnWord("Tut2.0");
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
@@ -371,7 +371,7 @@ public class LevelManager : MonoBehaviour
                         if (spawnedObject == true)
                         {
                             tutorialObj1 = (GameObject)Instantiate(tutorial_chair, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            tutorialObj2 = (GameObject)Instantiate(tutorial_cabinet, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3.5f)), Quaternion.identity);
+                            tutorialObj2 = (GameObject)Instantiate(tutorial_cabinet, (GameManager.instance.player.transform.position - new Vector3(0.5f, -1, 4)), Quaternion.identity);
                             guideText.text = LanguageManager.instance.ReturnWord("Tut3.0");
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
@@ -387,7 +387,7 @@ public class LevelManager : MonoBehaviour
 
                         if (tutorialObj2 == null)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.1");
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.2");
                             MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
@@ -421,7 +421,8 @@ public class LevelManager : MonoBehaviour
                                 }
                                 startTimer = false;
                                 timer2 = 0;
-                                tutorialObj1 = (GameObject)Instantiate(tutorialObj1, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut3.1");
+                                tutorialObj1 = (GameObject)Instantiate(tutorial_chair, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             }
                             //else if (tutorialBarrel == null && completed == false && tutorialBarrel2 != null)
                             //{
@@ -442,14 +443,14 @@ public class LevelManager : MonoBehaviour
                             panel.SetActive(false);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
-                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.2");
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
 
                             startTimer = false;
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer"); // FAIL MESSAGE
                             startTimer = true;
                         }
 
@@ -471,7 +472,7 @@ public class LevelManager : MonoBehaviour
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                         {
                             ObjectManagerV2.instance.canDamage = true;
-                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.4");
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
                             {
@@ -488,8 +489,8 @@ public class LevelManager : MonoBehaviour
                         {
                             tutorialObj1 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             tutorialObj2 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, 1)), Quaternion.identity);
-                            tutorialObj3 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
-                            tutorialObj4 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
+                            tutorialObj3 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(1f, 0, 0)), Quaternion.identity);
+                            tutorialObj4 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
                             tutorialObj5 = (GameObject)Instantiate(tutorial_vasec, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
                             tutorialObj6 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
                             completed = false;
@@ -500,24 +501,24 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
-                            guideText.text = LanguageManager.instance.ReturnWord("");
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
 
                             spawnedObject = false;
                         }
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("");
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.2");
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
-                                guideText.text = LanguageManager.instance.ReturnWord("");
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
                                 completed = true;
                                 StartCoroutine(Delay());
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
-                                guideText.text = LanguageManager.instance.ReturnWord("");
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.1");
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
@@ -526,9 +527,27 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (PlayerStates.swiped == true && completed == false)
                         {
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
                             startTimer = true;
                         }
                         else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true && completed == false)
+                        {
+                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
+                            timer += Time.deltaTime;
+                            if (timer > 1f)
+                            {
+                                TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
+                                TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
+                                TutObj(tutorialObj3, new Vector3(1f, 0, 0));
+                                TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
+                                TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
+                                TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
+
+                                timer = 0;
+                                GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
+                            }
+                        }
+                        if (startTimer == true && completed == false)
                         {
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
@@ -541,22 +560,6 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
                                 timer2 = 0;
-                                GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
-                            }
-                        }
-                        if (startTimer == true && completed == false)
-                        {
-                            timer3 += Time.deltaTime;
-                            if (timer3 > 1f)
-                            {
-                                TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
-                                TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
-                                TutObj(tutorialObj3, new Vector3(1f, 0, 0));
-                                TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
-                                TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
-                                TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
-
-                                timer3 = 0;
                                 startTimer = false;
                             }
                         }
