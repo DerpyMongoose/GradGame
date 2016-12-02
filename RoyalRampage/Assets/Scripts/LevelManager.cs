@@ -102,12 +102,12 @@ public class LevelManager : MonoBehaviour
         timer = 0;
         timer2 = 0;
         starIndex = 0;
+        starValue = new int[5] { star1, star2, star3, star4, star5 };
         playerPos = GameManager.instance.player.transform.position;
         multiplier = 1;
         ObjectManagerV2.instance.countMultiTime = 0;
         tempMulti = 1;
         tempScore = scoreToCompleteLevel;
-        starValue = new int[5] { star1, star2, star3, star4, star5 };
         amountOfObjects = 1;
         switch (GameManager.instance.CurrentScene())
         {
@@ -361,7 +361,8 @@ public class LevelManager : MonoBehaviour
                             completed = false;
                             spawnedObject = false;
                             startTimer = false;
-
+                            panel.SetActive(true);
+                            MultiplierText.text = "x1";
                         }
                         if (tutorialBarrel != null && tutorialBarrel.GetComponent<ObjectBehavior>().hit == true)
                         {
@@ -371,6 +372,7 @@ public class LevelManager : MonoBehaviour
                         if (tutorialBarrel2 == null)
                         {
                             guideText.text = "Bullseye!";
+                            MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
                             if (timer > 1f)
@@ -421,6 +423,7 @@ public class LevelManager : MonoBehaviour
                             tutorialBarrel4 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-1f, 0, 0)), Quaternion.identity);
                             tutorialBarrel5 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
                             tutorialBarrel6 = (GameObject)Instantiate(tutorialPrefab3, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
+                            panel.SetActive(false);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = "Draw a circle rapidly on the right side to spin attack";
@@ -643,7 +646,7 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(true);
         }
-		GameManager.instance.gemScoreDisplay (); //AUDIO FOR ONE GEM
+        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
 
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
