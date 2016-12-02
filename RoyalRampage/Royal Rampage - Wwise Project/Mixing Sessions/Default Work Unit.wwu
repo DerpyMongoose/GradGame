@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{F51AD49F-DF8A-4D7A-A36E-C7A717E740F1}" SchemaVersion="72">
 	<MixingSessions>
-		<WorkUnit Name="Default Work Unit" ID="{F51AD49F-DF8A-4D7A-A36E-C7A717E740F1}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{F51AD49F-DF8A-4D7A-A36E-C7A717E740F1}" PersistMode="Standalone">
+			<ChildrenList>
+				<MixingSession Name="Level" ID="{1B1DB6C9-9FD8-4348-B215-767C568D775E}">
+					<ObjectList>
+						<ObjectRef Name="Music System" ID="{D43C3937-779C-4AD9-BE0A-8E0D3334F86C}" WorkUnitID="{1EEEFDA4-D86A-421E-AB75-DA6AB1CCAC71}"/>
+						<ObjectRef Name="Character" ID="{93205D05-2037-4821-9280-49116AF5EB15}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Player Spin" ID="{F621CDD2-0D89-4A55-BAFE-4CABD4E06CCF}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Player Dash" ID="{8E7ABD1F-A997-47E0-BEE9-4B6AB6939B63}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Player Stomp" ID="{CFE81CC4-7F07-4307-94A3-C1AC1755B3E4}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Player Swing" ID="{98B3A75C-A21A-4FC1-AB68-46EED02DA4F9}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Object" ID="{85FC0825-DCB3-49A4-9EBF-18879F296C43}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Timer Bell" ID="{3F9F8B3F-D00F-4002-B070-D6D09DEC7601}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Gem" ID="{50C79F20-67C7-4568-A694-FADC8198FAA8}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+						<ObjectRef Name="Tutorial_Check_Mark" ID="{7ED13A8A-D5BD-414C-915C-1636729105DC}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+					</ObjectList>
+				</MixingSession>
+			</ChildrenList>
+		</WorkUnit>
 	</MixingSessions>
 </WwiseDocument>

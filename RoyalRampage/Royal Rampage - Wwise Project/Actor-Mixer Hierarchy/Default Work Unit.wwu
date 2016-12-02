@@ -59,6 +59,11 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -12941,7 +12946,7 @@
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{F58D32B5-C9A4-4F4F-83D5-CFF46C248EDC}" ShortID="415981390">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16" Value="35"/>
+										<Property Name="Pitch" Type="int32" Value="-2400"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -13236,6 +13241,11 @@
 								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.15"/>
 								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -13717,7 +13727,7 @@
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{399512B6-4A8B-4110-8B98-DA8023FDE0C6}" ShortID="306620652">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16" Value="35"/>
+										<Property Name="Pitch" Type="int32" Value="-2400"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -13859,7 +13869,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-20</Value>
+												<Value>-21</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13951,6 +13961,13 @@
 									</ChildrenList>
 								</RandomSequenceContainer>
 								<Sound Name="Gem" ID="{50C79F20-67C7-4568-A694-FADC8198FAA8}" ShortID="482371141" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-1</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -14031,7 +14048,7 @@
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-1</Value>
+												<Value>-3</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{DEFD1D29-0218-47A7-8858-0DE977A622EF}" ShortID="264891130">

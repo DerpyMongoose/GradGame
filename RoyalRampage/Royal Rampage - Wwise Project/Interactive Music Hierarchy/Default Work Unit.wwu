@@ -9,7 +9,7 @@
 						<Property Name="Tempo" Type="Real64" Value="180"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-21</Value>
+								<Value>-20</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -651,7 +651,7 @@
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{D667D714-4001-4ACD-8539-D1883AA30E94}" ShortID="521456160">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16" Value="35"/>
+										<Property Name="Lowpass" Type="int16" Value="50"/>
 									</PropertyList>
 								</State>
 							</CustomState>
