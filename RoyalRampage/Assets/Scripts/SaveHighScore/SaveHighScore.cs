@@ -83,7 +83,6 @@ public class SaveHighScore {
         List<LevelAndObjects> result = new List<LevelAndObjects>();
         bool wasFound = false;
         try {
-            Debug.Log("Hello From XML");
             XElement e = XElement.Load(Application.persistentDataPath + saveNamePath);
             IEnumerable<XElement> var = e.Elements();
 
