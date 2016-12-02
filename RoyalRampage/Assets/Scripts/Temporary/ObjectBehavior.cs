@@ -12,7 +12,6 @@ public class ObjectBehavior : MonoBehaviour
     private Rigidbody objRB;
     private GameObject player;
     ObjectBehavior script;
-    private IEnumerator coroutine;
 
     [HideInInspector]
     public ParticleSystem particleSys;
