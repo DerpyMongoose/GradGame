@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
     public GameObject tutorialPrefab;
     public GameObject tutorialPrefab2;
     public GameObject tutorialPrefab3;
+    //USE CUSTOM PREFABS
     private ObjectBehavior objBehavior;
 
     GameObject tutorialBarrel;
@@ -293,18 +294,18 @@ public class LevelManager : MonoBehaviour
                         if (SwipeHalf.startTutTimer == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
-                            guideText.text = "Reach the finish-line before the timer runs out!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
                         }
                         if (GameManager.instance.levelManager.targetReached == true)
                         {
-                            guideText.text = "Great job!!!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut1.3");
                         }
                         break;
                     case GameManager.Tutorial.ATTACK:
                         if (spawnedObject == false)
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            guideText.text = "Swipe the right side of the screen to hit the crate";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut2.0");
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = false;
                             spawnedObject = true;
                             GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = true;
@@ -314,7 +315,7 @@ public class LevelManager : MonoBehaviour
                         {
                             //COLORED PANEL FOR COMMUNICATING ATTACK
                             //WE NEED TO DESTROY THE OBJECT (CHUNKS)!
-                            guideText.text = "You're amazing!!!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut2.1");
                             startTimer = true;
 
                         }
@@ -356,7 +357,7 @@ public class LevelManager : MonoBehaviour
                         {
                             tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             tutorialBarrel2 = (GameObject)Instantiate(tutorialPrefab2, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 3.5f)), Quaternion.identity);
-                            guideText.text = "Hit the service cart with the crate";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.0");
                             //ObjectManagerV2.instance.canDamage = false; // WE ARE HERE WE HAVE TO NOT DESTROY THE OBJECT BEFORE THE CONDITION IS TRUE
                             completed = false;
                             spawnedObject = false;
@@ -371,7 +372,7 @@ public class LevelManager : MonoBehaviour
 
                         if (tutorialBarrel2 == null)
                         {
-                            guideText.text = "Bullseye!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.1");
                             MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
@@ -426,14 +427,14 @@ public class LevelManager : MonoBehaviour
                             panel.SetActive(false);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
-                            guideText.text = "Draw a circle rapidly on the right side to spin attack";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.2");
 
                             startTimer = false;
                             spawnedObject = true;
                         }
                         if (PlayerStates.swiped == true)
                         {
-                            guideText.text = "Please draw a circle rapidly on the right side to spin attack";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
                             startTimer = true;
                         }
 
@@ -455,7 +456,7 @@ public class LevelManager : MonoBehaviour
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                         {
                             ObjectManagerV2.instance.canDamage = true;
-                            guideText.text = "Great job!";
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut3.4");
                             timer2 += Time.deltaTime;
                             if (timer2 > 1f)
                             {
@@ -484,24 +485,24 @@ public class LevelManager : MonoBehaviour
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
-                            guideText.text = "You're enraged! Tap on both sides at the same time to stomp";
+                            guideText.text = LanguageManager.instance.ReturnWord("");
 
                             spawnedObject = false;
                         }
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
-                            guideText.text = "Attack the crates in the air";
+                            guideText.text = LanguageManager.instance.ReturnWord("");
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
                                 ObjectManagerV2.instance.canDamage = true;
-                                guideText.text = "OHHHH YEAH YOU WIN - TUTORIAL IS OVER";
+                                guideText.text = LanguageManager.instance.ReturnWord("");
                                 completed = true;
                                 StartCoroutine(Delay());
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
-                                guideText.text = "Try Again. Tap on both sides at the same time to stomp";
+                                guideText.text = LanguageManager.instance.ReturnWord("");
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
