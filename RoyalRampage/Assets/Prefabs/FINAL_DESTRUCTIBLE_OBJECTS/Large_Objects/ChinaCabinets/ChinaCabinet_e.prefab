@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010357050516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,12 +1438,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Table
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
