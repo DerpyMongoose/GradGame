@@ -200,7 +200,7 @@ public class LevelManager : MonoBehaviour
                 //Timer shouldn't change during combo.
                 ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects - ObjectManagerV2.instance.countObjects);
                 multiplier++;
-                amountOfObjects++;
+                amountOfObjects += amountOfObjects;
             }
             score += points * multiplier;
             scoreText.text = score.ToString() + " $"; // in game score
