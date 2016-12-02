@@ -15,12 +15,12 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2", "Level_3", "Level_4" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
     public int[] stars = new int[6];
-
+    public int[] highScore = new int[6] {0,0,0,0,0,0};
     public int allStars = 0;
     public int currentLevel = 1;
     public int levelsUnlocked = 1;
@@ -402,6 +402,7 @@ public class GameManager
         data.stars = stars;
         data.currency = currency;
         data.isInstructed = isInstructed;
+        data.highScore = highScore;
 
 
         bf.Serialize(file, data);
@@ -424,6 +425,7 @@ public class GameManager
             stars = data.stars;
             currency = data.currency;
             isInstructed = data.isInstructed;
+            highScore = data.highScore;
         }
 
     }
@@ -438,4 +440,5 @@ class PlayerData
     public int allStars;
     public int[] stars;
     public bool isInstructed;
+    public int[] highScore;
 }

@@ -392,7 +392,8 @@ public class UIScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        PlayMenuButtonSound();
+		GameManager.instance.finishedCountingPoints();
+		PlayMenuButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
         Time.timeScale = 1;
     }
