@@ -8,10 +8,8 @@ public class ObjectDetection : MonoBehaviour {
 
     void Start()
     {
-        obj = false;
         playerRig = GetComponent<Rigidbody>();
         initialMass = playerRig.mass;
-
     }
 
     void OnCollisionEnter(Collision col)
