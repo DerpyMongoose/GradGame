@@ -15,7 +15,7 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "GameSceneD" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2" };
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -226,6 +226,7 @@ public class GameManager
     public event DestructionAction OnObjectDestructed;
     public event DestructionAction OnObjectHit;
     public event DestructionAction OnObjectLanding;
+	public event DestructionAction OnGemSpawned;
 
     public void objectDestructed(GameObject obj)
     {
@@ -242,6 +243,12 @@ public class GameManager
         if (OnObjectLanding != null)
             OnObjectLanding(obj);
     }
+	public void gemSpawned(GameObject gem)
+	{
+		if (OnGemSpawned != null)
+			OnGemSpawned(gem);
+	}
+
 
     public delegate void GameAction();
     public event GameAction OnTimerStart;
@@ -258,6 +265,11 @@ public class GameManager
     public event GameAction OnPointsCountingFinished;
     public event GameAction OnPlayerHit;
 	public event GameAction OnTutorialTaskCompleted;
+	public event GameAction OnGemScoreDisplay;
+	public event GameAction OnMenuRollOut;
+	public event GameAction OnMenuRollIn;
+	public event GameAction OnLetterOpen;
+	public event GameAction OnLetterClose;
 
     public void timerStart()
     {
@@ -328,6 +340,26 @@ public class GameManager
 	public void tutorialTaskCompleted(){
 		if(OnTutorialTaskCompleted != null)
 			OnTutorialTaskCompleted();
+	}
+	public void gemScoreDisplay(){
+		if (OnGemScoreDisplay != null)
+			OnGemScoreDisplay ();
+	}
+	public void menuRolledOut(){
+		if (OnMenuRollOut != null)
+			OnMenuRollOut ();
+	}
+	public void menuRolledIn(){
+		if (OnMenuRollIn != null)
+			OnMenuRollIn ();
+	}
+	public void letterOpen(){
+		if (OnLetterOpen != null)
+			OnLetterOpen ();
+	}
+	public void letterClose(){
+		if (OnLetterClose != null)
+			OnLetterClose ();
 	}
 
     public delegate void LevelAction(float val);
