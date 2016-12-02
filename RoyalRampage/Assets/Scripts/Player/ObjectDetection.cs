@@ -3,18 +3,23 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour {
 
-    bool prevent;
+    Rigidbody playerRig;
+    float initialMass;
+
+    void Start()
+    {
+        playerRig = GetComponent<Rigidbody>();
+        initialMass = playerRig.mass;
+    }
 
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.GetComponent<ObjectBehavior>() != null)
         {
-            var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
-            if (obj)
+            if (col.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5f)
             {
-                //GetComponent<Rigidbody>().Sleep();               
-                //StartCoroutine(TweakRigibody());
-                prevent = true;
+                playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
+                StartCoroutine(ReverseMass());
             }
         }
     }
@@ -23,36 +28,18 @@ public class ObjectDetection : MonoBehaviour {
     {
         if (col.gameObject.GetComponent<ObjectBehavior>() != null)
         {
-            var obj = col.gameObject.GetComponent<ObjectBehavior>().hit;
-            if (obj)
+            if (col.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 5f)
             {
-                //GetComponent<Rigidbody>().Sleep();               
-                //StartCoroutine(TweakRigibody());
-                prevent = true;
+                playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
+                StartCoroutine(ReverseMass());
             }
         }
     }
 
-    void LateUpdate()
+    IEnumerator ReverseMass()
     {
-        if(prevent)
-        {
-            //StartCoroutine(TweakRigibody());
-            GetComponent<Rigidbody>().Sleep();
-            prevent = false;
-        }
+        yield return new WaitForSeconds(Time.deltaTime);
+        playerRig.mass = initialMass;
     }
 
-    void Start()
-    {
-        prevent = false;
-    }
-
-    //IEnumerator TweakRigibody()
-    //{
-    //    GetComponent<Rigidbody>().isKinematic = true;
-    //    yield return new WaitForSeconds(Time.deltaTime);
-    //    GetComponent<Rigidbody>().isKinematic = false;
-    //    prevent = false;
-    //}
 }

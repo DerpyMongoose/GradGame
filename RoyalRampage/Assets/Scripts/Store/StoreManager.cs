@@ -17,8 +17,12 @@ public class StoreManager : MonoBehaviour {
     public RectTransform parent;
     GameObject message;
     GameObject buyCurrency;
+    public GameObject confirmBox;
+    GameObject tempItem;
 
     public bool hasLoaded = false;
+    bool willBuy = false;
+    bool amIbuying = false;
 
     int inputFieldValue;
 
@@ -30,23 +34,42 @@ public class StoreManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        tempItem = null;
+        willBuy = false;
         message = GameObject.FindGameObjectWithTag("BuyMorePop");
         buyCurrency = GameObject.FindGameObjectWithTag("BuyCurrency");
         message.SetActive(false);
         buyCurrency.SetActive(false);
+        confirmBox.SetActive(false);
         objectsInStore = ReturnSet();
         createButtons();
 	}
 
     public void BuyItem (GameObject button) {
-        if (GameManager.instance.currency > 0 && (GameManager.instance.currency - button.GetComponent<StoreButtonScript>().price) >= 0) {
+        if (GameManager.instance.currency > 0 && (GameManager.instance.currency - button.GetComponent<StoreButtonScript>().price) >= 0 && willBuy == true) {
             GameManager.instance.currency -= button.GetComponent<StoreButtonScript>().price;
             GameObject.FindGameObjectWithTag("Currency").GetComponent<CurrencyUIScript>().changeText();
             GameManager.instance.Save();
+            willBuy = false;
+            tempItem = null;
         } else {           
             message.SetActive(true);
         }
         
+    }
+    public void ShowConfirm(GameObject itemToBuy) {
+        confirmBox.SetActive(true);
+        tempItem = itemToBuy;
+    }
+
+    public void ConfirmBuy () {
+        willBuy = true;
+        BuyItem(tempItem);
+        confirmBox.SetActive(false);
+    }
+    public void DenyBuy() {
+        willBuy = false;
+        confirmBox.SetActive(false);
     }
 
     //Function to get a word from the xml file
@@ -99,7 +122,7 @@ public class StoreManager : MonoBehaviour {
 
         for(int i = 0; i < objectsInStore.Count; i++) {
             GameObject objButton = Instantiate(button);         
-            objButton.GetComponent<Button>().onClick.AddListener(() => StoreManager.instance.BuyItem(objButton));
+            objButton.GetComponent<Button>().onClick.AddListener(() => StoreManager.instance.ShowConfirm(objButton));
             objButton.AddComponent<StoreButtonScript>();
             objButton.GetComponent<StoreButtonScript>().price = objectsInStore[i].Price;
             Component[] temp = objButton.GetComponentsInChildren<Text>();

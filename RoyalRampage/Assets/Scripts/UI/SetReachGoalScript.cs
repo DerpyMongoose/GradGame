@@ -26,7 +26,7 @@ public class SetReachGoalScript : MonoBehaviour
         }
         else
         {
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord("");
+            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord("Tut1.0");
         }
     }
 

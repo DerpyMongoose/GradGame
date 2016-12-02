@@ -8,8 +8,6 @@ public class StampBar : MonoBehaviour
     public float fillBar;
     private bool ready, gradually;
     private Color initialColor;
-    private float countSecond;
-    private ColorBlock sliderColors;
     private float timer;
 
     [HideInInspector]
@@ -22,8 +20,9 @@ public class StampBar : MonoBehaviour
     public static bool increaseFill;
     [HideInInspector]
     public float tempScore;
-    [HideInInspector]
-    public float timeToLowRage;
+
+    //[HideInInspector]
+    //public float timeToLowRage;
 
 	void Awake(){
 		slider = GameObject.FindGameObjectWithTag ("rage_slider").GetComponent<Slider>();
@@ -37,8 +36,10 @@ public class StampBar : MonoBehaviour
             fillBar = 0f;
             initialColor = fillColor.color;
             increaseFill = true;
-            countSecond = 0f;
             tempScore = 0f;
+            ready = false;
+            gradually = false;
+            timer = 0f;
         }
     }
 

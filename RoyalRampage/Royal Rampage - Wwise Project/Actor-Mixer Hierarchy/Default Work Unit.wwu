@@ -59,6 +59,11 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -124,7 +129,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>30</Value>
+																<Value>20</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -184,13 +189,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{65663D86-1658-4CBB-89FB-D75A476F46A8}" ShortID="821788060">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>20</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -892,13 +890,6 @@
 											</ReferenceList>
 											<ChildrenList>
 												<RandomSequenceContainer Name="Wood" ID="{1341467C-9803-487C-9D11-906E7079DB86}" ShortID="77102131">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>20</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -1058,7 +1049,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>30</Value>
+																<Value>20</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -1579,13 +1570,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{972EED48-9EB8-414E-BE0A-96EBBCAABB75}" ShortID="1000875121">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>32</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -1689,7 +1673,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>40</Value>
+																<Value>32</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -2150,13 +2134,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{82984098-0337-4B37-A069-9F842314BBFE}" ShortID="1012508316">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -2238,7 +2215,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>35</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -2647,13 +2624,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{89FE9E3E-01EA-4FFF-BA6E-BB0CC2D6429C}" ShortID="40978761">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -2735,7 +2705,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -3151,13 +3121,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{3CEB6C05-42AC-4B6D-B604-AD940862A09D}" ShortID="830677928">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -3217,7 +3180,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -3383,6 +3346,11 @@
 										<Property Name="PriorityDistanceOffset" Type="int16">
 											<ValueList>
 												<Value>-20</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3758,7 +3726,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>35</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -3850,13 +3818,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{4A9D721E-1B60-4661-A79D-75B7AB76DE7D}" ShortID="1004660590">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -5020,13 +4981,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{98376FC4-C14A-487C-8054-D3758CF364E5}" ShortID="378177061">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>28</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -5130,7 +5084,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>42</Value>
+																<Value>28</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -6597,6 +6551,13 @@
 													</ReferenceList>
 													<ChildrenList>
 														<Sound Name="Grandfather Clock Landing" ID="{B1A77E55-C9E5-4D4C-8B66-598488A4A377}" ShortID="357171456" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6662,6 +6623,13 @@
 													</ReferenceList>
 													<ChildrenList>
 														<Sound Name="Grandfather Clock Landing" ID="{729B5E4D-2114-47AC-9E27-6672BF70F6CA}" ShortID="821661654" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6730,6 +6698,13 @@
 													</ReferenceList>
 													<ChildrenList>
 														<Sound Name="Grandfather Clock Landing" ID="{D08AF946-B438-472E-8E82-7C7174F4BBCF}" ShortID="1022610377" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6908,6 +6883,13 @@
 															</ChildrenList>
 														</RandomSequenceContainer>
 														<Sound Name="Grandfather Clock Destruction" ID="{B28F5E26-478C-4A9C-9B25-77E3D458A97B}" ShortID="1041663868" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6929,13 +6911,6 @@
 													</ChildrenList>
 												</BlendContainer>
 												<BlendContainer Name="Wood" ID="{F93CDD7B-3674-44AA-86AB-1876D5B31056}" ShortID="561922218">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7009,6 +6984,13 @@
 															</ChildrenList>
 														</RandomSequenceContainer>
 														<Sound Name="Grandfather Clock Destruction" ID="{0D6F6AE1-CD7F-43FE-B312-881644300B1A}" ShortID="8200707" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7036,7 +7018,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>30</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -7113,6 +7095,13 @@
 															</ChildrenList>
 														</RandomSequenceContainer>
 														<Sound Name="Grandfather Clock Destruction" ID="{60F68FF9-83F7-4DED-BD29-B59B3227790E}" ShortID="632893409" Type="SoundFX">
+															<PropertyList>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>3</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7184,6 +7173,13 @@
 											</ReferenceList>
 											<ChildrenList>
 												<Sound Name="Grandfather Clock Landing" ID="{BFF035CF-AE51-4A24-B137-EC3D29F456E8}" ShortID="1056455844" Type="SoundFX">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>3</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7283,6 +7279,11 @@
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>600</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7701,13 +7702,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{01B39CC7-66B5-4463-B35C-38E41960FFAB}" ShortID="844775397">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>28</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7811,7 +7805,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>35</Value>
+																<Value>28</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -8289,13 +8283,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{F5522700-90D8-4FA3-8397-9D1DB9E7E341}" ShortID="877214000">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>24</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -8377,7 +8364,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>24</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -8596,6 +8583,13 @@
 									</GroupingInfo>
 								</SwitchContainer>
 								<SwitchContainer Name="Pot And Pan" ID="{3BF4204D-9794-42A2-8796-DD8555B3266A}" ShortID="527416295">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -9011,13 +9005,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{4FC0D6A3-C356-424B-8CB1-6AF06670EE8C}" ShortID="309540454">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>22</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -9121,7 +9108,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>22</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -9359,6 +9346,11 @@
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>350</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -9777,13 +9769,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{12E0DE8C-053D-44A3-8E41-5285E345EF00}" ShortID="1050749197">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -9887,7 +9872,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -10338,13 +10323,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{26750B22-79CE-4515-B30B-ABFB4F4B15C8}" ShortID="51273981">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -10404,7 +10382,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -10780,13 +10758,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{31C25320-61EE-43B0-884A-CE902D7F8A3A}" ShortID="117511764">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>28</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -10846,7 +10817,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>40</Value>
+																<Value>28</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -11224,13 +11195,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{9D1C1B83-41B3-4A69-9DDE-7B1F2B88A7A9}" ShortID="163998706">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -11290,7 +11254,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>32</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -12032,6 +11996,11 @@
 												<Value>200</Value>
 											</ValueList>
 										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -12427,13 +12396,6 @@
 													</ChildrenList>
 												</RandomSequenceContainer>
 												<RandomSequenceContainer Name="Wood" ID="{9263C5CA-F868-411D-A063-D82A7D67A636}" ShortID="535674014">
-													<PropertyList>
-														<Property Name="Lowpass" Type="int16">
-															<ValueList>
-																<Value>25</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -12537,7 +12499,7 @@
 													<PropertyList>
 														<Property Name="Lowpass" Type="int16">
 															<ValueList>
-																<Value>35</Value>
+																<Value>25</Value>
 															</ValueList>
 														</Property>
 													</PropertyList>
@@ -12984,7 +12946,7 @@
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{F58D32B5-C9A4-4F4F-83D5-CFF46C248EDC}" ShortID="415981390">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16" Value="35"/>
+										<Property Name="Pitch" Type="int32" Value="-2400"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -13126,7 +13088,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-8</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -13279,6 +13241,11 @@
 								<Property Name="PlayMechanismSpecialTransitionsValue" Type="Real64" Value="0.15"/>
 								<Property Name="PlayMechanismStepOrContinuous" Type="int16" Value="0"/>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -13368,7 +13335,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-1.5</Value>
+												<Value>-2</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13451,7 +13418,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-4</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13534,7 +13501,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-4.5</Value>
+												<Value>-6</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13760,7 +13727,7 @@
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{399512B6-4A8B-4110-8B98-DA8023FDE0C6}" ShortID="306620652">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16" Value="35"/>
+										<Property Name="Pitch" Type="int32" Value="-2400"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -13902,7 +13869,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-21</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13994,6 +13961,13 @@
 									</ChildrenList>
 								</RandomSequenceContainer>
 								<Sound Name="Gem" ID="{50C79F20-67C7-4568-A694-FADC8198FAA8}" ShortID="482371141" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-1</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -14074,7 +14048,7 @@
 										<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-1</Value>
+												<Value>-3</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{DEFD1D29-0218-47A7-8858-0DE977A622EF}" ShortID="264891130">
