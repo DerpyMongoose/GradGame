@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /*
  level and score manager
@@ -36,6 +37,7 @@ public class LevelManager : MonoBehaviour
     GameObject InGamePanel;
     GameObject ReplayPanel;
     Text replayScoreText;
+    Text highScoreText;
     GameObject ReplayBtn;
     GameObject NewLevelBtn;
     GameObject IntroTapPanel;
@@ -69,6 +71,9 @@ public class LevelManager : MonoBehaviour
     float timer, timer2, timer3;
     int tutorialState;
 
+    List<LevelAndObjects> highScoreList;
+    List<LevelAndStars> starsList;
+
     void OnEnable()
     {
         GameManager.instance.OnObjectDestructed += IncreaseScore;
@@ -85,6 +90,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        highScoreList = new List<LevelAndObjects>();
+        starsList = new List<LevelAndStars>();
         gems = new GameObject[5];
         MultiplierText = GameObject.Find("Multiplier").GetComponent<Text>();
         completed = false;
@@ -123,6 +130,7 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
@@ -143,6 +151,7 @@ public class LevelManager : MonoBehaviour
                 continueButton = GameObject.Find("ContinueButton");
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
+                highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
                 rageMeter = GameObject.Find("InGameGUI/RageMeter");
@@ -552,9 +561,9 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public void CalculateCurrency()
+    public void CalculateCurrency(int starsVal)
     {
-        GameManager.instance.currency += stars * currencyPerStar;
+        GameManager.instance.currency += starsVal * currencyPerStar;
     }
 
     //show replay screen after animation is done
@@ -569,16 +578,26 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.currentLevel != 1)
         {
             Stars();
-            
+            highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+            starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+           
+
             if (GameManager.instance.stars != null)
-            {
-                if (stars > GameManager.instance.stars[GameManager.instance.currentLevel - 1])
+            {                
+                if (stars > starsList[0].Stars)
                 {
-                    CalculateCurrency();
+                    CalculateCurrency(stars- starsList[0].Stars);
                     GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
-                }
+                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);                  
+                }              
             }
-            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop
+            
+            highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
+            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
+            if (score >= highScoreList[0].HighScore)
+            {
+                SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
+            }
         }
         for(int i = 0; i < gems.Length; i++)
         {
@@ -586,6 +605,7 @@ public class LevelManager : MonoBehaviour
         }
         for (int i = 0; i < stars; i++)
         {
+            //Play Sound here (Add delay with coroutine)
             gems[i].SetActive(true);
         }
         InGamePanel.SetActive(false);
@@ -633,6 +653,7 @@ public class LevelManager : MonoBehaviour
     //counting score "animation"
     IEnumerator CountPointsTo(int new_score)
     {
+        highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
         if (new_score > 0)
         {
             yield return new WaitForSeconds(1f);
@@ -651,6 +672,7 @@ public class LevelManager : MonoBehaviour
             GameManager.instance.finishedCountingPoints();
         }
         replayScoreText.text = "Score:\n" + new_score + " $";
+        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
     }
 }
