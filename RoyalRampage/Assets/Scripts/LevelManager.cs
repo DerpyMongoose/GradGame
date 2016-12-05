@@ -369,7 +369,7 @@ public class LevelManager : MonoBehaviour
                         if (tutorialObj1 == null)
                         {
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 timer = 0;
                                 GameManager.instance.tutorialTaskCompleted();
@@ -401,7 +401,7 @@ public class LevelManager : MonoBehaviour
                             MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 //COLORED PANEL FOR COMMUNICATING ATTACK
                                 //WE NEED TO DESTROY THE OBJECT (CHUNKS)
@@ -484,7 +484,7 @@ public class LevelManager : MonoBehaviour
                             ObjectManagerV2.instance.canDamage = true;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
                             timer2 += Time.deltaTime;
-                            if (timer2 > 1f)
+                            if (timer2 > 2f)
                             {
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                                 timer2 = 0;
@@ -584,7 +584,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
         GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
         ObjectManagerV2.instance.canDamage = true;
