@@ -20,24 +20,12 @@ public class SetLevelTextScript : MonoBehaviour
     void OnEnable()
     {
         LanguageManager.instance.ChangeText += changeText;
-        if (GameManager.instance.currentLevel == 1)
-        {
-            key = "";
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key);
-        }
-        else
-        {
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString();
-        }
+        GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString();
+
     }
 
     public void SetText(int input)
     {
-        if (GameManager.instance.currentLevel == 1)
-        {
-            thisInput = input;
-            GetComponent<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + input.ToString();
-        }
         thisInput = input;
         GetComponent<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + input.ToString();
     }
