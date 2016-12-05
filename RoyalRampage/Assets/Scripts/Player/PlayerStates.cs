@@ -99,21 +99,23 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    GameManager.instance.levelLoad();
-                    if (GameManager.instance.CurrentScene() != GameManager.Scene.TUTORIAL)
+                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        GameManager.instance.levelLoad();
+                        if (GameManager.instance.CurrentScene() != GameManager.Scene.TUTORIAL)
+                        {
+                            Startlevel();
+                        }
+                    }
+                    else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                     {
                         Startlevel();
                     }
-                }
-                else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
-                {
-                    Startlevel();
-                }
-                if (Input.GetKey(KeyCode.R))
-                {
-                    GameManager.instance.levelLoad();
+                    if (Input.GetKey(KeyCode.R))
+                    {
+                        GameManager.instance.levelLoad();
+                    }
                 }
                 break;
 
