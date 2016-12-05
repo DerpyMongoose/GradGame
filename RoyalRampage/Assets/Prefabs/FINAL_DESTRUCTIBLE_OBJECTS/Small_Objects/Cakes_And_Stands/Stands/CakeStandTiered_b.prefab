@@ -37,10 +37,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014273728096}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.19841304, z: -0, w: 0.9801185}
+  m_LocalPosition: {x: 0.056, y: 0.8229218, z: -13.009}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalEulerAnglesHint: {x: 0, y: -22.660002, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -87,7 +87,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014273728096}
   serializedVersion: 2
-  m_Mass: 25
+  m_Mass: 0.5
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -105,8 +105,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 35, y: 49.463577, z: 22.500002}
-  m_Center: {x: 0, y: 24.731789, z: 0}
+  m_Size: {x: 35, y: 31.860167, z: 22.5}
+  m_Center: {x: -0.0004696156, y: 15.930089, z: -0.0016133037}
 --- !u!114 &114000013769119504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Serving_Tray
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
   score: 0
   currencySpawnChance: 0.1
