@@ -231,7 +231,11 @@ public class LevelManager : MonoBehaviour
 
         if (score >= scoreToCompleteLevel)
         {
-            guideText.text = "Level completed!";
+            if (GameManager.instance.currentLevel != 1)
+            {
+                guideText.text = "Level completed!";
+            }
+            else guideText.text = LanguageManager.instance.ReturnWord("TutEnd");
         }
         else
         {
@@ -304,7 +308,7 @@ public class LevelManager : MonoBehaviour
             case GameManager.Scene.TUTORIAL:
                 switch (GameManager.instance.tutorial)
                 {
-                    case GameManager.Tutorial.MOVEMENT:                      
+                    case GameManager.Tutorial.MOVEMENT:
                         if (SwipeHalf.startTutTimer == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
@@ -509,9 +513,9 @@ public class LevelManager : MonoBehaviour
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.2");
+                            ObjectManagerV2.instance.canDamage = true;
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
                             {
-                                ObjectManagerV2.instance.canDamage = true;
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
                                 completed = true;
                                 StartCoroutine(Delay());
@@ -577,6 +581,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
         GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
+        ObjectManagerV2.instance.canDamage = true;
         GameManager.instance.tutorial = GameManager.Tutorial.DEFAULT;
         GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.instance.isInstructed = true;
@@ -642,18 +647,18 @@ public class LevelManager : MonoBehaviour
             Stars();
             highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
             starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
-           
+
 
             if (GameManager.instance.stars != null)
-            {                
+            {
                 if (stars > starsList[0].Stars)
                 {
-                    CalculateCurrency(stars- starsList[0].Stars);
+                    CalculateCurrency(stars - starsList[0].Stars);
                     GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
-                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);                  
-                }              
+                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);
+                }
             }
-            
+
             highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
             replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
             if (score >= highScoreList[0].HighScore)
@@ -707,9 +712,7 @@ public class LevelManager : MonoBehaviour
                 if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
                 {
                     GameManager.instance.levelsUnlocked++;
-
                 }
-
                 break;
 
             case "Game over":
@@ -717,6 +720,12 @@ public class LevelManager : MonoBehaviour
                 //ReplayBtn.SetActive(true);
                 NewLevelBtn.SetActive(false);
                 //starText.text = stars.ToString();
+                break;
+            default:
+                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
+                {
+                    GameManager.instance.levelsUnlocked++;
+                }
                 break;
         }
 

@@ -272,6 +272,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+
         if (col.gameObject.GetComponent<ObjectBehavior>() != null)
         {
             script = col.gameObject.GetComponent<ObjectBehavior>();
@@ -355,6 +356,15 @@ public class ObjectBehavior : MonoBehaviour
         if (col.gameObject.GetComponent<ObjectBehavior>() == null && col.gameObject.GetComponent<FracturedChunk>() == null)
         {
             hit = false;
+        }
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        if (flying && col.collider.tag == "Wall")
+        {
+            print("YES i pierced the wall MotherFucker");
+            flying = false;
         }
     }
 }
