@@ -19,15 +19,8 @@ public class SetReachGoalScript : MonoBehaviour
 
     void OnEnable()
     {
-        if (GameManager.instance.currentLevel != 1)
-        {
             LanguageManager.instance.ChangeText += changeText;
             GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString() + "$";
-        }
-        else
-        {
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord("Tut1.0");
-        }
     }
 
     void OnDisable()

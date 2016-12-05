@@ -188,6 +188,7 @@ public class LevelManager : MonoBehaviour
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
+                IntroTapPanel.SetActive(false);
                 break;
                 // GameManager.instance.levelLoad(); // FOR AUDIO
         }
@@ -219,12 +220,13 @@ public class LevelManager : MonoBehaviour
     {
         //guideText.gameObject.SetActive(false);
 
-        IntroTapPanel.SetActive(false);
         InGamePanel.SetActive(true);
         if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
+            IntroTapPanel.SetActive(false);
             guideText.text = "";
         }
+        else twoHandsSplitScreen.SetActive(false);
 
     }
 

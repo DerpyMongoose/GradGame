@@ -27,6 +27,7 @@ public class UIScript : MonoBehaviour
     GameObject back_Button;
     GameObject skip_Button;
     GameObject twoHandsSplitScreen;
+    GameObject tapPanel;
     Transform[] instr_SlidesChildren;
     [HideInInspector]
     public int slide = 5;
@@ -182,6 +183,7 @@ public class UIScript : MonoBehaviour
                 arrowL = GameObject.FindGameObjectWithTag("help_left");
                 arrowR = GameObject.FindGameObjectWithTag("help_right");
                 twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
+                tapPanel = GameObject.Find("IntroTapPanel");
 
 
                 slides = new GameObject[5];
@@ -562,9 +564,5 @@ public class UIScript : MonoBehaviour
     public void Continue()
     {
         GameManager.instance.timerOut();
-    }
-    public void TwoHandsSplit()
-    {
-        twoHandsSplitScreen.SetActive(false);
     }
 }
