@@ -48,8 +48,8 @@ public class PlayerStates : MonoBehaviour
 
     private float timeTicker = 5;  // TIME TO START THE TICKING SOUND
     private float timeRunningOut = 10;  // TIME TO START THE RUNNING OUT SOUND
-
-
+    private bool timerStart, timerStart2;
+    private float timer;
 
     private enum PlayerState
     {
@@ -69,6 +69,9 @@ public class PlayerStates : MonoBehaviour
     {
         state = PlayerState.READY;
         SwipeHalf.startTutTimer = false;
+        timerStart = false;
+        timerStart2 = false;
+        timer = 0;
     }
 
     void Awake()
@@ -99,21 +102,23 @@ public class PlayerStates : MonoBehaviour
 
             //until player touches the screen to start playing the level
             case PlayerState.READY:
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    GameManager.instance.levelLoad();
-                    if (GameManager.instance.CurrentScene() != GameManager.Scene.TUTORIAL)
+                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        GameManager.instance.levelLoad();
+                        if (GameManager.instance.CurrentScene() != GameManager.Scene.TUTORIAL)
+                        {
+                            Startlevel();
+                        }
+                    }
+                    else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                     {
                         Startlevel();
                     }
-                }
-                else if (SwipeHalf.startTutTimer == true && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
-                {
-                    Startlevel();
-                }
-                if (Input.GetKey(KeyCode.R))
-                {
-                    GameManager.instance.levelLoad();
+                    if (Input.GetKey(KeyCode.R))
+                    {
+                        GameManager.instance.levelLoad();
+                    }
                 }
                 break;
 
@@ -142,7 +147,7 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-                    if (GameManager.instance.levelManager.multiplier > 1)
+                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true))
                     {
                         timeLeftInLevel -= 0;
                     }
@@ -158,9 +163,9 @@ public class PlayerStates : MonoBehaviour
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
                 if (timeLeftInLevel <= timeTicker)
                 {
-                    
+
                     GameManager.instance.timerUpdate(timeTicker);
-					timeTicker -= 1;
+                    timeTicker -= 1;
                 }
 
                 if (timeLeftInLevel <= timeRunningOut)
@@ -172,28 +177,48 @@ public class PlayerStates : MonoBehaviour
                 //when timer runs out:
                 if (timeLeftInLevel <= 0f)
                 { //Move stuff to events
-                    if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == false)
+                    if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+                    {
+                        timerText.text = "0";  // for the level timer
+                        timerText.color = Color.red;
+                        GameManager.instance.timerOut();
+                    }
+                    else if (GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
+                    {
+                        if (GameManager.instance.levelManager.targetReached == false)
+                        {
+                            transform.position = GameManager.instance.levelManager.playerPos;
+                            timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
+                            GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
+                            SwipeHalf.startTutTimer = false;
+                            timerStart2 = true;
+                        }
+                    }
+                }
+                else if (GameManager.instance.levelManager.targetReached == true)
+                {
+                    timer += Time.deltaTime;
+                    if (timer > 2f)
                     {
                         transform.position = GameManager.instance.levelManager.playerPos;
-                        timerText.text = "0";  // for the level timer
-                        timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
-                        SwipeHalf.startTutTimer = false;
-                    }
-                    else if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL && GameManager.instance.levelManager.targetReached == true)
-                    {
-                        transform.position = GameManager.instance.levelManager.playerPos;                       
                         GetComponent<Rigidbody>().Sleep();
                         timeLeftInLevel = 0;
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
                         GameManager.instance.tutorialTaskCompleted();
                         GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
+                        timer = 0;
+                        timerStart = false;
                     }
-                    else if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
+                }              
+                else if (timerStart2 == true && timerStart == false)
+                {
+                    timer += Time.deltaTime;
+                    if (timer > 2f)
                     {
-                        timerText.text = "0";  // for the level timer
-                        timerText.color = Color.red;
-                        GameManager.instance.timerOut();
+                        GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
+                        timer = 0;
+                        timerStart2 = false;
                     }
                 }
                 timeSliderLeft.value = timeLeftInLevel / totalTime;

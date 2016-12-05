@@ -207,12 +207,12 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	void CountingPointsPlay(){
-		PlaySound(pointsCountingPlay, GameManager.instance.player);
+		PlaySound(pointsCountingPlay, gameObject);
 		//print ("play points");
 	}
 
 	void CountingPointsStop(){
-		PlaySound(pointsCountingStop, GameManager.instance.player);
+		PlaySound(pointsCountingStop, gameObject);
 		//print ("stop points");
 	}
 	public void UpdatePointCounter(int show_points){
@@ -273,7 +273,6 @@ public class AudioManager : MonoBehaviour {
 	//Subscribing
 
 	void OnEnable(){
-
 		//player sound
 		GameManager.instance.OnPlayerDash += PlayerDash;
 		GameManager.instance.OnPlayerSwirl += PlayerSwirl;
@@ -308,9 +307,10 @@ public class AudioManager : MonoBehaviour {
     }
 
 	void OnDisable(){
-		//BackgroundAmbStop ();
-		//player sound
-		GameManager.instance.OnPlayerDash -= PlayerDash;
+        //BackgroundAmbStop ();
+        CountingPointsStop();
+        //player sound
+        GameManager.instance.OnPlayerDash -= PlayerDash;
 		GameManager.instance.OnPlayerSwirl -= PlayerSwirl;
 		GameManager.instance.OnPlayerStomp -= PlayerStomp;
 		GameManager.instance.OnPlayerHit -= PlayerSwing;
