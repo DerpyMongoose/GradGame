@@ -135,7 +135,7 @@ public class LevelManager : MonoBehaviour
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
                 minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel);
+                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel-1);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
                 guideText = GameObject.Find("GuideText").GetComponent<Text>();
                 guideText.text = "";

@@ -47,6 +47,7 @@ public class SwipeHalf : MonoBehaviour
         direction = -Vector3.forward;
         swirlEnded = true;
         PlayerStates.swiped = false;
+        playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
     }
 
 
@@ -93,6 +94,9 @@ public class SwipeHalf : MonoBehaviour
 
             if (Input.GetTouch(i).position.x <= Screen.width / 2)
             {
+                ////Reverse to startingMass
+                
+
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                 {
                     rightOk = true;
@@ -106,6 +110,8 @@ public class SwipeHalf : MonoBehaviour
                         newSwipe = true;
                         newDash = true;
                         moveTimer = 0;
+                        playerRig.mass = startingMass;
+                        StartCoroutine(BringBackMass());
                         temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                         startPoint = new Vector3(temp.x, 0, temp.z);
                     }
@@ -249,6 +255,12 @@ public class SwipeHalf : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
         }
+    }
+
+    IEnumerator BringBackMass()
+    {
+        yield return new WaitForSeconds(GetComponent<PlayerStates>().timeForSwipe);
+        playerRig.mass = GetComponent<PlayerStates>().becomeHeavy;
     }
 
     IEnumerator SwipeTimer()
