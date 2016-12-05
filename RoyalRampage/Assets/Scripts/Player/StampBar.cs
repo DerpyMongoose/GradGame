@@ -6,7 +6,7 @@ public class StampBar : MonoBehaviour
 {
     [HideInInspector]
     public float fillBar;
-    private bool ready, gradually;
+    private bool ready;
     private Color initialColor;
     private float timer;
 
@@ -20,6 +20,8 @@ public class StampBar : MonoBehaviour
     public static bool increaseFill;
     [HideInInspector]
     public float tempScore;
+    [HideInInspector]
+    public bool gradually;
 
     //[HideInInspector]
     //public float timeToLowRage;
@@ -37,7 +39,7 @@ public class StampBar : MonoBehaviour
             initialColor = fillColor.color;
             increaseFill = true;
             tempScore = 0f;
-            ready = false;
+            ready = true;
             gradually = false;
             timer = 0f;
         }
@@ -58,11 +60,11 @@ public class StampBar : MonoBehaviour
             increaseFill = false;
             //timeToLowRage += Time.deltaTime;
             tempScore = GetComponent<PlayerStates>().rageObjects;
-            if (ready == false)
+            if (ready == true)
             {
                 //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
-                ready = true;
+                ready = false;
             }
             fillColor.color = Color.red;
             //if (PhysicalMovement.intoAir)
@@ -76,7 +78,7 @@ public class StampBar : MonoBehaviour
                     //slider.GetComponent<Image>().fillAmount = fillBar;
                     fillColor.color = initialColor;
                 }
-                ready = false;
+                ready = true;
                 //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
             }
@@ -85,11 +87,13 @@ public class StampBar : MonoBehaviour
         if (gradually)
         {
             timer += Time.deltaTime;
-            slider.value = Mathf.Lerp(1f, tempScore, timer * 2f);
-            if (slider.value == tempScore)
+            slider.value = Mathf.Lerp(1f, 0f, timer * 2f);
+            if (slider.value == 0f)
             {
                 timer = 0;
+                increaseFill = true;
                 gradually = false;
+                //slider.value = 0f;
             }
         }
 

@@ -354,7 +354,7 @@ public class SwipeHalf : MonoBehaviour
     public void Reverse(List<Rigidbody> rig, List<float> mass)
     {
         PlayerStates.imInSlowMotion = false;
-        StampBar.increaseFill = true;
+        //StampBar.increaseFill = true;
         //inAir = false;
         for (int i = 0; i < rig.Count; i++)
         {

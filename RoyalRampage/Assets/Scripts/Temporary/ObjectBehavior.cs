@@ -216,7 +216,10 @@ public class ObjectBehavior : MonoBehaviour
                 }
                 GetComponent<FracturedObject>().CollapseChunks();
                 GameManager.instance.objectDestructed(gameObject);
-                GameManager.instance.player.GetComponent<StampBar>().tempScore++;
+                if (GameManager.instance.player.GetComponent<StampBar>().gradually == false)
+                {
+                    GameManager.instance.player.GetComponent<StampBar>().tempScore++;
+                }
                 if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
@@ -226,7 +229,10 @@ public class ObjectBehavior : MonoBehaviour
             catch
             {
                 GameManager.instance.objectDestructed(gameObject);
-                GameManager.instance.player.GetComponent<StampBar>().tempScore++;
+                if (GameManager.instance.player.GetComponent<StampBar>().gradually == false)
+                {
+                    GameManager.instance.player.GetComponent<StampBar>().tempScore++;
+                }
                 if (currencySpawnChance > 0.0f && GameManager.instance.currentScene == GameManager.Scene.GAME)
                 {
                     SpawnCurrency();
