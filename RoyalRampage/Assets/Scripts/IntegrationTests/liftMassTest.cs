@@ -5,23 +5,28 @@ using System.Collections.Generic;
 public class liftMassTest : MonoBehaviour {
 
 	private bool hasStomped = false;
+	private GameObject player;
+	void Start(){
+		player = GameObject.Find("Player");
+	}
 
 	void Update () {
 		if (hasStomped != true){
-			//StompTest ();
+			StompTest ();
 			hasStomped = true;
 		}
 	}
 
 	void StompTest(){
-		print ("run corous");
 		GameObject.Find("InLevelCanvas").SetActive(false);
 
 		List<Collider> colliders = new List<Collider>();
 		List<Rigidbody> rbs = new List<Rigidbody>();
 		List<float> masses = new List<float>();
 
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, GameManager.instance.player.GetComponent<PlayerStates>().liftRadius);
+		GameObject Player;
+		Collider[] hitColliders = null;
+		hitColliders = Physics.OverlapSphere(transform.position, player.GetComponent<PlayerStates>().liftRadius);
 		//Lift(hitColliders); //RUN FROM ANIMATION EVENT
 		for (int i = 0; i < hitColliders.Length; i++) {
 			if (hitColliders[i].tag == "Destructable")
@@ -29,13 +34,13 @@ public class liftMassTest : MonoBehaviour {
 				colliders.Add(hitColliders[i]);
 			}
 		}
-		GameManager.instance.player.GetComponent<SwipeHalf> ().tempColliders = colliders;
+		player.GetComponent<SwipeHalf> ().tempColliders = colliders;
 		for(int i = 0 ; i < colliders.Count; i++){
 			rbs.Add(colliders [i].gameObject.GetComponent<Rigidbody> ());
 			masses.Add (rbs [i].mass);
 		}
 
-		GameManager.instance.player.GetComponent<SwipeHalf> ().Lift ();
+		player.GetComponent<SwipeHalf> ().Lift ();
 
 		for(int i = 0 ; i < colliders.Count; i++){
 			if(colliders[i].GetComponent<Rigidbody>().mass != 1.0f){
@@ -45,7 +50,7 @@ public class liftMassTest : MonoBehaviour {
 		}
 
 		//vfall
-		GameManager.instance.player.GetComponent<SwipeHalf> ().Reverse (rbs,masses);
+		player.GetComponent<SwipeHalf> ().Reverse (rbs,masses);
 
 		for(int i = 0 ; i < colliders.Count; i++){
 			if(colliders[i].GetComponent<Rigidbody>().mass == 1.0f){
