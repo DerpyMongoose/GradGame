@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44419175, g: 0.4935903, b: 0.57298666, a: 1}
+  m_IndirectSpecularColor: {r: 0.44046566, g: 0.48903, b: 0.5691306, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -368127801
+  randomSeed: 929772506
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -5534,6 +5534,18 @@ Prefab:
       propertyPath: slider
       value: 
       objectReference: {fileID: 586231626}
+    - target: {fileID: 1000010035623880, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013019367288, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010268844738, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
   m_IsPrefabParent: 0
@@ -6035,7 +6047,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -141026006
+  randomSeed: -1146482157
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -10003,7 +10015,7 @@ MonoBehaviour:
   repeatEveryFrame: 1
   hasFailed: 0
   checkMethods: 3
-  m_ActionBase: {fileID: 1563488317}
+  m_ActionBase: {fileID: 1024254092}
   checksPerformed: 0
 --- !u!1 &333909781
 GameObject:
@@ -10989,7 +11001,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 1804365940
+  randomSeed: -718201204
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -16433,10 +16445,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 495768064}
-  m_LocalRotation: {x: 0.84698117, y: -0.1244264, z: 0.22694789, w: 0.4643658}
+  m_LocalRotation: {x: 0.5619121, y: -0.07866528, z: 0.2010553, w: 0.7985257}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 122.545, y: -30.015991, z: 0}
+  m_LocalEulerAnglesHint: {x: 111.737, y: -164.578, z: -140.765}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -16775,7 +16787,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -123753588
+  randomSeed: -1724547392
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18562,7 +18574,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1840844816
+  randomSeed: 1279274074
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -23250,7 +23262,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -941733553
+  randomSeed: 849438903
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -30246,25 +30258,6 @@ Transform:
   - {fileID: 1323941539}
   m_Father: {fileID: 1576614101}
   m_RootOrder: 0
---- !u!114 &857095454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4928c6c2b973874c8d4e6c9a69bb5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go: {fileID: 1943434693}
-  thisPropertyPath: Transform.position.z
-  compareToType: 0
-  other: {fileID: 1235529719}
-  otherPropertyPath: Transform.position.z
-  constantValueGeneric: 0
-  compareTypes: 3
-  floatingPointError: 0.0001
 --- !u!1 &859749121
 GameObject:
   m_ObjectHideFlags: 0
@@ -30550,7 +30543,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 674737950
+  randomSeed: 94013577
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -33574,7 +33567,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 1648497560
+  randomSeed: 1789205295
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -35702,7 +35695,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -130011534
+  randomSeed: 1010088845
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -37703,6 +37696,25 @@ Transform:
   - {fileID: 734205256}
   m_Father: {fileID: 1144331876}
   m_RootOrder: 1
+--- !u!114 &966889517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4928c6c2b973874c8d4e6c9a69bb5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 1235529719}
+  thisPropertyPath: Transform.position.z
+  compareToType: 0
+  other: {fileID: 1943434693}
+  otherPropertyPath: Transform.position.z
+  constantValueGeneric: 0
+  compareTypes: 2
+  floatingPointError: 0.001
 --- !u!1 &969448561
 GameObject:
   m_ObjectHideFlags: 0
@@ -38787,6 +38799,23 @@ Transform:
   - {fileID: 1328098080}
   m_Father: {fileID: 190797736}
   m_RootOrder: 0
+--- !u!114 &1024254092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 333401029}
+  thisPropertyPath: gameObject.activeSelf
+  compareToType: 1
+  other: {fileID: 0}
+  otherPropertyPath: 
+  constantValueGeneric: 1
 --- !u!1 &1030342146
 GameObject:
   m_ObjectHideFlags: 0
@@ -40809,7 +40838,7 @@ MonoBehaviour:
   repeatEveryFrame: 1
   hasFailed: 0
   checkMethods: 65536
-  m_ActionBase: {fileID: 857095454}
+  m_ActionBase: {fileID: 966889517}
   checksPerformed: 0
 --- !u!1 &1124511259
 GameObject:
@@ -48544,23 +48573,6 @@ Transform:
   - {fileID: 1922034552}
   m_Father: {fileID: 1986247134}
   m_RootOrder: 13
---- !u!114 &1563488317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go: {fileID: 333401029}
-  thisPropertyPath: liftMassTest.enabled
-  compareToType: 1
-  other: {fileID: 0}
-  otherPropertyPath: 
-  constantValueGeneric: 1
 --- !u!1 &1564944933
 GameObject:
   m_ObjectHideFlags: 0
@@ -48912,7 +48924,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1976321580
+  randomSeed: 99192663
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -51270,6 +51282,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012753902722, guid: 4055562a0b118234581a6ddaf1e0466c,
     type: 2}
   m_PrefabInternal: {fileID: 984876915}
+--- !u!114 &1618157661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 1793403801}
+  thisPropertyPath: gameObject.activeSelf
+  compareToType: 1
+  other: {fileID: 0}
+  otherPropertyPath: 
+  constantValueGeneric: 1
 --- !u!1 &1621022650
 GameObject:
   m_ObjectHideFlags: 0
@@ -52633,7 +52662,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -807825904
+  randomSeed: 1863093002
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -55989,8 +56018,8 @@ MonoBehaviour:
   repeatCheckFrame: 1
   repeatEveryFrame: 1
   hasFailed: 0
-  checkMethods: 1
-  m_ActionBase: {fileID: 2127602005}
+  checkMethods: 3
+  m_ActionBase: {fileID: 1618157661}
   checksPerformed: 0
 --- !u!114 &1793403807
 MonoBehaviour:
@@ -63540,23 +63569,6 @@ Transform:
   - {fileID: 1956550377}
   m_Father: {fileID: 1328336962}
   m_RootOrder: 1
---- !u!114 &2127602005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go: {fileID: 1793403801}
-  thisPropertyPath: CheckFracturing.enabled
-  compareToType: 1
-  other: {fileID: 0}
-  otherPropertyPath: 
-  constantValueGeneric: 1
 --- !u!1001 &2128661104
 Prefab:
   m_ObjectHideFlags: 0
