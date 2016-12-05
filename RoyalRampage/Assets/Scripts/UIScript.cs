@@ -83,7 +83,7 @@ public class UIScript : MonoBehaviour
                 highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.levelsUnlocked-1).ToString());
                 levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
                 highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
-                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
+                levelNum.text = (GameManager.instance.levelsUnlocked-1).ToString();
                 highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
@@ -508,13 +508,13 @@ public class UIScript : MonoBehaviour
     private void UpdateLevelOverview()
     {
         //set the correct sprite on level icon
-        Sprite unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
+        Sprite[] unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
         Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
         for (int i = 0; i < 6; i++)
         {
             Image levelIcon = levels.transform.GetChild(i).GetComponent<Image>();
             if (i < GameManager.instance.levelsUnlocked)
-                levelIcon.sprite = unlockedSprite;
+                levelIcon.sprite = unlockedSprite[i];
             else
                 levelIcon.sprite = lockedSprite;
         }
