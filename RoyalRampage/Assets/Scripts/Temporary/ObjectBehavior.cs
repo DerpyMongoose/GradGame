@@ -242,16 +242,6 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
-    //void CheckVelocity()
-    //{
-    //    if (objRB.velocity.magnitude <= 0.1f)
-    //    {
-    //        //print("Hit becomes false now");
-    //        hit = false;
-
-    //    }
-    //}
-
     void SpawnPoints()
     {
         GameObject obj = PointObjectPool.instance.FindObjectInPool();
@@ -283,10 +273,9 @@ public class ObjectBehavior : MonoBehaviour
         {
             script = col.gameObject.GetComponent<ObjectBehavior>();
         }
-        //print(col.relativeVelocity.magnitude);
+
         if (col.relativeVelocity.magnitude > ObjectManagerV2.instance.colImpact)
         {
-            //print("Hit the object");
             if (col.collider.gameObject == player)
             {
                 GameManager.instance.objectHit(gameObject);
@@ -299,8 +288,6 @@ public class ObjectBehavior : MonoBehaviour
                     hit = false;
                 }
                 script.hit = true;
-                //sprint(gameObject.name + " " + hit);
-                print("I " + gameObject.name + "hit the " + col.gameObject.name);
                 // PLAY DAMAGE PARTICLE
                 //particleSys.Play();
                 //col.collider.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
@@ -369,7 +356,6 @@ public class ObjectBehavior : MonoBehaviour
     {
         if (flying && col.collider.tag == "Wall")
         {
-            print("YES i pierced the wall MotherFucker");
             flying = false;
         }
     }

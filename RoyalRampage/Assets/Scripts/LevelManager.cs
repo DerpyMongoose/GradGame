@@ -211,7 +211,7 @@ public class LevelManager : MonoBehaviour
             scoreText.text = score.ToString() + " $"; // in game score
             GameManager.instance.score = score;
             //GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
-            StampBar.increaseFill = true;
+            //StampBar.increaseFill = true;  ///WHY IS THIS HERE?????
             //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
@@ -507,8 +507,10 @@ public class LevelManager : MonoBehaviour
                             ObjectManagerV2.instance.canDamage = false;
 
                             rageMeter.SetActive(true);
+                            GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                             GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
+                            GameManager.instance.player.GetComponent<StampBar>().ready = true;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
@@ -529,8 +531,10 @@ public class LevelManager : MonoBehaviour
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.1");
+                                GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
+                                GameManager.instance.player.GetComponent<StampBar>().ready = true;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
                                 ObjectManagerV2.instance.isGrounded = false;
                             }

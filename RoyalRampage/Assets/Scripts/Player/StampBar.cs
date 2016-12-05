@@ -6,7 +6,8 @@ public class StampBar : MonoBehaviour
 {
     [HideInInspector]
     public float fillBar;
-    private bool ready;
+    [HideInInspector]
+    public bool ready;
     private Color initialColor;
     private float timer;
 
@@ -48,7 +49,6 @@ public class StampBar : MonoBehaviour
 
     void Update()
     {
-
         if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
         {
             fillBar = ((tempScore / GetComponent<PlayerStates>().rageObjects) * 10) / 10;
