@@ -189,7 +189,7 @@ public class PlayerStates : MonoBehaviour
                         {
                             transform.position = GameManager.instance.levelManager.playerPos;
                             timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
-                            GameManager.instance.levelManager.guideText.text = "TryAgain";
+                            GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
                             SwipeHalf.startTutTimer = false;
                             timerStart2 = true;
                         }
