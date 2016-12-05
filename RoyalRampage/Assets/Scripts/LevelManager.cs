@@ -412,11 +412,16 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (startTimer == true)
                         {
+                            if(tutorialObj1 == null)
+                            {
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
+                            }
                             timer2 += Time.deltaTime;
                             if (timer2 > 3f)
                             {
                                 if (tutorialObj1 != null)
                                 {
+                                    guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
                                     for (int p = 0; p < tutorialObj1.transform.childCount; p++)
                                     {
                                         if (tutorialObj1.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
