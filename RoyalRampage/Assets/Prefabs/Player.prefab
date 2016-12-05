@@ -8145,7 +8145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012369075712
 GameObject:
   m_ObjectHideFlags: 1
@@ -25676,8 +25676,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010315909554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -28635,24 +28635,24 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: 0.3
-  m_StartWidth: 0.3
+  m_StartWidth: 0.2
   m_EndWidth: 0.5
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 4287377252
+      rgba: 4285275290
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4287377252
+      rgba: 4285275290
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4294936504
+      rgba: 4289224914
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294936504
+      rgba: 4289224914
     m_Color[4]:
       serializedVersion: 2
-      rgba: 16746424
+      rgba: 11034834
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
 --- !u!114 &114000010228056426
@@ -28720,7 +28720,6 @@ MonoBehaviour:
   fillBar: 0
   slider: {fileID: 0}
   tempScore: 0
-  timeToLowRage: 0
 --- !u!114 &114000011797275670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28771,7 +28770,7 @@ MonoBehaviour:
   torgueForce: 1
   hitForce: 2000
   swirlForce: 1500
-  liftForce: 2200
+  liftForce: 3000
   maxVelocity: 10
   timeForSwipe: 0.2
   timeForCircle: 0.5
@@ -28780,6 +28779,7 @@ MonoBehaviour:
   resetMassTimer: 0.5
   swirlRadius: 2
   liftRadius: 2
+  becomeHeavy: 500000
   distSwipe: 1
   maxDistSwipe: 10
   rotationSpeed: 4
