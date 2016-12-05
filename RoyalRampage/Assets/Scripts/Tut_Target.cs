@@ -7,7 +7,6 @@ public class Tut_Target : MonoBehaviour
     {
         if (trigger.transform.tag == "Player")
         {
-            print("Enter");
             GameManager.instance.levelManager.targetReached = true;
         }
     }
