@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
     GameObject starPoints;
     GameObject panel;
     GameObject highscore;
+    GameObject twoHandsSplitScreen;
     GameObject levelNr;
     GameObject lvlNr;
     GameObject[] gems;
@@ -134,10 +135,11 @@ public class LevelManager : MonoBehaviour
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
                 minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel);
+                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel-1);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
                 guideText = GameObject.Find("GuideText").GetComponent<Text>();
                 guideText.text = "";
+                twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
 
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
@@ -148,6 +150,7 @@ public class LevelManager : MonoBehaviour
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
+                twoHandsSplitScreen.SetActive(false);
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
@@ -176,6 +179,7 @@ public class LevelManager : MonoBehaviour
                 starPoints = GameObject.Find("replayPanelv2/Points");
                 levelNr = GameObject.Find("replayPanelv2/levelnumber");
                 lvlNr = GameObject.Find("IntroTapPanel/TitlePanelBG/BackgroundFrame/LevelNumber");
+                twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
 
                 goalPanel.SetActive(false);
                 scorePanel.SetActive(false);
@@ -184,6 +188,7 @@ public class LevelManager : MonoBehaviour
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
+                IntroTapPanel.SetActive(false);
                 break;
                 // GameManager.instance.levelLoad(); // FOR AUDIO
         }
@@ -215,12 +220,13 @@ public class LevelManager : MonoBehaviour
     {
         //guideText.gameObject.SetActive(false);
 
-        IntroTapPanel.SetActive(false);
         InGamePanel.SetActive(true);
         if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
+            IntroTapPanel.SetActive(false);
             guideText.text = "";
         }
+        else twoHandsSplitScreen.SetActive(false);
 
     }
 
