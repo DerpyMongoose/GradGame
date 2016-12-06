@@ -22,7 +22,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public bool lifted, flying;
 
-    public bool hasLanded = true;
+    public bool hasLanded;
 
     public int score;
 
@@ -147,6 +147,7 @@ public class ObjectBehavior : MonoBehaviour
         lifted = false;
         flying = false;
         hit = false;
+        hasLanded = true;
         //ObjectManagerV2.instance.maxScore += score;  
 
         //Disable all the children.
