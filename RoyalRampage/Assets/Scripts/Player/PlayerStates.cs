@@ -16,7 +16,6 @@ public class PlayerStates : MonoBehaviour
     public float hitForce;
     public float swirlForce;
     public float liftForce;
-    public float maxVelocity;
     [Header("Times")]
     public float timeForSwipe;
     public float timeForCircle;
@@ -24,7 +23,6 @@ public class PlayerStates : MonoBehaviour
     public float gravityTimer;
     public float resetMassTimer;
     [Header("Radius")]
-    //public float dashRadius;
     public float swirlRadius;
     public float liftRadius;
     [Header("Mixed")]
@@ -36,15 +34,6 @@ public class PlayerStates : MonoBehaviour
     public float rageObjects;
     public float smoothPick;
     public int numOfCircleToShow;
-    [Header("Cubic Bezier")]
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p0;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p1;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p2;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p3;
 
     private float timeTicker = 5;  // TIME TO START THE TICKING SOUND
     private float timeRunningOut = 10;  // TIME TO START THE RUNNING OUT SOUND
@@ -72,6 +61,7 @@ public class PlayerStates : MonoBehaviour
         timerStart = false;
         timerStart2 = false;
         timer = 0;
+        timeTicker = 5;
     }
 
     void Awake()
@@ -160,9 +150,8 @@ public class PlayerStates : MonoBehaviour
                     }
                 }
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-                if (timeLeftInLevel <= timeTicker)
+                if (timeLeftInLevel <= timeTicker && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-
                     GameManager.instance.timerUpdate(timeTicker);
                     timeTicker -= 1;
                 }
