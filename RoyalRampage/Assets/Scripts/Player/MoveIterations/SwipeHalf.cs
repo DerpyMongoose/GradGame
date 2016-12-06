@@ -7,9 +7,9 @@ public class SwipeHalf : MonoBehaviour
 {
     public static bool startTutTimer = false;
 
-    private int touches;
+    private int touches, sameTapCount;
     private float distance, attackDist, moveTimer, circleTimer, speed, force, powerTime, startingMass;
-    private bool newSwipe, applyMove, startTimer, rightOk, leftOk;
+    private bool newSwipe, applyMove, startTimer, rightOk, leftOk, startSameTouchTimer;
     private bool newDash = false;   // for dashsound
     private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction;
     private Rigidbody playerRig;
@@ -40,7 +40,9 @@ public class SwipeHalf : MonoBehaviour
         playerRig = GetComponent<Rigidbody>();
         startingMass = playerRig.mass;
         touches = 0;
+        sameTapCount = 0;
         moveTimer = 0;
+        startSameTouchTimer = false;
         newSwipe = false;
         applyMove = false;
         //inAir = false;
@@ -81,6 +83,13 @@ public class SwipeHalf : MonoBehaviour
         moveTimer += Time.deltaTime;
         circleTimer += Time.deltaTime;
 
+        if(powerTime >= GetComponent<PlayerStates>().SameTapTime || Input.touchCount > 2)
+        {
+            sameTapCount = 0;
+            startSameTouchTimer = false;
+            powerTime = 0;
+        }
+
         touches = Input.touchCount;
 
         if (touches > 2)
@@ -90,7 +99,7 @@ public class SwipeHalf : MonoBehaviour
 
         for (int i = 0; i < touches; i++)
         {
-            powerTime += Time.deltaTime;
+            //powerTime += Time.deltaTime;
 
             if (Input.GetTouch(i).position.x <= Screen.width / 2)
             {
@@ -217,7 +226,15 @@ public class SwipeHalf : MonoBehaviour
         {
             if (Input.touchCount == 2)
             {
-                if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && rightOk && leftOk)
+                if (rightOk && leftOk)
+                {
+                    startSameTouchTimer = true;
+                    sameTapCount++;
+                    rightOk = false;
+                    leftOk = false;
+                }
+
+                if (powerTime < GetComponent<PlayerStates>().SameTapTime && ableToLift && sameTapCount == 2)
                 {
                     ableToLift = false;
                     intoAir = true;
@@ -246,15 +263,21 @@ public class SwipeHalf : MonoBehaviour
             }
         }
 
-        if (Input.touchCount == 0 || Input.touchCount > 2)
+        //if (Input.touchCount == 0 || Input.touchCount > 2)
+        //{
+        //    powerTime = 0;
+        //}
+        if(startSameTouchTimer)
         {
-            powerTime = 0;
+            powerTime += Time.deltaTime;
         }
 
         if (GameManager.instance.currentScene == GameManager.Scene.GAME || GameManager.instance.tutorial == GameManager.Tutorial.MOVEMENT)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * GetComponent<PlayerStates>().rotationSpeed);
         }
+
+
     }
 
     IEnumerator BringBackMass()

@@ -13706,6 +13706,1485 @@
 								<ActiveSource Name="Dash" ID="{74105A60-8AF7-4E0C-A6CF-6B9CB15761B7}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<ActorMixer Name="Voices" ID="{E1BAF9FD-50D0-4BA8-A178-AC1B0EA88C72}" ShortID="900620329">
+							<PropertyList>
+								<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+								<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+								<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{BDD4D0FF-AB9B-4CD4-A80B-38816D5F6BF5}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Min" Type="Real64" Value="-3"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="Voice Movement" ID="{1F22276B-A2CA-4016-880B-A62C9502F983}" ShortID="1033622928">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{36D7121C-342D-4497-A880-F19D21106C10}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="150"/>
+															<Property Name="Min" Type="Real64" Value="-150"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Voice Movement" ID="{E15045C1-96EF-4736-9732-4BE4526A6673}" ShortID="518954555" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement" ID="{969E5FD8-AAB1-4386-8935-9551B1951ACC}" ShortID="123549184">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement" ID="{969E5FD8-AAB1-4386-8935-9551B1951ACC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_1" ID="{99ED2219-1B8C-441F-810D-FD4FA77721C5}" ShortID="218046674" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_1" ID="{69017C13-97C4-407B-8FF2-35BAB3930B43}" ShortID="282902948">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_1" ID="{69017C13-97C4-407B-8FF2-35BAB3930B43}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_2" ID="{69ADF09C-04AB-496A-B43D-AE0C605B8A49}" ShortID="335301419" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_2" ID="{4DD50CE8-FF29-4E4A-9028-2F492FA910B0}" ShortID="34124260">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_2" ID="{4DD50CE8-FF29-4E4A-9028-2F492FA910B0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_3" ID="{D336EDFE-9BFE-4638-810B-2A5B5341A868}" ShortID="1070687547" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_3" ID="{CD9454A5-E334-493E-A4F2-499F2C76359E}" ShortID="588290553">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_3" ID="{CD9454A5-E334-493E-A4F2-499F2C76359E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_4" ID="{C371CD6B-2243-4392-9E7F-C1FAD3704030}" ShortID="997558353" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_4" ID="{67086806-587C-4305-964F-04A327978868}" ShortID="242253000">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_4.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_4" ID="{67086806-587C-4305-964F-04A327978868}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_5" ID="{7A120263-888D-4652-956A-E39D889CC69C}" ShortID="541827970" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_5" ID="{C06ED2E3-785C-48B1-AA57-97A8EE046FEC}" ShortID="60488132">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_5.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_5" ID="{C06ED2E3-785C-48B1-AA57-97A8EE046FEC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_6" ID="{5D1B8C66-99B2-48E9-B8D6-2A1A37C9AEC0}" ShortID="990211016" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_6" ID="{248C2A48-F1A0-4425-8764-F6248E976566}" ShortID="584156882">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_6.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_6" ID="{248C2A48-F1A0-4425-8764-F6248E976566}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_7" ID="{16B1F812-B9EE-475E-8FC1-495A1EB134EB}" ShortID="60096212" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_7" ID="{85DAA44C-B730-493D-9F7E-6BAA52927869}" ShortID="735482568">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_7.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_7" ID="{85DAA44C-B730-493D-9F7E-6BAA52927869}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_8" ID="{007F1769-8417-4746-A2A0-9F68D89AC475}" ShortID="942984109" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_8" ID="{96794276-4F29-4B0E-ABC4-81430B48EAE0}" ShortID="83822144">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_8.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_8" ID="{96794276-4F29-4B0E-ABC4-81430B48EAE0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Movement_9" ID="{109DC343-49BD-48BD-9705-00DCD362E71A}" ShortID="935851952" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Movement_9" ID="{98AA7C41-6E8B-4D66-96A1-7AF2C37F9031}" ShortID="133978349">
+													<Language>SFX</Language>
+													<AudioFile>Voice Movement_9.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Movement_9" ID="{98AA7C41-6E8B-4D66-96A1-7AF2C37F9031}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence" ID="{F04661EF-A144-4A1C-85FC-4D59B3CFEBBF}" ShortID="866779526" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{59FE8523-DB03-4C02-82AA-F38040AAFBEF}" ShortID="472592829" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{59FE8523-DB03-4C02-82AA-F38040AAFBEF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_01" ID="{A031D1DD-52E3-4A3E-8036-8A2DA9C7317C}" ShortID="1043492784" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{7450F8F4-CC32-4C4F-931E-4EF62648F321}" ShortID="473795188" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{7450F8F4-CC32-4C4F-931E-4EF62648F321}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_02" ID="{FBFDCAF4-A56A-4E36-9A49-C42489E22AD5}" ShortID="73583808" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{1DAC1DB6-4F58-4797-B109-FA8C55B8D8F6}" ShortID="699422931" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{1DAC1DB6-4F58-4797-B109-FA8C55B8D8F6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_03" ID="{9082FD49-3FF2-4B92-A777-159BFD4CE9D1}" ShortID="818115616" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{385581D3-F18C-434E-8F24-538AFDA034DD}" ShortID="231749664" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{385581D3-F18C-434E-8F24-538AFDA034DD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_04" ID="{DB0296A9-BBA2-4D0C-9821-DA19472AACD7}" ShortID="122308782" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{34261C0E-E4B5-412D-A66A-5ADFD02E8A6E}" ShortID="83565905" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{34261C0E-E4B5-412D-A66A-5ADFD02E8A6E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_05" ID="{2AABB6FB-B496-450D-BC94-0C9CB8608ED5}" ShortID="642274303" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{EF18378B-D6E5-49A8-9CB5-58711F954430}" ShortID="884676963" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{EF18378B-D6E5-49A8-9CB5-58711F954430}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_06" ID="{43E257CB-9422-4211-8FB4-C6C018A83F67}" ShortID="242994686" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{ACC73F20-68A9-477A-8901-5789E29F545B}" ShortID="10287458" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{ACC73F20-68A9-477A-8901-5789E29F545B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_07" ID="{929831A6-1C23-432D-9B79-4FF45AAE10DA}" ShortID="381486246" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{2792E54A-E87C-4842-8F60-48FD347EBBB2}" ShortID="685105721" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{2792E54A-E87C-4842-8F60-48FD347EBBB2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Voice Spin" ID="{056C8A85-B377-4ED7-89D5-B54CEB78767E}" ShortID="536349312">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{7264DC1A-29F2-4C51-9E30-E03A59D6AE68}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="150"/>
+															<Property Name="Min" Type="Real64" Value="-150"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Voice Spin" ID="{468ABD9E-7337-4F4D-9C39-4C8E0F336145}" ShortID="328674138" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin" ID="{C39894EA-42B5-4363-95B9-CAD1428798F6}" ShortID="551009996">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin" ID="{C39894EA-42B5-4363-95B9-CAD1428798F6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_1" ID="{C445FE62-60ED-4687-AD84-5C2C11712415}" ShortID="290990612" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_1" ID="{55AC0DA9-2986-4F09-8571-D07DCE776A4E}" ShortID="596242920">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_1" ID="{55AC0DA9-2986-4F09-8571-D07DCE776A4E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_2" ID="{FDF9F4B2-264B-45D4-A74D-F37D3EC8AB31}" ShortID="50495035" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_2" ID="{2C80C117-CF8F-4632-8729-F65D54173B12}" ShortID="1072615596">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_2" ID="{2C80C117-CF8F-4632-8729-F65D54173B12}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_3" ID="{41BCB3BD-FD46-4AA5-935A-EDDC91D34B54}" ShortID="73623487" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_3" ID="{4084C6FD-455A-4D44-AFC2-F63D36E66DF2}" ShortID="60985322">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_3" ID="{4084C6FD-455A-4D44-AFC2-F63D36E66DF2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_4" ID="{9F4E069D-1CC6-4004-B0AD-74C05E8E0DC3}" ShortID="346958397" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_4" ID="{B120D396-3D72-40A0-AA10-8388C67EDDBD}" ShortID="601328348">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_4.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_4" ID="{B120D396-3D72-40A0-AA10-8388C67EDDBD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_5" ID="{21275042-120B-495F-B0C6-A6DAA4B1FF02}" ShortID="300125790" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_5" ID="{72AA95B4-971C-4FBE-988F-30498CE85D16}" ShortID="991874865">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_5.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_5" ID="{72AA95B4-971C-4FBE-988F-30498CE85D16}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_6" ID="{19D52ABF-2FEC-45A4-B2EA-64F6C2FAB099}" ShortID="214654347" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_6" ID="{6D91D50E-EA75-4428-BDD8-C93381DC0530}" ShortID="161058177">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_6.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_6" ID="{6D91D50E-EA75-4428-BDD8-C93381DC0530}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_7" ID="{9CAE313D-B23D-4975-9532-2A922C1DEF29}" ShortID="115064154" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_7" ID="{20B614AD-E4D6-4D3E-862B-402C5AE725C9}" ShortID="550169537">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_7.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_7" ID="{20B614AD-E4D6-4D3E-862B-402C5AE725C9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_8" ID="{27EE7160-68CD-4D2E-B906-83750692D43A}" ShortID="153276438" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_8" ID="{2B6BFE3E-3322-4507-94DD-C4C7CABFE4D6}" ShortID="229292441">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_8.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_8" ID="{2B6BFE3E-3322-4507-94DD-C4C7CABFE4D6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Spin_9" ID="{3594A31D-6A33-4623-B840-CF23A48E0AFC}" ShortID="284682584" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Spin_9" ID="{9C974454-7BC8-4109-9E12-EA39DA4379B4}" ShortID="365428912">
+													<Language>SFX</Language>
+													<AudioFile>Voice Spin_9.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Spin_9" ID="{9C974454-7BC8-4109-9E12-EA39DA4379B4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence" ID="{799DC999-CE7C-4565-8664-5BEB6EEAD89C}" ShortID="441638947" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{6E4F746D-30EB-42FD-9F49-51DB0DD79F3E}" ShortID="86077204" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{6E4F746D-30EB-42FD-9F49-51DB0DD79F3E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_01" ID="{E90C2DB0-3553-475B-B0DE-8C152C23967B}" ShortID="129767946" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{EC37FF40-178A-46A2-83E2-903A514E181B}" ShortID="243241216" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{EC37FF40-178A-46A2-83E2-903A514E181B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_02" ID="{752672AF-7FCF-4887-8D0D-AA57F85EE981}" ShortID="715070341" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{DF8F31C1-C5D8-4539-96AE-3D451DD0876B}" ShortID="338436730" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{DF8F31C1-C5D8-4539-96AE-3D451DD0876B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_03" ID="{D6B3B8FE-3392-475D-9784-FD1939E69575}" ShortID="511206151" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{8D8724A2-2552-48B9-8FDC-BDDC493622EA}" ShortID="671216669" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{8D8724A2-2552-48B9-8FDC-BDDC493622EA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_04" ID="{CA1B7829-C4FF-498E-B066-334B7288CB14}" ShortID="456967100" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{B5CC4275-2656-4198-AD7D-D0422C26868A}" ShortID="1057030300" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{B5CC4275-2656-4198-AD7D-D0422C26868A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_05" ID="{C575766A-01F3-447D-B60A-07ACD991CA88}" ShortID="972855676" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{9C936B52-F136-4344-8018-D3F11F13D9C8}" ShortID="964091055" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{9C936B52-F136-4344-8018-D3F11F13D9C8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="Voice Swing" ID="{838A4F61-9358-4BFC-83AA-3A2AEDE02999}" ShortID="666216221">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{7EBC6326-1D78-48A8-A9FE-31476FF8B0E8}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="150"/>
+															<Property Name="Min" Type="Real64" Value="-150"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="Voice Swing" ID="{FD28E3DF-F3E0-4BC7-AD91-74D1D9615E92}" ShortID="30918082" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing" ID="{32F0ABB1-81E0-4BC3-9594-7FB6E28F078A}" ShortID="633939247">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing" ID="{32F0ABB1-81E0-4BC3-9594-7FB6E28F078A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_1" ID="{3DCB97B4-E5F9-441A-8104-284B3667E887}" ShortID="297270989" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_1" ID="{EE647C22-47D7-42DF-8B73-45FADF82DCB6}" ShortID="265959306">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_1.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_1" ID="{EE647C22-47D7-42DF-8B73-45FADF82DCB6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_2" ID="{F4486586-B8BA-4600-87EA-7B27A553E3E6}" ShortID="858437347" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_2" ID="{CB3D4B38-D97C-4933-9700-348AB5C26CCD}" ShortID="141535695">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_2" ID="{CB3D4B38-D97C-4933-9700-348AB5C26CCD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_3" ID="{BD93843F-F6BC-461A-9978-2A082B3B98F0}" ShortID="112071457" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_3" ID="{980AC4C1-6610-41C4-9140-DBC6CFC04BC9}" ShortID="387596442">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_3" ID="{980AC4C1-6610-41C4-9140-DBC6CFC04BC9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_4" ID="{EEAD455B-8237-4BA7-BDD4-78BDB96EB8B2}" ShortID="182241252" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_4" ID="{62507445-05B9-4292-9250-63A66E5F8B04}" ShortID="970017739">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_4.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_4" ID="{62507445-05B9-4292-9250-63A66E5F8B04}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_5" ID="{1770954A-B029-4821-9CEE-F175167946B5}" ShortID="939283538" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_5" ID="{6C28B1CC-FFBE-4A2D-84C2-5194BCC58B99}" ShortID="340108549">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_5.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_5" ID="{6C28B1CC-FFBE-4A2D-84C2-5194BCC58B99}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_6" ID="{9A4D3B3B-ABC4-441B-B746-B31F5C34B344}" ShortID="1030893999" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_6" ID="{C80F4AAE-0996-475B-B63C-F049DAE871E3}" ShortID="365175288">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_6.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_6" ID="{C80F4AAE-0996-475B-B63C-F049DAE871E3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_7" ID="{C36AB050-4692-4989-B5EA-CA27C2062679}" ShortID="245602010" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_7" ID="{C3903AD8-9B39-40CD-BCB3-543CBACA9769}" ShortID="189295150">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_7.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_7" ID="{C3903AD8-9B39-40CD-BCB3-543CBACA9769}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_8" ID="{BCE71758-D951-43C5-9DDC-780E268086B0}" ShortID="1073036732" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_8" ID="{E2647F53-D1B9-41F0-A51F-9B641314F800}" ShortID="1063761622">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_8.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_8" ID="{E2647F53-D1B9-41F0-A51F-9B641314F800}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_9" ID="{F302EE2D-8DFC-4D31-B736-70830050EEFB}" ShortID="972074949" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_9" ID="{F45754B1-56BA-4938-B678-976D2DB9D0BD}" ShortID="109920175">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_9.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_9" ID="{F45754B1-56BA-4938-B678-976D2DB9D0BD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_10" ID="{4CB66678-CF59-4231-8CEA-1D004933FCCB}" ShortID="795542130" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_10" ID="{B7AB6014-C725-4FD3-8535-87A5D0DBD104}" ShortID="318309187">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_10.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_10" ID="{B7AB6014-C725-4FD3-8535-87A5D0DBD104}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_11" ID="{7CFAE225-4963-4575-A332-38BCC2B08BC0}" ShortID="102193224" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_11" ID="{58FAE6FA-72EE-4A35-9ABB-5F750A50AB9C}" ShortID="1037672606">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_11.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_11" ID="{58FAE6FA-72EE-4A35-9ABB-5F750A50AB9C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Voice Swing_12" ID="{919D3C74-D5E4-4779-B3CB-7105E7697E18}" ShortID="1014817390" Type="SoundFX">
+											<PropertyList>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Main" ID="{BDEDF530-C530-4F07-99EF-6CC03BFD52DC}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Character" ID="{94335E11-BD7F-488B-AF4E-5332B3A314B5}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Voice Swing_12" ID="{12B8BDFD-2C61-4FF8-8CC9-999E64540CED}" ShortID="543367541">
+													<Language>SFX</Language>
+													<AudioFile>Voice Swing_12.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Voice Swing_12" ID="{12B8BDFD-2C61-4FF8-8CC9-999E64540CED}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence" ID="{F6CBB612-EDF4-4BCD-850D-B84A1B820F81}" ShortID="402340184" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{653E225B-240A-4942-8682-990BC21154F5}" ShortID="990655579" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{653E225B-240A-4942-8682-990BC21154F5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_01" ID="{9A0D5C54-715B-4E40-A15F-08BA540F2EDB}" ShortID="639543916" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{A544B278-5EFD-47FB-8DB7-73FF5758D7D6}" ShortID="370655478" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{A544B278-5EFD-47FB-8DB7-73FF5758D7D6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_02" ID="{BC1FEEAC-6C56-43AD-BACA-DC8D25490E8F}" ShortID="548806556" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{5DB471BE-D010-436A-90F6-F7B119E7307B}" ShortID="592559807" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{5DB471BE-D010-436A-90F6-F7B119E7307B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_03" ID="{C3D81643-4784-4F13-A281-1E891EFA8500}" ShortID="211997374" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{E29C00A3-CA34-44DB-8535-97EB5AAE9A19}" ShortID="269123312" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{E29C00A3-CA34-44DB-8535-97EB5AAE9A19}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_04" ID="{5807AC25-1CED-48F0-9FB1-6920E92CE263}" ShortID="3191773" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{46F74F0B-B87F-4313-BA82-0D3CD4160706}" ShortID="157429358" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{46F74F0B-B87F-4313-BA82-0D3CD4160706}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_05" ID="{B12AA94C-0929-420F-995F-AC1257268A2D}" ShortID="560581993" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{59BEA1C6-6AF0-434A-AAD0-FF9A3DC329F4}" ShortID="123391050" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{59BEA1C6-6AF0-434A-AAD0-FF9A3DC329F4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_06" ID="{8B880C85-4625-471D-94B4-6297B97F7799}" ShortID="256748841" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{38F867D8-E676-48E1-BACB-3A42B3D0C5FE}" ShortID="65128161" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{38F867D8-E676-48E1-BACB-3A42B3D0C5FE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_07" ID="{3B878192-3A59-45B5-B51B-9007778A67D6}" ShortID="707446768" Type="SoundFX">
+											<PropertyList>
+												<Property Name="Weight" Type="Real64">
+													<ValueList>
+														<Value>100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{C448187E-16F3-4140-AC0D-629FE20C68CA}" ShortID="214065320" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{C448187E-16F3-4140-AC0D-629FE20C68CA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
 					</ChildrenList>
 					<StateInfo>
 						<StateGroupList>
