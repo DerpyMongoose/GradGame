@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     int scoreToCompleteLevel = 10;
     public int timeToCompleteLevel = 10;
     private int amountOfObjects;
+    private float initialRageObjects;
     private Text MultiplierText;
     public int maxScore = 57;
     public int currencyPerStar = 50;
@@ -71,8 +72,6 @@ public class LevelManager : MonoBehaviour
     public GameObject tutorial_vaseb;
     public GameObject tutorial_vasec;
 
-    public GameObject tutorial_frame;
-
     private ObjectBehavior objBehavior;
 
     GameObject tutorialObj1;
@@ -123,6 +122,7 @@ public class LevelManager : MonoBehaviour
         tempMulti = 1;
         tempScore = scoreToCompleteLevel;
         amountOfObjects = 1;
+        initialRageObjects = GameManager.instance.player.GetComponent<PlayerStates>().rageObjects;
         switch (GameManager.instance.CurrentScene())
         {
             case GameManager.Scene.GAME:
@@ -534,6 +534,9 @@ public class LevelManager : MonoBehaviour
                             {
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
                                 completed = true;
+                                GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
+                                GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = initialRageObjects;
+                                GameManager.instance.player.GetComponent<StampBar>().slider.value = 0f;
                                 StartCoroutine(Delay());
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)

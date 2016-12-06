@@ -14,7 +14,6 @@ public class StampBar : MonoBehaviour
     [HideInInspector]
     public Slider slider;
     private Image fillColor;
-    //public float reachScore, looseRageAfter, percentLoose, loosePerSecond;
 
 
     [HideInInspector]
@@ -24,8 +23,6 @@ public class StampBar : MonoBehaviour
     [HideInInspector]
     public bool gradually;
 
-    //[HideInInspector]
-    //public float timeToLowRage;
 
 	void Awake(){
 		slider = GameObject.FindGameObjectWithTag ("rage_slider").GetComponent<Slider>();
@@ -49,7 +46,7 @@ public class StampBar : MonoBehaviour
 
     void Update()
     {
-        if (increaseFill && GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
+        if (increaseFill && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             fillBar = ((tempScore / GetComponent<PlayerStates>().rageObjects) * 10) / 10;
             slider.value = fillBar;
@@ -58,28 +55,23 @@ public class StampBar : MonoBehaviour
         if (tempScore >= GetComponent<PlayerStates>().rageObjects)
         {
             increaseFill = false;
-            //timeToLowRage += Time.deltaTime;
             tempScore = GetComponent<PlayerStates>().rageObjects;
             if (ready == true)
             {
-                //PhysicalMovement.ableToLift = true;
                 SwipeHalf.ableToLift = true;
                 ready = false;
             }
             fillColor.color = Color.red;
-            //if (PhysicalMovement.intoAir)
             if (SwipeHalf.intoAir)
             {
-                if (GameManager.instance.TutorialState() != GameManager.Tutorial.STOMP)
+                if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
                     tempScore = 0f;
                     fillBar = 0f;
                     gradually = true;
-                    //slider.GetComponent<Image>().fillAmount = fillBar;
                     fillColor.color = initialColor;
                 }
                 ready = true;
-                //PhysicalMovement.intoAir = false;
                 SwipeHalf.intoAir = false;
             }
         }
@@ -93,30 +85,8 @@ public class StampBar : MonoBehaviour
                 timer = 0;
                 increaseFill = true;
                 gradually = false;
-                //slider.value = 0f;
             }
         }
-
-
-        //if (timeToLowRage > looseRageAfter)
-        //{
-        //    countSecond += 0.01f;
-        //    if (countSecond >= loosePerSecond)
-        //    {
-        //        slider.GetComponent<Image>().fillAmount -= percentLoose / 100;
-        //        //PhysicalMovement.ableToLift = false;
-        //        SwipeHalf.ableToLift = false;
-        //        ready = false;
-        //        slider.GetComponent<Image>().color = initialColor;
-        //        tempScore -= reachScore * (percentLoose / 100);
-        //        countSecond = 0f;
-        //    }
-        //    if (slider.GetComponent<Image>().fillAmount == 0f)
-        //    {
-        //        timeToLowRage = 0f;
-        //        countSecond = 0f;
-        //    }
-        //}
     }
 }
 

@@ -9,7 +9,7 @@ public class SwipeHalf : MonoBehaviour
 
     private int touches, sameTapCount;
     private float distance, attackDist, moveTimer, circleTimer, speed, force, powerTime, startingMass;
-    private bool newSwipe, applyMove, startTimer, rightOk, leftOk, startSameTouchTimer;
+    private bool newSwipe, applyMove, rightOk, leftOk, startSameTouchTimer;
     private bool newDash = false;   // for dashsound
     private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction;
     private Rigidbody playerRig;
@@ -36,12 +36,19 @@ public class SwipeHalf : MonoBehaviour
 
     void Start()
     {
+        leftOk = false;
+        rightOk = false;
         swirlTut = false;
+        stompTut = false;
+        ableToLift = false;
+        intoAir = false;
         playerRig = GetComponent<Rigidbody>();
         startingMass = playerRig.mass;
         touches = 0;
         sameTapCount = 0;
         moveTimer = 0;
+        circleTimer = 0;
+        powerTime = 0;
         startSameTouchTimer = false;
         newSwipe = false;
         applyMove = false;
