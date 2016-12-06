@@ -20429,7 +20429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 62f36ded112e7ef4f880200a448a6608, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.5
+  EnterBlendTime: 0.2
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -22945,7 +22945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 9837d0f409293514fb0db1b9fa723ef9, type: 3}
   Exposure: 1
-  EnterBlendTime: 2
+  EnterBlendTime: 0.2
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -22969,8 +22969,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465344355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.27, y: 2.6, z: -20.3}
-  m_LocalScale: {x: 7.298105, y: 6.129055, z: 20.203074}
+  m_LocalPosition: {x: 19.52, y: 2.6, z: -20.3}
+  m_LocalScale: {x: 28.448215, y: 6.129055, z: 20.203074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25457,66 +25457,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010263139396, guid: e86d94e0dc059aa44b8dc1052099f120,
     type: 2}
   m_PrefabInternal: {fileID: 1651105445}
---- !u!1 &1652649922
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1652649925}
-  - 65: {fileID: 1652649924}
-  - 114: {fileID: 1652649923}
-  m_Layer: 0
-  m_Name: Amplify Color Volume (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1652649923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652649922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a2ce78f94161948a5dcf16ec84f0c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LutTexture: {fileID: 2800000, guid: f4c9eef7072b175489a335e5edbf21fb, type: 3}
-  Exposure: 1
-  EnterBlendTime: 0.5
-  Priority: 0
-  ShowInSceneView: 1
-  EffectContainer:
-    volumes: []
---- !u!65 &1652649924
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652649922}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1652649925
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652649922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22, y: 2.6, z: -20.12}
-  m_LocalScale: {x: 18.734064, y: 6.129055, z: 20.203074}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
 --- !u!4 &1664464078 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010263139396, guid: e86d94e0dc059aa44b8dc1052099f120,
