@@ -64,13 +64,8 @@ public class SwipeHalf : MonoBehaviour
     {
         if (applyMove)
         {
-            float highForce = GameManager.instance.player.GetComponent<PlayerStates>().maxVelocity;
-
-            float playerVelocity = playerRig.mass * (playerRig.velocity.magnitude * playerRig.velocity.magnitude) / 2;
-
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
-            float maxForce = (playerRig.mass * (highForce * highForce)) / 2;
 
             //dash sound
             if (newDash == true)
