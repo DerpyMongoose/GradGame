@@ -71,8 +71,6 @@ public class LevelManager : MonoBehaviour
     public GameObject tutorial_vaseb;
     public GameObject tutorial_vasec;
 
-    public GameObject tutorial_frame;
-
     private ObjectBehavior objBehavior;
 
     GameObject tutorialObj1;
