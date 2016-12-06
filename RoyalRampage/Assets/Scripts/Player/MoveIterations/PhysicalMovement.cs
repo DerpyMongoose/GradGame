@@ -253,8 +253,8 @@ public class PhysicalMovement : MonoBehaviour
                     col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
                     Rigidbody rig = col.collider.GetComponent<Rigidbody>();
 
-					print ("am colliding");
-					GameManager.instance.playerHitObject ();
+					//print ("am colliding");
+					//GameManager.instance.playerHitObject ();
                     // SOUND OBJECT HIT
                     GameManager.instance.objectHit(col.collider.gameObject);
 

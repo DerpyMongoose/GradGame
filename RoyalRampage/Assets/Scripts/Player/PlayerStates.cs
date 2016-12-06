@@ -72,6 +72,7 @@ public class PlayerStates : MonoBehaviour
         timerStart = false;
         timerStart2 = false;
         timer = 0;
+        timeTicker = 5;
     }
 
     void Awake()
@@ -160,9 +161,8 @@ public class PlayerStates : MonoBehaviour
                     }
                 }
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-                if (timeLeftInLevel <= timeTicker)
+                if (timeLeftInLevel <= timeTicker && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-
                     GameManager.instance.timerUpdate(timeTicker);
                     timeTicker -= 1;
                 }
