@@ -694,12 +694,8 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(false);
         }
-        for (int i = 0; i < stars; i++)
-        {
-            //Play Sound here (Add delay with coroutine)
-            gems[i].SetActive(true);
-        }
-        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+       
+        
 
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
@@ -709,14 +705,7 @@ public class LevelManager : MonoBehaviour
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
         if (GameManager.instance.currentLevel != 1)
         {
-            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
-            {
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
-            }
-            else
-            {
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
-            }
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel-1).ToString();
         }
         else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
@@ -779,5 +768,11 @@ public class LevelManager : MonoBehaviour
         replayScoreText.text = "Score:\n" + new_score + " $";
         highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
+        for (int i = 0; i < stars; i++) {
+            //Play Sound here (Add delay with coroutine)
+            yield return new WaitForSeconds(0.5f);
+            GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+            gems[i].SetActive(true);
+        }
     }
 }

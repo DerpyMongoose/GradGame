@@ -28706,8 +28706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillBar: 0
+  ready: 0
   slider: {fileID: 0}
   tempScore: 0
+  gradually: 0
 --- !u!114 &114000011797275670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28762,7 +28764,7 @@ MonoBehaviour:
   maxVelocity: 10
   timeForSwipe: 0.2
   timeForCircle: 0.5
-  SameTapTime: 0.1
+  SameTapTime: 0.2
   gravityTimer: 3
   resetMassTimer: 0.5
   swirlRadius: 2
