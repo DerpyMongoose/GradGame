@@ -6,7 +6,7 @@ public class Animatic : MonoBehaviour {
 
 	void Start ()
     {
-        Handheld.PlayFullScreenMovie("AnimaticFinal.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
+        Handheld.PlayFullScreenMovie("Cutscene.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
         //SceneManager.LoadScene("MainMenu");
 		GameManager.instance.GoToMainMenu();
     }

@@ -305,12 +305,12 @@ public class ObjectBehavior : MonoBehaviour
                     if (life <= 0)
                     {
                         ObjectManagerV2.instance.countObjects++;
-                        ObjectManagerV2.instance.countMultiTime = 0;
+                        //ObjectManagerV2.instance.countMultiTime = 0;
                     }
                     if (script.life <= 0)
                     {
                         ObjectManagerV2.instance.countObjects++;
-                        ObjectManagerV2.instance.countMultiTime = 0;
+                        //ObjectManagerV2.instance.countMultiTime = 0;
                     }
                 }
             }

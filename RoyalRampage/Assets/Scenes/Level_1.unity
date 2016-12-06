@@ -1607,6 +1607,66 @@ Transform:
   m_PrefabParentObject: {fileID: 4000014196782352, guid: fca45914f31b2ba439a346555324bee9,
     type: 2}
   m_PrefabInternal: {fileID: 206483490}
+--- !u!1 &222385330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 222385333}
+  - 65: {fileID: 222385332}
+  - 114: {fileID: 222385331}
+  m_Layer: 0
+  m_Name: Amplify Color Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &222385331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 222385330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a2ce78f94161948a5dcf16ec84f0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LutTexture: {fileID: 2800000, guid: a9ee4ea2f0e62e34ba2b86074bb45d89, type: 3}
+  Exposure: 1
+  EnterBlendTime: 3
+  Priority: 0
+  ShowInSceneView: 1
+  EffectContainer:
+    volumes: []
+--- !u!65 &222385332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 222385330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &222385333
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 222385330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.19, z: -20.54}
+  m_LocalScale: {x: 14.60566, y: 6.273369, z: 20.334188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!21 &239990959
 Material:
   serializedVersion: 6
@@ -1811,7 +1871,7 @@ Prefab:
         type: 2}
       propertyPath: slider
       value: 
-      objectReference: {fileID: 775224831}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5950ab559094bff4693b84287113f3d8, type: 2}
   m_IsPrefabParent: 0
@@ -2907,6 +2967,66 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010098646478, guid: 935d1e15ac94a8443938eb8fc765ec39,
     type: 2}
   m_PrefabInternal: {fileID: 1656897763}
+--- !u!1 &322941847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 322941850}
+  - 65: {fileID: 322941849}
+  - 114: {fileID: 322941848}
+  m_Layer: 0
+  m_Name: Amplify Color Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &322941848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322941847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a2ce78f94161948a5dcf16ec84f0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LutTexture: {fileID: 2800000, guid: 6fe027c419fbbb94fbfdeabcc82dc50b, type: 3}
+  Exposure: 1
+  EnterBlendTime: 2
+  Priority: 0
+  ShowInSceneView: 1
+  EffectContainer:
+    volumes: []
+--- !u!65 &322941849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322941847}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &322941850
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322941847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.81, z: 0.31}
+  m_LocalScale: {x: 17.837208, y: 6.2733693, z: 21.811287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1001 &325422425
 Prefab:
   m_ObjectHideFlags: 0
@@ -7884,11 +8004,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75143ac6572fa884b8ae2362e3064a3b, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &775224831 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013713726736, guid: 75143ac6572fa884b8ae2362e3064a3b,
-    type: 2}
-  m_PrefabInternal: {fileID: 775224830}
 --- !u!1 &782663932
 GameObject:
   m_ObjectHideFlags: 0
@@ -9052,7 +9167,6 @@ MonoBehaviour:
   tutorial_cabinet: {fileID: 0}
   tutorial_vaseb: {fileID: 0}
   tutorial_vasec: {fileID: 0}
-  tutorial_frame: {fileID: 0}
 --- !u!1001 &852378327
 Prefab:
   m_ObjectHideFlags: 0
@@ -9484,6 +9598,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012082190122, guid: 9f582415c19f5ce4e89cf34267b72e60,
     type: 2}
   m_PrefabInternal: {fileID: 858071516}
+--- !u!4 &859179369 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000013400599650, guid: 5950ab559094bff4693b84287113f3d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 240960655}
 --- !u!4 &864453776 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010227063812, guid: e3190ce5267c37b489cfdc5b0e43f4db,
@@ -17488,6 +17607,57 @@ Material:
     - first:
         name: _SpecColor
       second: {r: 0.16911763, g: 0.16911763, b: 0.16911763, a: 1}
+--- !u!1 &1752898333 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012917094002, guid: 814648a664d369d4a8063742d341bc70,
+    type: 2}
+  m_PrefabInternal: {fileID: 1994819939}
+--- !u!114 &1752898340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1752898333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tonemapper: 0
+  Exposure: 1
+  LinearWhitePoint: 11.2
+  ApplyDithering: 0
+  QualityLevel: 0
+  BlendAmount: 0
+  LutTexture: {fileID: 0}
+  LutBlendTexture: {fileID: 0}
+  MaskTexture: {fileID: 0}
+  UseDepthMask: 0
+  DepthMaskCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  UseVolumes: 1
+  ExitVolumeBlendTime: 1
+  TriggerVolumeProxy: {fileID: 859179369}
+  VolumeCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  EffectFlags:
+    components: []
+  sharedInstanceID: a340f3b9-544e-4451-a19d-ffe99b3ea45d
 --- !u!1 &1765885778
 GameObject:
   m_ObjectHideFlags: 0
