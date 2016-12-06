@@ -10,7 +10,7 @@ public class SwipeHalf : MonoBehaviour
     private int touches, sameTapCount;
     private float distance, attackDist, moveTimer, circleTimer, speed, force, powerTime, startingMass;
     private bool newSwipe, applyMove, rightOk, leftOk, startSameTouchTimer;
-    private bool newDash = false;   // for dashsound
+    private bool newDash;
     private Vector3 temp, startPoint, startPointAtt, dragPoint, dragPointAtt, direction;
     private Rigidbody playerRig;
 
@@ -31,11 +31,12 @@ public class SwipeHalf : MonoBehaviour
     [HideInInspector]
     public bool swirlTut, stompTut;
 
-    private bool spinningAnim = false;
-    private bool swipeToHit = false;
+    private bool spinningAnim;
 
     void Start()
     {
+        newDash = false;
+        spinningAnim = false;
         leftOk = false;
         rightOk = false;
         swirlTut = false;
@@ -52,7 +53,6 @@ public class SwipeHalf : MonoBehaviour
         startSameTouchTimer = false;
         newSwipe = false;
         applyMove = false;
-        //inAir = false;
         direction = -Vector3.forward;
         swirlEnded = true;
         PlayerStates.swiped = false;
@@ -90,7 +90,7 @@ public class SwipeHalf : MonoBehaviour
         moveTimer += Time.deltaTime;
         circleTimer += Time.deltaTime;
 
-        if(powerTime >= GetComponent<PlayerStates>().SameTapTime || Input.touchCount > 2)
+        if (powerTime >= GetComponent<PlayerStates>().SameTapTime || Input.touchCount > 2)
         {
             sameTapCount = 0;
             startSameTouchTimer = false;
@@ -106,13 +106,8 @@ public class SwipeHalf : MonoBehaviour
 
         for (int i = 0; i < touches; i++)
         {
-            //powerTime += Time.deltaTime;
-
             if (Input.GetTouch(i).position.x <= Screen.width / 2)
             {
-                ////Reverse to startingMass
-                
-
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                 {
                     leftOk = true;
@@ -175,7 +170,6 @@ public class SwipeHalf : MonoBehaviour
                         {
                             swirlTut = true;
                             swirlEnded = false;
-                            //IF WE NEED TO SEE SWIRLING ANIMATION WHEN YOU DO A CIRCLE GESTURE EVEN IF WE ARE NOT ABLE TO HIT SOMETHING, THEN NEEDS TO BE HERE.
                             GameManager.instance.playerSwirl();
                             spinningAnim = true;
                         }
@@ -183,11 +177,9 @@ public class SwipeHalf : MonoBehaviour
 
                     if (Input.GetTouch(i).phase == TouchPhase.Began)
                     {
-                        spinningAnim = false;
                         rightOk = true;
                         temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                         startPointAtt = new Vector3(temp.x, 0, temp.z);
-                        swipeToHit = false; //cannot hit on click only!!!!
                     }
                     else if (Input.GetTouch(i).phase == TouchPhase.Ended)
                     {
@@ -210,21 +202,12 @@ public class SwipeHalf : MonoBehaviour
                             if (spinningAnim == false && angle < 0)
                             {
                                 //transform.rotation = Quaternion.LookRotation(attackDir);
+                                GameManager.instance.playerHitObject();
                                 PlayerStates.swiped = true;
                                 StartCoroutine("SwipeTimer");
                             }
-
-                            ///HIT ANIMATION
-                            if (spinningAnim == false && swipeToHit == true && angle < 0)
-                            {
-                                GameManager.instance.playerHitObject();
-                            }
+                            spinningAnim = false;
                         }
-                    }
-
-                    else if (Input.GetTouch(i).phase == TouchPhase.Moved)
-                    {
-                        swipeToHit = true; //only hit if player move finger to swipe
                     }
                 }
             }
@@ -253,28 +236,21 @@ public class SwipeHalf : MonoBehaviour
                     }
                     PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);
-                    //Lift(hitColliders); //RUN FROM ANIMATION EVENT
+                    for (int i = 0; i < hitColliders.Length; i++)
                     {
-                        for (int i = 0; i < hitColliders.Length; i++)
+                        if (hitColliders[i].tag == "Destructable")
                         {
-                            if (hitColliders[i].tag == "Destructable")
-                            {
-                                tempColliders.Add(hitColliders[i]);
-                            }
+                            tempColliders.Add(hitColliders[i]);
                         }
-                        // SOUND AND ANIMATION FOR STOMP
-                        GameManager.instance.playerStomp();
-                        GameManager.instance.changeMusicState(AudioManager.IN_STOMP);  // FOR AUDIO
                     }
+                    // SOUND AND ANIMATION FOR STOMP
+                    GameManager.instance.playerStomp();
+                    GameManager.instance.changeMusicState(AudioManager.IN_STOMP);  // FOR AUDIO
                 }
             }
         }
 
-        //if (Input.touchCount == 0 || Input.touchCount > 2)
-        //{
-        //    powerTime = 0;
-        //}
-        if(startSameTouchTimer)
+        if (startSameTouchTimer)
         {
             powerTime += Time.deltaTime;
         }
@@ -299,7 +275,7 @@ public class SwipeHalf : MonoBehaviour
         PlayerStates.swiped = false;
     }
 
-    public void Swirling() // hit needs to become true here
+    public void Swirling()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().swirlRadius);
         for (int k = 0; k < hitColliders.Length; k++)
@@ -319,18 +295,12 @@ public class SwipeHalf : MonoBehaviour
         {
             if (tempColliders[i] != null)
             {
-                //HERE, DECTED THAT CAN HIT SOMETHING WITH SWIRLING, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 Rigidbody rig = tempColliders[i].GetComponent<Rigidbody>();
                 Vector3 dir = tempColliders[i].transform.position - transform.position;
                 tempColliders[i].GetComponent<ObjectBehavior>().hit = true;
 
                 // SOUND OBJECT HIT
                 GameManager.instance.objectHit(tempColliders[i].gameObject);
-                // ANIMATION OBJECT HIT
-                GameManager.instance.playerHitObject();
-
-                // PLAY DAMAGE PARTICLE
-                //rig.GetComponent<ObjectBehavior>().particleSys.Play(); /////////IT WILL GIVE AN ERROR IN THE LEVELS WITHOUT THE FRACTURED OBJECTS
 
                 if (rig.GetComponent<ObjectBehavior>().lifted)
                 {
@@ -352,7 +322,6 @@ public class SwipeHalf : MonoBehaviour
 
     public void Lift()
     {
-        //inAir = true;
         for (int i = 0; i < tempColliders.Count; i++)
         {
             if (tempColliders[i] != null)
@@ -360,12 +329,11 @@ public class SwipeHalf : MonoBehaviour
 
                 tempColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 tempColliders[i].GetComponent<ObjectBehavior>().flying = true;
-                //HERE, DECTED THAT CAN HIT SOMETHING WITH LIFT, SO PLAY SWIRLING ANIMATION BUT NEED TO BE RESTRICTED HOW MANY TIMES TO PLAY THE ANIM BECAUSE IT IS A LOOP AND PROBABLY IT IS GOING TO OVERIDE.
                 objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
                 initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
                 tempColliders[i].GetComponent<Rigidbody>().mass = 10f;
                 tempColliders[i].GetComponent<Rigidbody>().AddForce(Vector3.up * GetComponent<PlayerStates>().liftForce);
-                tempColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false; //THIS HAS AN ERROR
+                tempColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false;
             }
         }
 
@@ -384,8 +352,6 @@ public class SwipeHalf : MonoBehaviour
     public void Reverse(List<Rigidbody> rig, List<float> mass)
     {
         PlayerStates.imInSlowMotion = false;
-        //StampBar.increaseFill = true;
-        //inAir = false;
         for (int i = 0; i < rig.Count; i++)
         {
             if (rig[i] != null)
@@ -397,7 +363,7 @@ public class SwipeHalf : MonoBehaviour
         }
         StartCoroutine(InitializeMass(rig, mass));
         coroutine = null;
-		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO, reverse from stomp
+        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO, reverse from stomp
     }
 
     IEnumerator InitializeMass(List<Rigidbody> rig, List<float> mass)
@@ -478,13 +444,11 @@ public class SwipeHalf : MonoBehaviour
             {
                 if (circleTimer < GetComponent<PlayerStates>().timeForCircle)
                 {
-                    //print("I made a circle");
                     circleTimer = 0;
                     return true;
                 }
                 else
                 {
-                    //print("Too slow");
                     circleTimer = 0;
                 }
             }
