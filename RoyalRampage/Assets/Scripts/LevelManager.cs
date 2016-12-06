@@ -692,12 +692,8 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(false);
         }
-        for (int i = 0; i < stars; i++)
-        {
-            //Play Sound here (Add delay with coroutine)
-            gems[i].SetActive(true);
-        }
-        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+       
+        
 
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
@@ -773,5 +769,11 @@ public class LevelManager : MonoBehaviour
         replayScoreText.text = "Score:\n" + new_score + " $";
         highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
+        for (int i = 0; i < stars; i++) {
+            //Play Sound here (Add delay with coroutine)
+            yield return new WaitForSeconds(0.5f);
+            GameManager.instance.gemSpawned(gems[i]); //AUDIO FOR ONE GEM
+            gems[i].SetActive(true);
+        }
     }
 }
