@@ -99,14 +99,14 @@ public class SwipeHalf : MonoBehaviour
 
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
                 {
-                    rightOk = true;
+                    leftOk = true;
                 }
                 //HERE MOVING////////////////////////
                 if (GameManager.instance.CurrentScene() == GameManager.Scene.GAME || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT)
                 {
                     if (Input.GetTouch(i).phase == TouchPhase.Began)
                     {
-                        rightOk = true;
+                        leftOk = true;
                         newSwipe = true;
                         newDash = true;
                         moveTimer = 0;
@@ -144,7 +144,7 @@ public class SwipeHalf : MonoBehaviour
                     }
                     else if (Input.GetTouch(i).phase == TouchPhase.Ended)
                     {
-                        rightOk = false;
+                        leftOk = false;
                     }
                 }
             }
@@ -168,14 +168,14 @@ public class SwipeHalf : MonoBehaviour
                     if (Input.GetTouch(i).phase == TouchPhase.Began)
                     {
                         spinningAnim = false;
-                        leftOk = true;
+                        rightOk = true;
                         temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                         startPointAtt = new Vector3(temp.x, 0, temp.z);
                         swipeToHit = false; //cannot hit on click only!!!!
                     }
                     else if (Input.GetTouch(i).phase == TouchPhase.Ended)
                     {
-                        leftOk = false;
+                        rightOk = false;
                         temp = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, Camera.main.farClipPlane));
                         dragPointAtt = new Vector3(temp.x, 0, temp.z);
                         attackDist = Vector3.Distance(startPointAtt, dragPointAtt);
@@ -354,7 +354,7 @@ public class SwipeHalf : MonoBehaviour
     public void Reverse(List<Rigidbody> rig, List<float> mass)
     {
         PlayerStates.imInSlowMotion = false;
-        StampBar.increaseFill = true;
+        //StampBar.increaseFill = true;
         //inAir = false;
         for (int i = 0; i < rig.Count; i++)
         {
@@ -448,13 +448,13 @@ public class SwipeHalf : MonoBehaviour
             {
                 if (circleTimer < GetComponent<PlayerStates>().timeForCircle)
                 {
-                    print("I made a circle");
+                    //print("I made a circle");
                     circleTimer = 0;
                     return true;
                 }
                 else
                 {
-                    print("Too slow");
+                    //print("Too slow");
                     circleTimer = 0;
                 }
             }

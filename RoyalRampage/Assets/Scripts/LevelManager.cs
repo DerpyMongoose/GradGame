@@ -211,7 +211,7 @@ public class LevelManager : MonoBehaviour
             scoreText.text = score.ToString() + " $"; // in game score
             GameManager.instance.score = score;
             //GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
-            StampBar.increaseFill = true;
+            //StampBar.increaseFill = true;  ///WHY IS THIS HERE?????
             //GameManager.instance.player.GetComponent<StampBar>().timeToLowRage = 0f;
         }
     }
@@ -369,7 +369,7 @@ public class LevelManager : MonoBehaviour
                         if (tutorialObj1 == null)
                         {
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 timer = 0;
                                 GameManager.instance.tutorialTaskCompleted();
@@ -401,7 +401,7 @@ public class LevelManager : MonoBehaviour
                             MultiplierText.text = "x2";
                             completed = true;
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 //COLORED PANEL FOR COMMUNICATING ATTACK
                                 //WE NEED TO DESTROY THE OBJECT (CHUNKS)
@@ -412,11 +412,16 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (startTimer == true)
                         {
+                            if(tutorialObj1 == null)
+                            {
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
+                            }
                             timer2 += Time.deltaTime;
                             if (timer2 > 3f)
                             {
                                 if (tutorialObj1 != null)
                                 {
+                                    guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
                                     for (int p = 0; p < tutorialObj1.transform.childCount; p++)
                                     {
                                         if (tutorialObj1.transform.GetChild(p).GetComponent<FracturedChunk>() != null)
@@ -484,7 +489,7 @@ public class LevelManager : MonoBehaviour
                             ObjectManagerV2.instance.canDamage = true;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
                             timer2 += Time.deltaTime;
-                            if (timer2 > 1f)
+                            if (timer2 > 2f)
                             {
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
                                 timer2 = 0;
@@ -507,8 +512,10 @@ public class LevelManager : MonoBehaviour
                             ObjectManagerV2.instance.canDamage = false;
 
                             rageMeter.SetActive(true);
+                            GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                             GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                             GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
+                            GameManager.instance.player.GetComponent<StampBar>().ready = true;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
 
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
@@ -529,8 +536,10 @@ public class LevelManager : MonoBehaviour
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.1");
+                                GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
+                                GameManager.instance.player.GetComponent<StampBar>().ready = true;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
                                 ObjectManagerV2.instance.isGrounded = false;
                             }
@@ -584,7 +593,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
         GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
         ObjectManagerV2.instance.canDamage = true;
