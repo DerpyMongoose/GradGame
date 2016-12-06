@@ -771,7 +771,7 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < stars; i++) {
             //Play Sound here (Add delay with coroutine)
             yield return new WaitForSeconds(0.5f);
-            GameManager.instance.gemSpawned(gems[i]); //AUDIO FOR ONE GEM
+            GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
             gems[i].SetActive(true);
         }
     }
