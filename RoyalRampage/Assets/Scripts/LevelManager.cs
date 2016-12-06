@@ -541,6 +541,7 @@ public class LevelManager : MonoBehaviour
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
                                 GameManager.instance.player.GetComponent<StampBar>().ready = true;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().stompTut = false;
+                                ObjectManagerV2.instance.canDamage = false;
                                 ObjectManagerV2.instance.isGrounded = false;
                             }
                         }
@@ -553,7 +554,7 @@ public class LevelManager : MonoBehaviour
                         {
                             guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
                                 TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
@@ -569,7 +570,7 @@ public class LevelManager : MonoBehaviour
                         if (startTimer == true && completed == false)
                         {
                             timer2 += Time.deltaTime;
-                            if (timer2 > 1f)
+                            if (timer2 > 2f)
                             {
                                 TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
                                 TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
