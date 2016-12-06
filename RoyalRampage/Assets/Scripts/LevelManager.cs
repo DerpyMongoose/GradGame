@@ -71,8 +71,6 @@ public class LevelManager : MonoBehaviour
     public GameObject tutorial_vaseb;
     public GameObject tutorial_vasec;
 
-    public GameObject tutorial_frame;
-
     private ObjectBehavior objBehavior;
 
     GameObject tutorialObj1;
@@ -135,7 +133,7 @@ public class LevelManager : MonoBehaviour
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
                 minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
-                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel-1);
+                SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel - 1);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
                 guideText = GameObject.Find("GuideText").GetComponent<Text>();
                 guideText.text = "";
@@ -412,7 +410,7 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (startTimer == true)
                         {
-                            if(tutorialObj1 == null)
+                            if (tutorialObj1 == null)
                             {
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut3.3");
                             }
@@ -465,14 +463,14 @@ public class LevelManager : MonoBehaviour
                         }
                         if (PlayerStates.swiped == true)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer"); // FAIL MESSAGE
+                            guideText.text = LanguageManager.instance.ReturnWord("TryAgain"); // FAIL MESSAGE
                             startTimer = true;
                         }
 
                         if (startTimer == true)
                         {
                             timer += Time.deltaTime;
-                            if (timer > 1f)
+                            if (timer > 2f)
                             {
                                 TutObj(tutorialObj1, new Vector3(0.5f, 0, 1));
                                 TutObj(tutorialObj2, new Vector3(-0.5f, 0, 1));
@@ -481,6 +479,9 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
                                 timer = 0;
+
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
+
                                 startTimer = false;
                             }
                         }
@@ -547,12 +548,12 @@ public class LevelManager : MonoBehaviour
                         }
                         else if (PlayerStates.swiped == true && completed == false)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
+                            guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
                             startTimer = true;
                         }
                         else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true && completed == false)
                         {
-                            guideText.text = LanguageManager.instance.ReturnWord("I wasn't given a message to put here - Programmer");
+                            guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
                             timer += Time.deltaTime;
                             if (timer > 2f)
                             {
@@ -562,6 +563,8 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
                                 TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
+
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
 
                                 timer = 0;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
@@ -578,6 +581,8 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj4, new Vector3(-1f, 0, 0));
                                 TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
+
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
 
                                 timer2 = 0;
                                 startTimer = false;
@@ -658,46 +663,37 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.scoreScreenOpen();
         GameManager.instance.changeMusicState(AudioManager.IN_SCORE_SCREEN);  // FOR AUDIO
 
-        if (GameManager.instance.currentLevel != 1)
+        Stars();
+        highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+        starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
+
+
+        if (GameManager.instance.stars != null)
         {
-            Stars();
-            highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
-            starsList = SaveStars.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString());
-
-
-            if (GameManager.instance.stars != null)
+            if (stars > starsList[0].Stars)
             {
-                if (stars > starsList[0].Stars)
-                {
-                    CalculateCurrency(stars - starsList[0].Stars);
-                    GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
-                    SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);
-                }
+                CalculateCurrency(stars - starsList[0].Stars);
+                GameManager.instance.stars[GameManager.instance.currentLevel - 1] = stars;
+                SaveStars.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), stars);
             }
+        }
 
-            highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
-            replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
-            if (score >= highScoreList[0].HighScore)
-            {
-                SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
-            }
+        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
+        replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
+        if (score >= highScoreList[0].HighScore)
+        {
+            SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
         }
         if (GameManager.instance.currentLevel == 1)
         {
-            starPoints.SetActive(false);
-            replayScore.SetActive(false);
             highscore.SetActive(false);
         }
         for (int i = 0; i < gems.Length; i++)
         {
             gems[i].SetActive(false);
         }
-        for (int i = 0; i < stars; i++)
-        {
-            //Play Sound here (Add delay with coroutine)
-            gems[i].SetActive(true);
-        }
-        GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+       
+        
 
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
@@ -707,14 +703,7 @@ public class LevelManager : MonoBehaviour
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
         if (GameManager.instance.currentLevel != 1)
         {
-            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
-            {
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel).ToString();
-            }
-            else
-            {
-                levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + GameManager.instance.currentLevel.ToString() + "*";
-            }
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel-1).ToString();
         }
         else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
@@ -746,7 +735,11 @@ public class LevelManager : MonoBehaviour
         }
 
         GameManager.instance.Save();
-        StartCoroutine(CountPointsTo(score)); // show counting score
+        if(GameManager.instance.currentLevel != 1)
+        {
+            StartCoroutine(CountPointsTo(score)); // show counting score
+        }
+        else StartCoroutine(CountPointsTo(2000)); // show counting score
     }
 
     //counting score "animation"
@@ -773,5 +766,11 @@ public class LevelManager : MonoBehaviour
         replayScoreText.text = "Score:\n" + new_score + " $";
         highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
+        for (int i = 0; i < stars; i++) {
+            //Play Sound here (Add delay with coroutine)
+            yield return new WaitForSeconds(0.5f);
+            GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
+            gems[i].SetActive(true);
+        }
     }
 }
