@@ -60,12 +60,10 @@ public class CameraController1 : MonoBehaviour {
             if (hit.transform.gameObject != player)
             {
                 tempTrans = hit.transform.gameObject;
-                print(tempTrans);
                 hit.transform.GetComponent<MeshRenderer>().enabled = false;
             }
             else if (hit.transform.gameObject == player && tempTrans != null)
             {
-                print(tempTrans);
                 tempTrans.GetComponent<MeshRenderer>().enabled = true;
             }
         }
