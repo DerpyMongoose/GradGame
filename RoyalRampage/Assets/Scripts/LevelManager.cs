@@ -206,6 +206,7 @@ public class LevelManager : MonoBehaviour
                 ObjectManagerV2.instance.countObjects = Mathf.Abs(amountOfObjects - ObjectManagerV2.instance.countObjects);
                 multiplier++;
                 amountOfObjects += amountOfObjects;
+                ObjectManagerV2.instance.countMultiTime = 0;
             }
             score += points * multiplier;
             scoreText.text = score.ToString() + " $"; // in game score
