@@ -370,7 +370,6 @@ public class UIScript : MonoBehaviour
         PlayMenuButtonSound();
 		GameManager.instance.menuRolledOut ();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
-        print("pausing");
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
         pause_menu.SetActive(true);
@@ -387,7 +386,6 @@ public class UIScript : MonoBehaviour
         GameManager.instance.isPaused = false;
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
-        print("unpausing");
 		GameManager.instance.menuRolledIn ();
 		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
     }
@@ -446,7 +444,6 @@ public class UIScript : MonoBehaviour
                 {
                     next_level = GameManager.instance.currentLevel;
                 }
-                print(GameManager.instance.currentLevel);
                 GameManager.instance.currentLevel = next_level;
                 GameManager.instance.StartLevel(next_level);
                 break;

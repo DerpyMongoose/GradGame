@@ -93,7 +93,6 @@ public class PlayerStates : MonoBehaviour
 
     void Update()
     {
-        //print(state);
         //update level timer
         UpdateLevelTimer();
 
