@@ -272,6 +272,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
 		GameManager.instance.OnGemSpawned += GemSpawnPlay;
+		GameManager.instance.OnGemScoreDisplay += CountingGems;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad += BackgroundAmbStart;
@@ -308,6 +309,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
 		GameManager.instance.OnGemSpawned -= GemSpawnPlay;
+		GameManager.instance.OnGemScoreDisplay -= CountingGems;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
