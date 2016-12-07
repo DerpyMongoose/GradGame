@@ -3058,8 +3058,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: b624e1e24ad981f40ab53e3d4b7e27bf, type: 3}
-  Exposure: 0.8
-  EnterBlendTime: 0.2
+  Exposure: 0.9
+  EnterBlendTime: 0.1
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -3088,7 +3088,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
 --- !u!1001 &196003584
 Prefab:
   m_ObjectHideFlags: 0
@@ -7928,6 +7928,66 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013093427598, guid: 162e70435704dab40a98f8850996c2b7,
     type: 2}
   m_PrefabInternal: {fileID: 471944378}
+--- !u!1 &473962953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 473962956}
+  - 65: {fileID: 473962955}
+  - 114: {fileID: 473962954}
+  m_Layer: 0
+  m_Name: Amplify Color Volume (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &473962954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473962953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a2ce78f94161948a5dcf16ec84f0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LutTexture: {fileID: 2800000, guid: 75ec3ae7d7ea1b14ab0869e7e66de89a, type: 3}
+  Exposure: 1
+  EnterBlendTime: 0.1
+  Priority: 0
+  ShowInSceneView: 1
+  EffectContainer:
+    volumes: []
+--- !u!65 &473962955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473962953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &473962956
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473962953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.68, z: -13.44}
+  m_LocalScale: {x: 13.6643915, y: 8.122716, z: 9.090481}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
 --- !u!1001 &479991420
 Prefab:
   m_ObjectHideFlags: 0
@@ -10827,7 +10887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 5bb8a4cd5d006d54bb2e469728ae977a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.2
+  EnterBlendTime: 0.1
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -10851,12 +10911,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 609138408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.56, y: 1.68, z: -30.01}
+  m_LocalPosition: {x: -9.86, y: 1.68, z: -29.9}
   m_LocalScale: {x: 10.933184, y: 8.122716, z: 8.348968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
 --- !u!1001 &611946539
 Prefab:
   m_ObjectHideFlags: 0
@@ -11338,7 +11398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 5bb8a4cd5d006d54bb2e469728ae977a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.2
+  EnterBlendTime: 0.1
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -11367,7 +11427,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!21 &636420135
 Material:
   serializedVersion: 6
@@ -13609,8 +13669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: b624e1e24ad981f40ab53e3d4b7e27bf, type: 3}
-  Exposure: 0.8
-  EnterBlendTime: 0.2
+  Exposure: 0.9
+  EnterBlendTime: 0.1
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -13639,7 +13699,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
 --- !u!1001 &775224830
 Prefab:
   m_ObjectHideFlags: 0
@@ -23319,7 +23379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 75ec3ae7d7ea1b14ab0869e7e66de89a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.2
+  EnterBlendTime: 0.03
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -23343,8 +23403,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1326107345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.68, z: -8.56}
-  m_LocalScale: {x: 13.6643915, y: 8.122716, z: 19.331442}
+  m_LocalPosition: {x: 0, y: 1.68, z: -4.35}
+  m_LocalScale: {x: 13.6643915, y: 8.122716, z: 9.826046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -31551,7 +31611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 05b3b935e9d5e86438062ae576966b34, type: 3}
   Exposure: 0.9
-  EnterBlendTime: 0.2
+  EnterBlendTime: 0.1
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -31580,7 +31640,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
 --- !u!1 &1807839523
 GameObject:
   m_ObjectHideFlags: 0
