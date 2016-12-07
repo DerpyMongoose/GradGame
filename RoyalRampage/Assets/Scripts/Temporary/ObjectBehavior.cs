@@ -260,7 +260,7 @@ public class ObjectBehavior : MonoBehaviour
     {
         float randomVal = Random.value;
 
-        if (randomVal < currencySpawnChance)
+        if (randomVal < currencySpawnChance && GameManager.instance.player.GetComponent<PlayerStates>().state != PlayerStates.PlayerState.ENDING)
         {//Optimise!
             Instantiate((GameObject)Resources.Load("Collectibles/Currency", typeof(GameObject)), new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         }

@@ -40,12 +40,13 @@ public class PlayerStates : MonoBehaviour
     private bool timerStart, timerStart2;
     private float timer;
 
-    private enum PlayerState
+    public enum PlayerState
     {
         READY, IDLE, WALKING, ATTACKING, ENDING
     }
 
-    PlayerState state;
+    [HideInInspector]
+    public PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
     GameObject timerUI;
