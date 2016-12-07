@@ -195,6 +195,7 @@ GameObject:
   - 222: {fileID: 222000011811529330}
   - 114: {fileID: 114000012910696938}
   - 114: {fileID: 114000013137298196}
+  - 114: {fileID: 114000011544615102}
   m_Layer: 5
   m_Name: LevelNumber
   m_TagString: Untagged
@@ -726,6 +727,7 @@ GameObject:
   - 222: {fileID: 222000013517401026}
   - 114: {fileID: 114000013743342742}
   - 114: {fileID: 114000010993723390}
+  - 114: {fileID: 114000012303156744}
   m_Layer: 5
   m_Name: Tap
   m_TagString: Untagged
@@ -950,6 +952,7 @@ GameObject:
   - 222: {fileID: 222000010925662904}
   - 114: {fileID: 114000014098412738}
   - 114: {fileID: 114000013219931366}
+  - 114: {fileID: 114000013074640486}
   m_Layer: 5
   m_Name: GoalPoints
   m_TagString: Untagged
@@ -1001,6 +1004,7 @@ GameObject:
   - 222: {fileID: 222000010628456382}
   - 114: {fileID: 114000013862671494}
   - 114: {fileID: 114000012804931252}
+  - 114: {fileID: 114000011231706420}
   m_Layer: 5
   m_Name: Text (1)
   m_TagString: Untagged
@@ -1216,6 +1220,7 @@ GameObject:
   - 222: {fileID: 222000011260442186}
   - 114: {fileID: 114000011122143832}
   - 114: {fileID: 114000010063831350}
+  - 114: {fileID: 114000013460349308}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3610,6 +3615,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: Tut1.1
+--- !u!114 &114000011231706420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011818226148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.854902, g: 0.6509804, b: 0.3803922, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000011236143154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3871,6 +3890,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114000011544615102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010236794648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.854902, g: 0.6509804, b: 0.3803922, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000011545380434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4618,6 +4651,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114000012303156744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011306635360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.854902, g: 0.6509804, b: 0.3803922, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000012321353810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5432,6 +5479,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000013074640486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011772634570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.854902, g: 0.6509804, b: 0.3803922, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000013078401896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5792,6 +5853,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000013460349308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012190979208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.854902, g: 0.6509804, b: 0.3803922, a: 1}
+  m_EffectDistance: {x: 6, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114000013471160914
 MonoBehaviour:
   m_ObjectHideFlags: 1
