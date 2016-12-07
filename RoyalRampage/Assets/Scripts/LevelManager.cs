@@ -722,7 +722,9 @@ public class LevelManager : MonoBehaviour
 
 			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				GameManager.instance.levelsUnlocked++;
-			} else {//disable next button after last level
+			}
+			//disable next button after last level
+			if (GameManager.instance.levelsUnlocked == GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				NewLevelBtn.SetActive(false);
 			}
                 break;
