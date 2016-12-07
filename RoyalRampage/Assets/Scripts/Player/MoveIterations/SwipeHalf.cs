@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SwipeHalf : MonoBehaviour
 {
-    public static bool startTutTimer = false;
+    public static bool startTutTimer;
 
     private int touches, sameTapCount;
     private float distance, attackDist, moveTimer, circleTimer, speed, force, powerTime, startingMass;
@@ -324,6 +324,7 @@ public class SwipeHalf : MonoBehaviour
 
                 tempColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 tempColliders[i].GetComponent<ObjectBehavior>().flying = true;
+                tempColliders[i].GetComponent<ObjectBehavior>().canRotate = true;
                 objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
                 initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
                 tempColliders[i].GetComponent<Rigidbody>().mass = 10f;
@@ -354,6 +355,7 @@ public class SwipeHalf : MonoBehaviour
                 rig[i].isKinematic = false;
                 rig[i].GetComponent<ObjectBehavior>().slowed = false;
                 rig[i].GetComponent<ObjectBehavior>().flying = false;
+                rig[i].GetComponent<ObjectBehavior>().canRotate = false;
             }
         }
         StartCoroutine(InitializeMass(rig, mass));
