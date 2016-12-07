@@ -196,7 +196,7 @@ public class ObjectBehavior : MonoBehaviour
             }
         }
 
-        if(canRotate)
+        if (canRotate)
         {
             transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
         }
@@ -340,6 +340,7 @@ public class ObjectBehavior : MonoBehaviour
                 if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
                     lifted = false;
+                    flying = false;
                     if (hasLanded == false)
                     {
                         if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
@@ -361,7 +362,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void OnCollisionStay(Collision col)
     {
-        if (canRotate && (col.collider.tag == "Wall"))
+        if (canRotate && (col.collider.tag == "Wall" || col.collider.tag == "UniqueObjs"))
         {
             canRotate = false;
         }
