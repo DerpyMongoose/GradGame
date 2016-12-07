@@ -727,15 +727,16 @@ public class LevelManager : MonoBehaviour
 
         switch (levelResult)
         {
-            case "Level completed!":
-                GameManager.instance.levelWon = true;
+		case "Level completed!":
+			GameManager.instance.levelWon = true;
                 //ReplayBtn.SetActive(true);
                 //NewLevelBtn.SetActive(true);
 
-                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
-                {
-                    GameManager.instance.levelsUnlocked++;
-                }
+			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
+				GameManager.instance.levelsUnlocked++;
+			} else {//disable next button after last level
+				NewLevelBtn.SetActive(false);
+			}
                 break;
 
             case "Game over":

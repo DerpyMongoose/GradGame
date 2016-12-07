@@ -28,6 +28,7 @@ public class UIScript : MonoBehaviour
     GameObject skip_Button;
     GameObject twoHandsSplitScreen;
     GameObject tapPanel;
+    GameObject credits;
     Transform[] instr_SlidesChildren;
     [HideInInspector]
     public int slide = 5;
@@ -86,6 +87,7 @@ public class UIScript : MonoBehaviour
                 highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
                 levelNum.text = (GameManager.instance.levelsUnlocked-1).ToString();
                 highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
+                credits = GameObject.FindGameObjectWithTag("Credits");
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -98,6 +100,7 @@ public class UIScript : MonoBehaviour
                 play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 help_menu.SetActive(false);
+                credits.SetActive(false);
 
                 //UpdateMenuBG();
                 break;
@@ -119,6 +122,8 @@ public class UIScript : MonoBehaviour
                 play_menu.SetActive(false);
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 help_menu.SetActive(false);
+                credits = GameObject.FindGameObjectWithTag("Credits");
+                credits.SetActive(false);
                 UpdateLevelOverview();
                 break;
 
@@ -169,7 +174,7 @@ public class UIScript : MonoBehaviour
         {
             case GameManager.Scene.PLAY_MENU:
             //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
-            if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
+            if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy || credits.activeInHierarchy)
                 {
                     if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                     {
@@ -190,7 +195,11 @@ public class UIScript : MonoBehaviour
                         {
                             help_menu.SetActive(false);
                         }
-                    }
+                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
+                            !results.Exists(x => x.gameObject.tag == credits.tag))) {
+                            credits.SetActive(false);
+                        }
+                }
                 }
 
                 break;
@@ -220,6 +229,14 @@ public class UIScript : MonoBehaviour
     {
         help_menu.SetActive(false);
         //GameManager.instance.isInstructed = true;
+    }
+
+    public void CloseCredits() {
+        credits.SetActive(false);
+    }
+
+    public void OpenCredits() {
+        credits.SetActive(true);
     }
 
     public void BackToGame()
