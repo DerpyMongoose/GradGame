@@ -531,12 +531,13 @@ public class LevelManager : MonoBehaviour
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.2");
                             ObjectManagerV2.instance.canDamage = true;
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
-                            {                               
+                            {
                                 completed = true;
                                 GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = initialRageObjects;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 0f;
-                                startTimer2 = true;
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
+                                StartCoroutine(Delay());
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
@@ -594,21 +595,10 @@ public class LevelManager : MonoBehaviour
                                 startTimer = false;
                             }
                         }
-                        if(startTimer2 == true && completed == true)
-                        {
-                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
-                            timer += Time.deltaTime;
-                            if(timer > 3f)
-                            {
-                                StartCoroutine(Delay());
-                                timer = 0;
-                            }
-                            //StartCoroutine(Delay());
-                        }
-                        if(startTimer3 == true)
+                        if (startTimer3 == true)
                         {
                             timer3 += Time.deltaTime;
-                            if(timer3 > 3f)
+                            if (timer3 > 3f)
                             {
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.01");
                                 timer3 = 0;
@@ -634,7 +624,9 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.player.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.instance.isInstructed = true;
         GameManager.instance.tutorialTaskCompleted();
-        GameManager.instance.currentScene = GameManager.Scene.GAME;
+        continueButton.SetActive(true);
+
+        //GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
     public void TutObj(GameObject obj, Vector3 place)
@@ -643,7 +635,6 @@ public class LevelManager : MonoBehaviour
         obj.transform.position = GameManager.instance.player.transform.position - place;
         obj.transform.rotation = Quaternion.identity;
     }
-
 
     public void Continue()
     {
@@ -719,8 +710,8 @@ public class LevelManager : MonoBehaviour
         {
             gems[i].SetActive(false);
         }
-       
-        
+
+
 
         InGamePanel.SetActive(false);
         ReplayPanel.SetActive(true);
@@ -730,7 +721,7 @@ public class LevelManager : MonoBehaviour
         Text levelNum = GameObject.Find("levelnumber").GetComponent<Text>();
         if (GameManager.instance.currentLevel != 1)
         {
-            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel-1).ToString();
+            levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + " " + (GameManager.instance.currentLevel - 1).ToString();
         }
         else levelNum.text = LanguageManager.instance.ReturnWord("Tutorial"); //Tutorial needs to be added to language manager? I guess?
 
@@ -762,7 +753,7 @@ public class LevelManager : MonoBehaviour
         }
 
         GameManager.instance.Save();
-        if(GameManager.instance.currentLevel != 1)
+        if (GameManager.instance.currentLevel != 1)
         {
             StartCoroutine(CountPointsTo(score)); // show counting score
         }
@@ -793,7 +784,8 @@ public class LevelManager : MonoBehaviour
         replayScoreText.text = "Score:\n" + new_score + " $";
         highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
 
-        for (int i = 0; i < stars; i++) {
+        for (int i = 0; i < stars; i++)
+        {
             //Play Sound here (Add delay with coroutine)
             yield return new WaitForSeconds(0.5f);
             GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
