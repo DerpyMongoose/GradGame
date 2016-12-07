@@ -506,7 +506,11 @@ public class UIScript : MonoBehaviour
     }
 
     public void Continue()
-    {
+    {   
         GameManager.instance.timerOut();
+        if(GameManager.instance.currentLevel == 1)
+        {
+            GameManager.instance.currentScene = GameManager.Scene.GAME;
+        }
     }
 }
