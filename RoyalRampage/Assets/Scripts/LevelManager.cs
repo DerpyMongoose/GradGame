@@ -54,6 +54,8 @@ public class LevelManager : MonoBehaviour
     GameObject twoHandsSplitScreen;
     GameObject levelNr;
     GameObject lvlNr;
+    GameObject InGameGem;
+    GameObject highScoreTextForTUT;
     GameObject[] gems;
     private GameObject continueButton;
     [HideInInspector]
@@ -131,7 +133,7 @@ public class LevelManager : MonoBehaviour
                 {
                     gems[i - 1] = GameObject.Find("Gem" + i.ToString());
                 }
-                scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+                scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
                 scoreText.text = score.ToString(); // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
                 minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel;
@@ -141,7 +143,8 @@ public class LevelManager : MonoBehaviour
                 guideText = GameObject.Find("GuideText").GetComponent<Text>();
                 guideText.text = "";
                 twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
-
+                highScoreTextForTUT = GameObject.FindGameObjectWithTag("HighScoreText");
+                InGameGem = GameObject.FindGameObjectWithTag("InGameGem");
                 ReplayPanel = GameObject.FindGameObjectWithTag("ReplayPanel");
                 InGamePanel = GameObject.FindGameObjectWithTag("InGamePanel");
                 IntroTapPanel = GameObject.FindGameObjectWithTag("IntroTapPanel");
@@ -151,10 +154,12 @@ public class LevelManager : MonoBehaviour
                 //starText = GameObject.Find("stars").GetComponent<Text>();
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
+                highScoreTextForTUT.SetActive(true);
                 twoHandsSplitScreen.SetActive(false);
                 ReplayPanel.SetActive(false);
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
+                InGameGem.SetActive(false);
                 break;
             case GameManager.Scene.TUTORIAL:
                 for (int i = 1; i <= gems.Length; i++)
@@ -172,6 +177,7 @@ public class LevelManager : MonoBehaviour
                 replayScore = GameObject.FindGameObjectWithTag("GOscore");
                 replayScoreText = GameObject.FindGameObjectWithTag("GOscore").GetComponent<Text>();
                 highScoreText = GameObject.FindGameObjectWithTag("HighScore").GetComponent<Text>();
+                highScoreTextForTUT = GameObject.FindGameObjectWithTag("HighScoreText");
                 goalPanel = GameObject.Find("InGameGUI/GoalPanel");
                 scorePanel = GameObject.Find("InGameGUI/ScorePanel");
                 highscore = GameObject.Find("replayPanelv2/Highscore");
@@ -190,6 +196,7 @@ public class LevelManager : MonoBehaviour
                 continueButton.SetActive(false);
                 InGamePanel.SetActive(false);
                 IntroTapPanel.SetActive(false);
+                highScoreTextForTUT.SetActive(false);
                 break;
                 // GameManager.instance.levelLoad(); // FOR AUDIO
         }
@@ -284,12 +291,18 @@ public class LevelManager : MonoBehaviour
                     {
                         tempScore = starValue[starIndex];
                         minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore;
-                        updateGoal = false;
+                    GameManager.instance.gemScoreDisplay();
+                    InGameGem.SetActive(true);
+                    StartCoroutine(DisplayIngameGem());
+                    updateGoal = false;
                     }
                     else if (starIndex == 5 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore != 0)
                     {
                         minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore;
-                    }
+                    GameManager.instance.gemScoreDisplay();
+                    InGameGem.SetActive(true);
+                    StartCoroutine(DisplayIngameGem());
+                }
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -634,6 +647,11 @@ public class LevelManager : MonoBehaviour
         continueButton.SetActive(true);
 
         //GameManager.instance.currentScene = GameManager.Scene.GAME;
+    }
+
+    IEnumerator DisplayIngameGem() { 
+        yield return new WaitForSeconds(1f);
+        InGameGem.SetActive(false);
     }
 
     public void TutObj(GameObject obj, Vector3 place)
