@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour
     GameObject tutorialObj6;
     bool smashed;
     bool completed;
-    bool startTimer;
+    bool startTimer, startTimer2;
     float timer, timer2;
 
     List<LevelAndObjects> highScoreList;
@@ -112,6 +112,7 @@ public class LevelManager : MonoBehaviour
         updateGoal = false;
         smashed = false;
         startTimer = false;
+        startTimer2 = false;
         timer = 0;
         timer2 = 0;
         starIndex = 0;
@@ -538,7 +539,7 @@ public class LevelManager : MonoBehaviour
                                 GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = initialRageObjects;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 0f;
-                                StartCoroutine(Delay());
+                                startTimer2 = true;
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
@@ -593,6 +594,16 @@ public class LevelManager : MonoBehaviour
                                 timer2 = 0;
                                 startTimer = false;
                             }
+                        }
+                        if(startTimer2 == true && completed == true)
+                        {
+                            timer += Time.deltaTime;
+                            if(timer > 3f)
+                            {
+
+                                StartCoroutine(Delay());
+                            }
+                            StartCoroutine(Delay());
                         }
                         break;
                 }
