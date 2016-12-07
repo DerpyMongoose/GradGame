@@ -132,9 +132,9 @@ public class LevelManager : MonoBehaviour
                     gems[i - 1] = GameObject.Find("Gem" + i.ToString());
                 }
                 scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-                scoreText.text = score.ToString() + " $"; // in game score
+                scoreText.text = score.ToString(); // in game score
                 minScoreText = GameObject.Find("MinScoreText").GetComponent<Text>();
-                minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel + " $";
+                minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + scoreToCompleteLevel;
                 guideText = GameObject.FindGameObjectWithTag("GuideText").GetComponent<Text>();
                 SetLevelTextScript.instance.SetText(GameManager.instance.currentLevel - 1);
                 SetReachGoalScript.instance.SetText(scoreToCompleteLevel);
@@ -200,7 +200,7 @@ public class LevelManager : MonoBehaviour
         if (GameManager.instance.canPlayerDestroy && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
         {
             int points = destructedObj.GetComponent<ObjectBehavior>().score;
-            scoreText.text = score.ToString() + " $"; // in game score
+            scoreText.text = score.ToString(); // in game score
             while (amountOfObjects <= ObjectManagerV2.instance.countObjects)
             {
                 //Timer shouldn't change during combo.
@@ -210,7 +210,7 @@ public class LevelManager : MonoBehaviour
                 ObjectManagerV2.instance.countMultiTime = 0;
             }
             score += points * multiplier;
-            scoreText.text = score.ToString() + " $"; // in game score
+            scoreText.text = score.ToString(); // in game score
             GameManager.instance.score = score;
             //GameManager.instance.player.GetComponent<StampBar>().tempScore += points;
             //StampBar.increaseFill = true;  ///WHY IS THIS HERE?????
@@ -283,12 +283,12 @@ public class LevelManager : MonoBehaviour
                     if (starIndex <= 4)
                     {
                         tempScore = starValue[starIndex];
-                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore + " $";
+                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore;
                         updateGoal = false;
                     }
                     else if (starIndex == 5 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore != 0)
                     {
-                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore + " $";
+                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore;
                     }
                 }
 
@@ -703,8 +703,8 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
-        replayScoreText.text = "Score:\n" + "0" + " $"; //will be updated in counting loop    
+        highScoreText.text = highScoreList[0].HighScore.ToString();
+        replayScoreText.text = "0"; //will be updated in counting loop    
         if (score >= highScoreList[0].HighScore)
         {
             SaveHighScore.instance.saveData((GameManager.instance.currentLevel - 1).ToString(), score);
@@ -784,15 +784,15 @@ public class LevelManager : MonoBehaviour
             {
                 float progress = timer / duration;
                 int temp_score = (int)Mathf.Lerp(start, new_score, progress);
-                replayScoreText.text = "Score:\n" + temp_score + " $";
+                replayScoreText.text = temp_score.ToString();
                 GameManager.instance.audioManager.UpdatePointCounter(temp_score);
                 yield return null;
             }
             GameManager.instance.audioManager.UpdatePointCounter(new_score);
             GameManager.instance.finishedCountingPoints();
         }
-        replayScoreText.text = "Score:\n" + new_score + " $";
-        highScoreText.text = "HighScore:\n" + highScoreList[0].HighScore.ToString();
+        replayScoreText.text = new_score.ToString();
+        highScoreText.text = highScoreList[0].HighScore.ToString();
 
         for (int i = 0; i < stars; i++)
         {
