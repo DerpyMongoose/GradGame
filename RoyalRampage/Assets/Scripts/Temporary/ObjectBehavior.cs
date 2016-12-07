@@ -20,7 +20,7 @@ public class ObjectBehavior : MonoBehaviour
     [HideInInspector]
     public bool slowed;
     [HideInInspector]
-    public bool lifted, flying;
+    public bool lifted, flying, canRotate;
 
     public bool hasLanded;
 
@@ -147,6 +147,7 @@ public class ObjectBehavior : MonoBehaviour
         lifted = false;
         flying = false;
         hit = false;
+        canRotate = false;
         hasLanded = true;
         //ObjectManagerV2.instance.maxScore += score;  
 
@@ -178,7 +179,7 @@ public class ObjectBehavior : MonoBehaviour
         if (flying)
         {
             //APPLY TRANSFORM ROTATION
-            transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
+            //transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
 
             if (Mathf.Round(objRB.velocity.y * 10) / 10 < 0 && !slowed) //Checking if the object reached its peak and if it has already been slowed down from slowMotion.
             {
@@ -193,6 +194,11 @@ public class ObjectBehavior : MonoBehaviour
                     transform.position -= Vector3.up * 0.003f;
                 }
             }
+        }
+
+        if (canRotate)
+        {
+            transform.Rotate(Vector3.up, GameManager.instance.player.GetComponent<PlayerStates>().torgueForce, Space.World);
         }
     }
 
@@ -260,7 +266,7 @@ public class ObjectBehavior : MonoBehaviour
     {
         float randomVal = Random.value;
 
-        if (randomVal < currencySpawnChance)
+        if (randomVal < currencySpawnChance && GameManager.instance.player.GetComponent<PlayerStates>().state != PlayerStates.PlayerState.ENDING)
         {//Optimise!
             Instantiate((GameObject)Resources.Load("Collectibles/Currency", typeof(GameObject)), new Vector3(transform.position.x, 0.5f, transform.position.z), Quaternion.identity);
         }
@@ -334,6 +340,7 @@ public class ObjectBehavior : MonoBehaviour
                 if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
                 {
                     lifted = false;
+                    flying = false;
                     if (hasLanded == false)
                     {
                         if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
@@ -355,9 +362,9 @@ public class ObjectBehavior : MonoBehaviour
 
     void OnCollisionStay(Collision col)
     {
-        if (flying && (col.collider.tag == "Wall" || col.collider.tag == "Floor"))
+        if (canRotate && (col.collider.tag == "Wall" || col.collider.tag == "UniqueObjs"))
         {
-            flying = false;
+            canRotate = false;
         }
     }
 }

@@ -272,17 +272,24 @@ public class LevelManager : MonoBehaviour
                     ObjectManagerV2.instance.countMultiTime = 0;
                 }
 
-                if (score >= tempScore && score != 0 && starIndex <= 4)
+                if (score >= tempScore && score != 0)
                 {
                     updateGoal = true;
                     starIndex += 1;
                 }
-
+                
                 if (updateGoal == true)
                 {
-                    tempScore = starValue[starIndex];
-                    minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore + " $";
-                    updateGoal = false;
+                    if (starIndex <= 4)
+                    {
+                        tempScore = starValue[starIndex];
+                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore + " $";
+                        updateGoal = false;
+                    }
+                    else if (starIndex == 5 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore != 0)
+                    {
+                        minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore + " $";
+                    }
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -734,7 +741,9 @@ public class LevelManager : MonoBehaviour
 
 			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				GameManager.instance.levelsUnlocked++;
-			} else {//disable next button after last level
+			}
+			//disable next button after last level
+			if (GameManager.instance.levelsUnlocked == GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
 				NewLevelBtn.SetActive(false);
 			}
                 break;
