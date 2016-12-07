@@ -82,8 +82,8 @@ public class LevelManager : MonoBehaviour
     GameObject tutorialObj6;
     bool smashed;
     bool completed;
-    bool startTimer, startTimer2;
-    float timer, timer2;
+    bool startTimer, startTimer2, startTimer3;
+    float timer, timer2, timer3;
 
     List<LevelAndObjects> highScoreList;
     List<LevelAndStars> starsList;
@@ -441,11 +441,6 @@ public class LevelManager : MonoBehaviour
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut3.1");
                                 tutorialObj1 = (GameObject)Instantiate(tutorial_chair, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
                             }
-                            //else if (tutorialBarrel == null && completed == false && tutorialBarrel2 != null)
-                            //{
-                            //    tutorialBarrel = (GameObject)Instantiate(tutorialPrefab, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, 1)), Quaternion.identity);
-                            //    startTimer = false;
-                            //}
                         }
                         break;
                     case GameManager.Tutorial.SWIRL:
@@ -458,6 +453,7 @@ public class LevelManager : MonoBehaviour
                             tutorialObj5 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(0.5f, 0, -1)), Quaternion.identity);
                             tutorialObj6 = (GameObject)Instantiate(tutorial_vaseb, (GameManager.instance.player.transform.position - new Vector3(-0.5f, 0, -1)), Quaternion.identity);
                             panel.SetActive(false);
+                            GameManager.instance.player.transform.rotation = Quaternion.LookRotation(Vector3.back);
                             ObjectManagerV2.instance.canDamage = false;
                             GameManager.instance.player.GetComponent<SwipeHalf>().swirlEnded = true;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
@@ -525,16 +521,17 @@ public class LevelManager : MonoBehaviour
 
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
 
+                            startTimer3 = true;
                             spawnedObject = false;
                         }
 
                         if (GameManager.instance.player.GetComponent<SwipeHalf>().stompTut == true && completed == false)
                         {
+                            startTimer3 = false;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut5.2");
                             ObjectManagerV2.instance.canDamage = true;
                             if (PlayerStates.swiped == true || GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true)
-                            {
-                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
+                            {                               
                                 completed = true;
                                 GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = initialRageObjects;
@@ -557,9 +554,11 @@ public class LevelManager : MonoBehaviour
                         {
                             guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
                             startTimer = true;
+                            startTimer3 = false;
                         }
                         else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true && completed == false)
                         {
+                            startTimer3 = false;
                             guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
                             timer += Time.deltaTime;
                             if (timer > 2f)
@@ -571,7 +570,7 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
-                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.01");
 
                                 timer = 0;
                                 GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut = false;
@@ -589,7 +588,7 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj5, new Vector3(0.5f, 0, -1));
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
-                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.0");
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.01");
 
                                 timer2 = 0;
                                 startTimer = false;
@@ -597,13 +596,24 @@ public class LevelManager : MonoBehaviour
                         }
                         if(startTimer2 == true && completed == true)
                         {
+                            guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
                             timer += Time.deltaTime;
                             if(timer > 3f)
                             {
-
                                 StartCoroutine(Delay());
+                                timer = 0;
                             }
-                            StartCoroutine(Delay());
+                            //StartCoroutine(Delay());
+                        }
+                        if(startTimer3 == true)
+                        {
+                            timer3 += Time.deltaTime;
+                            if(timer3 > 3f)
+                            {
+                                guideText.text = LanguageManager.instance.ReturnWord("Tut5.01");
+                                timer3 = 0;
+                                startTimer3 = false;
+                            }
                         }
                         break;
                 }
