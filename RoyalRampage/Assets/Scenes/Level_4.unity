@@ -2519,11 +2519,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013093427598, guid: 162e70435704dab40a98f8850996c2b7,
     type: 2}
   m_PrefabInternal: {fileID: 140454308}
---- !u!4 &159034923 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000013400599650, guid: 5950ab559094bff4693b84287113f3d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 240960655}
 --- !u!1001 &167627823
 Prefab:
   m_ObjectHideFlags: 0
@@ -3059,7 +3054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: b624e1e24ad981f40ab53e3d4b7e27bf, type: 3}
   Exposure: 0.9
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -7958,7 +7953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 75ec3ae7d7ea1b14ab0869e7e66de89a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -10887,7 +10882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 5bb8a4cd5d006d54bb2e469728ae977a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -11398,7 +11393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 5bb8a4cd5d006d54bb2e469728ae977a, type: 3}
   Exposure: 1
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -13670,7 +13665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: b624e1e24ad981f40ab53e3d4b7e27bf, type: 3}
   Exposure: 0.9
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -31611,7 +31606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LutTexture: {fileID: 2800000, guid: 05b3b935e9d5e86438062ae576966b34, type: 3}
   Exposure: 0.9
-  EnterBlendTime: 0.1
+  EnterBlendTime: 0.07
   Priority: 0
   ShowInSceneView: 1
   EffectContainer:
@@ -34866,7 +34861,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   UseVolumes: 1
   ExitVolumeBlendTime: 1
-  TriggerVolumeProxy: {fileID: 159034923}
+  TriggerVolumeProxy: {fileID: 0}
   VolumeCollisionMask:
     serializedVersion: 2
     m_Bits: 4294967295
