@@ -203,6 +203,10 @@ public class UIScript : MonoBehaviour
                             !results.Exists(x => x.gameObject.tag == credits.tag))) {
                             credits.SetActive(false);
                         }
+                    if ((results.Exists(x => x.gameObject.tag == background.tag) &&
+                        !results.Exists(x => x.gameObject.tag == levels_menu.tag))) {
+                        levels_menu.SetActive(false);
+                    }
                 }
                 }
 

@@ -20,7 +20,7 @@ public class SetReachGoalScript : MonoBehaviour
     void OnEnable()
     {
             LanguageManager.instance.ChangeText += changeText;
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString() + "$";
+            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString();
     }
 
     void OnDisable()
@@ -31,12 +31,12 @@ public class SetReachGoalScript : MonoBehaviour
 
     private void changeText()
     {
-            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString() + "$";
+            GetComponentInChildren<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString();
     }
 
     public void SetText(int input)
     {
             thisInput = input;
-            GetComponent<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString() + "$";
+            GetComponent<Text>().text = LanguageManager.instance.ReturnWord(key) + " " + thisInput.ToString();
     }
 }
