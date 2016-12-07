@@ -17,6 +17,7 @@ public class UIScript : MonoBehaviour
     GameObject background;
     GameObject behindPanelButton;
     GameObject pause_menu;
+    GameObject pauseButton;
     GameObject settings_menu;
     GameObject levels_menu;
     GameObject levels;
@@ -143,6 +144,7 @@ public class UIScript : MonoBehaviour
 
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
                 pause_menu.SetActive(false);
@@ -154,6 +156,8 @@ public class UIScript : MonoBehaviour
             case GameManager.Scene.TUTORIAL:
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+            
+                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
                 twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
@@ -352,6 +356,7 @@ public class UIScript : MonoBehaviour
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
         pause_menu.SetActive(true);
+        pauseButton.SetActive(false);
         behindPanelButton.SetActive(true);
         GameManager.instance.PauseGame();
 
@@ -367,6 +372,12 @@ public class UIScript : MonoBehaviour
         behindPanelButton.SetActive(false);
 		GameManager.instance.menuRolledIn ();
 		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
+        StartCoroutine(PauseButtonDelay());
+    }
+
+    IEnumerator PauseButtonDelay() {
+        yield return new WaitForSeconds(0.5f);
+        pauseButton.SetActive(true);
     }
 
     public void RestartGame()
