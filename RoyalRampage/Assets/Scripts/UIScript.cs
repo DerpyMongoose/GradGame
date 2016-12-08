@@ -365,7 +365,7 @@ public class UIScript : MonoBehaviour
         pause_menu.SetActive(true);      
         behindPanelButton.SetActive(true);
         pauseButton.SetActive(false);
-        GameManager.instance.PauseGame();    
+        GameManager.instance.PauseGame();  
 
     }
     public void UnPauseGame()
