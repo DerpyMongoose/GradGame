@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour
     bool completed;
     bool startTimer, startTimer2, startTimer3;
     float timer, timer2, timer3;
-    public static string tutText;
+    public string tutText;
 
     List<LevelAndObjects> highScoreList;
     List<LevelAndStars> starsList;
@@ -115,7 +115,6 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        tutText = "";
         highScoreList = new List<LevelAndObjects>();
         starsList = new List<LevelAndStars>();
         gems = new GameObject[5];
@@ -206,6 +205,7 @@ public class LevelManager : MonoBehaviour
                 InGamePanel.SetActive(false);
                 IntroTapPanel.SetActive(false);
                 highScoreTextForTUT.SetActive(false);
+                tutText = "";
                 break;
                 // GameManager.instance.levelLoad(); // FOR AUDIO
         }
@@ -688,10 +688,13 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateTutText()
     {
-        if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
+        string tempVar = LanguageManager.instance.ReturnWord(tutText);
+        print(guideText.text + " & " + tutText + " & " + tempVar);
+        guideText.text = tempVar;
+        /*if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL || guideText.text != null)
         {
             guideText.text = LanguageManager.instance.ReturnWord(tutText);
-        }
+        }*/
     }
 
     IEnumerator Delay()

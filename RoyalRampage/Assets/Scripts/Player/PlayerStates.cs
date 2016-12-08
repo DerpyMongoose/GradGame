@@ -188,7 +188,7 @@ public class PlayerStates : MonoBehaviour
                             transform.position = GameManager.instance.levelManager.playerPos;
                             timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                             GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
-                            LevelManager.tutText = "TryAgain";
+                            GameManager.instance.levelManager.tutText = "TryAgain";
                             SwipeHalf.startTutTimer = false;
                             timerStart2 = true;
                         }
@@ -216,7 +216,7 @@ public class PlayerStates : MonoBehaviour
                     if (timer > 2f)
                     {
                         GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
-                        LevelManager.tutText = "Tut1.2";
+                        GameManager.instance.levelManager.tutText = "Tut1.2";
                         timer = 0;
                         timerStart2 = false;
                     }
@@ -225,6 +225,14 @@ public class PlayerStates : MonoBehaviour
                 timeSliderRight.value = timeLeftInLevel / totalTime;
 
                 break;
+        }
+    }
+
+    public void UpdateTutText()
+    {
+        if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
+        {
+            GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord(tutText);
         }
     }
 
@@ -246,7 +254,7 @@ public class PlayerStates : MonoBehaviour
     {
         if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
         {
-            LanguageManager.instance.ChangeText += GameManager.instance.levelManager.UpdateTutText;
+            LanguageManager.instance.ChangeText += UpdateTutText;
         }
         GameManager.instance.OnTimerOut += EndLevel;
     }
@@ -255,7 +263,7 @@ public class PlayerStates : MonoBehaviour
     {
         if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
         {
-            LanguageManager.instance.ChangeText -= GameManager.instance.levelManager.UpdateTutText;
+            LanguageManager.instance.ChangeText -= UpdateTutText;
         }
         GameManager.instance.OnTimerOut -= EndLevel;
     }
