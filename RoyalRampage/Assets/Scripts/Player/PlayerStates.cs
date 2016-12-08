@@ -140,7 +140,7 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true) || GameManager.instance.isPaused)
+                    if (GameManager.instance.isPaused || GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true))
                     {
                         timeLeftInLevel -= 0;
                         timeSliderLeft.transform.Find("Fill Area/Fill").GetComponent<Image>().color = new Color(135f / 255f, 135f / 255f, 135f / 255f);
