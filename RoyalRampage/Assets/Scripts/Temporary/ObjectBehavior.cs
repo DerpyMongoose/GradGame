@@ -337,19 +337,20 @@ public class ObjectBehavior : MonoBehaviour
 
                 //********** 4 AUDIO and ANIMATION
 
-                if (col.collider.tag == "Floor" || Mathf.Round(objRB.velocity.magnitude) == 0)
+                if (col.collider.tag == "Floor" || objRB.velocity.magnitude <= 0.1f)
                 {
                     lifted = false;
                     flying = false;
                     if (hasLanded == false)
-                    {
-                        if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && GameManager.instance.CurrentScene() == GameManager.Scene.TUTORIAL)
-                        {
-                            ObjectManagerV2.instance.isGrounded = true;
-                        }
+                    {            
                         GameManager.instance.objectLanding(gameObject);
                     }
-                    hasLanded = true;
+                    hasLanded = true;                
+                }
+
+                if (GameManager.instance.TutorialState() == GameManager.Tutorial.STOMP && col.collider.tag == "Floor")
+                {
+                    ObjectManagerV2.instance.isGrounded = true;
                 }
             }
         }

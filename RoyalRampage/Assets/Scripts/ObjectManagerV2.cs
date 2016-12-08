@@ -7,7 +7,7 @@ public class ObjectManagerV2 : MonoBehaviour
     public static ObjectManagerV2 instance;
 
     [HideInInspector]
-    public bool canDamage, isGrounded; //CAUTION: THIS IS MEANT FOR THE TUTORIAL ONLY
+    public bool canDamage, isGrounded, stompReset; //CAUTION: THIS IS MEANT FOR THE TUTORIAL ONLY
 
     [Header("Forces")]
     public float oneToAnother;
