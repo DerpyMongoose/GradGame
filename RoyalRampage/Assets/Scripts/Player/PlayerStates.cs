@@ -51,7 +51,6 @@ public class PlayerStates : MonoBehaviour
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
     GameObject timerUI;
-    string tutText;
 
     Slider timeSliderLeft;
     Slider timeSliderRight;
@@ -59,7 +58,6 @@ public class PlayerStates : MonoBehaviour
 
     void Start()
     {
-        tutText = "";
         state = PlayerState.READY;
         SwipeHalf.startTutTimer = false;
         timerStart = false;
@@ -188,7 +186,6 @@ public class PlayerStates : MonoBehaviour
                             transform.position = GameManager.instance.levelManager.playerPos;
                             timeLeftInLevel = GameManager.instance.levelManager.timeToCompleteLevel;
                             GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("TryAgain");
-                            GameManager.instance.levelManager.tutText = "TryAgain";
                             SwipeHalf.startTutTimer = false;
                             timerStart2 = true;
                         }
@@ -216,7 +213,6 @@ public class PlayerStates : MonoBehaviour
                     if (timer > 2f)
                     {
                         GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
-                        GameManager.instance.levelManager.tutText = "Tut1.2";
                         timer = 0;
                         timerStart2 = false;
                     }
@@ -225,14 +221,6 @@ public class PlayerStates : MonoBehaviour
                 timeSliderRight.value = timeLeftInLevel / totalTime;
 
                 break;
-        }
-    }
-
-    public void UpdateTutText()
-    {
-        if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
-        {
-            GameManager.instance.levelManager.guideText.text = LanguageManager.instance.ReturnWord(tutText);
         }
     }
 
@@ -252,19 +240,11 @@ public class PlayerStates : MonoBehaviour
 
     void OnEnable()
     {
-        if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
-        {
-            LanguageManager.instance.ChangeText += UpdateTutText;
-        }
         GameManager.instance.OnTimerOut += EndLevel;
     }
 
     void OnDisable()
     {
-        if (GameManager.instance.currentScene == GameManager.Scene.TUTORIAL)
-        {
-            LanguageManager.instance.ChangeText -= UpdateTutText;
-        }
         GameManager.instance.OnTimerOut -= EndLevel;
     }
 }
