@@ -28,6 +28,8 @@ public class LevelManager : MonoBehaviour
     float t;
     [HideInInspector]
     public bool targetReached = false;
+    [HideInInspector]
+    public bool wrongMove;
     int[] starValue;
     int starIndex;
     int stars = 0;
@@ -125,6 +127,7 @@ public class LevelManager : MonoBehaviour
         smashed = false;
         startTimer = false;
         startTimer2 = false;
+        wrongMove = false;
         timer = 0;
         timer2 = 0;
         starIndex = 0;
@@ -507,6 +510,7 @@ public class LevelManager : MonoBehaviour
                         {
                             guideText.text = LanguageManager.instance.ReturnWord("TryAgain"); // FAIL MESSAGE
                             tutText = "TryAgain";
+                            wrongMove = true;
                             startTimer = true;
                         }
 
@@ -526,11 +530,12 @@ public class LevelManager : MonoBehaviour
 
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
                                 tutText = "Tut4.0";
-
+                                wrongMove = false;
                                 timer = 0;
                             }
                         }
-                        else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true) //startTimer changed, change back if broken
+
+                        if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true) //startTimer changed, change back if broken
                         {
                             ObjectManagerV2.instance.canDamage = true;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
