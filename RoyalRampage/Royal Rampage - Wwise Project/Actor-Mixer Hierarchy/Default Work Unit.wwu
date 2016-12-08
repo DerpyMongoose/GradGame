@@ -63,7 +63,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-1</Value>
+										<Value>-2</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -3451,7 +3451,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-2</Value>
+												<Value>-3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -13295,10 +13295,34 @@
 								</State>
 							</CustomState>
 							<CustomState>
+								<StateRef Name="In_Intro_Cutscene" ID="{38391072-D2E2-49B3-AE38-AFDEFEE46948}"/>
+								<State Name="Custom State" ID="{A5E6A071-25A6-45CA-8EBA-32188CF65AA1}" ShortID="28805563">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{F58D32B5-C9A4-4F4F-83D5-CFF46C248EDC}" ShortID="415981390">
 									<PropertyList>
-										<Property Name="Pitch" Type="int32" Value="-2400"/>
+										<Property Name="Pitch" Type="int32" Value="-1200"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="In_Loading_Screen" ID="{FE4B70AC-DC22-4B79-8C49-4EE87512AD32}"/>
+								<State Name="Custom State" ID="{8B6B7EB8-BDCB-46FC-9C34-B4238E41D179}" ShortID="368288308">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="In_Main_Menu" ID="{0D2E4AB5-3973-4CBF-B953-F0C059179198}"/>
+								<State Name="Custom State" ID="{7B760931-D620-4B67-8A21-F64428BBBAFA}" ShortID="59674884">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -15899,10 +15923,34 @@
 								</State>
 							</CustomState>
 							<CustomState>
+								<StateRef Name="In_Intro_Cutscene" ID="{38391072-D2E2-49B3-AE38-AFDEFEE46948}"/>
+								<State Name="Custom State" ID="{036FAC64-49A3-48EA-8F2A-0EC1C3129EE8}" ShortID="33172443">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
 								<StateRef Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 								<State Name="Custom State" ID="{399512B6-4A8B-4110-8B98-DA8023FDE0C6}" ShortID="306620652">
 									<PropertyList>
-										<Property Name="Pitch" Type="int32" Value="-2400"/>
+										<Property Name="Pitch" Type="int32" Value="-1200"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="In_Loading_Screen" ID="{FE4B70AC-DC22-4B79-8C49-4EE87512AD32}"/>
+								<State Name="Custom State" ID="{5F388616-5FF5-49FE-A83A-10A58A8D6A32}" ShortID="653565305">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="In_Main_Menu" ID="{0D2E4AB5-3973-4CBF-B953-F0C059179198}"/>
+								<State Name="Custom State" ID="{CC9C7557-E285-40B5-9B57-B4C29CD5AF4D}" ShortID="118694969">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-96"/>
 									</PropertyList>
 								</State>
 							</CustomState>
@@ -16167,6 +16215,13 @@
 							</ChildrenList>
 						</ActorMixer>
 						<ActorMixer Name="Score Screen" ID="{D66494C8-D35B-4AB6-8016-6E5B93858F5A}" ShortID="300855816">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -16360,6 +16415,13 @@
 							</ChildrenList>
 						</ActorMixer>
 						<ActorMixer Name="Menus" ID="{01234512-ED3E-4BAF-83B7-6FF30278A4B1}" ShortID="328452837">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>

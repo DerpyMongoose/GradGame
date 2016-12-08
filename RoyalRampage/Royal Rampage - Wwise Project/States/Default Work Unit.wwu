@@ -32,7 +32,19 @@
 							<StartState Name="In_Level" ID="{D1F78839-58A9-4765-BEEE-D6BF1B260967}"/>
 							<EndState Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
 							<Time>0.5</Time>
-							<IsShared>true</IsShared>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="In_Level_Time_Running_Out" ID="{3ABCF693-0160-4132-9B57-B5E22A1212AB}"/>
+							<EndState Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="In_Level_Times_Up" ID="{2C6DCFCA-76A1-4DF3-ABA6-9BBC0F19404F}"/>
+							<EndState Name="In_Ground_Slam" ID="{64B5021E-E7FA-4A0A-A140-6E88D2101962}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
 						</Transition>
 					</TransitionList>
 				</StateGroup>
