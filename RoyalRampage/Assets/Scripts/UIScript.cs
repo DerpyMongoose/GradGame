@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-public class UIScript : MonoBehaviour
-{
+public class UIScript : MonoBehaviour {
 
     private float waitTimeMB = .13f;
     private float waitTimeSB = .3f;
@@ -34,10 +33,10 @@ public class UIScript : MonoBehaviour
     [HideInInspector]
     public int slide = 5;
 
-      GameObject help_menu;
-//    GameObject[] slides;
-//    GameObject arrowL;
-//    GameObject arrowR;
+    GameObject help_menu;
+    //    GameObject[] slides;
+    //    GameObject arrowL;
+    //    GameObject arrowR;
 
     Text starTotal;
     Text levelNum;
@@ -47,16 +46,13 @@ public class UIScript : MonoBehaviour
 
     int current_slide = 0;
 
-    void OnApplicationQuit()
-    {
+    void OnApplicationQuit() {
         GameManager.instance.Save();
     }
 
-    void Start()
-    {
+    void Start() {
         //set up the scene when opened
-        switch (GameManager.instance.CurrentScene())
-        {
+        switch (GameManager.instance.CurrentScene()) {
             /*case GameManager.Scene.INTRO:
 
             GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
@@ -68,107 +64,107 @@ public class UIScript : MonoBehaviour
             UpdateMenuBG();
             break;*/
             case GameManager.Scene.SPLASH:
-                GameManager.instance.Load();
-                GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
-                break;
+            GameManager.instance.Load();
+            GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
+            break;
 
-		case GameManager.Scene.ANIMATIC:
-			GameManager.instance.changeMusicState(AudioManager.IN_INTRO_CUTSCENE);
-			break;
+            case GameManager.Scene.ANIMATIC:
+            GameManager.instance.changeMusicState(AudioManager.IN_INTRO_CUTSCENE);
+            break;
 
-		case GameManager.Scene.PLAY_MENU:
-			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
-			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
-                GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            case GameManager.Scene.PLAY_MENU:
+            GameObject.Find("music_slider").GetComponent<Slider>().value = GameManager.instance.music_volume;
+            GameObject.Find("sfx_slider").GetComponent<Slider>().value = GameManager.instance.sfx_volume;
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
             //update level on play icon
-                highScoreList = new List<LevelAndObjects>();
-                highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.levelsUnlocked-1).ToString());
-                levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
-                levelNum.text = (GameManager.instance.levelsUnlocked-1).ToString();
-                highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
-                credits = GameObject.FindGameObjectWithTag("Credits");
-                GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
+            highScoreList = new List<LevelAndObjects>();
+            highScoreList = SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.levelsUnlocked - 1).ToString());
+            levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
+            highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
+            levelNum.text = (GameManager.instance.levelsUnlocked - 1).ToString();
+            highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
+            credits = GameObject.FindGameObjectWithTag("Credits");
+            GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
-                background = GameObject.FindGameObjectWithTag("menuBG");
+            background = GameObject.FindGameObjectWithTag("menuBG");
 
-                settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
-                settings_menu.SetActive(false);
-                levels_menu = GameObject.FindGameObjectWithTag("LevelPanel");
-                levels = GameObject.FindGameObjectWithTag("Levels");
-                levels_menu.SetActive(false);
-                play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
-                help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                help_menu.SetActive(false);
-                credits.SetActive(false);
+            settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
+            settings_menu.SetActive(false);
+            levels_menu = GameObject.FindGameObjectWithTag("LevelPanel");
+            levels = GameObject.FindGameObjectWithTag("Levels");
+            levels_menu.SetActive(false);
+            play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
+            help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
+            help_menu.SetActive(false);
+            credits.SetActive(false);
 
-                //UpdateMenuBG();
-                break;
+            //UpdateMenuBG();
+            break;
 
             case GameManager.Scene.LEVELS_OVERVIEW:
-			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
-			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
-                GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            GameObject.Find("music_slider").GetComponent<Slider>().value = GameManager.instance.music_volume;
+            GameObject.Find("sfx_slider").GetComponent<Slider>().value = GameManager.instance.sfx_volume;
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
 
-                //update level on play icon
-                levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
-                levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
+            //update level on play icon
+            levelNum = GameObject.FindGameObjectWithTag("level_number").GetComponentInChildren<Text>();
+            levelNum.text = (GameManager.instance.levelsUnlocked).ToString();
 
-                settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
-                settings_menu.SetActive(false);
-                levels_menu = GameObject.FindGameObjectWithTag("LevelPanel");
-                levels = GameObject.FindGameObjectWithTag("Levels");
-                play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
-                play_menu.SetActive(false);
-                help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                help_menu.SetActive(false);
-                credits = GameObject.FindGameObjectWithTag("Credits");
-                credits.SetActive(false);
-                UpdateLevelOverview();
-                break;
+            settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
+            settings_menu.SetActive(false);
+            levels_menu = GameObject.FindGameObjectWithTag("LevelPanel");
+            levels = GameObject.FindGameObjectWithTag("Levels");
+            play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
+            play_menu.SetActive(false);
+            help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
+            help_menu.SetActive(false);
+            credits = GameObject.FindGameObjectWithTag("Credits");
+            credits.SetActive(false);
+            UpdateLevelOverview();
+            break;
 
             case GameManager.Scene.STORE:
-                GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
-                break;
+            GameManager.instance.changeMusicState(AudioManager.IN_MAIN_MENU);  // FOR AUDIO
+            break;
 
             case GameManager.Scene.LOADING:
-                GameManager.instance.Loading();
-			GameManager.instance.changeMusicState(AudioManager.IN_LOADINGSCREEN);
-                break;
+            GameManager.instance.Loading();
+            GameManager.instance.changeMusicState(AudioManager.IN_LOADINGSCREEN);
+            break;
 
-		case GameManager.Scene.GAME:
-			GameObject.Find ("music_slider").GetComponent<Slider> ().value = GameManager.instance.music_volume;
-			GameObject.Find ("sfx_slider").GetComponent<Slider> ().value = GameManager.instance.sfx_volume;
-			GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
+            case GameManager.Scene.GAME:
+            GameObject.Find("music_slider").GetComponent<Slider>().value = GameManager.instance.music_volume;
+            GameObject.Find("sfx_slider").GetComponent<Slider>().value = GameManager.instance.sfx_volume;
+            GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
 
-                help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
-                pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
-                settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
-                behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
-                pause_menu.SetActive(false);
-                settings_menu.SetActive(false);              
-                help_menu.SetActive(false);
-                behindPanelButton.SetActive(false);
+            help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
+            pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+            pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
+            settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
+            behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
+            pause_menu.SetActive(false);
+            settings_menu.SetActive(false);
+            help_menu.SetActive(false);
+            behindPanelButton.SetActive(false);
 
-                break;
+            break;
             case GameManager.Scene.TUTORIAL:
-                help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+            help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
+            pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
 
-                pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
-                settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
-                behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
-                twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
-                tapPanel = GameObject.Find("IntroTapPanel");
+            pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
+            settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
+            behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
+            twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
+            tapPanel = GameObject.Find("IntroTapPanel");
 
-                pause_menu.SetActive(false);
-                settings_menu.SetActive(false);
-                help_menu.SetActive(false);
-                behindPanelButton.SetActive(false);
+            pause_menu.SetActive(false);
+            settings_menu.SetActive(false);
+            help_menu.SetActive(false);
+            behindPanelButton.SetActive(false);
 
-                break;
+            break;
         }
     }
 
@@ -189,19 +185,17 @@ public class UIScript : MonoBehaviour
     }*/
 
 
-    public void BehindPanel()
-    {
-        if (pause_menu.activeInHierarchy && !settings_menu.activeInHierarchy && !help_menu.activeInHierarchy)
-        {
-            UnPauseGame();
-        }
-        if (settings_menu.activeInHierarchy)
-        {
-            settings_menu.SetActive(false);
-        }
-        if (help_menu.activeInHierarchy)
-        {
-            help_menu.SetActive(false);
+    public void BehindPanel() {
+        if (Input.touchCount == 1) {
+            if (pause_menu.activeInHierarchy && !settings_menu.activeInHierarchy && !help_menu.activeInHierarchy) {
+                UnPauseGame();
+            }
+            if (settings_menu.activeInHierarchy) {
+                settings_menu.SetActive(false);
+            }
+            if (help_menu.activeInHierarchy) {
+                help_menu.SetActive(false);
+            }
         }
     }
 
@@ -225,8 +219,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void InstructionsSkip()
-    {
+    public void InstructionsSkip() {
         PlayMenuButtonSound();
         help_menu.SetActive(false);
         //GameManager.instance.isInstructed = true;
@@ -244,15 +237,13 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void BackToGame()
-    {
-		GameManager.instance.finishedCountingPoints();
-		PlayStartButtonSound();
+    public void BackToGame() {
+        GameManager.instance.finishedCountingPoints();
+        PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "BackToGame"));
     }
 
-    public void BackToPreviousScreen()
-    {
+    public void BackToPreviousScreen() {
 
         // *** FOR AUDIO
         PlayMenuButtonSound();
@@ -260,60 +251,51 @@ public class UIScript : MonoBehaviour
 
     }
 
-    public void ToNextLevel()
-    {
+    public void ToNextLevel() {
 
         //***** FOR AUDIO
-		GameManager.instance.finishedCountingPoints();
+        GameManager.instance.finishedCountingPoints();
         PlayStartButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeSB, "ToNextLevel"));
 
     }
 
-    public void ToLevel(int level)
-    {
+    public void ToLevel(int level) {
 
         //***** FOR AUDIO
-        if (level <= GameManager.instance.levelsUnlocked)
-        {
+        if (level <= GameManager.instance.levelsUnlocked) {
             PlayStartButtonSound();
             StartCoroutine(WaitButtonFinish(waitTimeSB, "ToLevel", level));
-        }
-        else
-        {
+        } else {
             PlayMenuButtonSound();
             StartCoroutine(WaitButtonFinish(waitTimeMB, "ToLevel", level));
         }
 
     }
 
-    public void GoToStore()
-    {
+    public void GoToStore() {
         //***** FOR AUDIO
         PlayMenuButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToStore"));
     }
 
-    public void GoToLevelOverview()
-    {
+    public void GoToLevelOverview() {
 
         //***** FOR AUDIO
-        if(Input.touchCount == 1) {
+        if (Input.touchCount == 1) {
             PlayMenuButtonSound();
             StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
-        }      
+        }
     }
 
-    public void CloseLevelOverview()
-    {
+    public void CloseLevelOverview() {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeMB, "CloseLevelOverview"));
     }
 
-    public void GoToInfo()
-    {
+    public void GoToInfo() {
         if (Input.touchCount == 1) {
             //***** FOR AUDIO
             PlayMenuButtonSound();
@@ -322,16 +304,14 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void CloseInfo()
-    {
+    public void CloseInfo() {
         PlayMenuButtonSound();
         help_menu.SetActive(false);
 
     }
 
 
-    public void GoToSettings()
-    {
+    public void GoToSettings() {
         if (Input.touchCount == 1) {
             //***** FOR AUDIO
             PlayMenuButtonSound();
@@ -341,8 +321,7 @@ public class UIScript : MonoBehaviour
 
     }
 
-    public void CloseSettings()
-    {
+    public void CloseSettings() {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
@@ -351,31 +330,29 @@ public class UIScript : MonoBehaviour
 
     }
 
-    public void RemovePauseButton () {
+    public void RemovePauseButton() {
         pauseButton.SetActive(false);
     }
 
-    public void EnablePauseButton () {
+    public void EnablePauseButton() {
         StartCoroutine(PauseButtonDelay());
     }
 
-    public void PauseGame()
-    {
+    public void PauseGame() {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
-		GameManager.instance.menuRolledOut ();
+        GameManager.instance.menuRolledOut();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
-		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);
+        GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);
         pauseButton.SetActive(false);// FOR AUDIO
         GameManager.instance.isPaused = true;
-        pause_menu.SetActive(true);      
+        pause_menu.SetActive(true);
         behindPanelButton.SetActive(true);
-        GameManager.instance.PauseGame();  
+        GameManager.instance.PauseGame();
 
     }
-    public void UnPauseGame()
-    {
+    public void UnPauseGame() {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
@@ -384,8 +361,8 @@ public class UIScript : MonoBehaviour
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
         StartCoroutine(PauseButtonDelay());
-        GameManager.instance.menuRolledIn ();
-		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO       
+        GameManager.instance.menuRolledIn();
+        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO       
     }
 
     IEnumerator PauseButtonDelay() {
@@ -393,8 +370,7 @@ public class UIScript : MonoBehaviour
         pauseButton.SetActive(true);
     }
 
-    public void RestartGame()
-    {
+    public void RestartGame() {
 
         //***** FOR AUDIO
         PlayMenuButtonSound();
@@ -402,120 +378,107 @@ public class UIScript : MonoBehaviour
         GameManager.instance.BackToGame();
     }
 
-    public void GoToMainMenu()
-    {
-		GameManager.instance.finishedCountingPoints();
-		PlayMenuButtonSound();
+    public void GoToMainMenu() {
+        GameManager.instance.finishedCountingPoints();
+        PlayMenuButtonSound();
         StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToMainMenu"));
         Time.timeScale = 1;
     }
 
-    public void QuitGame () {
+    public void QuitGame() {
         Application.Quit();
     }
 
-    public void UpdateMusicVolume(Slider slider)
-    {
+    public void UpdateMusicVolume(Slider slider) {
         GameManager.instance.changeMusicVolume(slider.value);
     }
 
-    public void UpdateSFXVolume(Slider slider)
-    {
+    public void UpdateSFXVolume(Slider slider) {
         GameManager.instance.changeSFXVolume(slider.value);
     }
 
-    private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int))
-    {
+    private IEnumerator WaitButtonFinish(float waitTime, string btnAction, int level = default(int)) {
         yield return new WaitForSeconds(waitTime);
-        switch (btnAction)
-        {
+        switch (btnAction) {
             case "BackToGame":
-                GameManager.instance.BackToGame();
-                break;
+            GameManager.instance.BackToGame();
+            break;
 
             case "BackToPreviousScreen":
-                GameManager.instance.BackToPreviousScene();
-                break;
+            GameManager.instance.BackToPreviousScene();
+            break;
 
             case "ToNextLevel":
-                int next_level;
-                if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME)
-                {
-                    next_level = GameManager.instance.currentLevel + 1;
-                }
-                else
-                {
-                    next_level = GameManager.instance.currentLevel;
-                }
-                GameManager.instance.currentLevel = next_level;
-                GameManager.instance.StartLevel(next_level);
-                break;
+            int next_level;
+            if (GameManager.instance.currentLevel < GameManager.instance.NUM_OF_LEVELS_IN_GAME) {
+                next_level = GameManager.instance.currentLevel + 1;
+            } else {
+                next_level = GameManager.instance.currentLevel;
+            }
+            GameManager.instance.currentLevel = next_level;
+            GameManager.instance.StartLevel(next_level);
+            break;
 
             case "ToLevel":
-                if (level <= GameManager.instance.levelsUnlocked)
-                {
-                    GameManager.instance.currentLevel = level;
-                    GameManager.instance.StartLevel(level);
-                }
-                break;
+            if (level <= GameManager.instance.levelsUnlocked) {
+                GameManager.instance.currentLevel = level;
+                GameManager.instance.StartLevel(level);
+            }
+            break;
 
             case "GoToStore":
-                GameManager.instance.GoToStore();
-                break;
+            GameManager.instance.GoToStore();
+            break;
 
-		case "GoToLevelOverview":
-				play_menu.SetActive (false);
-				levels_menu.SetActive (true);
-				UpdateLevelOverview ();
-				GameManager.instance.GoToLevelOverview ();
-				GameManager.instance.letterOpen ();
-                break;
+            case "GoToLevelOverview":
+            play_menu.SetActive(false);
+            levels_menu.SetActive(true);
+            UpdateLevelOverview();
+            GameManager.instance.GoToLevelOverview();
+            GameManager.instance.letterOpen();
+            break;
 
-		case "CloseLevelOverview":
-				levels_menu.SetActive (false);
-				play_menu.SetActive (true);
-				GameManager.instance.CloseLevelOverview ();
-				GameManager.instance.letterClose ();
-                break;
+            case "CloseLevelOverview":
+            levels_menu.SetActive(false);
+            play_menu.SetActive(true);
+            GameManager.instance.CloseLevelOverview();
+            GameManager.instance.letterClose();
+            break;
 
             case "UnPauseGame":
-                pause_menu.SetActive(false);
-                break;
+            pause_menu.SetActive(false);
+            break;
 
             case "GoToMainMenu":
-                GameManager.instance.GoToMainMenu();
-                break;
+            GameManager.instance.GoToMainMenu();
+            break;
         }
     }
 
 
 
-    public void PlayMenuButtonSound()
-    {
+    public void PlayMenuButtonSound() {
         GameManager.instance.menuButtonClicked();
     }
 
-    public void PlayStartButtonSound()
-    {
+    public void PlayStartButtonSound() {
         GameManager.instance.startButtonClicked();
     }
 
-   /* private void UpdateMenuBG()
-    {
-        if (GameManager.instance.menu_bg_sprite != null)
-        {
-            Image bg = GameObject.FindGameObjectWithTag("menuBG").GetComponent<Image>();
-            bg.sprite = GameManager.instance.menu_bg_sprite;
-        }
-    }*/
+    /* private void UpdateMenuBG()
+     {
+         if (GameManager.instance.menu_bg_sprite != null)
+         {
+             Image bg = GameObject.FindGameObjectWithTag("menuBG").GetComponent<Image>();
+             bg.sprite = GameManager.instance.menu_bg_sprite;
+         }
+     }*/
 
-    private void UpdateLevelOverview()
-    {
+    private void UpdateLevelOverview() {
         //set the correct sprite on level icon
         Sprite[] unlockedSprite = GetComponent<MenuPublics>().unlockedSprite;
         Sprite lockedSprite = GetComponent<MenuPublics>().lockedSprite;
-        for (int i = 0; i < 6; i++)
-        {
+        for (int i = 0; i < 6; i++) {
             Image levelIcon = levels.transform.GetChild(i).GetComponent<Image>();
             if (i < GameManager.instance.levelsUnlocked)
                 levelIcon.sprite = unlockedSprite[i];
@@ -524,16 +487,13 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void LoadGame()
-    {
+    public void LoadGame() {
         GameManager.instance.LoadGame();
     }
 
-    public void Continue()
-    {   
+    public void Continue() {
         GameManager.instance.timerOut();
-        if(GameManager.instance.currentLevel == 1)
-        {
+        if (GameManager.instance.currentLevel == 1) {
             GameManager.instance.currentScene = GameManager.Scene.GAME;
         }
     }
