@@ -177,10 +177,7 @@ namespace AK
 
     namespace AUX_BUSSES
     {
-        static const AkUniqueID CORRIDOR = 4063189299U;
-        static const AkUniqueID HALL = 3633416828U;
-        static const AkUniqueID ROOM_HARD = 2608754132U;
-        static const AkUniqueID ROOM_SOFT = 2222662711U;
+        static const AkUniqueID ROOM = 2077253480U;
     } // namespace AUX_BUSSES
 
 }// namespace AK

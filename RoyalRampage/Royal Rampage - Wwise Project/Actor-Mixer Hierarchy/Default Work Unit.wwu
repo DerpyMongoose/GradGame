@@ -20,7 +20,6 @@
 								<Value>-40</Value>
 							</ValueList>
 						</Property>
-						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="UseMaxSoundPerInstance" Type="bool">
 							<ValueList>
 								<Value>True</Value>
@@ -42,6 +41,9 @@
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Objects" ID="{D93184C9-5D75-4F74-8DA3-904F18E0DD3B}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
 						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="Room" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<SwitchContainer Name="Object" ID="{85FC0825-DCB3-49A4-9EBF-18879F296C43}" ShortID="558832412">
@@ -52,8 +54,8 @@
 											<Modifier Name="" ID="{41946431-9268-458E-B254-0874BF1FD0BA}">
 												<PropertyList>
 													<Property Name="Enabled" Type="bool" Value="True"/>
-													<Property Name="Max" Type="Real64" Value="150"/>
-													<Property Name="Min" Type="Real64" Value="-150"/>
+													<Property Name="Max" Type="Real64" Value="200"/>
+													<Property Name="Min" Type="Real64" Value="-200"/>
 												</PropertyList>
 											</Modifier>
 										</ModifierInfo>
@@ -465,6 +467,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Table Hit" ID="{34F17164-CF05-4511-B83F-43219895ED90}" ShortID="1061594923" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -1169,14 +1188,28 @@
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Basket Hit" ID="{302776FD-803E-4015-90C6-BD8C3D024E23}" ShortID="280964109">
 											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
 												<Property Name="Lowpass" Type="int16">
 													<ValueList>
 														<Value>45</Value>
 													</ValueList>
 												</Property>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>1200</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -1814,6 +1847,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Glass Hit" ID="{5FD96AE0-4B5E-40D8-AAF5-11A399FD2774}" ShortID="267448613">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -2334,6 +2384,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Chair Hit" ID="{169C6D4C-E3C1-4433-9C18-0FED96BA824E}" ShortID="943871145" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -2824,6 +2891,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="China Hit" ID="{7C72E5B3-0C1B-4B01-A4A3-82EE07B1D710}" ShortID="598639632">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -3277,6 +3361,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Table Hit" ID="{FA3A3459-11A5-46DC-A231-6A32275E59F9}" ShortID="608609026" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -4055,6 +4156,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Cutlery Hit" ID="{8E4AA652-5AC9-4600-888A-B404D498F725}" ShortID="549280352">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -4693,6 +4811,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Food_Hit" ID="{048C4BAB-DAD6-409D-96AC-47B33081DE8C}" ShortID="261631001" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -5225,6 +5360,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Glass Hit" ID="{57E01816-D29F-4FEC-9584-E47D686907DD}" ShortID="378872982">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -5851,6 +6003,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Globe_Hit" ID="{2E685D74-3F48-400A-9040-44E3BB427C3E}" ShortID="682934875" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -6446,6 +6615,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Grand_Piano_Hit" ID="{529697DA-47DE-4920-9BC0-F2961A0B06E4}" ShortID="352877383" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7163,6 +7349,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<BlendContainer Name="Grandfather Clock Hit" ID="{65BF71D8-48D0-4E36-BC1E-979E9F3943A4}" ShortID="821704476">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -7946,6 +8149,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Pots and Pans Hit" ID="{6C193D9E-4450-4D7D-9A66-7A0B7FC523F3}" ShortID="440507178">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -8484,9 +8704,24 @@
 										</SwitchContainer>
 										<RandomSequenceContainer Name="China Hit" ID="{B0129946-1ACA-4D79-B5D4-6EE050A4E9D3}" ShortID="580339051">
 											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>700</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8586,7 +8821,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -9249,6 +9484,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Pots and Pans Hit" ID="{BE150841-CA9A-40B3-B759-D697B30135A5}" ShortID="692982394">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -9350,7 +9602,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -10013,6 +10265,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Pots and Pans Hit" ID="{2DFB1D85-1DB3-43B1-A6DD-987AC867EC54}" ShortID="934350870">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -10480,9 +10749,24 @@
 										</SwitchContainer>
 										<Sound Name="Table Hit" ID="{389B6B81-E8B9-4E9F-B22A-A4D77A54BAC3}" ShortID="777656453" Type="SoundFX">
 											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>-600</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -10914,6 +11198,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Statue Hit" ID="{7CA1341A-679C-423F-B3EC-B539DC93342D}" ShortID="71098311">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -11351,6 +11652,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Table Hit" ID="{2B5AD78A-7C0A-4D13-B15D-ED5326F75243}" ShortID="158580840" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -11934,6 +12252,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<Sound Name="Trophy_Hit" ID="{E67E9463-554E-4474-B008-B88A802D75B7}" ShortID="697314333" Type="SoundFX">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -11998,7 +12333,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -12640,6 +12975,23 @@
 											</GroupingInfo>
 										</SwitchContainer>
 										<RandomSequenceContainer Name="Pots and Pans Hit" ID="{82FCB7B5-E686-4DC7-AF82-648F4B571BB2}" ShortID="991832456">
+											<PropertyList>
+												<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+												<Property Name="OverLimitBehavior" Type="int16" Value="1"/>
+												<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+												<Property Name="OverrideVirtualVoice" Type="bool" Value="True"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
@@ -13068,7 +13420,6 @@
 				</ActorMixer>
 				<ActorMixer Name="Character" ID="{93205D05-2037-4821-9280-49116AF5EB15}" ShortID="846500634">
 					<PropertyList>
-						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-8</Value>
@@ -13726,7 +14077,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>-7</Value>
 									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
@@ -14220,6 +14571,174 @@
 												<ActiveSource Name="Wwise Silence" ID="{2792E54A-E87C-4842-8F60-48FD347EBBB2}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="Silence_08" ID="{FEB48890-BA5F-4C22-BFA0-AA2DCFDCAE86}" ShortID="85201371" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{D4D18C24-2428-4784-AB08-80823D36C40C}" ShortID="709222517" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{D4D18C24-2428-4784-AB08-80823D36C40C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_09" ID="{64318A4B-8001-44DD-9E7E-203B86016C9E}" ShortID="692028629" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{DB491B59-BAFA-4136-83AB-B43F798A4258}" ShortID="830795536" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{DB491B59-BAFA-4136-83AB-B43F798A4258}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_10" ID="{4EC83BB6-BD12-45DD-AB16-DA19D185C9F7}" ShortID="793110138" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{E8E96B17-5E99-454E-9C85-764BE39C5AE0}" ShortID="599641035" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{E8E96B17-5E99-454E-9C85-764BE39C5AE0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_11" ID="{D113560C-1332-4FC8-B67F-CAAFE79A3A3F}" ShortID="615498297" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{9FEB3787-AF57-4A7D-BD3E-73FAF80A51DA}" ShortID="988600789" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{9FEB3787-AF57-4A7D-BD3E-73FAF80A51DA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_12" ID="{E2091063-BB16-4F26-B29B-75CAF44A0C1D}" ShortID="389021524" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{65A07BAA-A190-4FB1-A765-D1F54B23D648}" ShortID="568132788" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{65A07BAA-A190-4FB1-A765-D1F54B23D648}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_13" ID="{4A92EBD6-2BAE-458C-B03E-92460A47B11D}" ShortID="820403551" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{3AE58EC7-CD04-4766-956A-945629B40E1C}" ShortID="751267505" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{3AE58EC7-CD04-4766-956A-945629B40E1C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_14" ID="{B77B8F7F-7082-4092-AD5F-CFA44D656C3D}" ShortID="65523786" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{1D8C7B72-6098-4021-B265-1D3A7C110F6C}" ShortID="11852220" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{1D8C7B72-6098-4021-B265-1D3A7C110F6C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_15" ID="{79009C57-2B8A-4831-81A7-12FC63FB6563}" ShortID="761243289" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{AECF8A42-454C-4C25-B75F-0F928B24E6C2}" ShortID="39544865" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{AECF8A42-454C-4C25-B75F-0F928B24E6C2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="Voice Spin" ID="{056C8A85-B377-4ED7-89D5-B54CEB78767E}" ShortID="536349312">
@@ -14409,6 +14928,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="Voice Spin_7" ID="{9CAE313D-B23D-4975-9532-2A922C1DEF29}" ShortID="115064154" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
 											<PropertyList>
 												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 											</PropertyList>
@@ -14431,6 +14953,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="Voice Spin_8" ID="{27EE7160-68CD-4D2E-B906-83750692D43A}" ShortID="153276438" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
 											<PropertyList>
 												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 											</PropertyList>
@@ -14453,6 +14978,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="Voice Spin_9" ID="{3594A31D-6A33-4623-B840-CF23A48E0AFC}" ShortID="284682584" Type="SoundFX">
+											<ExcludedPlatformList>
+												<Platform>Android</Platform>
+											</ExcludedPlatformList>
 											<PropertyList>
 												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 											</PropertyList>
@@ -14640,6 +15168,69 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="Wwise Silence" ID="{9C936B52-F136-4344-8018-D3F11F13D9C8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_06" ID="{3104F21A-554C-4F60-8688-91709192A594}" ShortID="102908514" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{C3BDA3C6-F859-4452-8744-CDE4AA0B1116}" ShortID="80294418" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{C3BDA3C6-F859-4452-8744-CDE4AA0B1116}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_07" ID="{A403DCDE-4F03-42F7-BA8A-14B84C1A515F}" ShortID="777536320" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{89A0676A-8541-4F08-A61B-E1E5F8F962BF}" ShortID="607761781" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{89A0676A-8541-4F08-A61B-E1E5F8F962BF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_08" ID="{2450334D-F001-4573-89B4-4913E31B0250}" ShortID="242328531" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{3B0A7606-E286-4E0F-B38D-A20F7808EAD8}" ShortID="835481870" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{3B0A7606-E286-4E0F-B38D-A20F7808EAD8}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -15181,6 +15772,111 @@
 												<ActiveSource Name="Wwise Silence" ID="{C448187E-16F3-4140-AC0D-629FE20C68CA}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="Silence_08" ID="{EED3B26A-82C8-4DBF-834D-3B9E47A55238}" ShortID="877084598" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{2D503F1E-D32B-4DD4-AA2E-A2E80F26D247}" ShortID="1045225283" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{2D503F1E-D32B-4DD4-AA2E-A2E80F26D247}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_09" ID="{9D661AE3-94E6-487F-BEA5-297C39C89F9E}" ShortID="220907946" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{E1E07853-FD35-49D3-B6D8-51DFB98F77F6}" ShortID="889922713" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{E1E07853-FD35-49D3-B6D8-51DFB98F77F6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_10" ID="{0F4F013D-662A-4A68-8D7F-3784D442CDA1}" ShortID="949139347" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{02546118-2575-448E-81A1-44104BD0698B}" ShortID="59337869" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{02546118-2575-448E-81A1-44104BD0698B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_11" ID="{1969B6B0-A64E-43B0-B825-E3718FEFC840}" ShortID="45867580" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{6CB5A7C8-F81C-4FFA-A63D-A894051A2906}" ShortID="823372611" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{6CB5A7C8-F81C-4FFA-A63D-A894051A2906}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Silence_12" ID="{F723D78F-F2F2-4231-A2FC-3FD8E7827ADD}" ShortID="92711482" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F1CD01E0-1237-4EAD-AEE2-CB3779A4B8A8}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{87237D58-0641-4A53-9378-1D91D013D061}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<SourcePlugin Name="Wwise Silence" ID="{890BDE97-A260-4D66-9452-2E4DAE7922A8}" ShortID="270013658" PluginName="Wwise Silence" CompanyID="0" PluginID="101">
+													<PropertyList>
+														<Property Name="Length" Type="Real32" Value="0.5"/>
+													</PropertyList>
+													<Language>SFX</Language>
+												</SourcePlugin>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Wwise Silence" ID="{890BDE97-A260-4D66-9452-2E4DAE7922A8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</RandomSequenceContainer>
 							</ChildrenList>
@@ -15348,7 +16044,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-21</Value>
+												<Value>-23</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -15491,33 +16187,6 @@
 											<ValueList>
 												<Value>-1200</Value>
 											</ValueList>
-											<RTPCList>
-												<RTPC Name="" ID="{91C22B77-3356-45C8-A7F7-A96041029A49}" ShortID="798596905">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Point_Counter" ID="{36C24D11-571F-4105-9070-3ADFFE8B1092}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{38345194-B569-40A8-9A5F-63388FD1635D}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-																<SegmentShape>Log3</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>50000</XPos>
-																<YPos>700</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
 										</Property>
 										<Property Name="PlayMechanismLoop" Type="bool" Value="True"/>
 										<Property Name="PlayMechanismSpecialTransitions" Type="bool" Value="True"/>
@@ -15529,33 +16198,6 @@
 											<ValueList>
 												<Value>-3</Value>
 											</ValueList>
-											<RTPCList>
-												<RTPC Name="" ID="{DEFD1D29-0218-47A7-8858-0DE977A622EF}" ShortID="264891130">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<ObjectRef Name="Point_Counter" ID="{36C24D11-571F-4105-9070-3ADFFE8B1092}" WorkUnitID="{A9A4AFB0-D889-498F-AD20-E4278F98C96A}"/>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{397D9D8D-7256-4C88-8F4F-CA3440832EC5}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="3"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>5</Flags>
-																<SegmentShape>Log3</SegmentShape>
-															</Point>
-															<Point>
-																<XPos>50000</XPos>
-																<YPos>-6</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -15648,7 +16290,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>5</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{0B24D0D1-B7D6-4AA2-AFD5-779B56EB97ED}" ShortID="800357232">
@@ -15670,25 +16312,25 @@
 															</Point>
 															<Point>
 																<XPos>2</XPos>
-																<YPos>1.5</YPos>
+																<YPos>1</YPos>
 																<Flags>0</Flags>
 																<SegmentShape>Constant</SegmentShape>
 															</Point>
 															<Point>
 																<XPos>3</XPos>
-																<YPos>3</YPos>
+																<YPos>2</YPos>
 																<Flags>0</Flags>
 																<SegmentShape>Constant</SegmentShape>
 															</Point>
 															<Point>
 																<XPos>4</XPos>
-																<YPos>4.5</YPos>
+																<YPos>3</YPos>
 																<Flags>0</Flags>
 																<SegmentShape>Constant</SegmentShape>
 															</Point>
 															<Point>
 																<XPos>5</XPos>
-																<YPos>6</YPos>
+																<YPos>4</YPos>
 																<Flags>37</Flags>
 															</Point>
 														</PointList>

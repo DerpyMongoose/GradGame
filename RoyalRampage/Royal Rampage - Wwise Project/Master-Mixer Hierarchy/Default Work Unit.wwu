@@ -84,10 +84,20 @@
 										</Bus>
 										<Bus Name="Reverb" ID="{7BAB8465-41B7-4F3A-A67C-0F07FD286825}">
 											<ChildrenList>
-												<AuxBus Name="Hall" ID="{D4DD16F4-2B42-4096-A486-D15ED0A72EB1}"/>
-												<AuxBus Name="Room_Soft" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}"/>
-												<AuxBus Name="Corridor" ID="{15C40741-5726-4DF4-80F5-A5EF61EA3555}"/>
-												<AuxBus Name="Room_Hard" ID="{5175A9AC-8A00-4CD3-B409-2F708630B89B}"/>
+												<AuxBus Name="Room" ID="{61558A25-AA85-42F0-B2C3-FE868EF8E277}">
+													<PropertyList>
+														<Property Name="BusVolume" Type="Real64">
+															<ValueList>
+																<Value>-4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+															<ObjectRef Name="Room_Large" ID="{AD8EFAFC-7121-4D5F-BE4D-B13FBD6CEBAE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+													</ReferenceList>
+												</AuxBus>
 											</ChildrenList>
 										</Bus>
 										<Bus Name="Ambience" ID="{422DE071-45F7-4087-A867-A516363E7355}"/>
