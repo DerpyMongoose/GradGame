@@ -144,7 +144,7 @@ public class UIScript : MonoBehaviour
 
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
-                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
+                pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
                 pause_menu.SetActive(false);
@@ -156,8 +156,8 @@ public class UIScript : MonoBehaviour
             case GameManager.Scene.TUTORIAL:
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
-            
-                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
+
+                pauseButton = gameObject.GetComponent<MenuPublics>().pauseButtonPublic;
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
                 twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
@@ -171,6 +171,22 @@ public class UIScript : MonoBehaviour
                 break;
         }
     }
+
+    /*void Update () {
+        switch (GameManager.instance.CurrentScene()) {
+            case GameManager.Scene.GAME:
+            if (GameManager.instance.isPaused) {
+                pauseButton.SetActive(false);
+            }
+            break;
+            case GameManager.Scene.TUTORIAL:
+            if (GameManager.instance.isPaused) {
+                pauseButton.SetActive(false);
+            }
+            break;
+        }
+        
+    }*/
 
 
     public void BehindPanel()
@@ -335,6 +351,14 @@ public class UIScript : MonoBehaviour
 
     }
 
+    public void RemovePauseButton () {
+        pauseButton.SetActive(false);
+    }
+
+    public void EnablePauseButton () {
+        StartCoroutine(PauseButtonDelay());
+    }
+
     public void PauseGame()
     {
 
@@ -342,11 +366,11 @@ public class UIScript : MonoBehaviour
         PlayMenuButtonSound();
 		GameManager.instance.menuRolledOut ();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
-		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
+		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);
+        pauseButton.SetActive(false);// FOR AUDIO
         GameManager.instance.isPaused = true;
         pause_menu.SetActive(true);      
         behindPanelButton.SetActive(true);
-        pauseButton.SetActive(false);
         GameManager.instance.PauseGame();  
 
     }
@@ -359,9 +383,9 @@ public class UIScript : MonoBehaviour
         GameManager.instance.isPaused = false;
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
-		GameManager.instance.menuRolledIn ();
-		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
         StartCoroutine(PauseButtonDelay());
+        GameManager.instance.menuRolledIn ();
+		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO       
     }
 
     IEnumerator PauseButtonDelay() {
