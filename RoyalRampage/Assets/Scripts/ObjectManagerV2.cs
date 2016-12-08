@@ -15,6 +15,7 @@ public class ObjectManagerV2 : MonoBehaviour
     [Header("Mixed")]
     public float colImpact;
     public float multiplierTimer;
+    public int bonusScore;
 
     [Header("Damages")]
     public int dashDamage;
