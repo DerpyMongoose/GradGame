@@ -26034,7 +26034,7 @@ GameObject:
   - 65: {fileID: 1352324459}
   m_Layer: 0
   m_Name: CEILINGCOLLIDER
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27027,6 +27027,10 @@ Prefab:
     - target: {fileID: 1000014254729842, guid: 94add6eeb92fa9e43ae4310c01bf245e, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014254729842, guid: 94add6eeb92fa9e43ae4310c01bf245e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94add6eeb92fa9e43ae4310c01bf245e, type: 2}
