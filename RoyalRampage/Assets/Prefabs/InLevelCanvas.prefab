@@ -755,6 +755,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011275439002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010593972030}
+  - 114: {fileID: 114000012018996104}
+  - 114: {fileID: 114000010891817250}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011306635360
 GameObject:
   m_ObjectHideFlags: 1
@@ -2285,6 +2302,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000010593972030
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011275439002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1024, y: -768, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 224000012851715922}
+  m_RootOrder: 8
 --- !u!95 &95000010834318376
 Animator:
   serializedVersion: 3
@@ -3265,6 +3295,44 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000010891817250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011275439002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9320393c3889a094f9c1e7792bd79037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDamage: 0
+  isGrounded: 0
+  stompReset: 0
+  oneToAnother: 4000
+  colImpact: 0.2
+  multiplierTimer: 2
+  bonusScore: 50
+  dashDamage: 50
+  swirlDamage: 16
+  wallDamage: 80
+  objDamage: 200
+  direction: {x: 0, y: 0, z: 0}
+  countObjects: 0
+  countMultiTime: 0
+  objectList: []
+  smallGlassLife: 27
+  mediumGlassLife: 96
+  largeGlassLife: 167
+  smallWoodLife: 35
+  mediumWoodLife: 109
+  largeWoodLife: 187
+  smallStoneLife: 65
+  mediumStoneLife: 153
+  largeStoneLife: 252
+  smallMetalLife: 101
+  mediumMetalLife: 206
+  largeMetalLife: 330
 --- !u!114 &114000010925636220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4644,6 +4712,54 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
+--- !u!114 &114000012018996104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011275439002}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2672a1a6e060d8a4e9efa73e02e0bc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectList: []
+  barrelScore: 3
+  barrelLife: 1
+  barrelRubbleAmount: 4
+  barrelRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  barrelSwitch: Barrel
+  bedScore: 10
+  bedLife: 3
+  bedRubbleAmount: 10
+  bedRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  bedSwitch: Table
+  boxScore: 3
+  boxLife: 1
+  boxRubbleAmount: 4
+  boxRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  boxSwitch: Book
+  chairScore: 2
+  chairLife: 1
+  chairRubbleAmount: 3
+  chairRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  chairSwitch: Chair
+  tableScore: 8
+  tableLife: 2
+  tableRubbleAmount: 8
+  tableRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  tableSwitch: Table
+  wardrobeScore: 12
+  wardrobeLife: 3
+  wardrobeRubbleAmount: 12
+  wardrobeRubblePrefab: {fileID: 1000014186981180, guid: 527f98ea0cbdae6439106728530bc1a5,
+    type: 2}
+  wardrobeSwitch: Shelf
 --- !u!114 &114000012020106502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9695,6 +9811,7 @@ RectTransform:
   - {fileID: 224000010603295774}
   - {fileID: 224000011790435158}
   - {fileID: 224000011874418546}
+  - {fileID: 4000010593972030}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
