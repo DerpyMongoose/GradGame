@@ -191,32 +191,39 @@ public class UIScript : MonoBehaviour
 
     public void CloseLevelSelect() {
         if (levels_menu.activeInHierarchy) {
+            PlayMenuButtonSound();
             levels_menu.SetActive(false);
             play_menu.SetActive(true);
         }
         if (credits.activeInHierarchy) {
+            PlayMenuButtonSound();
             credits.SetActive(false);
         }
         if (settings_menu.activeInHierarchy) {
+            PlayMenuButtonSound();
             settings_menu.SetActive(false);
         }
         if (help_menu.activeInHierarchy) {
+            PlayMenuButtonSound();
             help_menu.SetActive(false);
         }
     }
 
     public void InstructionsSkip()
     {
+        PlayMenuButtonSound();
         help_menu.SetActive(false);
         //GameManager.instance.isInstructed = true;
     }
 
     public void CloseCredits() {
+        PlayMenuButtonSound();
         credits.SetActive(false);
     }
 
     public void OpenCredits() {
         if (Input.touchCount == 1) {
+            PlayMenuButtonSound();
             credits.SetActive(true);
         }
     }
