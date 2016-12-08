@@ -64,7 +64,6 @@ public class SaveHighScore {
                 }
             } else {
                 foreach (LevelAndObjects obj in listforHighScore) {
-                    Debug.Log(obj.HighScore);
                     doc.Add(new XElement("Object",
                         new XElement("Level", obj.Level),
                         new XElement("HighScore", obj.HighScore)));

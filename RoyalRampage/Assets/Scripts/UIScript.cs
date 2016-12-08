@@ -168,22 +168,6 @@ public class UIScript : MonoBehaviour {
         }
     }
 
-    /*void Update () {
-        switch (GameManager.instance.CurrentScene()) {
-            case GameManager.Scene.GAME:
-            if (GameManager.instance.isPaused) {
-                pauseButton.SetActive(false);
-            }
-            break;
-            case GameManager.Scene.TUTORIAL:
-            if (GameManager.instance.isPaused) {
-                pauseButton.SetActive(false);
-            }
-            break;
-        }
-        
-    }*/
-
 
     public void BehindPanel() {
         if (Input.touchCount == 1) {
