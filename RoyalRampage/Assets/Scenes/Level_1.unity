@@ -11592,11 +11592,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012082190122, guid: 9f582415c19f5ce4e89cf34267b72e60,
     type: 2}
   m_PrefabInternal: {fileID: 858071516}
---- !u!4 &859179369 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000013400599650, guid: 5950ab559094bff4693b84287113f3d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 240960655}
 --- !u!4 &864453776 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010227063812, guid: e3190ce5267c37b489cfdc5b0e43f4db,
@@ -20976,57 +20971,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608566592}
   m_RootOrder: 2
---- !u!1 &1752898333 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012917094002, guid: 814648a664d369d4a8063742d341bc70,
-    type: 2}
-  m_PrefabInternal: {fileID: 1994819939}
---- !u!114 &1752898340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752898333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tonemapper: 0
-  Exposure: 1
-  LinearWhitePoint: 11.2
-  ApplyDithering: 0
-  QualityLevel: 0
-  BlendAmount: 0
-  LutTexture: {fileID: 0}
-  LutBlendTexture: {fileID: 0}
-  MaskTexture: {fileID: 0}
-  UseDepthMask: 0
-  DepthMaskCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  UseVolumes: 1
-  ExitVolumeBlendTime: 1
-  TriggerVolumeProxy: {fileID: 859179369}
-  VolumeCollisionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  EffectFlags:
-    components: []
-  sharedInstanceID: a340f3b9-544e-4451-a19d-ffe99b3ea45d
 --- !u!4 &1769988611 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012331511176, guid: c00b65917c60bcf4cb670ef946bea74b,

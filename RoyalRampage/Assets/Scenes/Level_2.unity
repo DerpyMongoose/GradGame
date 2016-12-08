@@ -7493,57 +7493,6 @@ Material:
     - first:
         name: _SpecColor
       second: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &423920084 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012917094002, guid: 814648a664d369d4a8063742d341bc70,
-    type: 2}
-  m_PrefabInternal: {fileID: 1994819939}
---- !u!114 &423920091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 423920084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tonemapper: 0
-  Exposure: 1
-  LinearWhitePoint: 11.2
-  ApplyDithering: 0
-  QualityLevel: 0
-  BlendAmount: 0
-  LutTexture: {fileID: 0}
-  LutBlendTexture: {fileID: 0}
-  MaskTexture: {fileID: 0}
-  UseDepthMask: 0
-  DepthMaskCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  UseVolumes: 1
-  ExitVolumeBlendTime: 1
-  TriggerVolumeProxy: {fileID: 0}
-  VolumeCollisionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  EffectFlags:
-    components: []
-  sharedInstanceID: 0fc3b63a-e13d-4b84-ad3c-f706065c15ec
 --- !u!4 &424116103 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010263139396, guid: e86d94e0dc059aa44b8dc1052099f120,
@@ -39302,11 +39251,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011790076990, guid: 814648a664d369d4a8063742d341bc70, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010226151932, guid: 814648a664d369d4a8063742d341bc70,
-        type: 2}
-      propertyPath: m_HDR
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
