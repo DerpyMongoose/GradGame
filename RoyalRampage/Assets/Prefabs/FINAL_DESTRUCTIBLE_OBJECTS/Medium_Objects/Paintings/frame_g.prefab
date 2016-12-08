@@ -264,10 +264,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010103017454}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071058, z: -0, w: 0.7071078}
+  m_LocalPosition: {x: -12.998, y: 2.8079302, z: -27.489}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
   m_Children:
   - {fileID: 4000011234973978}
   - {fileID: 4000011134209892}
@@ -842,14 +842,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
-  initialLife: 0
   soundSwitch: Shelf
   particleSys: {fileID: 0}
   hit: 0
   slowed: 0
   lifted: 0
+  flying: 0
   hasLanded: 1
-  score: 0
+  score: 100
   currencySpawnChance: 0.1
   objMaterial: 1
   objSize: 1

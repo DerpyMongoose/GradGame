@@ -15,7 +15,7 @@ public class GameManager
     private AudioManager _audioManager;
     private AnimationManager _animationManager;
 
-    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2", "Level_3", "Level_4" };
+    private static string[] GAME_SCENES = { "Tutorial", "Level_1", "Level_2", "Level_3", "Level_4", "Level_5"};
     private static string MAIN_MENU = "Menu";
 
     // The size of the array is the total amount of levels
@@ -134,6 +134,7 @@ public class GameManager
 
     public void Loading()
     {
+        isPaused = false;
         if (currentLevel == 1)
         {
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
@@ -144,7 +145,7 @@ public class GameManager
         else
         {
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
-            Time.timeScale = 1;
+            Time.timeScale = 1;           
             currentScene = Scene.GAME;
         }
     }

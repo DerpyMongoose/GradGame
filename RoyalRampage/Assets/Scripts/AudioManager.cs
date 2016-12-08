@@ -196,6 +196,10 @@ public class AudioManager : MonoBehaviour {
 		PlaySound (gemReward, gameObject);
 	}
 
+	public void UpdateGemCounter(int star_num){
+		AkSoundEngine.SetRTPCValue ("Star_Counter", (float)star_num);
+	}
+
 	void CountingPointsPlay(){
 		PlaySound(pointsCountingPlay, gameObject);
 	}
@@ -272,6 +276,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectDestructed += ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding += ObjectActionLanding;
 		GameManager.instance.OnGemSpawned += GemSpawnPlay;
+		GameManager.instance.OnGemScoreDisplay += CountingGems;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad += BackgroundAmbStart;
@@ -308,6 +313,7 @@ public class AudioManager : MonoBehaviour {
 		GameManager.instance.OnObjectDestructed -= ObjectActionDestruction;
 		GameManager.instance.OnObjectLanding -= ObjectActionLanding;
 		GameManager.instance.OnGemSpawned -= GemSpawnPlay;
+		GameManager.instance.OnGemScoreDisplay -= CountingGems;
 
 		//Background sounds
 		//GameManager.instance.OnLevelLoad -= BackgroundAmbStart;
