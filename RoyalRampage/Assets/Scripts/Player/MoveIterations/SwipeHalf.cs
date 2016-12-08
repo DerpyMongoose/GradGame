@@ -407,14 +407,14 @@ public class SwipeHalf : MonoBehaviour
             else if (Input.touches[Input.touchCount - 1].phase == TouchPhase.Moved)
             {
                 Vector2 p = Input.touches[Input.touchCount - 1].position;
-                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 10) //Default was 10 (make it 5 for the arc)
+                if (gestureDetector.Count == 0 || (p - gestureDetector[gestureDetector.Count - 1]).magnitude > 7) //Default was 10 (make it 5 for the arc)
                 {
                     gestureDetector.Add(p);
                 }
             }
         }
 
-        if (gestureDetector.Count < 10) //Default was 10 (make it 5 for the arc)
+        if (gestureDetector.Count < 7) //Default was 10 (make it 5 for the arc)
         {
             return false;
         }
@@ -443,7 +443,7 @@ public class SwipeHalf : MonoBehaviour
 
         int gestureBase = (Screen.width + Screen.height) / 4;
 
-        if (gestureLength > gestureBase && gestureSum.magnitude < gestureBase / 2) //gestureBase need to be divided by 2 for an arc
+        if (gestureLength > gestureBase/1.5f && gestureSum.magnitude < gestureBase / 2) //gestureBase need to be divided by 2 for an arc
         {
             gestureDetector.Clear();
             gestureCount++;

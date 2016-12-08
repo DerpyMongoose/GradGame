@@ -571,7 +571,6 @@ public class LevelManager : MonoBehaviour
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.3");
 
                                 StartCoroutine(Delay());
-                                return;
                             }
                             else if (ObjectManagerV2.instance.isGrounded == true && completed == false)
                             {
