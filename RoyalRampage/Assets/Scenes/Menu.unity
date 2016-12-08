@@ -309,6 +309,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.8438995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224000013043497014, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -334,26 +349,6 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224000012767593702, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -375,6 +370,16 @@ Prefab:
       value: 0.126
       objectReference: {fileID: 0}
     - target: {fileID: 224000011136096478, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -397,7 +402,7 @@ Prefab:
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -2479.5
+      value: -2508
       objectReference: {fileID: 0}
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
@@ -407,86 +412,12 @@ Prefab:
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4959
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010185696206, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 5016
       objectReference: {fileID: 0}
     - target: {fileID: 224000010185696206, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4959
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.84210527
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011897536988, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_Text
-      value: "Christian Andersen, Lead Programmer\r\n\nMikkel Mulvad Beyer, Level
-        Designer \r\n\nAlexander Bj\xF8rkholm, Art Director\r\n\nChristoffer Carstensen,
-        Project Manager\r\n\nNicolaj Evers, Programmer\r\n\nAlexandros Panagiotis
-        Giakalis, Programmer \r\n\nEsben Gravesen, Audio Designer\r\n\nSusi Haaning,
-        Game Director\r\n\nPia Marie Hansen, CG Artist\r\n\nChristian Vest\xF8l Lade,
-        QA & UR Manager\r\n\nLotte Rose, Business Developer\r\n\nSule Serubugo, Programmer\r\n\nDenisa
-        Skantarova, Programmer\r\n\nKristina Sletting, Animator\r\n\nUlrik Kroge Sloth,
-        Game Designer\r\n\nMie Abildgaard Thode Stokholm, CG Artist\r\n\nNikoline
-        Svenningsen, Business Developer\n\nTesters:\n\nMikkel Agerskov J\xF8rgensen\r\n\nChristian
-        Andersen\r\n\nMads Boelsmand \xD8stergaard\r\n\nCamilla Mejlby Hansen\r\n\nMads
-        Rune Holdgaard Halvorsen\r\n\nRasmus Hoffensetz\r\n\nBodil Stride Jensen\r\n\nChriss
-        Mortensen\r\n\nEmil Styrb\xE6k M\xF8ller\r\n\nRasmus Nielsen\r\n\nNikolaj
-        T\xF8nner Vanggard\r\n\nKiki B\xF8gh Larsen \r\n\nAllan\r\n\nLars\r\n\nOliver
-        \r\n\nKarolina Borucka\r\n\nNicklas Nissen\r\n\nAlexander Tolstrup\r\n\nEmil
-        \xD8stergaard\r\n\nMarcus S\xF8rup\r\n\nMartin Holk"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012960049456, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_Size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010859671284, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010859671284, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012840369292, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012840369292, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -17
+      value: 5016
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce6b29c1458b4484e845ac691a477382, type: 2}
