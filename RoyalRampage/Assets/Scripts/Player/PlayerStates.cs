@@ -16,7 +16,6 @@ public class PlayerStates : MonoBehaviour
     public float hitForce;
     public float swirlForce;
     public float liftForce;
-    public float maxVelocity;
     [Header("Times")]
     public float timeForSwipe;
     public float timeForCircle;
@@ -24,7 +23,6 @@ public class PlayerStates : MonoBehaviour
     public float gravityTimer;
     public float resetMassTimer;
     [Header("Radius")]
-    //public float dashRadius;
     public float swirlRadius;
     public float liftRadius;
     [Header("Mixed")]
@@ -36,27 +34,20 @@ public class PlayerStates : MonoBehaviour
     public float rageObjects;
     public float smoothPick;
     public int numOfCircleToShow;
-    [Header("Cubic Bezier")]
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p0;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p1;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p2;
-    [Tooltip("The four points indicate the percentage of the force that you need to apply within a period of 1 second. For the record, the force starts really high and becomes lower")]
-    public float p3;
 
     private float timeTicker = 5;  // TIME TO START THE TICKING SOUND
     private float timeRunningOut = 10;  // TIME TO START THE RUNNING OUT SOUND
     private bool timerStart, timerStart2;
     private float timer;
+    Color sliderCol;
 
-    private enum PlayerState
+    public enum PlayerState
     {
         READY, IDLE, WALKING, ATTACKING, ENDING
     }
 
-    PlayerState state;
+    [HideInInspector]
+    public PlayerState state;
     float timeLeftInLevel = 0f; //timeleft to complete the level
     Text timerText;
     GameObject timerUI;
@@ -72,6 +63,7 @@ public class PlayerStates : MonoBehaviour
         timerStart = false;
         timerStart2 = false;
         timer = 0;
+        timeTicker = 5;
     }
 
     void Awake()
@@ -86,14 +78,15 @@ public class PlayerStates : MonoBehaviour
         timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
         timeSliderLeft.value = 1f;
         timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
+        sliderCol = new Color(164f/255f, 97f/255f, 164f/255f);
         timeSliderRight.value = 1f;
+        
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
     }
 
     void Update()
     {
-        //print(state);
         //update level timer
         UpdateLevelTimer();
 
@@ -147,13 +140,17 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true))
+                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true) || GameManager.instance.isPaused)
                     {
                         timeLeftInLevel -= 0;
+                        timeSliderLeft.transform.Find("Fill Area/Fill").GetComponent<Image>().color = new Color(135f / 255f, 135f / 255f, 135f / 255f);
+                        timeSliderRight.transform.Find("Fill Area/Fill").GetComponent<Image>().color = new Color(135f / 255f, 135f / 255f, 135f / 255f);
                     }
                     else if (!imInSlowMotion)
                     {
                         timeLeftInLevel -= Time.deltaTime;
+                        timeSliderLeft.transform.Find("Fill Area/Fill").GetComponent<Image>().color = sliderCol;
+                        timeSliderRight.transform.Find("Fill Area/Fill").GetComponent<Image>().color = sliderCol;
                     }
                     else
                     {
@@ -161,9 +158,8 @@ public class PlayerStates : MonoBehaviour
                     }
                 }
                 timerText.text = timeLeftInLevel.ToString("F1"); // for the level timer
-                if (timeLeftInLevel <= timeTicker)
+                if (timeLeftInLevel <= timeTicker && GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-
                     GameManager.instance.timerUpdate(timeTicker);
                     timeTicker -= 1;
                 }
@@ -206,9 +202,9 @@ public class PlayerStates : MonoBehaviour
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
                         GameManager.instance.tutorialTaskCompleted();
-                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                         timer = 0;
                         timerStart = false;
+                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                     }
                 }              
                 else if (timerStart2 == true && timerStart == false)

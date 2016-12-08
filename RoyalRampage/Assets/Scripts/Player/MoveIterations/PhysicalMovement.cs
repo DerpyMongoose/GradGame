@@ -20,10 +20,10 @@ public class PhysicalMovement : MonoBehaviour
 
 
 
-    float CubicBezier(float t)
-    {
-        return ((1 - t * t * t) * GetComponent<PlayerStates>().p0) + (3 * (1 - t * t) * t * GetComponent<PlayerStates>().p1) + (3 * (1 - t) * t * t * GetComponent<PlayerStates>().p2) + (t * t * t * GetComponent<PlayerStates>().p3);
-    }
+    //float CubicBezier(float t)
+    //{
+    //    return ((1 - t * t * t) * GetComponent<PlayerStates>().p0) + (3 * (1 - t * t) * t * GetComponent<PlayerStates>().p1) + (3 * (1 - t) * t * t * GetComponent<PlayerStates>().p2) + (t * t * t * GetComponent<PlayerStates>().p3);
+    //}
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class PhysicalMovement : MonoBehaviour
     {
         if (applyMove)
         {          
-            force = force * CubicBezier(moveTimer);
+            //force = force * CubicBezier(moveTimer);
             playerRig.AddForce(direction.normalized * force);
             playerRig.velocity = Vector3.zero;
 
@@ -253,8 +253,8 @@ public class PhysicalMovement : MonoBehaviour
                     col.gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.dashDamage;
                     Rigidbody rig = col.collider.GetComponent<Rigidbody>();
 
-					print ("am colliding");
-					GameManager.instance.playerHitObject ();
+					//print ("am colliding");
+					//GameManager.instance.playerHitObject ();
                     // SOUND OBJECT HIT
                     GameManager.instance.objectHit(col.collider.gameObject);
 

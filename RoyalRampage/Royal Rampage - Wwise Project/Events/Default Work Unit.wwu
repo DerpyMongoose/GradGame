@@ -34,6 +34,13 @@
 								</Element>
 							</ElementList>
 						</Action>
+						<Action Name="Play" ID="{9AE38AEB-E2FE-4432-A362-D845C14606EA}" ShortID="58894930" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{4B395C1A-A104-4089-B2C9-0EE47EAF6A1D}" Global="false">
+									<ObjectRef Name="Voice Movement" ID="{1F22276B-A2CA-4016-880B-A62C9502F983}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
 					</ChildrenList>
 				</Event>
 				<Event Name="Spin_Play" ID="{182F31A8-89B9-4EB4-A7EE-A784D6D5C6DA}">
@@ -45,6 +52,13 @@
 								</Element>
 							</ElementList>
 						</Action>
+						<Action Name="Play" ID="{F20BB71C-265E-4FA1-9959-689AD1DF7AB5}" ShortID="611366536" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{DBD28FFC-8EE5-4B83-BB5B-C9B0531AAADD}" Global="false">
+									<ObjectRef Name="Voice Spin" ID="{056C8A85-B377-4ED7-89D5-B54CEB78767E}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
 					</ChildrenList>
 				</Event>
 				<Event Name="Stomp_Play" ID="{0BE6724B-A97D-45D7-A673-F51DE5917A05}">
@@ -53,6 +67,13 @@
 							<ElementList>
 								<Element ID="{F35F1570-7199-4BBD-8BBA-602A1D609A66}" Global="false">
 									<ObjectRef Name="Player Stomp" ID="{CFE81CC4-7F07-4307-94A3-C1AC1755B3E4}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{6765CCDF-50D1-4A67-9EBB-0EEB866E53F6}" ShortID="499017978" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{023C9551-685F-4159-845C-856FF71F5B1B}" Global="false">
+									<ObjectRef Name="Voice Swing" ID="{838A4F61-9358-4BFC-83AA-3A2AEDE02999}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -243,6 +264,13 @@
 							<ElementList>
 								<Element ID="{DC679475-88B8-4566-928A-C4CAD49E130F}" Global="false">
 									<ObjectRef Name="Player Swing" ID="{98B3A75C-A21A-4FC1-AB68-46EED02DA4F9}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{C2E0DD22-F7BD-4791-8FBA-A5D24B24E623}" ShortID="655482824" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{C4B26C7D-A629-46FB-A01B-4C902806A5FE}" Global="false">
+									<ObjectRef Name="Voice Swing" ID="{838A4F61-9358-4BFC-83AA-3A2AEDE02999}" WorkUnitID="{BE95FEFF-4C12-40BE-AFE0-6999B8811AF2}"/>
 								</Element>
 							</ElementList>
 						</Action>

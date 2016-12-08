@@ -17,6 +17,7 @@ public class UIScript : MonoBehaviour
     GameObject background;
     GameObject behindPanelButton;
     GameObject pause_menu;
+    GameObject pauseButton;
     GameObject settings_menu;
     GameObject levels_menu;
     GameObject levels;
@@ -28,14 +29,15 @@ public class UIScript : MonoBehaviour
     GameObject skip_Button;
     GameObject twoHandsSplitScreen;
     GameObject tapPanel;
+    GameObject credits;
     Transform[] instr_SlidesChildren;
     [HideInInspector]
     public int slide = 5;
 
-    GameObject help_menu;
-    GameObject[] slides;
-    GameObject arrowL;
-    GameObject arrowR;
+      GameObject help_menu;
+//    GameObject[] slides;
+//    GameObject arrowL;
+//    GameObject arrowR;
 
     Text starTotal;
     Text levelNum;
@@ -86,6 +88,7 @@ public class UIScript : MonoBehaviour
                 highScoreMenu = GameObject.FindGameObjectWithTag("MenuHighScore").GetComponent<Text>();
                 levelNum.text = (GameManager.instance.levelsUnlocked-1).ToString();
                 highScoreMenu.text = "HighScore: " + highScoreList[0].HighScore.ToString();
+                credits = GameObject.FindGameObjectWithTag("Credits");
                 GameManager.instance.currentLevel = GameManager.instance.levelsUnlocked;
 
                 background = GameObject.FindGameObjectWithTag("menuBG");
@@ -96,17 +99,9 @@ public class UIScript : MonoBehaviour
                 levels = GameObject.FindGameObjectWithTag("Levels");
                 levels_menu.SetActive(false);
                 play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
-
-                slides = new GameObject[5];
-                GameObject help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                for (int i = 0; i < 5; i++)
-                {
-                    slides[i] = help_slides.transform.GetChild(i).gameObject;
-                }
-                arrowL = GameObject.FindGameObjectWithTag("help_left");
-                arrowR = GameObject.FindGameObjectWithTag("help_right");
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 help_menu.SetActive(false);
+                credits.SetActive(false);
 
                 //UpdateMenuBG();
                 break;
@@ -126,17 +121,10 @@ public class UIScript : MonoBehaviour
                 levels = GameObject.FindGameObjectWithTag("Levels");
                 play_menu = GameObject.FindGameObjectWithTag("PlayPanel");
                 play_menu.SetActive(false);
-
-                slides = new GameObject[5];
-                help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                for (int i = 0; i < 5; i++)
-                {
-                    slides[i] = help_slides.transform.GetChild(i).gameObject;
-                }
-                arrowL = GameObject.FindGameObjectWithTag("help_left");
-                arrowR = GameObject.FindGameObjectWithTag("help_right");
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
                 help_menu.SetActive(false);
+                credits = GameObject.FindGameObjectWithTag("Credits");
+                credits.SetActive(false);
                 UpdateLevelOverview();
                 break;
 
@@ -155,19 +143,10 @@ public class UIScript : MonoBehaviour
 			GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
 
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                skip_Button = GameObject.Find("skip");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
-                arrowL = GameObject.FindGameObjectWithTag("help_left");
-                arrowR = GameObject.FindGameObjectWithTag("help_right");
-
-                slides = new GameObject[5];
-                help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                for (int i = 0; i < 5; i++)
-                {
-                    slides[i] = help_slides.transform.GetChild(i).gameObject;
-                }
                 pause_menu.SetActive(false);
                 settings_menu.SetActive(false);              
                 help_menu.SetActive(false);
@@ -176,22 +155,14 @@ public class UIScript : MonoBehaviour
                 break;
             case GameManager.Scene.TUTORIAL:
                 help_menu = GameObject.FindGameObjectWithTag("HelpPanel");
-                skip_Button = GameObject.Find("skip");
                 pause_menu = GameObject.FindGameObjectWithTag("PausePanel");
+            
+                pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
                 settings_menu = GameObject.FindGameObjectWithTag("SettingPanel");
                 behindPanelButton = GameObject.FindGameObjectWithTag("BehindPanelButton");
-                arrowL = GameObject.FindGameObjectWithTag("help_left");
-                arrowR = GameObject.FindGameObjectWithTag("help_right");
                 twoHandsSplitScreen = GameObject.Find("TwoHandsSplitScreen");
                 tapPanel = GameObject.Find("IntroTapPanel");
 
-
-                slides = new GameObject[5];
-                help_slides = GameObject.FindGameObjectWithTag("HelpSlides");
-                for (int i = 0; i < 5; i++)
-                {
-                    slides[i] = help_slides.transform.GetChild(i).gameObject;
-                }
                 pause_menu.SetActive(false);
                 settings_menu.SetActive(false);
                 help_menu.SetActive(false);
@@ -201,42 +172,6 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        switch (GameManager.instance.CurrentScene())
-        {
-            case GameManager.Scene.PLAY_MENU:
-            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
-            if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy)
-                {
-                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                        GraphicRaycaster ray = GetComponent<GraphicRaycaster>();
-                        PointerEventData ped = new PointerEventData(null);
-                        ped.position = Input.GetTouch(0).position;
-                        List<RaycastResult> results = new List<RaycastResult>();
-
-                        ray.Raycast(ped, results);
-
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == settings_menu.tag)))
-                        {
-                            settings_menu.SetActive(false);
-                        }
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == help_menu.tag)))
-                        {
-                            help_menu.SetActive(false);
-                        }
-                    }
-                }
-
-                break;
-            case GameManager.Scene.LEVELS_OVERVIEW:
-            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
-            break;
-        }
-    }
 
     public void BehindPanel()
     {
@@ -254,10 +189,36 @@ public class UIScript : MonoBehaviour
         }
     }
 
+    public void CloseLevelSelect() {
+        if (levels_menu.activeInHierarchy) {
+            levels_menu.SetActive(false);
+            play_menu.SetActive(true);
+        }
+        if (credits.activeInHierarchy) {
+            credits.SetActive(false);
+        }
+        if (settings_menu.activeInHierarchy) {
+            settings_menu.SetActive(false);
+        }
+        if (help_menu.activeInHierarchy) {
+            help_menu.SetActive(false);
+        }
+    }
+
     public void InstructionsSkip()
     {
         help_menu.SetActive(false);
         //GameManager.instance.isInstructed = true;
+    }
+
+    public void CloseCredits() {
+        credits.SetActive(false);
+    }
+
+    public void OpenCredits() {
+        if (Input.touchCount == 1) {
+            credits.SetActive(true);
+        }
     }
 
     public void BackToGame()
@@ -314,8 +275,10 @@ public class UIScript : MonoBehaviour
     {
 
         //***** FOR AUDIO
-        PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
+        if(Input.touchCount == 1) {
+            PlayMenuButtonSound();
+            StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
+        }      
     }
 
     public void CloseLevelOverview()
@@ -328,11 +291,12 @@ public class UIScript : MonoBehaviour
 
     public void GoToInfo()
     {
-
-        //***** FOR AUDIO
-        PlayMenuButtonSound();
-        help_menu.SetActive(true);
-        UpdateHelpSlides("open");
+        if (Input.touchCount == 1) {
+            //***** FOR AUDIO
+            PlayMenuButtonSound();
+            help_menu.SetActive(true);
+            //UpdateHelpSlides("open");
+        }
     }
 
     public void CloseInfo()
@@ -345,11 +309,12 @@ public class UIScript : MonoBehaviour
 
     public void GoToSettings()
     {
-
-        //***** FOR AUDIO
-        PlayMenuButtonSound();
-        //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
-        settings_menu.SetActive(true);
+        if (Input.touchCount == 1) {
+            //***** FOR AUDIO
+            PlayMenuButtonSound();
+            //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+            settings_menu.SetActive(true);
+        }
 
     }
 
@@ -370,12 +335,12 @@ public class UIScript : MonoBehaviour
         PlayMenuButtonSound();
 		GameManager.instance.menuRolledOut ();
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
-        print("pausing");
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
-        pause_menu.SetActive(true);
+        pause_menu.SetActive(true);      
         behindPanelButton.SetActive(true);
-        GameManager.instance.PauseGame();
+        pauseButton.SetActive(false);
+        GameManager.instance.PauseGame();  
 
     }
     public void UnPauseGame()
@@ -387,9 +352,14 @@ public class UIScript : MonoBehaviour
         GameManager.instance.isPaused = false;
         GameManager.instance.PauseGame();
         behindPanelButton.SetActive(false);
-        print("unpausing");
 		GameManager.instance.menuRolledIn ();
 		GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO
+        StartCoroutine(PauseButtonDelay());
+    }
+
+    IEnumerator PauseButtonDelay() {
+        yield return new WaitForSeconds(0.5f);
+        pauseButton.SetActive(true);
     }
 
     public void RestartGame()
@@ -446,7 +416,6 @@ public class UIScript : MonoBehaviour
                 {
                     next_level = GameManager.instance.currentLevel;
                 }
-                print(GameManager.instance.currentLevel);
                 GameManager.instance.currentLevel = next_level;
                 GameManager.instance.StartLevel(next_level);
                 break;
@@ -524,45 +493,17 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void UpdateHelpSlides(string arrow)
-    {
-        for (int i = 0; i < slides.Length; i++)
-        {
-            slides[i].SetActive(false);
-        }
-        arrowL.SetActive(true);
-        arrowR.SetActive(true);
-        switch (arrow)
-        {
-            case "open":
-                current_slide = 1;
-                slides[current_slide - 1].SetActive(true);
-                arrowL.SetActive(false);
-                break;
-
-            case "left":
-                current_slide--;
-                slides[current_slide - 1].SetActive(true);
-                if (current_slide == 1)
-                    arrowL.SetActive(false);
-                break;
-
-            case "right":
-                current_slide++;
-                slides[current_slide - 1].SetActive(true);
-                if (current_slide == slides.Length)
-                    arrowR.SetActive(false);
-                break;
-        }
-    }
-
     public void LoadGame()
     {
         GameManager.instance.LoadGame();
     }
 
     public void Continue()
-    {
+    {   
         GameManager.instance.timerOut();
+        if(GameManager.instance.currentLevel == 1)
+        {
+            GameManager.instance.currentScene = GameManager.Scene.GAME;
+        }
     }
 }
