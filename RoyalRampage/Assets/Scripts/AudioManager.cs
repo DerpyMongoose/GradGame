@@ -196,6 +196,10 @@ public class AudioManager : MonoBehaviour {
 		PlaySound (gemReward, gameObject);
 	}
 
+	public void UpdateGemCounter(int star_num){
+		AkSoundEngine.SetRTPCValue ("Star_Counter", (float)star_num);
+	}
+
 	void CountingPointsPlay(){
 		PlaySound(pointsCountingPlay, gameObject);
 	}

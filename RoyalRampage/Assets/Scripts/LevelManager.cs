@@ -885,6 +885,7 @@ public class LevelManager : MonoBehaviour
         {
             //Play Sound here (Add delay with coroutine)
             yield return new WaitForSeconds(0.5f);
+			GameManager.instance.audioManager.UpdateGemCounter (i+1);
             GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
             gems[i].SetActive(true);
         }
