@@ -167,16 +167,17 @@ public class ObjectBehavior : MonoBehaviour
         }
     }
 
+    //void FixedUpdate()
+    //{
+    //    CheckDamage();
+    //    //CheckVelocity();
+
+    //}
+
+
     void FixedUpdate()
     {
         CheckDamage();
-        //CheckVelocity();
-
-    }
-
-
-    void Update()
-    {
 
         if (flying)
         {
