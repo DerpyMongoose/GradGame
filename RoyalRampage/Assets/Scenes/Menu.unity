@@ -152,67 +152,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!1 &849509810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 849509813}
-  - 114: {fileID: 849509812}
-  - 114: {fileID: 849509811}
-  m_Layer: 0
-  m_Name: WwiseGlobal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &849509811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 849509810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basePath: Audio\GeneratedSoundBanks
-  language: English(US)
-  defaultPoolSize: 4096
-  lowerPoolSize: 2048
-  streamingPoolSize: 1024
-  preparePoolSize: 0
-  memoryCutoffThreshold: 0.95
-  engineLogging: 1
---- !u!114 &849509812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 849509810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70378dc1f3bf82145bddee67b1796c9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &849509813
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 849509810}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
---- !u!1001 &1490478474
+--- !u!1001 &822110740
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -334,26 +274,6 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224000012767593702, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -379,6 +299,31 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013149503468, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.8438995
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -397,7 +342,7 @@ Prefab:
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -2479.5
+      value: -2508
       objectReference: {fileID: 0}
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
@@ -407,90 +352,76 @@ Prefab:
     - target: {fileID: 224000010303667190, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4959
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010185696206, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 5016
       objectReference: {fileID: 0}
     - target: {fileID: 224000010185696206, guid: ce6b29c1458b4484e845ac691a477382,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 4959
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013942583162, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.84210527
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011897536988, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_Text
-      value: "Christian Andersen, Lead Programmer\r\n\nMikkel Mulvad Beyer, Level
-        Designer \r\n\nAlexander Bj\xF8rkholm, Art Director\r\n\nChristoffer Carstensen,
-        Project Manager\r\n\nNicolaj Evers, Programmer\r\n\nAlexandros Panagiotis
-        Giakalis, Programmer \r\n\nEsben Gravesen, Audio Designer\r\n\nSusi Haaning,
-        Game Director\r\n\nPia Marie Hansen, CG Artist\r\n\nChristian Vest\xF8l Lade,
-        QA & UR Manager\r\n\nLotte Rose, Business Developer\r\n\nSule Serubugo, Programmer\r\n\nDenisa
-        Skantarova, Programmer\r\n\nKristina Sletting, Animator\r\n\nUlrik Kroge Sloth,
-        Game Designer\r\n\nMie Abildgaard Thode Stokholm, CG Artist\r\n\nNikoline
-        Svenningsen, Business Developer\n\nTesters:\n\nMikkel Agerskov J\xF8rgensen\r\n\nChristian
-        Andersen\r\n\nMads Boelsmand \xD8stergaard\r\n\nCamilla Mejlby Hansen\r\n\nMads
-        Rune Holdgaard Halvorsen\r\n\nRasmus Hoffensetz\r\n\nBodil Stride Jensen\r\n\nChriss
-        Mortensen\r\n\nEmil Styrb\xE6k M\xF8ller\r\n\nRasmus Nielsen\r\n\nNikolaj
-        T\xF8nner Vanggard\r\n\nKiki B\xF8gh Larsen \r\n\nAllan\r\n\nLars\r\n\nOliver
-        \r\n\nKarolina Borucka\r\n\nNicklas Nissen\r\n\nAlexander Tolstrup\r\n\nEmil
-        \xD8stergaard\r\n\nMarcus S\xF8rup\r\n\nMartin Holk"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012960049456, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_Size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010502096714, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010859671284, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010859671284, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012840369292, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012840369292, guid: ce6b29c1458b4484e845ac691a477382,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -17
+      value: 5016
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce6b29c1458b4484e845ac691a477382, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &849509810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 849509813}
+  - 114: {fileID: 849509812}
+  - 114: {fileID: 849509811}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &849509811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 849509810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5ce0c71cf31be4c8a15e4f2156a121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  engineLogging: 1
+--- !u!114 &849509812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 849509810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70378dc1f3bf82145bddee67b1796c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &849509813
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 849509810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1606607303
 GameObject:
   m_ObjectHideFlags: 0
