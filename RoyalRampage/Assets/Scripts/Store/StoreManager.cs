@@ -129,7 +129,7 @@ public class StoreManager : MonoBehaviour {
             temp[0].GetComponent<Text>().text = objectsInStore[i].Object;
             temp[1].GetComponent<Text>().text = objectsInStore[i].Price.ToString();
             objButton.transform.SetParent(parent);
-            parent.sizeDelta = parent.sizeDelta + new Vector2(0f,300f);
+            parent.sizeDelta = parent.sizeDelta + new Vector2(0f,400f);
         }
     }
 

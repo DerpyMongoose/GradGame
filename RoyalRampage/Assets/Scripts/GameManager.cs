@@ -134,6 +134,7 @@ public class GameManager
 
     public void Loading()
     {
+        isPaused = false;
         if (currentLevel == 1)
         {
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]);
@@ -144,7 +145,7 @@ public class GameManager
         else
         {
             SceneManager.LoadSceneAsync(GAME_SCENES[currentLevel - 1]); //UPDATE FOR MORE LEVELS
-            Time.timeScale = 1;
+            Time.timeScale = 1;           
             currentScene = Scene.GAME;
         }
     }
