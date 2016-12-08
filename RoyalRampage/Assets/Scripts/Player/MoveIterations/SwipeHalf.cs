@@ -244,7 +244,7 @@ public class SwipeHalf : MonoBehaviour
                     }
                     // SOUND AND ANIMATION FOR STOMP
                     GameManager.instance.playerStomp();
-                    GameManager.instance.changeMusicState(AudioManager.IN_STOMP);  // FOR AUDIO
+                    
                 }
             }
         }
@@ -326,6 +326,7 @@ public class SwipeHalf : MonoBehaviour
 
     public void Lift()
     {
+        GameManager.instance.changeMusicState(AudioManager.IN_STOMP);  // FOR AUDIO
         for (int i = 0; i < tempColliders.Count; i++)
         {
             if (tempColliders[i] != null)
@@ -342,9 +343,6 @@ public class SwipeHalf : MonoBehaviour
                 tempColliders[i].gameObject.GetComponent<ObjectBehavior>().hasLanded = false;
             }
         }
-
-
-
         coroutine = ReturnGravity(objRB, initialMass);
         StartCoroutine(coroutine);
     }
@@ -357,6 +355,7 @@ public class SwipeHalf : MonoBehaviour
 
     public void Reverse(List<Rigidbody> rig, List<float> mass)
     {
+        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO, reverse from stomp
         PlayerStates.imInSlowMotion = false;
         for (int i = 0; i < rig.Count; i++)
         {
@@ -370,7 +369,6 @@ public class SwipeHalf : MonoBehaviour
         }
         StartCoroutine(InitializeMass(rig, mass));
         coroutine = null;
-        GameManager.instance.changeMusicState(AudioManager.IN_LEVEL);  // FOR AUDIO, reverse from stomp
     }
 
     IEnumerator InitializeMass(List<Rigidbody> rig, List<float> mass)
