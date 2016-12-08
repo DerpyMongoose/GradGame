@@ -6,12 +6,21 @@ public class SetTextPoints : MonoBehaviour {
 
     float counter;
     public float timeActive = 1f;
+    public Color normalPointColor, bonusPointColor;
 
     void OnEnable() {
         counter = 0f;
     }
 	
-    public void SetText(int pointAmount) {
+    public void SetText(int pointAmount)
+    {
+        GetComponentInChildren<Text>().color = normalPointColor;
+        GetComponentInChildren<Text>().text = "+" + pointAmount.ToString();
+    }
+
+    public void SetBonusText(int pointAmount)
+    {
+        GetComponentInChildren<Text>().color = bonusPointColor;
         GetComponentInChildren<Text>().text = "+" + pointAmount.ToString();
     }
 

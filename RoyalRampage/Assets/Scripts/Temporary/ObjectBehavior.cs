@@ -11,6 +11,7 @@ public class ObjectBehavior : MonoBehaviour
 
     private Rigidbody objRB;
     private GameObject player;
+    private int initialScore;
     ObjectBehavior script;
 
     [HideInInspector]
@@ -149,6 +150,7 @@ public class ObjectBehavior : MonoBehaviour
         hit = false;
         canRotate = false;
         hasLanded = true;
+        initialScore = score;
         //ObjectManagerV2.instance.maxScore += score;  
 
         //Disable all the children.
@@ -258,7 +260,14 @@ public class ObjectBehavior : MonoBehaviour
         //obj.transform.LookAt(Camera.main.transform);
         obj.SetActive(true);
 
-        obj.GetComponent<SetTextPoints>().SetText(score * GameManager.instance.levelManager.multiplier);
+        if (score != initialScore)
+        {
+            obj.GetComponent<SetTextPoints>().SetBonusText(score);
+        }
+        else
+        {
+            obj.GetComponent<SetTextPoints>().SetText(score);
+        }
     }
 
 
@@ -341,6 +350,11 @@ public class ObjectBehavior : MonoBehaviour
                 {
                     lifted = false;
                     flying = false;
+                    score = score - ObjectManagerV2.instance.bonusScore;
+                    if(score < initialScore)
+                    {
+                        score = initialScore;
+                    }
                     if (hasLanded == false)
                     {            
                         GameManager.instance.objectLanding(gameObject);

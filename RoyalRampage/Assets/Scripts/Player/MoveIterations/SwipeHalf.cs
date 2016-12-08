@@ -310,6 +310,11 @@ public class SwipeHalf : MonoBehaviour
                 if (ObjectManagerV2.instance.canDamage == true)
                 {
                     tempColliders[i].gameObject.GetComponent<ObjectBehavior>().life -= ObjectManagerV2.instance.swirlDamage;
+                    if (tempColliders[i].gameObject.GetComponent<ObjectBehavior>().life <= 0)
+                    {
+                        ObjectManagerV2.instance.countObjects++;
+                        //ObjectManagerV2.instance.countMultiTime = 0;
+                    }
                 }
             }
         }
@@ -326,6 +331,7 @@ public class SwipeHalf : MonoBehaviour
                 tempColliders[i].GetComponent<ObjectBehavior>().lifted = true;
                 tempColliders[i].GetComponent<ObjectBehavior>().flying = true;
                 tempColliders[i].GetComponent<ObjectBehavior>().canRotate = true;
+                tempColliders[i].GetComponent<ObjectBehavior>().score  = tempColliders[i].GetComponent<ObjectBehavior>().score + ObjectManagerV2.instance.bonusScore;
                 objRB.Add(tempColliders[i].GetComponent<Rigidbody>());
                 initialMass.Add(tempColliders[i].GetComponent<Rigidbody>().mass);
                 tempColliders[i].GetComponent<Rigidbody>().mass = 10f;
