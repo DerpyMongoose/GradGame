@@ -28,6 +28,8 @@ public class LevelManager : MonoBehaviour
     float t;
     [HideInInspector]
     public bool targetReached = false;
+    [HideInInspector]
+    public bool wrongMove;
     int[] starValue;
     int starIndex;
     int stars = 0;
@@ -115,6 +117,7 @@ public class LevelManager : MonoBehaviour
         smashed = false;
         startTimer = false;
         startTimer2 = false;
+        wrongMove = false;
         timer = 0;
         timer2 = 0;
         starIndex = 0;
@@ -485,6 +488,7 @@ public class LevelManager : MonoBehaviour
                         if (PlayerStates.swiped == true)
                         {
                             guideText.text = LanguageManager.instance.ReturnWord("TryAgain"); // FAIL MESSAGE
+                            wrongMove = true;
                             startTimer = true;
                         }
 
@@ -503,11 +507,12 @@ public class LevelManager : MonoBehaviour
                                 TutObj(tutorialObj6, new Vector3(-0.5f, 0, -1));
 
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut4.0");
-
+                                wrongMove = false;
                                 timer = 0;
                             }
                         }
-                        else if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true) //startTimer changed, change back if broken
+
+                        if (GameManager.instance.player.GetComponent<SwipeHalf>().swirlTut == true) //startTimer changed, change back if broken
                         {
                             ObjectManagerV2.instance.canDamage = true;
                             guideText.text = LanguageManager.instance.ReturnWord("Tut4.1");
@@ -847,6 +852,7 @@ public class LevelManager : MonoBehaviour
         {
             //Play Sound here (Add delay with coroutine)
             yield return new WaitForSeconds(0.5f);
+			GameManager.instance.audioManager.UpdateGemCounter (i+1);
             GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
             gems[i].SetActive(true);
         }

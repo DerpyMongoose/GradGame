@@ -163,10 +163,13 @@ public class SwipeHalf : MonoBehaviour
                     {
                         if (isGestureDone())
                         {
-                            swirlTut = true;
-                            swirlEnded = false;
-                            GameManager.instance.playerSwirl();
-                            spinningAnim = true;
+                            if (GameManager.instance.levelManager.wrongMove == false)
+                            {
+                                swirlTut = true;
+                                swirlEnded = false;
+                                GameManager.instance.playerSwirl();
+                                spinningAnim = true;
+                            }
                         }
                     }
 
