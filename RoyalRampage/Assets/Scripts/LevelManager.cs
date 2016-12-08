@@ -286,25 +286,25 @@ public class LevelManager : MonoBehaviour
                     updateGoal = true;
                     starIndex += 1;
                 }
-                
+
                 if (updateGoal == true)
                 {
                     if (starIndex <= 4)
                     {
                         tempScore = starValue[starIndex];
                         minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + tempScore;
-                    GameManager.instance.gemScoreDisplay();
-                    InGameGem.SetActive(true);
-                    StartCoroutine(DisplayIngameGem());
-                    updateGoal = false;
+                        GameManager.instance.gemScoreDisplay();
+                        InGameGem.SetActive(true);
+                        StartCoroutine(DisplayIngameGem());
+                        updateGoal = false;
                     }
-                    else if (starIndex == 5 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore != 0)
+                    else if (starIndex == 5 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore != 0 && SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore > tempScore)
                     {
                         minScoreText.text = LanguageManager.instance.ReturnWord("InGameGoal") + " " + SaveHighScore.instance.ReturnListWithObjects((GameManager.instance.currentLevel - 1).ToString())[0].HighScore;
-                    GameManager.instance.gemScoreDisplay();
-                    InGameGem.SetActive(true);
-                    StartCoroutine(DisplayIngameGem());
-                }
+                        GameManager.instance.gemScoreDisplay();
+                        InGameGem.SetActive(true);
+                        StartCoroutine(DisplayIngameGem());
+                    }
                 }
 
                 if (score >= scoreToCompleteLevel)
@@ -343,7 +343,7 @@ public class LevelManager : MonoBehaviour
                         if (SwipeHalf.startTutTimer == true)
                         {
                             //COLORED PANEL FOR COMMUNICATING MOVING
-                            
+
                             guideText.text = LanguageManager.instance.ReturnWord("Tut1.2");
                         }
                         if (GameManager.instance.levelManager.targetReached == true)
@@ -641,7 +641,7 @@ public class LevelManager : MonoBehaviour
 
                                 timer2 = 0;
                                 guideText.text = LanguageManager.instance.ReturnWord("Tut5.1");
- 
+
                                 GameManager.instance.player.GetComponent<StampBar>().tempScore = 0;
                                 GameManager.instance.player.GetComponent<PlayerStates>().rageObjects = 0;
                                 GameManager.instance.player.GetComponent<StampBar>().slider.value = 1f;
@@ -681,7 +681,8 @@ public class LevelManager : MonoBehaviour
         //GameManager.instance.currentScene = GameManager.Scene.GAME;
     }
 
-    IEnumerator DisplayIngameGem() { 
+    IEnumerator DisplayIngameGem()
+    {
         yield return new WaitForSeconds(1f);
         InGameGem.SetActive(false);
     }
@@ -788,18 +789,20 @@ public class LevelManager : MonoBehaviour
 
         switch (levelResult)
         {
-		case "Level completed!":
-			GameManager.instance.levelWon = true;
+            case "Level completed!":
+                GameManager.instance.levelWon = true;
                 //ReplayBtn.SetActive(true);
                 //NewLevelBtn.SetActive(true);
 
-			if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
-				GameManager.instance.levelsUnlocked++;
-			}
-			//disable next button after last level
-			if (GameManager.instance.levelsUnlocked == GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked) {
-				NewLevelBtn.SetActive(false);
-			}
+                if (GameManager.instance.levelsUnlocked < GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
+                {
+                    GameManager.instance.levelsUnlocked++;
+                }
+                //disable next button after last level
+                if (GameManager.instance.levelsUnlocked == GameManager.instance.NUM_OF_LEVELS_IN_GAME && GameManager.instance.currentLevel == GameManager.instance.levelsUnlocked)
+                {
+                    NewLevelBtn.SetActive(false);
+                }
                 break;
 
             case "Game over":
@@ -852,7 +855,7 @@ public class LevelManager : MonoBehaviour
         {
             //Play Sound here (Add delay with coroutine)
             yield return new WaitForSeconds(0.5f);
-			GameManager.instance.audioManager.UpdateGemCounter (i+1);
+            GameManager.instance.audioManager.UpdateGemCounter(i + 1);
             GameManager.instance.gemScoreDisplay(); //AUDIO FOR ONE GEM
             gems[i].SetActive(true);
         }
