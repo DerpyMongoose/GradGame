@@ -228,6 +228,7 @@ public class SwipeHalf : MonoBehaviour
                     {
                         GetComponent<PlayerStates>().rageObjects = 50;
                         GetComponent<StampBar>().slider.value = 0f;
+                        ObjectManagerV2.instance.isGrounded = false;
                     }
                     PlayerStates.imInSlowMotion = true;
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<PlayerStates>().liftRadius);

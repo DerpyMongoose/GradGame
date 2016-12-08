@@ -202,9 +202,9 @@ public class PlayerStates : MonoBehaviour
                         timerUI.SetActive(false);
                         GameObject.Find("Target").SetActive(false);
                         GameManager.instance.tutorialTaskCompleted();
-                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                         timer = 0;
                         timerStart = false;
+                        GameManager.instance.tutorial = GameManager.Tutorial.ATTACK;
                     }
                 }              
                 else if (timerStart2 == true && timerStart == false)
