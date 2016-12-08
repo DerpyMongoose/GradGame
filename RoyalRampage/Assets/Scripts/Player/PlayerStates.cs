@@ -39,6 +39,7 @@ public class PlayerStates : MonoBehaviour
     private float timeRunningOut = 10;  // TIME TO START THE RUNNING OUT SOUND
     private bool timerStart, timerStart2;
     private float timer;
+    Color sliderCol;
 
     public enum PlayerState
     {
@@ -77,7 +78,9 @@ public class PlayerStates : MonoBehaviour
         timeSliderLeft = GameObject.Find("TimerSliderLeft").GetComponent<Slider>();
         timeSliderLeft.value = 1f;
         timeSliderRight = GameObject.Find("TimerSliderRight").GetComponent<Slider>();
+        sliderCol = new Color(164f/255f, 97f/255f, 164f/255f);
         timeSliderRight.value = 1f;
+        
         GameManager.instance.canPlayerMove = true;
         GameManager.instance.canPlayerDestroy = true;
     }
@@ -137,13 +140,17 @@ public class PlayerStates : MonoBehaviour
             case PlayerState.ATTACKING:
                 if (GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT || GameManager.instance.CurrentScene() == GameManager.Scene.GAME)
                 {
-                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true))
+                    if (GameManager.instance.levelManager.multiplier > 1 || GameManager.instance.TutorialState() == GameManager.Tutorial.MOVEMENT && (GameManager.instance.levelManager.targetReached == true || timerStart2 == true) || GameManager.instance.isPaused)
                     {
                         timeLeftInLevel -= 0;
+                        timeSliderLeft.transform.Find("Fill Area/Fill").GetComponent<Image>().color = new Color(135f / 255f, 135f / 255f, 135f / 255f);
+                        timeSliderRight.transform.Find("Fill Area/Fill").GetComponent<Image>().color = new Color(135f / 255f, 135f / 255f, 135f / 255f);
                     }
                     else if (!imInSlowMotion)
                     {
                         timeLeftInLevel -= Time.deltaTime;
+                        timeSliderLeft.transform.Find("Fill Area/Fill").GetComponent<Image>().color = sliderCol;
+                        timeSliderRight.transform.Find("Fill Area/Fill").GetComponent<Image>().color = sliderCol;
                     }
                     else
                     {

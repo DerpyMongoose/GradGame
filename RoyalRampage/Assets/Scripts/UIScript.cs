@@ -172,46 +172,6 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        switch (GameManager.instance.CurrentScene())
-        {
-            case GameManager.Scene.PLAY_MENU:
-            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
-            if (settings_menu.activeInHierarchy || help_menu.activeInHierarchy || credits.activeInHierarchy)
-                {
-                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                        GraphicRaycaster ray = GetComponent<GraphicRaycaster>();
-                        PointerEventData ped = new PointerEventData(null);
-                        ped.position = Input.GetTouch(0).position;
-                        List<RaycastResult> results = new List<RaycastResult>();
-
-                        ray.Raycast(ped, results);
-
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == settings_menu.tag)))
-                        {
-                            settings_menu.SetActive(false);
-                        }
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == help_menu.tag)))
-                        {
-                            help_menu.SetActive(false);
-                        }
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == credits.tag))) {
-                            credits.SetActive(false);
-                        }
-                }
-                }
-
-                break;
-            case GameManager.Scene.LEVELS_OVERVIEW:
-            //levelNum.text = LanguageManager.instance.ReturnWord("CurrentLevel") + ": " + (GameManager.instance.levelsUnlocked).ToString();
-            break;
-        }
-    }
 
     public void BehindPanel()
     {
@@ -229,6 +189,22 @@ public class UIScript : MonoBehaviour
         }
     }
 
+    public void CloseLevelSelect() {
+        if (levels_menu.activeInHierarchy) {
+            levels_menu.SetActive(false);
+            play_menu.SetActive(true);
+        }
+        if (credits.activeInHierarchy) {
+            credits.SetActive(false);
+        }
+        if (settings_menu.activeInHierarchy) {
+            settings_menu.SetActive(false);
+        }
+        if (help_menu.activeInHierarchy) {
+            help_menu.SetActive(false);
+        }
+    }
+
     public void InstructionsSkip()
     {
         help_menu.SetActive(false);
@@ -240,7 +216,9 @@ public class UIScript : MonoBehaviour
     }
 
     public void OpenCredits() {
-        credits.SetActive(true);
+        if (Input.touchCount == 1) {
+            credits.SetActive(true);
+        }
     }
 
     public void BackToGame()
@@ -297,8 +275,10 @@ public class UIScript : MonoBehaviour
     {
 
         //***** FOR AUDIO
-        PlayMenuButtonSound();
-        StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
+        if(Input.touchCount == 1) {
+            PlayMenuButtonSound();
+            StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToLevelOverview"));
+        }      
     }
 
     public void CloseLevelOverview()
@@ -311,11 +291,12 @@ public class UIScript : MonoBehaviour
 
     public void GoToInfo()
     {
-
-        //***** FOR AUDIO
-        PlayMenuButtonSound();
-        help_menu.SetActive(true);
-        //UpdateHelpSlides("open");
+        if (Input.touchCount == 1) {
+            //***** FOR AUDIO
+            PlayMenuButtonSound();
+            help_menu.SetActive(true);
+            //UpdateHelpSlides("open");
+        }
     }
 
     public void CloseInfo()
@@ -328,11 +309,12 @@ public class UIScript : MonoBehaviour
 
     public void GoToSettings()
     {
-
-        //***** FOR AUDIO
-        PlayMenuButtonSound();
-        //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
-        settings_menu.SetActive(true);
+        if (Input.touchCount == 1) {
+            //***** FOR AUDIO
+            PlayMenuButtonSound();
+            //StartCoroutine(WaitButtonFinish(waitTimeMB, "GoToSettings"));
+            settings_menu.SetActive(true);
+        }
 
     }
 
@@ -355,10 +337,10 @@ public class UIScript : MonoBehaviour
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
-        pause_menu.SetActive(true);
-        pauseButton.SetActive(false);
+        pause_menu.SetActive(true);      
         behindPanelButton.SetActive(true);
-        GameManager.instance.PauseGame();
+        pauseButton.SetActive(false);
+        GameManager.instance.PauseGame();  
 
     }
     public void UnPauseGame()
