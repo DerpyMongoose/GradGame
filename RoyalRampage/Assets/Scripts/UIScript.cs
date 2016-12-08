@@ -199,15 +199,8 @@ public class UIScript : MonoBehaviour
                         {
                             help_menu.SetActive(false);
                         }
-                        if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                            !results.Exists(x => x.gameObject.tag == credits.tag))) {
-                            credits.SetActive(false);
-                        }
-                    if ((results.Exists(x => x.gameObject.tag == background.tag) &&
-                        !results.Exists(x => x.gameObject.tag == levels_menu.tag))) {
-                        levels_menu.SetActive(false);
+                    
                     }
-                }
                 }
 
                 break;
@@ -230,6 +223,16 @@ public class UIScript : MonoBehaviour
         if (help_menu.activeInHierarchy)
         {
             help_menu.SetActive(false);
+        }
+    }
+
+    public void CloseLevelSelect() {
+        if (levels_menu.activeInHierarchy) {
+            levels_menu.SetActive(false);
+            play_menu.SetActive(true);
+        }
+        if (credits.activeInHierarchy) {
+            credits.SetActive(false);
         }
     }
 
@@ -359,10 +362,10 @@ public class UIScript : MonoBehaviour
         //StartCoroutine(WaitButtonFinish(waitTimeMB, "PauseGame"));
 		GameManager.instance.changeMusicState(AudioManager.IN_GAME_MENU);  // FOR AUDIO
         GameManager.instance.isPaused = true;
-        pause_menu.SetActive(true);
-        pauseButton.SetActive(false);
+        pause_menu.SetActive(true);      
         behindPanelButton.SetActive(true);
-        GameManager.instance.PauseGame();
+        pauseButton.SetActive(false);
+        GameManager.instance.PauseGame();    
 
     }
     public void UnPauseGame()
